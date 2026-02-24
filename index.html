@@ -2001,7 +2001,6 @@ img.src = `staff/dj${i}.png`;
 img.alt = `Staff member ${i}`;
 img.classList.add('staff-photo');
 img.dataset.index = i;
-img.loading = 'lazy';
 img.onload = function() {
 loadedCount++;
 this.classList.add('loaded');
