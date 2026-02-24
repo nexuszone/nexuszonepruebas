@@ -1885,7 +1885,9 @@ let audioGraphSetup = false;
 let isChatVisible = false;
 let isStaffVisible = false;
 let staffLoaded = false;
+let lastDjName = '';
 let lastDjImage = '';
+let djImageInitialized = false;
 const ledColors = ['#8b8b8b', '#bd00ff', '#00ff41'];
 let ledColorIndex = 0;
 let lastBeatTime = 0;
@@ -2030,35 +2032,45 @@ return djName.toLowerCase()
 }
 function replaceDjImageWithLocal(djName = 'autodj') {
 const djProfile = document.getElementById('dj_profile');
-if (djProfile) {
+if (!djProfile) return;
 const sanitizedName = sanitizeDjName(djName);
 const imagePath = `portadasdjs/${sanitizedName}.png`;
-// EVITAR PARPADEO: Solo cambiar si la imagen es diferente
-if (lastDjImage === imagePath) {
+// EVITAR PARPADEO Y DESAPARICIÓN: Solo cambiar si el DJ es diferente
+if (lastDjName === djName && djImageInitialized) {
 return;
 }
-lastDjImage = imagePath;
+lastDjName = djName;
 const existingImg = djProfile.querySelector('img');
 if (existingImg) {
-// Solo actualizar si la ruta es diferente
-if (existingImg.src !== imagePath && !existingImg.src.includes(imagePath)) {
+// Verificar si la imagen ya está cargada y es la correcta
+if (existingImg.src.includes(imagePath) || existingImg.dataset.loaded === 'true') {
+return;
+}
+// Precargar nueva imagen antes de reemplazar
 const newImg = new Image();
 newImg.onload = function() {
 existingImg.src = imagePath;
 existingImg.alt = djName;
+existingImg.dataset.loaded = 'true';
+djImageInitialized = true;
+};
+newImg.onerror = function() {
+// Si falla, mantener la imagen existente
+console.warn(`⚠ No se encontró: ${imagePath}`);
 };
 newImg.src = imagePath;
-}
 } else {
+// Crear imagen si no existe
 const newImg = document.createElement('img');
 newImg.src = imagePath;
 newImg.alt = djName;
 newImg.style.borderRadius = '50%';
 newImg.style.border = '3px solid #8b8b8b';
 newImg.style.objectFit = 'cover';
+newImg.dataset.loaded = 'true';
 djProfile.innerHTML = '';
 djProfile.appendChild(newImg);
-}
+djImageInitialized = true;
 }
 }
 function checkAndReplaceNoDJ() {
@@ -2098,15 +2110,7 @@ djObserver.observe(sonicDj, { childList: true, characterData: true, subtree: tru
 updateGlitchDataText(sonicDj);
 checkAndReplaceNoDJ();
 }
-const djProfile = document.getElementById('dj_profile');
-if (djProfile) {
-const profileObserver = new MutationObserver(() => {
-if (sonicDj && sonicDj.textContent.trim().toUpperCase().includes('NO DJ')) {
-replaceDjImageWithLocal('autodj');
-}
-});
-profileObserver.observe(djProfile, { childList: true, subtree: true });
-}
+// ELIMINADO: Observer en #dj_profile que causaba conflictos
 }
 function updateAlbumArtBackground() {
 setTimeout(() => {
@@ -2333,6 +2337,10 @@ setupGlitchObservers();
 initChatListeners();
 initStaffListeners();
 adjustChatIframeForMobile();
+// Inicializar imagen del DJ al cargar
+setTimeout(() => {
+checkAndReplaceNoDJ();
+}, 500);
 console.log("🎧 Nexus Zone cargado. Haz clic en PLAY para iniciar.");
 });
 audio.addEventListener('ended', () => {
