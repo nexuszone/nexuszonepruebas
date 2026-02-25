@@ -121,7 +121,6 @@ background-clip: text;
 -webkit-text-fill-color: transparent;
 text-fill-color: transparent;
 text-shadow: 0 0 10px rgba(189, 0, 255, 0.5);
-animation: glow 2s ease-in-out infinite alternate;
 margin: 0;
 display: inline-block;
 line-height: 1.1;
@@ -141,10 +140,6 @@ text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
 margin: 0;
 display: inline-block;
 line-height: 1.1;
-}
-@keyframes glow {
-from { text-shadow: 0 0 10px rgba(189, 0, 255, 0.5); }
-to { text-shadow: 0 0 20px rgba(189, 0, 255, 0.8), 0 0 30px rgba(0, 255, 65, 0.6); }
 }
 .led-strip-top,
 .led-strip-bottom {
@@ -431,6 +426,7 @@ margin-top: 5px;
 width: 100%;
 padding: 0 10px;
 gap: 25px;
+/* 50% transparente */
 background: rgba(0, 0, 0, 0.5);
 border-radius: 80px;
 border: 2px solid rgba(139, 139, 139, 0.3);
@@ -440,6 +436,7 @@ inset 0 0 15px rgba(0, 0, 0, 0.3),
 margin-left: auto;
 margin-right: auto;
 max-width: 420px;
+/* PREVENIR DESBORDAMIENTO */
 overflow: hidden;
 flex-wrap: nowrap;
 }
@@ -465,6 +462,7 @@ inset 0 0 10px rgba(0, 0, 0, 0.8),
 animation: subtleSpin 15s linear infinite;
 flex-shrink: 0;
 aspect-ratio: 1 / 1;
+/* PREVENIR DESBORDAMIENTO */
 min-width: 85px;
 max-width: 85px;
 }
@@ -618,6 +616,7 @@ box-shadow:
 inset 0 0 15px rgba(0, 0, 0, 0.7),
 0 0 8px rgba(139, 139, 139, 0.4);
 overflow: hidden;
+/* PREVENIR DESBORDAMIENTO */
 min-width: 170px;
 max-width: 170px;
 }
@@ -888,45 +887,6 @@ justify-content: center;
 align-items: center;
 min-height: 80px;
 }
-.footer-brand {
-display: inline-flex;
-gap: 4px;
-align-items: center;
-margin-bottom: 0.2rem;
-animation: power-flicker 8s infinite;
-}
-@keyframes power-flicker {
-0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-3% { opacity: 0.3; text-shadow: none; }
-6% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-8% { opacity: 0.5; text-shadow: none; }
-10% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-40% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-42% { opacity: 0.2; text-shadow: none; }
-44% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-46% { opacity: 0.4; text-shadow: none; }
-48% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-100% { opacity: 1; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6), 0 0 8px rgba(0, 255, 65, 0.6); }
-}
-.footer-nexus {
-color: #bd00ff;
-font-family: 'Orbitron', sans-serif;
-font-weight: 900;
-font-size: 0.85rem;
-text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
-}
-.footer-zone {
-color: #00ff41;
-font-family: 'Orbitron', sans-serif;
-font-weight: 900;
-font-size: 0.85rem;
-text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
-}
-.footer-separator {
-color: #888;
-margin: 0 8px;
-font-size: 0.85rem;
-}
 .footer-credit {
 color: #888;
 font-family: 'Orbitron', sans-serif;
@@ -991,7 +951,7 @@ background: #0a0a0a;
 border-left: 3px solid #bd00ff;
 box-shadow: -5px 0 25px rgba(189, 0, 255, 0.4), 0 0 30px rgba(0, 0, 0, 0.8);
 z-index: 1000;
-transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: right 0.3s ease-out;
 display: flex;
 flex-direction: column;
 font-family: 'Orbitron', sans-serif;
@@ -1091,7 +1051,7 @@ background: #0a0a0a;
 border-left: 3px solid #00ff41;
 box-shadow: -5px 0 25px rgba(0, 255, 65, 0.4), 0 0 30px rgba(0, 0, 0, 0.8);
 z-index: 1001;
-transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+transition: right 0.3s ease-out;
 display: flex;
 flex-direction: column;
 font-family: 'Orbitron', sans-serif;
@@ -1817,10 +1777,6 @@ Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff4
 </a>
 </div>
 <div class="copyright">
-<span class="footer-brand">
-<span class="footer-nexus">NEXUS</span><span class="footer-zone">ZONE</span>
-</span>
-<span class="footer-separator">|</span>
 <span class="footer-credit">BY DOBBY</span>
 </div>
 </footer>
@@ -1885,9 +1841,6 @@ let audioGraphSetup = false;
 let isChatVisible = false;
 let isStaffVisible = false;
 let staffLoaded = false;
-let lastDjName = '';
-let lastDjImage = '';
-let djImageInitialized = false;
 const ledColors = ['#8b8b8b', '#bd00ff', '#00ff41'];
 let ledColorIndex = 0;
 let lastBeatTime = 0;
@@ -2032,45 +1985,25 @@ return djName.toLowerCase()
 }
 function replaceDjImageWithLocal(djName = 'autodj') {
 const djProfile = document.getElementById('dj_profile');
-if (!djProfile) return;
+if (djProfile) {
+const existingImg = djProfile.querySelector('img');
 const sanitizedName = sanitizeDjName(djName);
 const imagePath = `portadasdjs/${sanitizedName}.png`;
-// EVITAR PARPADEO Y DESAPARICIÓN: Solo cambiar si el DJ es diferente
-if (lastDjName === djName && djImageInitialized) {
-return;
-}
-lastDjName = djName;
-const existingImg = djProfile.querySelector('img');
 if (existingImg) {
-// Verificar si la imagen ya está cargada y es la correcta
-if (existingImg.src.includes(imagePath) || existingImg.dataset.loaded === 'true') {
-return;
-}
-// Precargar nueva imagen antes de reemplazar
-const newImg = new Image();
-newImg.onload = function() {
+if (!existingImg.src.includes(imagePath)) {
 existingImg.src = imagePath;
 existingImg.alt = djName;
-existingImg.dataset.loaded = 'true';
-djImageInitialized = true;
-};
-newImg.onerror = function() {
-// Si falla, mantener la imagen existente
-console.warn(`⚠ No se encontró: ${imagePath}`);
-};
-newImg.src = imagePath;
+}
 } else {
-// Crear imagen si no existe
 const newImg = document.createElement('img');
 newImg.src = imagePath;
 newImg.alt = djName;
 newImg.style.borderRadius = '50%';
 newImg.style.border = '3px solid #8b8b8b';
 newImg.style.objectFit = 'cover';
-newImg.dataset.loaded = 'true';
 djProfile.innerHTML = '';
 djProfile.appendChild(newImg);
-djImageInitialized = true;
+}
 }
 }
 function checkAndReplaceNoDJ() {
@@ -2110,7 +2043,15 @@ djObserver.observe(sonicDj, { childList: true, characterData: true, subtree: tru
 updateGlitchDataText(sonicDj);
 checkAndReplaceNoDJ();
 }
-// ELIMINADO: Observer en #dj_profile que causaba conflictos
+const djProfile = document.getElementById('dj_profile');
+if (djProfile) {
+const profileObserver = new MutationObserver(() => {
+if (sonicDj && sonicDj.textContent.trim().toUpperCase().includes('NO DJ')) {
+replaceDjImageWithLocal('autodj');
+}
+});
+profileObserver.observe(djProfile, { childList: true, subtree: true });
+}
 }
 function updateAlbumArtBackground() {
 setTimeout(() => {
@@ -2337,10 +2278,6 @@ setupGlitchObservers();
 initChatListeners();
 initStaffListeners();
 adjustChatIframeForMobile();
-// Inicializar imagen del DJ al cargar
-setTimeout(() => {
-checkAndReplaceNoDJ();
-}, 500);
 console.log("🎧 Nexus Zone cargado. Haz clic en PLAY para iniciar.");
 });
 audio.addEventListener('ended', () => {
