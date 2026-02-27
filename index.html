@@ -793,26 +793,24 @@ box-shadow:
 inset 0 0 5px rgba(0, 0, 0, 0.5);
 border: 2px solid #000;
 }
-/* Widget del DJ */
-#dj_profile {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1rem;
+/* ============================================ */
+/* IMAGEN DEL DJ - NUEVO ESTILO */
+/* ============================================ */
+#dj-profile-img {
 width: 100%;
 max-width: 412.125px;
 height: auto;
 aspect-ratio: 1 / 1;
 border-radius: 50%;
-animation: dj-breathing 3s ease-in-out infinite;
+border: 3px solid #8b8b8b;
+object-fit: cover;
 box-shadow:
 -15px 0 25px rgba(189, 0, 255, 0.6),
 15px 0 25px rgba(0, 255, 65, 0.6),
 0 0 30px rgba(139, 139, 139, 0.4);
-justify-content: center;
-padding: 0;
+animation: dj-breathing 3s ease-in-out infinite;
+display: block;
 margin: 0 auto;
-position: relative;
 }
 @keyframes dj-breathing {
 0%, 100% {
@@ -829,19 +827,6 @@ box-shadow:
 15px 0 40px rgba(0, 255, 65, 1),
 0 0 50px rgba(139, 139, 139, 0.6);
 }
-}
-#dj_profile img {
-width: 100%;
-height: 100%;
-border-radius: 50%;
-border: 3px solid #8b8b8b;
-object-fit: cover;
-margin: 0;
-display: block;
-box-shadow: none;
-position: relative;
-z-index: 2;
-background: #0f0f0f;
 }
 #sonic_dj.cyber-glitch {
 font-size: clamp(1rem, 1.8vw, 1.4rem);
@@ -1189,7 +1174,7 @@ h1 { font-size: clamp(1.2rem, 3vw, 2.2rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 11px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 7px; }
-#dj_profile { max-width: 380px; }
+#dj-profile-img { max-width: 380px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1222,7 +1207,7 @@ h1 { font-size: clamp(1.2rem, 3vw, 2rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 11px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 7px; }
-#dj_profile { max-width: 350px; }
+#dj-profile-img { max-width: 350px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1255,7 +1240,7 @@ h1 { font-size: clamp(1.2rem, 3vw, 1.9rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 10px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 7px; }
-#dj_profile { max-width: 340px; }
+#dj-profile-img { max-width: 340px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1288,7 +1273,7 @@ h1 { font-size: clamp(1.2rem, 3vw, 1.8rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 10px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 7px; }
-#dj_profile { max-width: 330px; }
+#dj-profile-img { max-width: 330px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1321,7 +1306,7 @@ h1 { font-size: clamp(1.1rem, 2.8vw, 1.7rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 10px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 6px; }
-#dj_profile { max-width: 280px; }
+#dj-profile-img { max-width: 280px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1354,7 +1339,7 @@ h1 { font-size: clamp(1.1rem, 2.8vw, 1.6rem); }
 #sonic_title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .volume-control { padding: 9px; }
 .volume-label { font-size: 0.85rem; margin-bottom: 6px; }
-#dj_profile { max-width: 260px; }
+#dj-profile-img { max-width: 260px; }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.3rem; min-height: 80px; }
 .social-link { width: 35px; height: 35px; font-size: 1.1rem; }
@@ -1372,7 +1357,7 @@ h1 { font-size: clamp(1.2rem, 3vw, 1.9rem); }
 .header-subtitle { font-size: clamp(0.65rem, 1.3vw, 0.85rem); }
 .main-container { padding: 1.5rem; gap: 1.5rem; }
 .cassette-player { max-width: 450px; min-height: 280px; }
-#dj_profile { max-width: 300px; }
+#dj-profile-img { max-width: 300px; }
 .section-title { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .tape-reel { width: 70px; height: 70px; min-width: 70px; max-width: 70px; }
 .cassette-center { width: 140px; height: 100px; min-width: 140px; max-width: 140px; }
@@ -1426,13 +1411,9 @@ max-height: 72px;
 .equalizer-container { height: 23px; }
 .bar { width: 5px; }
 .volume-label { font-size: 0.85rem; }
-#dj_profile {
+#dj-profile-img {
 width: 349.6125px !important;
 height: 349.6125px !important;
-}
-#dj_profile img {
-width: 343.6125px !important;
-height: 343.6125px !important;
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .social-links { gap: 1rem; }
@@ -1506,7 +1487,7 @@ max-height: 72px;
 .equalizer-container { height: 23px; }
 .bar { width: 5px; }
 .volume-label { font-size: 0.85rem; }
-#dj_profile {
+#dj-profile-img {
 width: 349.6125px !important;
 height: 349.6125px !important;
 /* Animación desactivada en móvil */
@@ -1516,10 +1497,6 @@ box-shadow:
 -10px 0 20px rgba(189, 0, 255, 0.5),
 10px 0 20px rgba(0, 255, 65, 0.5),
 0 0 25px rgba(139, 139, 139, 0.3) !important;
-}
-#dj_profile img {
-width: 343.6125px !important;
-height: 343.6125px !important;
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .social-links { gap: 1rem; }
@@ -1589,7 +1566,7 @@ max-height: 65px;
 .bar { width: 4.5px; }
 .volume-label { font-size: 0.85rem; }
 .volume-control { max-width: 100%; padding: 10px; }
-#dj_profile {
+#dj-profile-img {
 width: 235.125px !important;
 height: 235.125px !important;
 /* Animación desactivada en móvil */
@@ -1599,10 +1576,6 @@ box-shadow:
 -8px 0 15px rgba(189, 0, 255, 0.5),
 8px 0 15px rgba(0, 255, 65, 0.5),
 0 0 20px rgba(139, 139, 139, 0.3) !important;
-}
-#dj_profile img {
-width: 229.125px !important;
-height: 229.125px !important;
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 .social-links { gap: 0.8rem; }
@@ -1688,7 +1661,7 @@ max-height: 58px;
 .equalizer-container { height: 17px; }
 .bar { width: 4px; }
 .volume-label { font-size: 0.85rem; }
-#dj_profile {
+#dj-profile-img {
 width: 177.5625px !important;
 height: 177.5625px !important;
 /* Animación desactivada en móvil */
@@ -1698,10 +1671,6 @@ box-shadow:
 -6px 0 12px rgba(189, 0, 255, 0.5),
 6px 0 12px rgba(0, 255, 65, 0.5),
 0 0 15px rgba(139, 139, 139, 0.3) !important;
-}
-#dj_profile img {
-width: 171.5625px !important;
-height: 171.5625px !important;
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); }
 footer { padding: 0.2rem; min-height: 70px; }
@@ -1784,7 +1753,8 @@ footer { padding: 0.2rem; min-height: 70px; }
 <h2 class="section-title dj-title">
 Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff41; display: inline; margin-left: 10px; font-weight: 900;"></div>
 </h2>
-<div id='dj_profile'></div>
+<!-- IMAGEN DEL DJ - CARGA DINÁMICA -->
+<img id='dj-profile-img' src='portadasdjs/autodj.png' alt='DJ Profile'>
 </section>
 </div>
 <div class="led-strip-bottom" id="led-bottom"></div>
@@ -1849,6 +1819,7 @@ const bars = document.querySelectorAll('.bar');
 const streamUrl = 'https://mars.streamerr.co/8434/stream';
 const sonicTitle = document.getElementById('sonic_title');
 const sonicDj = document.getElementById('sonic_dj');
+const djProfileImg = document.getElementById('dj-profile-img');
 const ledTop = document.getElementById('led-top');
 const ledBottom = document.getElementById('led-bottom');
 const chatPanel = document.getElementById('chat-panel');
@@ -2020,39 +1991,25 @@ return djName.toLowerCase()
 .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 .replace(/[^a-z0-9]/g, '_');
 }
-function replaceDjImageWithLocal(djName = 'autodj') {
-const djProfile = document.getElementById('dj_profile');
-if (djProfile) {
-const existingImg = djProfile.querySelector('img');
+function updateDjImage(djName = 'autodj') {
+if (djProfileImg) {
 const sanitizedName = sanitizeDjName(djName);
 const imagePath = `portadasdjs/${sanitizedName}.png`;
-if (existingImg) {
-if (!existingImg.src.includes(imagePath)) {
-existingImg.src = imagePath;
-existingImg.alt = djName;
-}
-} else {
-const newImg = document.createElement('img');
-newImg.src = imagePath;
-newImg.alt = djName;
-newImg.style.borderRadius = '50%';
-newImg.style.border = '3px solid #8b8b8b';
-newImg.style.objectFit = 'cover';
-djProfile.innerHTML = '';
-djProfile.appendChild(newImg);
+djProfileImg.src = imagePath;
+djProfileImg.alt = djName;
+console.log(`🖼 Imagen del DJ actualizada: ${imagePath}`);
 }
 }
-}
-function checkAndReplaceNoDJ() {
-if (sonicDj) {
+function checkAndUpdateDjImage() {
+if (sonicDj && djProfileImg) {
 const currentText = sonicDj.textContent.trim();
 if (currentText.toUpperCase().includes('NO DJ') || currentText === '') {
 sonicDj.textContent = 'NeXus DJ';
 updateGlitchDataText(sonicDj);
-replaceDjImageWithLocal('autodj');
+updateDjImage('autodj');
 return true;
 } else if (currentText && currentText.toUpperCase() !== 'NEXUS DJ') {
-replaceDjImageWithLocal(currentText);
+updateDjImage(currentText);
 }
 }
 return false;
@@ -2071,23 +2028,14 @@ updateGlitchDataText(sonicTitle);
 if (sonicDj) {
 const djObserver = new MutationObserver(() => {
 updateGlitchDataText(sonicDj);
-checkAndReplaceNoDJ();
+checkAndUpdateDjImage();
 if (Math.random() < 0.3) {
 triggerRandomGlitch(sonicDj);
 }
 });
 djObserver.observe(sonicDj, { childList: true, characterData: true, subtree: true });
 updateGlitchDataText(sonicDj);
-checkAndReplaceNoDJ();
-}
-const djProfile = document.getElementById('dj_profile');
-if (djProfile) {
-const profileObserver = new MutationObserver(() => {
-if (sonicDj && sonicDj.textContent.trim().toUpperCase().includes('NO DJ')) {
-replaceDjImageWithLocal('autodj');
-}
-});
-profileObserver.observe(djProfile, { childList: true, subtree: true });
+checkAndUpdateDjImage();
 }
 }
 function updateAlbumArtBackground() {
@@ -2313,7 +2261,7 @@ newScript.src = `https://sonic.sistemahost.es/cp/widgets.js?r=622=${new Date().g
 script.parentNode.replaceChild(newScript, script);
 updateAlbumArtBackground();
 setTimeout(() => {
-checkAndReplaceNoDJ();
+checkAndUpdateDjImage();
 }, 600);
 }, 10000);
 window.addEventListener('load', function() {
