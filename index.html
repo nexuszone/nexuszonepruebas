@@ -52,7 +52,7 @@ height: 100%;
 background: radial-gradient(ellipse at center, rgba(15,15,15,0.4) 0%, rgba(0,0,0,0.85) 100%);
 }
 /* ============================================ */
-/* CUADRÍCULA DE FONDO EN MOVIMIENTO */
+/* CUADRÍCULA DE FONDO ESTÁTICA */
 /* ============================================ */
 .background-grid {
 position: fixed;
@@ -65,16 +65,7 @@ background-image:
 linear-gradient(rgba(120, 120, 120, 0.15) 1px, transparent 1px),
 linear-gradient(90deg, rgba(120, 120, 120, 0.15) 1px, transparent 1px);
 background-size: 40px 40px;
-animation: gridRandomMove 30s linear infinite;
 pointer-events: none;
-will-change: background-position;
-}
-@keyframes gridRandomMove {
-0% { background-position: 0 0; }
-25% { background-position: 15px 10px; }
-50% { background-position: 0 20px; }
-75% { background-position: -15px 10px; }
-100% { background-position: 0 0; }
 }
 /* ============================================ */
 /* Cabecera */
@@ -687,16 +678,11 @@ rgba(0, 255, 65, 0.2) 0%,
 rgba(0, 255, 65, 0.4) 50%,
 rgba(0, 255, 65, 0.2) 100%);
 transform: rotate(45deg);
-animation: shine 3s infinite;
 opacity: 0;
 transition: opacity 0.3s;
 }
 .play-btn:hover::before {
-opacity: 1;
-}
-@keyframes shine {
-0% { transform: rotate(45deg) translateX(-100%); }
-100% { transform: rotate(45deg) translateX(100%); }
+opacity: 0.3;
 }
 .play-btn:hover {
 transform: translateY(-2px);
