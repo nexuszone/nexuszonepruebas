@@ -150,8 +150,8 @@ flex-shrink: 0;
 .main-container {
 display: flex;
 flex: 1;
-padding: clamp(1.5rem, 3vw, 3rem);
-gap: clamp(2rem, 4vw, 4rem);
+padding: clamp(2rem, 4vw, 4rem);
+gap: clamp(6rem, 8vw, 12rem);
 position: relative;
 z-index: 1;
 overflow-y: auto;
@@ -1152,7 +1152,7 @@ visibility: visible;
 .main-container {
 flex-direction: column;
 padding: 1rem;
-gap: 1.5rem;
+gap: 2rem;
 }
 .player-section,
 .dj-section {
@@ -1193,10 +1193,13 @@ max-width: 100%;
 }
 .main-container {
 flex-direction: column;
+padding: 1rem;
+gap: 2rem;
 }
 .player-section,
 .dj-section {
 max-width: 100%;
+padding: 1rem;
 }
 #dj-profile-img {
 animation: none !important;
@@ -1334,10 +1337,7 @@ Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff4
 <button class="chat-close-btn" id="chat-close">×</button>
 </div>
 <div class="chat-iframe-container">
-<script>
-const num = Math.floor(Math.random() * 1000);
-document.write(`<iframe src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`);
-</script>
+<iframe id="chat-iframe" src="https://chat.chatzona.org/index.html#nick=nexus_user&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>
 </div>
 </div>
 <div class="chat-overlay" id="chat-overlay"></div>
@@ -1353,6 +1353,7 @@ document.write(`<iframe src="https://chat.chatzona.org/index.html#nick=nexus_use
 <div class="staff-overlay" id="staff-overlay"></div>
 <audio id="radio-player" crossorigin="anonymous" preload="metadata"></audio>
 <script>
+(function() {
 const audio = document.getElementById('radio-player');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const tapeLeft = document.getElementById('tape-left');
@@ -1372,12 +1373,12 @@ const chatPanel = document.getElementById('chat-panel');
 const chatClose = document.getElementById('chat-close');
 const chatBtn = document.getElementById('chat-btn');
 const chatOverlay = document.getElementById('chat-overlay');
-const chatIframeContainer = document.querySelector('.chat-iframe-container');
 const staffPanel = document.getElementById('staff-panel');
 const staffClose = document.getElementById('staff-close');
 const staffBtn = document.getElementById('staff-btn');
 const staffOverlay = document.getElementById('staff-overlay');
 const staffGrid = document.getElementById('staff-grid');
+
 let isPlaying = false;
 let audioContext = null;
 let analyzer = null;
@@ -1397,14 +1398,17 @@ const colorChangeThreshold = 3;
 let beatCount = 0;
 let visualizerFrameCount = 0;
 const isMobile = window.innerWidth <= 768;
+
 audio.volume = 1.0;
 volumeSlider.value = 1.0;
 audio.crossOrigin = 'anonymous';
+
 function updateVolumeDisplay() {
 const percent = Math.round(audio.volume * 100);
 volumePercentage.textContent = percent + '%';
 volumeSlider.style.background = `linear-gradient(to right, #00ff41 0%, #00ff41 ${percent}%, #333 ${percent}%, #333 100%)`;
 }
+
 function adjustChatIframeForMobile() {
 if (window.innerWidth <= 768 && isChatVisible) {
 if (window.visualViewport) {
@@ -1413,20 +1417,19 @@ chatPanel.style.height = viewportHeight + 'px';
 } else {
 chatPanel.style.height = window.innerHeight + 'px';
 }
-if (chatIframeContainer) {
-const keyboardSpace = window.innerWidth < 480 ? 55 : 60;
-chatIframeContainer.style.paddingBottom = keyboardSpace + 'px';
 }
 }
-}
+
 if (window.visualViewport) {
 window.visualViewport.addEventListener('resize', adjustChatIframeForMobile);
 window.visualViewport.addEventListener('scroll', adjustChatIframeForMobile);
 }
+
 window.addEventListener('resize', () => {
 clearTimeout(window.chatResizeTimer);
 window.chatResizeTimer = setTimeout(adjustChatIframeForMobile, 150);
 });
+
 function toggleChat() {
 isChatVisible = !isChatVisible;
 if (isChatVisible) {
@@ -1443,19 +1446,27 @@ chatPanel.style.height = '';
 document.body.style.overflow = '';
 }
 }
+
 function initChatListeners() {
+if (chatBtn) {
 chatBtn.addEventListener('click', (e) => {
 e.preventDefault();
 toggleChat();
 });
+}
+if (chatClose) {
 chatClose.addEventListener('click', toggleChat);
+}
+if (chatOverlay) {
 chatOverlay.addEventListener('click', toggleChat);
+}
 document.addEventListener('keydown', (e) => {
 if (e.key === 'Escape' && isChatVisible) {
 toggleChat();
 }
 });
 }
+
 function loadStaffImages() {
 const maxImages = 20;
 let loadedCount = 0;
@@ -1472,19 +1483,15 @@ img.onload = function() {
 loadedCount++;
 this.classList.add('loaded');
 this.style.display = 'block';
-console.log(`✓ Cargada: staff/dj${i}.png`);
 };
 img.onerror = function() {
 attemptedCount++;
 this.style.display = 'none';
-if (attemptedCount >= 10 && loadedCount === 0) {
-console.warn('⚠ No se encontraron imágenes en la carpeta staff/');
-}
 };
 staffGrid.appendChild(img);
 }
-console.log(`Staff panel inicializado. Buscando hasta ${maxAttempts} imágenes...`);
 }
+
 function toggleStaffPanel() {
 isStaffVisible = !isStaffVisible;
 if (isStaffVisible) {
@@ -1503,24 +1510,33 @@ staffOverlay.classList.remove('active');
 document.body.style.overflow = '';
 }
 }
+
 function initStaffListeners() {
+if (staffBtn) {
 staffBtn.addEventListener('click', (e) => {
 e.preventDefault();
 toggleStaffPanel();
 });
+}
+if (staffClose) {
 staffClose.addEventListener('click', toggleStaffPanel);
+}
+if (staffOverlay) {
 staffOverlay.addEventListener('click', toggleStaffPanel);
+}
 document.addEventListener('keydown', (e) => {
 if (e.key === 'Escape' && isStaffVisible) {
 toggleStaffPanel();
 }
 });
 }
+
 function updateGlitchDataText(element) {
 if (element && element.classList.contains('cyber-glitch')) {
 element.setAttribute('data-text', element.textContent.trim());
 }
 }
+
 function triggerRandomGlitch(element) {
 if (!element || !element.classList.contains('cyber-glitch')) return;
 const effects = ['flash', 'pulse', 'chaos'];
@@ -1532,20 +1548,22 @@ setTimeout(() => {
 element.classList.remove(randomEffect);
 }, 1000);
 }
+
 function sanitizeDjName(djName) {
 return djName.toLowerCase()
 .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 .replace(/[^a-z0-9]/g, '_');
 }
+
 function updateDjImage(djName = 'autodj') {
 if (djProfileImg) {
 const sanitizedName = sanitizeDjName(djName);
 const imagePath = `portadasdjs/${sanitizedName}.png`;
 djProfileImg.src = imagePath;
 djProfileImg.alt = djName;
-console.log(`🖼 Imagen del DJ actualizada: ${imagePath}`);
 }
 }
+
 function checkAndUpdateDjImage() {
 if (sonicDj && djProfileImg) {
 const currentText = sonicDj.textContent.trim();
@@ -1560,6 +1578,7 @@ updateDjImage(currentText);
 }
 return false;
 }
+
 function setupGlitchObservers() {
 if (sonicTitle) {
 const titleObserver = new MutationObserver(() => {
@@ -1584,6 +1603,7 @@ updateGlitchDataText(sonicDj);
 checkAndUpdateDjImage();
 }
 }
+
 function updateAlbumArtBackground() {
 setTimeout(() => {
 const artContainer = document.getElementById('sonic_art_full');
@@ -1597,6 +1617,7 @@ albumArtBg.style.opacity = '0.4';
 }
 }, 500);
 }
+
 function getBassIntensity() {
 if (!analyzer || !dataArray) return 0;
 let bassSum = 0;
@@ -1605,11 +1626,12 @@ bassSum += dataArray[i];
 }
 return bassSum / 4;
 }
+
 function updateLedStrips() {
 if (!isPlaying || !analyzer) {
 ledTop.style.background = '#8b8b8b';
 ledTop.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
-ledBottom.style.background = #8b8b8b';
+ledBottom.style.background = '#8b8b8b';
 ledBottom.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
 return;
 }
@@ -1644,6 +1666,7 @@ return `${Math.max(val * 0.85, 0)}px`;
 });
 }
 }
+
 function setupAudioGraph() {
 if (audioGraphSetup || !audioContext) return;
 try {
@@ -1656,17 +1679,17 @@ const source = audioContext.createMediaElementSource(audio);
 source.connect(analyzer);
 analyzer.connect(audioContext.destination);
 audioGraphSetup = true;
-console.log("✓ Grafo de audio configurado correctamente");
 } catch (e) {
-console.error("✗ Error configurando el grafo de audio:", e);
-alert("Error al inicializar el reproductor de audio. Por favor recarga la página.");
+console.error("Error configurando el grafo de audio:", e);
 }
 }
+
 function startVisualizer() {
 if (isVisualizing || !analyzer) return;
 isVisualizing = true;
 visualize();
 }
+
 function stopVisualizer() {
 isVisualizing = false;
 if (animationId) {
@@ -1683,6 +1706,7 @@ ledTop.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
 ledBottom.style.background = '#8b8b8b';
 ledBottom.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
 }
+
 function visualize() {
 if (!isVisualizing || !analyzer || !isPlaying) {
 stopVisualizer();
@@ -1728,6 +1752,7 @@ bars[i].style.background = 'linear-gradient(to top, #008822, #7a00cc)';
 updateLedStrips();
 animationId = requestAnimationFrame(visualize);
 }
+
 function togglePlayPause() {
 if (!isPlaying) {
 if (audio.src !== streamUrl) {
@@ -1737,7 +1762,6 @@ if (!audioContext) {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 if (window.AudioContext) {
 audioContext = new AudioContext();
-console.log("✓ AudioContext creado");
 } else {
 alert("Tu navegador no soporta Web Audio API. Actualiza tu navegador.");
 return;
@@ -1745,8 +1769,8 @@ return;
 }
 if (audioContext.state === 'suspended') {
 audioContext.resume().then(() => {
-console.log("✓ AudioContext reanudado");
-}).catch(e => console.error("✗ Error al reanudar AudioContext:", e));
+console.log("AudioContext reanudado");
+}).catch(e => console.error("Error al reanudar AudioContext:", e));
 }
 if (!audioGraphSetup) {
 setupAudioGraph();
@@ -1758,10 +1782,9 @@ playPauseBtn.classList.add('playing');
 startTapeAnimation();
 if (analyzer) {
 startVisualizer();
-console.log("✓ Visualizador iniciado - Ecualizador activo");
 }
 }).catch(error => {
-console.error("✗ Error de reproducción:", error);
+console.error("Error de reproducción:", error);
 let errorMsg = 'Error al reproducir: ';
 if (error.name === 'NotAllowedError') {
 errorMsg += 'Haz clic nuevamente en el botón de play para permitir el audio.';
@@ -1780,49 +1803,54 @@ playPauseBtn.innerHTML = '▶';
 playPauseBtn.classList.remove('playing');
 stopTapeAnimation();
 stopVisualizer();
-console.log("⏹ Reproducción detenida completamente");
 }
 }
+
 function changeVolume() {
 audio.volume = parseFloat(volumeSlider.value);
 updateVolumeDisplay();
 }
+
 function startTapeAnimation() {
 tapeLeft.classList.add('animated');
 tapeRight.classList.add('animated');
 }
+
 function stopTapeAnimation() {
 tapeLeft.classList.remove('animated');
 tapeRight.classList.remove('animated');
 }
+
+if (playPauseBtn) {
 playPauseBtn.addEventListener('click', togglePlayPause);
+}
+if (volumeSlider) {
 volumeSlider.addEventListener('input', changeVolume);
+}
 updateVolumeDisplay();
-/* ===================================================== */
-/* ✅ OPTIMIZADO: Solo actualiza visuales, NO recarga script */
-/* ===================================================== */
+
 setInterval(function() {
-// Solo actualizamos la portada y la imagen del DJ
 updateAlbumArtBackground();
 checkAndUpdateDjImage();
-// Ya NO se recarga el script sonic_js
 }, 10000);
+
 window.addEventListener('load', function() {
 updateAlbumArtBackground();
 setupGlitchObservers();
 initChatListeners();
 initStaffListeners();
 adjustChatIframeForMobile();
-console.log("🎧 Nexus Zone cargado. Haz clic en PLAY para iniciar.");
+console.log("Nexus Zone cargado. Haz clic en PLAY para iniciar.");
 });
+
 audio.addEventListener('ended', () => {
 isPlaying = false;
 playPauseBtn.innerHTML = '▶';
 playPauseBtn.classList.remove('playing');
 stopTapeAnimation();
 stopVisualizer();
-console.log("⏹ Reproducción finalizada");
 });
+
 audio.addEventListener('pause', () => {
 if (isPlaying) {
 isPlaying = false;
@@ -1832,25 +1860,26 @@ stopTapeAnimation();
 stopVisualizer();
 }
 });
+
 audio.addEventListener('error', (e) => {
-console.error("✗ Error de audio:", e);
+console.error("Error de audio:", e);
 stopVisualizer();
 if (isPlaying) {
 isPlaying = false;
 playPauseBtn.innerHTML = '▶';
 playPauseBtn.classList.remove('playing');
 stopTapeAnimation();
-alert('Error crítico en el stream. Verifica tu conexión o intenta más tarde.');
 }
 });
+
 document.body.addEventListener('touchstart', function initMobile() {
 if (!audioContext && typeof window.AudioContext !== 'undefined') {
 audioContext = new AudioContext();
 audioContext.suspend();
-console.log("✓ AudioContext inicializado para móvil");
 }
 document.body.removeEventListener('touchstart', initMobile);
 }, { once: true });
+})();
 </script>
 </body>
 </html>
