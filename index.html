@@ -808,7 +808,7 @@ footer {
 }
 
 /* ============================================ */
-/* NUEVO: PANEL DE PETICIONES (V2) */
+/* NUEVO: PANEL DE PETICIONES (V2 - Cloud Sync) */
 /* ============================================ */
 .requests-panel {
   position: fixed;
@@ -1675,7 +1675,7 @@ footer {
 </div>
 <div class="staff-overlay" id="staff-overlay"></div>
 
-<!-- NUEVO: Panel de Peticiones (V2) -->
+<!-- NUEVO: Panel de Peticiones -->
 <div class="requests-panel hidden" id="requests-panel">
   <div class="requests-header"><h3>🎵 Peticiones</h3><button class="requests-close-btn" id="requests-close">×</button></div>
   <div class="requests-content">
@@ -1944,16 +1944,21 @@ function initStaffListeners() {
 }
 
 /* ===================================================== */
-/* NUEVO: SISTEMA DE PETICIONES (V2) */
+/* NUEVO: SISTEMA DE PETICIONES (V2 - Cloud Sync) */
 /* ===================================================== */
-const DJ_PASS = 'dj2026'; // 🔑 Cambia esta contraseña para DJs
-const LISTENER_PASS = 'nexus2026'; // 🔑 Cambia esta contraseña para Escuchas
-let userRole = null; // 'dj' | 'listener'
+const DJ_PASS = 'dj2026';
+const LISTENER_PASS = 'nexus2026';
+let userRole = null;
 let requestRefreshInterval = null;
-const REQUEST_COOLDOWN = 5 * 60 * 1000; // 5 minutos
-const REQUEST_EXPIRY = 20 * 60 * 1000;  // 20 minutos
+const REQUEST_COOLDOWN = 5 * 60 * 1000;
+const REQUEST_EXPIRY = 20 * 60 * 1000;
+let isSyncing = false;
 
-// Elementos
+// 🔗 CONFIGURACIÓN JSONBIN
+const BIN_ID = '6a1c1975ddf5aa59f77b6dc2';
+const API_KEY = '$2a$10$l7pwDNDS96podLHrossjbOom0nbtKWJsj/x7GiKPzXq0M4SMWTgQq';
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
+
 const requestsPanel = document.getElementById('requests-panel');
 const requestsClose = document.getElementById('requests-close');
 const requestsBtn = document.getElementById('requests-btn');
@@ -1968,29 +1973,35 @@ const requestSubmitBtn = document.getElementById('request-submit-btn');
 const requestList = document.getElementById('request-list');
 const requestLogoutBtn = document.getElementById('request-logout-btn');
 
-function sanitizeHtml(str) {
-  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function sanitizeHtml(str) { return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function getCooldowns() { try { return JSON.parse(localStorage.getItem('nz_cooldowns') || '{}'); } catch { return {}; } }
+function saveCooldowns(data) { localStorage.setItem('nz_cooldowns', JSON.stringify(data)); }
+
+async function loadRequests() {
+  try {
+    const res = await fetch(`${BIN_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
+    if (!res.ok) throw new Error('Error al cargar');
+    const data = await res.json();
+    return Array.isArray(data.record) ? data.record : (data.record && Array.isArray(data.record.requests) ? data.record.requests : []);
+  } catch(e) { console.error("Error cloud:", e); return []; }
 }
 
-function loadRequests() {
-  try { return JSON.parse(localStorage.getItem('nz_requests') || '[]'); } catch { return []; }
-}
-function saveRequests(reqs) {
-  localStorage.setItem('nz_requests', JSON.stringify(reqs));
-}
-function getCooldowns() {
-  try { return JSON.parse(localStorage.getItem('nz_cooldowns') || '{}'); } catch { return {}; }
-}
-function saveCooldowns(data) {
-  localStorage.setItem('nz_cooldowns', JSON.stringify(data));
+async function saveRequests(reqs) {
+  if (isSyncing) return;
+  isSyncing = true;
+  try {
+    await fetch(BIN_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY }, body: JSON.stringify({ requests: reqs }) });
+  } catch(e) { console.error("Error save:", e); alert("Error guardando petición. Revisa tu conexión."); }
+  finally { isSyncing = false; }
 }
 
-function renderRequests() {
+async function renderRequests() {
+  if (isSyncing) return;
+  requestList.innerHTML = '<p style="color:#888;text-align:center;">⏳ Cargando peticiones...</p>';
+  let reqs = await loadRequests();
   const now = Date.now();
-  let reqs = loadRequests();
-  // Auto-eliminar expiradas (20 min)
   const active = reqs.filter(r => now - r.time < REQUEST_EXPIRY);
-  if (active.length !== reqs.length) saveRequests(active);
+  if (active.length !== reqs.length) await saveRequests(active);
   reqs = active;
 
   reqs.sort((a,b) => b.time - a.time);
@@ -2002,7 +2013,6 @@ function renderRequests() {
     const timeLeft = Math.max(0, Math.ceil((REQUEST_EXPIRY - (now - r.time)) / 60000));
     const div = document.createElement('div');
     div.className = 'request-item';
-    // Formato: Nick - Canción - Artista
     div.innerHTML = `
       <div>
         <span class="request-text">${sanitizeHtml(r.nick)} - ${sanitizeHtml(r.text)}</span>
@@ -2014,41 +2024,40 @@ function renderRequests() {
   });
 }
 
-function handleRequestSubmit() {
+async function handleRequestSubmit() {
+  if (isSyncing) return alert("⏳ Guardando petición anterior, espera un momento.");
   const nick = requestNickInput.value.trim();
   const text = requestInput.value.trim();
 
   if (!nick) return alert('Por favor, escribe tu Nick.');
   if (!text) return alert('Por favor, escribe la Canción - Artista.');
-  if (text.length > 80) return alert('Máximo 80 caracteres para la canción y artista.');
+  if (text.length > 80) return alert('Máximo 80 caracteres.');
 
-  // Cooldown de 5 minutos por Nick
   const cooldowns = getCooldowns();
   const lastTime = cooldowns[nick.toLowerCase()] || 0;
   if (Date.now() - lastTime < REQUEST_COOLDOWN) {
     const waitSec = Math.ceil((REQUEST_COOLDOWN - (Date.now() - lastTime)) / 1000);
-    return alert(`⏳ Debes esperar ${waitSec} segundos antes de pedir otra canción con este Nick.`);
+    return alert(`⏳ Debes esperar ${waitSec} segundos antes de pedir otra canción.`);
   }
 
-  const reqs = loadRequests();
+  const reqs = await loadRequests();
   reqs.push({ nick, text, time: Date.now(), id: Math.random().toString(36).substr(2, 9) });
-  saveRequests(reqs);
+  await saveRequests(reqs);
 
-  // Actualizar cooldown
   cooldowns[nick.toLowerCase()] = Date.now();
   saveCooldowns(cooldowns);
 
   requestInput.value = '';
-  renderRequests();
+  await renderRequests();
   requestInput.focus();
 }
 
-function deleteRequest(idx) {
-  if (userRole !== 'dj') return;
-  const reqs = loadRequests();
+async function deleteRequest(idx) {
+  if (userRole !== 'dj' || isSyncing) return;
+  const reqs = await loadRequests();
   reqs.splice(idx, 1);
-  saveRequests(reqs);
-  renderRequests();
+  await saveRequests(reqs);
+  await renderRequests();
 }
 
 function toggleRequestsPanel() {
@@ -2070,9 +2079,7 @@ function toggleRequestsPanel() {
 }
 
 function startRefresh() {
-  if (!requestRefreshInterval) {
-    requestRefreshInterval = setInterval(renderRequests, 10000);
-  }
+  if (!requestRefreshInterval) requestRefreshInterval = setInterval(renderRequests, 10000);
 }
 function stopRefresh() {
   if (requestRefreshInterval) { clearInterval(requestRefreshInterval); requestRefreshInterval = null; }
@@ -2084,7 +2091,6 @@ function initRequestsListeners() {
   requestsOverlay.addEventListener('click', toggleRequestsPanel);
   document.addEventListener('keydown', (e) => { if(e.key==='Escape' && requestsPanel.classList.contains('visible')) toggleRequestsPanel(); });
 
-  // Auth
   requestAuthBtn.addEventListener('click', () => {
     const pass = requestPassInput.value;
     if (pass === DJ_PASS) { userRole = 'dj'; enterPanel(); }
@@ -2093,17 +2099,14 @@ function initRequestsListeners() {
   });
   requestPassInput.addEventListener('keydown', (e) => { if(e.key==='Enter') requestAuthBtn.click(); });
 
-  // Submit
   requestSubmitBtn.addEventListener('click', handleRequestSubmit);
   requestInput.addEventListener('keydown', (e) => { if(e.key==='Enter') handleRequestSubmit(); });
 
-  // Delete (solo DJ)
   requestList.addEventListener('click', (e) => {
     const btn = e.target.closest('.request-delete-btn');
     if (btn) deleteRequest(parseInt(btn.dataset.idx));
   });
 
-  // Logout/Reset
   requestLogoutBtn.addEventListener('click', () => {
     userRole = null;
     requestsMain.style.display = 'none';
@@ -2269,15 +2272,14 @@ window.addEventListener('load', function() {
   initChatListeners();
   initStaffListeners();
   initAdListeners();
-  initRequestsListeners(); // NUEVO
+  initRequestsListeners();
   adjustChatIframeForMobile();
   updateDjCountryDisplay(sonicDj ? sonicDj.textContent.trim() : '');
 
-  // ✅ NUEVO: Observador para actualizar portada automáticamente al cambiar canción
   const artContainer = document.getElementById('sonic_art_full');
   if (artContainer) {
     const artObserver = new MutationObserver(() => {
-      setTimeout(() => updateAlbumArtBackground(), 300); // Pequeño delay para asegurar que el widget inyectó la imagen
+      setTimeout(() => updateAlbumArtBackground(), 300);
     });
     artObserver.observe(artContainer, { childList: true, subtree: true, attributes: true });
   }
