@@ -808,7 +808,7 @@ footer {
 }
 
 /* ============================================ */
-/* NUEVO: PANEL DE PETICIONES DE CANCIONES */
+/* NUEVO: PANEL DE PETICIONES (V2) */
 /* ============================================ */
 .requests-panel {
   position: fixed;
@@ -894,6 +894,7 @@ footer {
   border-color: #bd00ff;
   box-shadow: 0 0 12px rgba(189, 0, 255, 0.5);
 }
+#request-nick { border-color: #bd00ff; }
 .request-submit-btn {
   background: linear-gradient(135deg, #00ff41, #00cc33);
   border: none;
@@ -913,12 +914,23 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
 }
+#request-logout-btn {
+  background: linear-gradient(135deg, #ff3333, #cc0000);
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+}
+#request-logout-btn:hover {
+  box-shadow: 0 0 20px rgba(255, 51, 51, 0.7);
+  transform: translateY(-2px);
+}
 .request-list-container {
   background: rgba(15, 15, 15, 0.6);
   border: 1px solid rgba(139, 139, 139, 0.3);
   border-radius: 8px;
   padding: 10px;
   min-height: 100px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 .request-item {
   display: flex;
@@ -936,7 +948,7 @@ footer {
   background: none; border: 1px solid #ff3333; color: #ff3333;
   width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
   font-size: 1rem; line-height: 1; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.2s ease; flex-shrink: 0; margin-left: 10px;
 }
 .request-delete-btn:hover {
   background: #ff3333; color: #0a0a0a; box-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
@@ -1663,20 +1675,22 @@ footer {
 </div>
 <div class="staff-overlay" id="staff-overlay"></div>
 
-<!-- NUEVO: Panel de Peticiones -->
+<!-- NUEVO: Panel de Peticiones (V2) -->
 <div class="requests-panel hidden" id="requests-panel">
   <div class="requests-header"><h3>🎵 Peticiones</h3><button class="requests-close-btn" id="requests-close">×</button></div>
   <div class="requests-content">
     <div id="requests-auth" class="requests-auth">
-      <input type="password" id="request-pass" class="request-input" placeholder="🔒 Contraseña para acceder">
+      <input type="password" id="request-pass" class="request-input" placeholder="🔒 Contraseña (DJ o Escucha)">
       <button id="request-auth-btn" class="request-submit-btn">Entrar</button>
     </div>
     <div id="requests-main" class="requests-main" style="display:none;">
-      <input type="text" id="request-input" class="request-input" placeholder="Artista - Canción">
+      <input type="text" id="request-nick" class="request-input" placeholder="🎤 Tu Nick (máx 20 chars)" maxlength="20">
+      <input type="text" id="request-input" class="request-input" placeholder="🎵 Canción - Artista (máx 80 chars)" maxlength="80">
       <button id="request-submit-btn" class="request-submit-btn">Enviar Petición</button>
       <div class="request-list-container">
         <div id="request-list"></div>
       </div>
+      <button id="request-logout-btn" class="request-submit-btn">🔒 Cambiar Contraseña / Salir</button>
     </div>
   </div>
 </div>
@@ -1930,8 +1944,16 @@ function initStaffListeners() {
 }
 
 /* ===================================================== */
-/* NUEVO: SISTEMA DE PETICIONES */
+/* NUEVO: SISTEMA DE PETICIONES (V2) */
 /* ===================================================== */
+const DJ_PASS = 'dj2026'; // 🔑 Cambia esta contraseña para DJs
+const LISTENER_PASS = 'nexus2026'; // 🔑 Cambia esta contraseña para Escuchas
+let userRole = null; // 'dj' | 'listener'
+let requestRefreshInterval = null;
+const REQUEST_COOLDOWN = 5 * 60 * 1000; // 5 minutos
+const REQUEST_EXPIRY = 20 * 60 * 1000;  // 20 minutos
+
+// Elementos
 const requestsPanel = document.getElementById('requests-panel');
 const requestsClose = document.getElementById('requests-close');
 const requestsBtn = document.getElementById('requests-btn');
@@ -1940,56 +1962,95 @@ const requestsAuth = document.getElementById('requests-auth');
 const requestsMain = document.getElementById('requests-main');
 const requestPassInput = document.getElementById('request-pass');
 const requestAuthBtn = document.getElementById('request-auth-btn');
+const requestNickInput = document.getElementById('request-nick');
 const requestInput = document.getElementById('request-input');
 const requestSubmitBtn = document.getElementById('request-submit-btn');
 const requestList = document.getElementById('request-list');
+const requestLogoutBtn = document.getElementById('request-logout-btn');
 
-const REQUESTS_PASS = 'nexus2026'; // 🔑 CAMBIA ESTA CONTRASEÑA
-let isRequestsAuth = false;
-let requestRefreshInterval = null;
+function sanitizeHtml(str) {
+  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
 
 function loadRequests() {
-  try {
-    return JSON.parse(localStorage.getItem('nz_requests') || '[]');
-  } catch { return []; }
+  try { return JSON.parse(localStorage.getItem('nz_requests') || '[]'); } catch { return []; }
 }
 function saveRequests(reqs) {
   localStorage.setItem('nz_requests', JSON.stringify(reqs));
 }
+function getCooldowns() {
+  try { return JSON.parse(localStorage.getItem('nz_cooldowns') || '{}'); } catch { return {}; }
+}
+function saveCooldowns(data) {
+  localStorage.setItem('nz_cooldowns', JSON.stringify(data));
+}
+
 function renderRequests() {
-  const reqs = loadRequests();
+  const now = Date.now();
+  let reqs = loadRequests();
+  // Auto-eliminar expiradas (20 min)
+  const active = reqs.filter(r => now - r.time < REQUEST_EXPIRY);
+  if (active.length !== reqs.length) saveRequests(active);
+  reqs = active;
+
   reqs.sort((a,b) => b.time - a.time);
-  requestList.innerHTML = reqs.length === 0 ? '<p style="color:#888;text-align:center;margin-top:10px;">Sin peticiones aún</p>' : '';
+  requestList.innerHTML = reqs.length === 0
+    ? '<p style="color:#888;text-align:center;margin-top:10px;">Sin peticiones activas</p>'
+    : '';
+
   reqs.forEach((r, i) => {
+    const timeLeft = Math.max(0, Math.ceil((REQUEST_EXPIRY - (now - r.time)) / 60000));
     const div = document.createElement('div');
     div.className = 'request-item';
+    // Formato: Nick - Canción - Artista
     div.innerHTML = `
       <div>
-        <span class="request-text">${r.text}</span>
-        <span class="request-time">${new Date(r.time).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span>
+        <span class="request-text">${sanitizeHtml(r.nick)} - ${sanitizeHtml(r.text)}</span>
+        <span class="request-time">⏱️ ${timeLeft}min</span>
       </div>
-      <button class="request-delete-btn" data-idx="${i}" title="Eliminar">×</button>
+      ${userRole === 'dj' ? `<button class="request-delete-btn" data-idx="${i}" title="Eliminar (Solo DJ)">×</button>` : ''}
     `;
     requestList.appendChild(div);
   });
 }
+
 function handleRequestSubmit() {
+  const nick = requestNickInput.value.trim();
   const text = requestInput.value.trim();
-  if (!text) return alert('Escribe el nombre de la canción.');
-  if (text.length > 60) return alert('Máximo 60 caracteres.');
+
+  if (!nick) return alert('Por favor, escribe tu Nick.');
+  if (!text) return alert('Por favor, escribe la Canción - Artista.');
+  if (text.length > 80) return alert('Máximo 80 caracteres para la canción y artista.');
+
+  // Cooldown de 5 minutos por Nick
+  const cooldowns = getCooldowns();
+  const lastTime = cooldowns[nick.toLowerCase()] || 0;
+  if (Date.now() - lastTime < REQUEST_COOLDOWN) {
+    const waitSec = Math.ceil((REQUEST_COOLDOWN - (Date.now() - lastTime)) / 1000);
+    return alert(`⏳ Debes esperar ${waitSec} segundos antes de pedir otra canción con este Nick.`);
+  }
+
   const reqs = loadRequests();
-  reqs.push({ text, time: Date.now(), id: Math.random().toString(36).substr(2, 9) });
+  reqs.push({ nick, text, time: Date.now(), id: Math.random().toString(36).substr(2, 9) });
   saveRequests(reqs);
+
+  // Actualizar cooldown
+  cooldowns[nick.toLowerCase()] = Date.now();
+  saveCooldowns(cooldowns);
+
   requestInput.value = '';
   renderRequests();
   requestInput.focus();
 }
+
 function deleteRequest(idx) {
+  if (userRole !== 'dj') return;
   const reqs = loadRequests();
   reqs.splice(idx, 1);
   saveRequests(reqs);
   renderRequests();
 }
+
 function toggleRequestsPanel() {
   const isVisible = requestsPanel.classList.contains('visible');
   if (!isVisible) {
@@ -1997,38 +2058,66 @@ function toggleRequestsPanel() {
     requestsPanel.classList.add('visible');
     requestsOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    if (!isRequestsAuth) requestPassInput.focus();
-    else { renderRequests(); if(!requestRefreshInterval) requestRefreshInterval = setInterval(renderRequests, 10000); }
+    if (!userRole) requestPassInput.focus();
+    else { renderRequests(); startRefresh(); }
   } else {
     requestsPanel.classList.remove('visible');
     requestsPanel.classList.add('hidden');
     requestsOverlay.classList.remove('active');
     document.body.style.overflow = '';
-    if (requestRefreshInterval) clearInterval(requestRefreshInterval);
-    requestRefreshInterval = null;
+    stopRefresh();
   }
 }
+
+function startRefresh() {
+  if (!requestRefreshInterval) {
+    requestRefreshInterval = setInterval(renderRequests, 10000);
+  }
+}
+function stopRefresh() {
+  if (requestRefreshInterval) { clearInterval(requestRefreshInterval); requestRefreshInterval = null; }
+}
+
 function initRequestsListeners() {
   requestsBtn.addEventListener('click', (e) => { e.preventDefault(); toggleRequestsPanel(); });
   requestsClose.addEventListener('click', toggleRequestsPanel);
   requestsOverlay.addEventListener('click', toggleRequestsPanel);
   document.addEventListener('keydown', (e) => { if(e.key==='Escape' && requestsPanel.classList.contains('visible')) toggleRequestsPanel(); });
+
+  // Auth
   requestAuthBtn.addEventListener('click', () => {
-    if (requestPassInput.value === REQUESTS_PASS) {
-      isRequestsAuth = true;
-      requestsAuth.style.display = 'none';
-      requestsMain.style.display = 'flex';
-      renderRequests();
-      requestRefreshInterval = setInterval(renderRequests, 10000);
-    } else { alert('Contraseña incorrecta'); }
+    const pass = requestPassInput.value;
+    if (pass === DJ_PASS) { userRole = 'dj'; enterPanel(); }
+    else if (pass === LISTENER_PASS) { userRole = 'listener'; enterPanel(); }
+    else { alert('Contraseña incorrecta'); }
   });
   requestPassInput.addEventListener('keydown', (e) => { if(e.key==='Enter') requestAuthBtn.click(); });
+
+  // Submit
   requestSubmitBtn.addEventListener('click', handleRequestSubmit);
   requestInput.addEventListener('keydown', (e) => { if(e.key==='Enter') handleRequestSubmit(); });
+
+  // Delete (solo DJ)
   requestList.addEventListener('click', (e) => {
     const btn = e.target.closest('.request-delete-btn');
     if (btn) deleteRequest(parseInt(btn.dataset.idx));
   });
+
+  // Logout/Reset
+  requestLogoutBtn.addEventListener('click', () => {
+    userRole = null;
+    requestsMain.style.display = 'none';
+    requestsAuth.style.display = 'flex';
+    requestPassInput.value = '';
+    stopRefresh();
+  });
+}
+
+function enterPanel() {
+  requestsAuth.style.display = 'none';
+  requestsMain.style.display = 'flex';
+  renderRequests();
+  startRefresh();
 }
 
 /* ===================================================== */
