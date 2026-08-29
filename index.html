@@ -49,7 +49,7 @@ body {
   filter: brightness(0.35) contrast(0.9);
   opacity: 0.5;
   will-change: transform;
-  transform: translateZ(0); /* Forza aceleración GPU */
+  transform: translateZ(0);
 }
 .background-image::after {
   content: '';
@@ -507,13 +507,12 @@ h1 {
   display: flex; justify-content: space-between; align-items: flex-end;
   position: relative; z-index: 4; gap: 4px; padding: 0 5px;
 }
-/* ✅ OPTIMIZACIÓN CLAVE: Usar transform en lugar de height para la GPU */
 .bar {
-  width: 6px; height: 28px; /* Altura máxima fija */
+  width: 6px; height: 28px;
   background: linear-gradient(to top, #00ff41, #bd00ff);
   border-radius: 2px 2px 0 0;
   transform-origin: bottom;
-  transform: scaleY(0.07); /* 2px / 28px = 0.07 */
+  transform: scaleY(0.07);
   transition: transform 0.05s ease-out;
   will-change: transform;
   flex: 1;
@@ -1221,7 +1220,46 @@ footer {
 /* ✅ OPTIMIZACIONES ESPECÍFICAS PARA MÓVIL */
 /* ============================================ */
 @media (max-width: 768px) {
-  /* 1. Eliminar el blur costoso en móviles, mantener la estética con opacidad */
+  /* ✅ CORRECCIÓN: Asegurar que el contenedor principal sea vertical en móvil */
+  .main-container {
+    flex-direction: column !important;
+    padding: 1rem !important;
+    gap: 1rem !important;
+  }
+  
+  /* ✅ CORRECCIÓN: Asegurar que ambas secciones sean visibles y ocupen su espacio */
+  .player-section, .dj-section {
+    width: 100% !important;
+    flex: none !important;
+    padding: 1rem !important;
+  }
+  
+  /* ✅ CORRECCIÓN: Asegurar que la imagen del DJ sea visible */
+  #dj-profile-img {
+    display: block !important;
+    max-width: 280px !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+  
+  /* ✅ CORRECCIÓN: Asegurar que el nombre del DJ sea visible */
+  #sonic_dj {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* ✅ CORRECCIÓN: Asegurar que la info del país sea visible */
+  .dj-country-info {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+  
+  /* 1. Eliminar el blur costoso en móviles */
   .album-art-bg { filter: none !important; opacity: 0.25; }
   
   /* 2. Simplificar sombras en móviles para ahorrar GPU */
@@ -1242,7 +1280,6 @@ footer {
   
   .chat-iframe-container { padding-bottom: 60px; }
   .staff-grid { grid-template-columns: 1fr; gap: 1rem; padding: 1rem; }
-  .dj-country-info { font-size: 0.85rem; padding: 8px 16px; }
 }
 
 @media (max-width: 480px) {
@@ -1443,8 +1480,9 @@ let countryUpdateLock = false;
 let lastCountryUpdate = 0;
 const COUNTRY_UPDATE_DEBOUNCE = 800;
 
+// ✅ CHAT SE DESTRUYE DESPUÉS DE 30 MINUTOS DE INACTIVIDAD
 let chatDestroyTimer = null;
-const CHAT_DESTROY_DELAY = 20 * 60 * 1000;
+const CHAT_DESTROY_DELAY = 30 * 60 * 1000; // 30 minutos
 
 function getDjCountryInfo(djName) {
   if (!djName || djName.trim() === '') return djCountryMap['autodj'] || FALLBACK_COUNTRY;
@@ -1564,8 +1602,7 @@ function updateVolumeDisplay() {
 function updateGlitchDataText(el) { if(el && el.classList.contains('cyber-glitch')) el.setAttribute('data-text', el.textContent.trim()); }
 function triggerRandomGlitch(el) {
   if (!el || !el.classList.contains('cyber-glitch')) return;
-  // Reducir probabilidad de glitch en móvil para ahorrar CPU
-  if (isMobile && Math.random() > 0.1) return; 
+  if (isMobile && Math.random() > 0.1) return;
   const effects = ['flash', 'pulse', 'chaos'];
   const randomEffect = effects[Math.floor(Math.random() * effects.length)];
   el.classList.remove('flash', 'pulse', 'chaos');
@@ -1617,7 +1654,6 @@ let chatIframeHtml = '';
 function initChatIframe() {
   const num = Math.floor(Math.random() * 1000);
   chatIframeHtml = `<iframe id="chat-iframe-element" src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`;
-  if(chatIframeContainer) chatIframeContainer.innerHTML = chatIframeHtml;
 }
 
 function adjustChatIframeForMobile() {
@@ -1633,6 +1669,7 @@ function toggleChat() {
     if (chatDestroyTimer) {
       clearTimeout(chatDestroyTimer);
       chatDestroyTimer = null;
+      console.log("⏱️ Temporizador de destrucción del chat cancelado.");
     }
     if (!document.getElementById('chat-iframe-element')) {
        chatIframeContainer.innerHTML = chatIframeHtml;
@@ -1646,6 +1683,7 @@ function toggleChat() {
     chatDestroyTimer = setTimeout(() => {
       chatIframeContainer.innerHTML = '';
       chatDestroyTimer = null;
+      console.log("🗑️ Iframe del chat destruido por inactividad (30 minutos transcurridos). Memoria liberada.");
     }, CHAT_DESTROY_DELAY);
     chatPanel.classList.remove('visible'); 
     chatPanel.classList.add('hidden'); 
@@ -1667,7 +1705,6 @@ function loadStaffImages() {
   for(let i=1; i<=50; i++) {
     const img = document.createElement('img');
     img.src = `staff/dj${i}.png`; img.alt = `Staff ${i}`; img.classList.add('staff-photo');
-    // ✅ OPTIMIZACIÓN MÓVIL: Lazy loading y decodificación asíncrona
     img.loading = 'lazy';
     img.decoding = 'async';
     img.onload = function() { loaded++; this.classList.add('loaded'); this.style.display='block'; };
@@ -1889,7 +1926,6 @@ let currentLedIntensity = 0;
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
   
-  // ✅ OPTIMIZACIÓN MÓVIL: Saltar frames en móvil (20 FPS en lugar de 60 FPS)
   const frameSkip = isMobile ? 3 : 1;
   visualizerFrameCount++;
   if(visualizerFrameCount % frameSkip !== 0) { 
@@ -1944,11 +1980,9 @@ function visualize() {
     const avg = count>0 ? sum/count : 0;
     let height = Math.min(Math.sqrt(avg)*2.0, 28); height = Math.max(height, 2);
     
-    // ✅ OPTIMIZACIÓN CLAVE: Usar transform en lugar de height para evitar reflow
     const scaleY = height / 28;
     bars[i].style.transform = `scaleY(${scaleY})`;
 
-    // Solo actualizar colores/sombras si el cambio es significativo (ahorra GPU en móvil)
     if (!isMobile || currentLedIntensity > 0.3) {
       const gf = Math.min(height/28,1);
       if (height > 20) {
@@ -2057,7 +2091,7 @@ window.addEventListener('load', function() {
     });
     artObserver.observe(artContainer, { childList: true, subtree: true, attributes: true });
   }
-  console.log("🎧 Nexus Zone cargado. Optimizado para fluidez en móviles (Redmi 10+).");
+  console.log("🎧 Nexus Zone cargado. Chat con destrucción a los 30 min. Optimizado para móviles.");
 });
 
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
