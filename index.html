@@ -573,10 +573,6 @@ h1 {
   gap: 24px;
   z-index: 50;
 }
-
-/* ============================================ */
-/* BANDERAS CON IMÁGENES PNG/WEBP EXTERNAS */
-/* ============================================ */
 .dj-country-info {
   display: flex;
   align-items: center;
@@ -603,8 +599,6 @@ h1 {
   border-color: #bd00ff;
   box-shadow: 0 0 15px rgba(189, 0, 255, 0.5);
 }
-
-/* Bandera como imagen PNG/WebP */
 .dj-flag-img {
   width: 30px;
   height: 20px;
@@ -618,8 +612,6 @@ h1 {
   transform: scale(1.1);
   box-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
 }
-
-/* ✅ EFECTO GLOW EXTERIOR PARA NOMBRE DEL PAÍS (igual al DJ) */
 .dj-country-name {
   color: #00ff41;
   font-size: 1rem;
@@ -630,14 +622,10 @@ h1 {
   display: inline-block;
   position: relative;
 }
-
 @keyframes country-glow {
   from { box-shadow: 0 0 8px rgba(0, 255, 65, 0.3), 0 0 15px rgba(189, 0, 255, 0.2); }
   to { box-shadow: 0 0 15px rgba(0, 255, 65, 0.6), 0 0 28px rgba(189, 0, 255, 0.5); }
 }
-@keyframes flag-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
-
-/* ✅ PUBLICIDAD - POSICIONADA DENTRO DEL CONTENDOR DJ, SIN FILTROS */
 .ad-overlay {
   position: absolute !important;
   top: 50%; left: 50%;
@@ -799,20 +787,6 @@ footer {
   box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
 }
 .social-link:hover svg { fill: #0f0f0f; }
-/* ✅ ESTILOS PARA BOTÓN DE PETICIONES DESACTIVADO */
-.social-link.disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  pointer-events: none;
-  box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) !important;
-}
-.social-link.disabled:hover {
-  transform: none;
-  box-shadow: 0 0 5px rgba(139, 139, 139, 0.3) !important;
-}
-.social-link.disabled svg {
-  fill: #666;
-}
 .copyright {
   color: #666;
   font-family: 'Orbitron', sans-serif;
@@ -820,10 +794,6 @@ footer {
   font-size: 0.6rem;
   margin-top: 0.2rem;
 }
-
-/* ============================================ */
-/* NUEVO: PANEL DE PETICIONES (V4 - Auto DJ Lock) */
-/* ============================================ */
 .requests-panel {
   position: fixed;
   top: 0; right: -50vw;
@@ -928,18 +898,6 @@ footer {
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(0, 255, 65, 0.7);
 }
-/* ✅ BOTÓN DESACTIVADO VISUALMENTE */
-.request-submit-btn:disabled {
-  background: linear-gradient(135deg, #555, #333);
-  color: #888;
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 0.6;
-}
-.request-submit-btn:disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
 #request-logout-btn {
   background: linear-gradient(135deg, #ff3333, #cc0000);
   margin-top: 10px;
@@ -989,31 +947,10 @@ footer {
 }
 .requests-overlay.active { opacity: 1; visibility: visible; }
 
-/* ✅ MENSAJE DE BLOQUEO POR AUTO DJ */
-.auto-dj-blocked {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: #888;
-}
-.auto-dj-blocked .icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-.auto-dj-blocked p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-}
-.auto-dj-blocked .highlight {
-  color: #00ff41;
-  font-weight: 700;
-}
-
 @media (max-width: 768px) {
   .requests-panel { width: 100vw; right: -100vw; height: 100dvh; height: -webkit-fill-available; }
   .requests-panel.visible { right: 0; }
 }
-
 .chat-panel {
   position: fixed;
   top: 0; right: -50vw;
@@ -1081,7 +1018,7 @@ footer {
   background: linear-gradient(90deg, #00ff41, #bd00ff, #00ff41);
   z-index: 2;
 }
-#chat-iframe {
+#chat-iframe-element {
   width: 100%; height: 100%;
   border: none;
   background: transparent;
@@ -1206,8 +1143,115 @@ footer {
   opacity: 1;
   visibility: visible;
 }
-
-/* Responsive - Solo agrego lo nuevo */
+.poem-panel {
+  position: fixed;
+  top: 0; right: -50vw;
+  width: 50vw;
+  height: 100vh;
+  height: 100dvh;
+  background: linear-gradient(145deg, #0a0a0a, #050505);
+  border-left: 3px solid #bd00ff;
+  box-shadow: -5px 0 30px rgba(189, 0, 255, 0.5), 0 0 40px rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  transition: right 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+}
+.poem-panel.visible { right: 0; }
+.poem-panel.hidden { display: none; }
+.poem-header {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+  border-bottom: 2px solid #bd00ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.poem-header h3 {
+  color: #00ff41;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.6);
+  margin: 0;
+  letter-spacing: 1px;
+}
+.poem-close-btn {
+  background: none;
+  border: 2px solid #bd00ff;
+  color: #bd00ff;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.poem-close-btn:hover {
+  background: #bd00ff;
+  color: #0a0a0a;
+  box-shadow: 0 0 15px rgba(189, 0, 255, 0.8);
+  transform: scale(1.1);
+}
+.poem-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow: hidden;
+  position: relative;
+}
+.poem-content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(189, 0, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+.poem-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 2px solid rgba(189, 0, 255, 0.4);
+  box-shadow: 0 0 25px rgba(189, 0, 255, 0.4), 0 0 50px rgba(0, 255, 65, 0.2);
+  display: block;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+.poem-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 35px rgba(189, 0, 255, 0.6), 0 0 70px rgba(0, 255, 65, 0.3);
+}
+.poem-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.poem-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+@media (max-width: 768px) {
+  .poem-panel { width: 100vw; right: -100vw; }
+  .poem-panel.visible { right: 0; }
+  .poem-header { padding: 0.8rem 1rem; }
+  .poem-close-btn { width: 30px; height: 30px; font-size: 1.1rem; }
+  .poem-image { border-radius: 8px; }
+}
 @media (min-width: 2560px) {
   .cassette-player { max-width: 650px !important; }
   .header-logo { max-height: 120px; max-width: 250px; }
@@ -1699,7 +1743,9 @@ footer {
 <a href="https://www.tiktok.com/@nexuszone2?_r=1&_t=ZS-946qRwctwGa" class="social-link" title="Tiktok" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.16c0 2.52-1.12 4.84-2.9 6.24-1.72 1.36-3.92 1.9-6.09 1.49-2.17-.41-4.13-1.73-5.36-3.59-1.23-1.86-1.6-4.22-1.02-6.42.58-2.2 2.05-4.08 4.03-5.19 1.98-1.11 4.37-1.36 6.54-.69v4.08c-1.14-.36-2.38-.26-3.46.29-1.08.55-1.91 1.53-2.26 2.71-.35 1.18-.18 2.48.47 3.54.65 1.06 1.73 1.82 2.96 2.09 1.23.27 2.52.02 3.58-.69 1.06-.71 1.79-1.85 1.99-3.11.08-.51.12-1.02.12-1.54V.02h-2.68z"/></svg></a>
 <a href="#" class="social-link" id="staff-btn" title="Staff"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></a>
 <a href="#" class="social-link" id="chat-btn" title="Chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></a>
-<!-- NUEVO: Botón de Peticiones con estado dinámico -->
+<a href="#" class="social-link" id="poem-btn" title="Poema de la Semana">
+  <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+</a>
 <a href="#" class="social-link" id="requests-btn" title="Pedir Canción"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></a>
 </div>
 <div class="copyright">
@@ -1708,10 +1754,22 @@ footer {
 <span class="footer-credit">BY DOBBY</span>
 </div>
 </footer>
+
+<div class="poem-panel hidden" id="poem-panel">
+  <div class="poem-header">
+    <h3>✨ Poema / Frase de la Semana ✨</h3>
+    <button class="poem-close-btn" id="poem-close" aria-label="Cerrar">×</button>
+  </div>
+  <div class="poem-content">
+    <img src="img/poemasemana.png" alt="Poema de la Semana" class="poem-image" id="poem-image">
+  </div>
+</div>
+<div class="poem-overlay" id="poem-overlay"></div>
+
 <div class="chat-panel hidden" id="chat-panel">
 <div class="chat-header"><h3>💬 Chat Nexus</h3><button class="chat-close-btn" id="chat-close">×</button></div>
-<div class="chat-iframe-container">
-<script>const num = Math.floor(Math.random() * 1000); document.write(`<iframe src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`);</script>
+<div class="chat-iframe-container" id="chat-iframe-container">
+  <!-- El iframe se inyectará aquí dinámicamente para evitar fugas de memoria -->
 </div>
 </div>
 <div class="chat-overlay" id="chat-overlay"></div>
@@ -1721,21 +1779,9 @@ footer {
 </div>
 <div class="staff-overlay" id="staff-overlay"></div>
 
-<!-- NUEVO: Panel de Peticiones con bloqueo Auto DJ -->
 <div class="requests-panel hidden" id="requests-panel">
   <div class="requests-header"><h3>🎵 Peticiones</h3><button class="requests-close-btn" id="requests-close">×</button></div>
   <div class="requests-content">
-    <!-- ✅ CONTENIDO BLOQUEADO PARA AUTO DJ -->
-    <div id="requests-blocked" class="requests-auth" style="display:none;">
-      <div class="auto-dj-blocked">
-        <span class="icon">🤖</span>
-        <p><strong>Modo Auto DJ activo</strong></p>
-        <p>Las peticiones están disponibles solo cuando hay un <span class="highlight">DJ en vivo</span>.</p>
-        <p style="font-size:0.85rem;color:#666;margin-top:1rem;">Vuelve cuando veas un nombre de DJ real arriba 👆</p>
-      </div>
-    </div>
-    
-    <!-- ✅ CONTENIDO NORMAL PARA DJ REAL -->
     <div id="requests-auth" class="requests-auth">
       <input type="password" id="request-pass" class="request-input" placeholder="🔒 Contraseña (DJ o Escucha)">
       <button id="request-auth-btn" class="request-submit-btn">Entrar</button>
@@ -1755,46 +1801,29 @@ footer {
 
 <audio id="radio-player" crossorigin="anonymous" preload="metadata"></audio>
 <script>
-/* ===================================================== */
-/* MAPEO DE DJs A PAÍSES - CON URLS DE BANDERAS */
-/* ===================================================== */
 const djCountryMap = {
   'adharacanis': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
+  'Amatista': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
   'pueblo_rock': { country: 'Argentina', flagUrl: 'https://flagcdn.com/w40/ar.webp', code: 'AR' },
   'DjIvan': { country: 'España', flagUrl: 'https://flagcdn.com/w40/es.webp', code: 'ES' },
+  'SmileDj': { country: 'España', flagUrl: 'https://flagcdn.com/w40/es.webp', code: 'ES' },
   'Castle': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
   'yahirmaniaca': { country: 'México', flagUrl: 'https://flagcdn.com/w40/mx.webp', code: 'MX' },
   'lu50n': { country: 'Bolivia', flagUrl: 'https://flagcdn.com/w40/bo.webp', code: 'BO' },
   'CisneNegro': { country: 'Colombia', flagUrl: 'https://flagcdn.com/w40/co.webp', code: 'CO' },
+  'Caraxs': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
+  'AndreSZ': { country: 'Chile', flagUrl: 'https://flagcdn.com/w40/cl.webp', code: 'CL' },
 };
-
-// ✅ FALLBACK PERSONALIZADO - NEXUSLANDIA
-const FALLBACK_COUNTRY = {
-  country: 'Nexuslandia',
-  flagUrl: 'img/nexuslandia.png',
-  code: 'NX'
-};
-/* activar publicidad */
+const FALLBACK_COUNTRY = { country: 'Nexuslandia', flagUrl: 'img/nexuslandia.png', code: 'NX' };
 const AD_ENABLED = false;
 let countryUpdateLock = false;
 let lastCountryUpdate = 0;
 const COUNTRY_UPDATE_DEBOUNCE = 800;
 
-/* ✅ CORREGIDO: Normaliza mejor incluyendo variaciones con pipes y números */
 function getDjCountryInfo(djName) {
-  if (!djName || djName.trim() === '') return djCountryMap['autodj'];
-  
-  const normalize = (str) => {
-    return str.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[|]/g, '')
-      .replace(/0/g, 'o')
-      .replace(/[^a-z0-9]/g, '_');
-  };
-  
+  if (!djName || djName.trim() === '') return djCountryMap['autodj'] || FALLBACK_COUNTRY;
+  const normalize = (str) => str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[|]/g, '').replace(/0/g, 'o').replace(/[^a-z0-9]/g, '_');
   const normalizedInput = normalize(djName);
-  
   for (const [key, value] of Object.entries(djCountryMap)) {
     const normalizedKey = normalize(key);
     if (normalizedInput === normalizedKey || normalizedInput.includes(normalizedKey) || normalizedKey.includes(normalizedInput)) return value;
@@ -1806,21 +1835,16 @@ function updateDjCountryDisplay(djName = '') {
   const now = Date.now();
   if (now - lastCountryUpdate < COUNTRY_UPDATE_DEBOUNCE) return;
   lastCountryUpdate = now;
-  
   const countryInfo = document.getElementById('dj-country-info');
   const djFlagImg = document.getElementById('dj-flag-img');
   const djCountryName = document.getElementById('dj-country-name');
   if (!countryInfo || !djFlagImg || !djCountryName) return;
-  
   const info = getDjCountryInfo(djName);
-  
   if (djCountryName.textContent === info.country && djFlagImg.src === info.flagUrl) return;
-  
   djFlagImg.style.transition = 'opacity 0.3s ease';
   djCountryName.style.transition = 'opacity 0.3s ease';
   djFlagImg.style.opacity = '0';
   djCountryName.style.opacity = '0';
-  
   setTimeout(() => {
     djFlagImg.src = info.flagUrl;
     djFlagImg.alt = info.country;
@@ -1828,14 +1852,38 @@ function updateDjCountryDisplay(djName = '') {
     djFlagImg.style.opacity = '1';
     djCountryName.style.opacity = '1';
   }, 200);
-  
   countryInfo.style.animation = 'none';
   setTimeout(() => countryInfo.style.animation = 'country-glow 3s ease-in-out infinite alternate', 10);
 }
 
-/* ===================================================== */
-/* ELEMENTOS */
-/* ===================================================== */
+function isAutoDJ(djName) {
+  if (!djName) return true;
+  const normalized = djName.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const listaBloqueo = ['', 'no dj', 'autodj', 'nexus dj', 'nexusdj', 'smiledj', 'cisnenegro', 'pueblo_rock', 'w0lf', 'djivan', 'lu50n', '|lu5|on', 'AndreSZ'];
+  return listaBloqueo.includes(normalized);
+}
+
+function updateRequestsButtonState(djName = '') {
+  const requestsBtn = document.getElementById('requests-btn');
+  if (!requestsBtn) return;
+  const isAuto = isAutoDJ(djName);
+  if (isAuto) {
+    requestsBtn.style.pointerEvents = 'none';
+    requestsBtn.style.opacity = '0.5';
+    requestsBtn.setAttribute('aria-disabled', 'true');
+    requestsBtn.setAttribute('data-disabled', 'autodj');
+    requestsBtn.title = 'Peticiones disponibles solo con DJ en vivo';
+    requestsBtn.style.cursor = 'not-allowed';
+  } else {
+    requestsBtn.style.pointerEvents = 'auto';
+    requestsBtn.style.opacity = '1';
+    requestsBtn.removeAttribute('aria-disabled');
+    requestsBtn.removeAttribute('data-disabled');
+    requestsBtn.title = 'Pedir Canción';
+    requestsBtn.style.cursor = 'pointer';
+  }
+}
+
 const audio = document.getElementById('radio-player');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const tapeLeft = document.getElementById('tape-left');
@@ -1855,7 +1903,7 @@ const chatPanel = document.getElementById('chat-panel');
 const chatClose = document.getElementById('chat-close');
 const chatBtn = document.getElementById('chat-btn');
 const chatOverlay = document.getElementById('chat-overlay');
-const chatIframeContainer = document.querySelector('.chat-iframe-container');
+const chatIframeContainer = document.getElementById('chat-iframe-container');
 const staffPanel = document.getElementById('staff-panel');
 const staffClose = document.getElementById('staff-close');
 const staffBtn = document.getElementById('staff-btn');
@@ -1864,11 +1912,16 @@ const staffGrid = document.getElementById('staff-grid');
 const adOverlay = document.getElementById('ad-overlay');
 const adCloseBtn = document.getElementById('ad-close-btn');
 const adImage = document.getElementById('ad-image');
+const poemPanel = document.getElementById('poem-panel');
+const poemClose = document.getElementById('poem-close');
+const poemBtn = document.getElementById('poem-btn');
+const poemImage = document.getElementById('poem-image');
+const poemOverlay = document.getElementById('poem-overlay');
 
 let isPlaying = false;
 let audioContext = null, analyzer = null, dataArray = null, animationId = null;
 let isVisualizing = false, audioGraphSetup = false;
-let isChatVisible = false, isStaffVisible = false, staffLoaded = false;
+let isChatVisible = false, isStaffVisible = false, isPoemVisible = false, staffLoaded = false;
 const barCount = bars.length;
 const ledColors = ['#8b8b8b', '#bd00ff', '#00ff41'];
 let ledColorIndex = 0, lastBeatTime = 0, beatCount = 0, visualizerFrameCount = 0;
@@ -1877,9 +1930,6 @@ const colorChangeThreshold = 3;
 const isMobile = window.innerWidth <= 768;
 audio.volume = 1.0; volumeSlider.value = 1.0; audio.crossOrigin = 'anonymous';
 
-/* ===================================================== */
-/* UTILIDADES */
-/* ===================================================== */
 function updateVolumeDisplay() {
   const percent = Math.round(audio.volume * 100);
   volumePercentage.textContent = percent + '%';
@@ -1892,7 +1942,7 @@ function triggerRandomGlitch(el) {
   const randomEffect = effects[Math.floor(Math.random() * effects.length)];
   el.classList.remove('flash', 'pulse', 'chaos');
   void el.offsetWidth; el.classList.add(randomEffect);
-  setTimeout(() => el.classList.remove(randomEffect), 1000);
+  setTimeout(() => { if(el) el.classList.remove(randomEffect); }, 1000);
 }
 function sanitizeDjName(djName) { return djName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '_'); }
 function updateDjImage(djName = 'autodj') {
@@ -1901,12 +1951,9 @@ function updateDjImage(djName = 'autodj') {
   let imageName = normalized.includes('|lu5|0n') || normalized.includes('lu50n') ? 'ilusion' : sanitizeDjName(djName);
   djProfileImg.src = `portadasdjs/${imageName}.png`;
   djProfileImg.alt = djName;
-  
-  // ✅ FALBACK DE IMAGEN: Si no encuentra la imagen del DJ, carga autodj.png
   djProfileImg.onerror = function() {
     if (imageName.toLowerCase() !== 'autodj') {
-      console.log(`🖼️ Imagen de DJ no encontrada: ${imageName}.png. Cargando autodj.png`);
-      this.onerror = null; // Evitar bucle infinito si autodj.png también falla
+      this.onerror = null;
       this.src = 'portadasdjs/autodj.png';
       this.alt = 'Auto DJ';
     }
@@ -1921,9 +1968,6 @@ function checkAndUpdateDjImage() {
   return false;
 }
 
-/* ===================================================== */
-/* PUBLICIDAD */
-/* ===================================================== */
 let adTimer = null;
 function showAdOverlay() {
   if (!AD_ENABLED || !adOverlay || !adImage) return;
@@ -1941,20 +1985,42 @@ function initAdListeners() {
   setTimeout(showAdOverlay, 1000);
 }
 
-/* ===================================================== */
-/* CHAT */
-/* ===================================================== */
+let chatIframeHtml = '';
+function initChatIframe() {
+  const num = Math.floor(Math.random() * 1000);
+  chatIframeHtml = `<iframe id="chat-iframe-element" src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`;
+  if(chatIframeContainer) chatIframeContainer.innerHTML = chatIframeHtml;
+}
+
 function adjustChatIframeForMobile() {
   if (window.innerWidth <= 768 && isChatVisible) {
     chatPanel.style.height = window.visualViewport ? window.visualViewport.height + 'px' : window.innerHeight + 'px';
     if (chatIframeContainer) chatIframeContainer.style.paddingBottom = (window.innerWidth < 480 ? 55 : 60) + 'px';
   }
 }
+
 function toggleChat() {
   isChatVisible = !isChatVisible;
-  if(isChatVisible) { chatPanel.classList.remove('hidden'); chatPanel.classList.add('visible'); chatOverlay.classList.add('active'); setTimeout(adjustChatIframeForMobile, 300); document.body.style.overflow = 'hidden'; }
-  else { chatPanel.classList.remove('visible'); chatPanel.classList.add('hidden'); chatOverlay.classList.remove('active'); chatPanel.style.height = ''; document.body.style.overflow = ''; }
+  if(isChatVisible) { 
+    if (!document.getElementById('chat-iframe-element')) {
+       chatIframeContainer.innerHTML = chatIframeHtml;
+    }
+    chatPanel.classList.remove('hidden'); 
+    chatPanel.classList.add('visible'); 
+    chatOverlay.classList.add('active'); 
+    setTimeout(adjustChatIframeForMobile, 300); 
+    document.body.style.overflow = 'hidden'; 
+  } else { 
+    // ✅ DESTROY IFRAME TO FREE MEMORY
+    chatIframeContainer.innerHTML = '';
+    chatPanel.classList.remove('visible'); 
+    chatPanel.classList.add('hidden'); 
+    chatOverlay.classList.remove('active'); 
+    chatPanel.style.height = ''; 
+    document.body.style.overflow = ''; 
+  }
 }
+
 function initChatListeners() {
   chatBtn.addEventListener('click', (e) => { e.preventDefault(); toggleChat(); });
   chatClose.addEventListener('click', toggleChat);
@@ -1962,9 +2028,6 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
-/* ===================================================== */
-/* STAFF */
-/* ===================================================== */
 function loadStaffImages() {
   staffGrid.innerHTML = ''; let loaded = 0;
   for(let i=1; i<=50; i++) {
@@ -1987,9 +2050,33 @@ function initStaffListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isStaffVisible) toggleStaffPanel(); });
 }
 
-/* ===================================================== */
-/* NUEVO: SISTEMA DE PETICIONES (V4 - Auto DJ Lock) */
-/* ===================================================== */
+function togglePoemPanel() {
+  isPoemVisible = !isPoemVisible;
+  if (isPoemVisible) {
+    poemPanel.classList.remove('hidden');
+    poemPanel.classList.add('visible');
+    poemOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (poemImage) {
+      const currentSrc = poemImage.src;
+      poemImage.src = '';
+      setTimeout(() => { poemImage.src = currentSrc; }, 50);
+    }
+  } else {
+    poemPanel.classList.remove('visible');
+    poemPanel.classList.add('hidden');
+    poemOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+function initPoemListeners() {
+  if (poemBtn) poemBtn.addEventListener('click', (e) => { e.preventDefault(); togglePoemPanel(); });
+  if (poemClose) poemClose.addEventListener('click', togglePoemPanel);
+  if (poemOverlay) poemOverlay.addEventListener('click', togglePoemPanel);
+  document.addEventListener('keydown', (e) => { if(e.key==='Escape' && isPoemVisible) togglePoemPanel(); });
+  if (poemImage) { const preload = new Image(); preload.src = poemImage.src; }
+}
+
 const DJ_PASS = 'dj2026';
 const LISTENER_PASS = 'nexus2026';
 let userRole = null;
@@ -1997,18 +2084,14 @@ let requestRefreshInterval = null;
 const REQUEST_COOLDOWN = 5 * 60 * 1000;
 const REQUEST_EXPIRY = 20 * 60 * 1000;
 let isSyncing = false;
-
-// 🔗 CONFIGURACIÓN JSONBIN
 const BIN_ID = '6a1c1975ddf5aa59f77b6dc2';
 const API_KEY = '$2a$10$l7pwDNDS96podLHrossjbOom0nbtKWJsj/x7GiKPzXq0M4SMWTgQq';
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
 const requestsPanel = document.getElementById('requests-panel');
 const requestsClose = document.getElementById('requests-close');
 const requestsBtn = document.getElementById('requests-btn');
 const requestsOverlay = document.getElementById('requests-overlay');
 const requestsAuth = document.getElementById('requests-auth');
-const requestsBlocked = document.getElementById('requests-blocked');
 const requestsMain = document.getElementById('requests-main');
 const requestPassInput = document.getElementById('request-pass');
 const requestAuthBtn = document.getElementById('request-auth-btn');
@@ -2018,60 +2101,10 @@ const requestSubmitBtn = document.getElementById('request-submit-btn');
 const requestList = document.getElementById('request-list');
 const requestLogoutBtn = document.getElementById('request-logout-btn');
 
-// ✅ NUEVA FUNCIÓN: Detectar si es Auto DJ
-function isAutoDjMode() {
-  if (!sonicDj) return true; // Por defecto, bloqueado si no hay info
-  const djText = sonicDj.textContent.trim().toLowerCase();
-  // Lista de textos que indican modo automático
-  const autoDjKeywords = ['auto', 'autodj', 'auto dj', 'nexus dj', 'nexusdj', 'no dj', 'bot', 'robot', 'automático'];
-  return autoDjKeywords.some(keyword => djText.includes(keyword));
-}
-
-// ✅ ACTUALIZAR ESTADO DEL BOTÓN Y PANEL SEGÚN DJ
-function updateRequestsAvailability() {
-  const isAutoDj = isAutoDjMode();
-  const requestsBtnEl = document.getElementById('requests-btn');
-  
-  // Actualizar botón en footer
-  if (isAutoDj) {
-    requestsBtnEl.classList.add('disabled');
-    requestsBtnEl.title = '🚫 Peticiones disponibles solo con DJ en vivo';
-  } else {
-    requestsBtnEl.classList.remove('disabled');
-    requestsBtnEl.title = 'Pedir Canción';
-  }
-  
-  // Actualizar panel si está abierto
-  if (requestsPanel.classList.contains('visible')) {
-    if (isAutoDj) {
-      // Mostrar mensaje de bloqueo
-      requestsBlocked.style.display = 'flex';
-      requestsAuth.style.display = 'none';
-      requestsMain.style.display = 'none';
-      stopRefresh();
-    } else {
-      // Mostrar interfaz normal
-      requestsBlocked.style.display = 'none';
-      if (userRole) {
-        requestsAuth.style.display = 'none';
-        requestsMain.style.display = 'flex';
-        renderRequests().then(() => startRefresh());
-      } else {
-        requestsAuth.style.display = 'flex';
-        requestsMain.style.display = 'none';
-      }
-    }
-  }
-}
-
 function sanitizeHtml(str) { return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 function getCooldowns() { try { return JSON.parse(localStorage.getItem('nz_cooldowns') || '{}'); } catch { return {}; } }
 function saveCooldowns(data) { localStorage.setItem('nz_cooldowns', JSON.stringify(data)); }
-
 async function loadRequests() {
-  // ✅ BLOQUEO: No cargar si es Auto DJ
-  if (isAutoDjMode()) return [];
-  
   try {
     const res = await fetch(`${BIN_URL}/latest`, { headers: { 'X-Master-Key': API_KEY } });
     if (!res.ok) throw new Error('Error al cargar');
@@ -2079,24 +2112,15 @@ async function loadRequests() {
     return Array.isArray(data.record) ? data.record : (data.record && Array.isArray(data.record.requests) ? data.record.requests : []);
   } catch(e) { console.error("Error cloud:", e); return []; }
 }
-
 async function saveRequests(reqs) {
-  // ✅ BLOQUEO: No guardar si es Auto DJ
-  if (isAutoDjMode() || isSyncing) return;
+  if (isSyncing) return;
   isSyncing = true;
   try {
     await fetch(BIN_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY }, body: JSON.stringify({ requests: reqs }) });
   } catch(e) { console.error("Error save:", e); alert("Error guardando petición. Revisa tu conexión."); }
   finally { isSyncing = false; }
 }
-
 async function renderRequests() {
-  // ✅ BLOQUEO: No renderizar si es Auto DJ
-  if (isAutoDjMode()) {
-    requestList.innerHTML = '<p style="color:#888;text-align:center;">🚫 Peticiones desactivadas en modo Auto DJ</p>';
-    return;
-  }
-  
   if (isSyncing) return;
   requestList.innerHTML = '<p style="color:#888;text-align:center;">⏳ Cargando peticiones...</p>';
   let reqs = await loadRequests();
@@ -2104,97 +2128,55 @@ async function renderRequests() {
   const active = reqs.filter(r => now - r.time < REQUEST_EXPIRY);
   if (active.length !== reqs.length) await saveRequests(active);
   reqs = active;
-
   reqs.sort((a,b) => b.time - a.time);
-  requestList.innerHTML = reqs.length === 0
-    ? '<p style="color:#888;text-align:center;margin-top:10px;">Sin peticiones activas</p>'
-    : '';
-
+  requestList.innerHTML = reqs.length === 0 ? '<p style="color:#888;text-align:center;margin-top:10px;">Sin peticiones activas</p>' : '';
   reqs.forEach((r, i) => {
     const timeLeft = Math.max(0, Math.ceil((REQUEST_EXPIRY - (now - r.time)) / 60000));
     const div = document.createElement('div');
     div.className = 'request-item';
-    div.innerHTML = `
-      <div>
-        <span class="request-text">${sanitizeHtml(r.nick)} - ${sanitizeHtml(r.text)}</span>
-        <span class="request-time">⏱️ ${timeLeft}min</span>
-      </div>
-      ${userRole === 'dj' ? `<button class="request-delete-btn" data-idx="${i}" title="Eliminar (Solo DJ)">×</button>` : ''}
-    `;
+    div.innerHTML = `<div><span class="request-text">${sanitizeHtml(r.nick)} - ${sanitizeHtml(r.text)}</span><span class="request-time">⏱️ ${timeLeft}min</span></div>${userRole === 'dj' ? `<button class="request-delete-btn" data-idx="${i}" title="Eliminar (Solo DJ)">×</button>` : ''}`;
     requestList.appendChild(div);
   });
 }
-
 async function handleRequestSubmit() {
-  // ✅ BLOQUEO FINAL: Verificar Auto DJ antes de enviar
-  if (isAutoDjMode()) {
-    return alert('🚫 Las peticiones están desactivadas cuando emite Auto DJ. Espera a que haya un DJ en vivo.');
-  }
-  
   if (isSyncing) return alert("⏳ Guardando petición anterior, espera un momento.");
   const nick = requestNickInput.value.trim();
   const text = requestInput.value.trim();
-
   if (!nick) return alert('Por favor, escribe tu Nick.');
   if (!text) return alert('Por favor, escribe la Canción - Artista.');
   if (text.length > 80) return alert('Máximo 80 caracteres.');
-
   const cooldowns = getCooldowns();
   const lastTime = cooldowns[nick.toLowerCase()] || 0;
   if (Date.now() - lastTime < REQUEST_COOLDOWN) {
     const waitSec = Math.ceil((REQUEST_COOLDOWN - (Date.now() - lastTime)) / 1000);
     return alert(`⏳ Debes esperar ${waitSec} segundos antes de pedir otra canción.`);
   }
-
   const reqs = await loadRequests();
   reqs.push({ nick, text, time: Date.now(), id: Math.random().toString(36).substr(2, 9) });
   await saveRequests(reqs);
-
   cooldowns[nick.toLowerCase()] = Date.now();
   saveCooldowns(cooldowns);
-
   requestInput.value = '';
   await renderRequests();
   requestInput.focus();
 }
-
 async function deleteRequest(idx) {
-  if (userRole !== 'dj' || isSyncing || isAutoDjMode()) return;
+  if (userRole !== 'dj' || isSyncing) return;
   const reqs = await loadRequests();
   reqs.splice(idx, 1);
   await saveRequests(reqs);
   await renderRequests();
 }
-
 function toggleRequestsPanel() {
   const isVisible = requestsPanel.classList.contains('visible');
   if (!isVisible) {
-    // ✅ VERIFICAR AUTO DJ AL ABRIR
-    if (isAutoDjMode()) {
-      requestsPanel.classList.remove('hidden');
-      requestsPanel.classList.add('visible');
-      requestsOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      // Mostrar mensaje de bloqueo
-      requestsBlocked.style.display = 'flex';
-      requestsAuth.style.display = 'none';
-      requestsMain.style.display = 'none';
-      return;
-    }
-    
-    // ✅ Comportamiento normal si hay DJ real
     requestsPanel.classList.remove('hidden');
     requestsPanel.classList.add('visible');
     requestsOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
-    if (!userRole) {
-      requestPassInput.focus();
-    } else {
-      renderRequests().then(() => startRefresh());
-    }
+    if (!userRole) { requestPassInput.focus(); } 
+    else { renderRequests().then(() => startRefresh()); }
   } else {
-    // ✅ CERRAR PANEL
     requestsPanel.classList.remove('visible');
     requestsPanel.classList.add('hidden');
     requestsOverlay.classList.remove('active');
@@ -2202,41 +2184,22 @@ function toggleRequestsPanel() {
     stopRefresh();
   }
 }
-
-// ✅ OPTIMIZADO: Solo refresca si el panel está visible Y hay DJ real
 function startRefresh() {
-  if (!requestRefreshInterval && requestsPanel.classList.contains('visible') && !isAutoDjMode()) {
+  if (!requestRefreshInterval && requestsPanel.classList.contains('visible')) {
     requestRefreshInterval = setInterval(() => {
-      if (requestsPanel.classList.contains('visible') && !isAutoDjMode()) {
-        renderRequests();
-      } else {
-        stopRefresh();
-      }
+      if (requestsPanel.classList.contains('visible')) { renderRequests(); } 
+      else { stopRefresh(); }
     }, 45000);
   }
 }
-
 function stopRefresh() {
-  if (requestRefreshInterval) {
-    clearInterval(requestRefreshInterval);
-    requestRefreshInterval = null;
-  }
+  if (requestRefreshInterval) { clearInterval(requestRefreshInterval); requestRefreshInterval = null; }
 }
-
 function initRequestsListeners() {
-  requestsBtn.addEventListener('click', (e) => { 
-    e.preventDefault(); 
-    // ✅ Prevenir apertura si es Auto DJ
-    if (isAutoDjMode()) {
-      alert('🚫 Las peticiones están disponibles solo cuando hay un DJ en vivo.');
-      return;
-    }
-    toggleRequestsPanel(); 
-  });
+  requestsBtn.addEventListener('click', (e) => { e.preventDefault(); toggleRequestsPanel(); });
   requestsClose.addEventListener('click', toggleRequestsPanel);
   requestsOverlay.addEventListener('click', toggleRequestsPanel);
   document.addEventListener('keydown', (e) => { if(e.key==='Escape' && requestsPanel.classList.contains('visible')) toggleRequestsPanel(); });
-
   requestAuthBtn.addEventListener('click', () => {
     const pass = requestPassInput.value;
     if (pass === DJ_PASS) { userRole = 'dj'; enterPanel(); }
@@ -2244,15 +2207,12 @@ function initRequestsListeners() {
     else { alert('Contraseña incorrecta'); }
   });
   requestPassInput.addEventListener('keydown', (e) => { if(e.key==='Enter') requestAuthBtn.click(); });
-
   requestSubmitBtn.addEventListener('click', handleRequestSubmit);
   requestInput.addEventListener('keydown', (e) => { if(e.key==='Enter') handleRequestSubmit(); });
-
   requestList.addEventListener('click', (e) => {
     const btn = e.target.closest('.request-delete-btn');
     if (btn) deleteRequest(parseInt(btn.dataset.idx));
   });
-
   requestLogoutBtn.addEventListener('click', () => {
     userRole = null;
     requestsMain.style.display = 'none';
@@ -2261,24 +2221,12 @@ function initRequestsListeners() {
     stopRefresh();
   });
 }
-
 function enterPanel() {
-  // ✅ Verificar Auto DJ al entrar
-  if (isAutoDjMode()) {
-    requestsBlocked.style.display = 'flex';
-    requestsAuth.style.display = 'none';
-    requestsMain.style.display = 'none';
-    return;
-  }
-  
   requestsAuth.style.display = 'none';
   requestsMain.style.display = 'flex';
   renderRequests().then(() => startRefresh());
 }
 
-/* ===================================================== */
-/* AUDIO & VISUALIZADOR + BARRAS LED */
-/* ===================================================== */
 function setupAudioGraph() {
   if(audioGraphSetup || !audioContext) return;
   try {
@@ -2299,76 +2247,73 @@ function stopVisualizer() {
   ledTop.style.background='#8b8b8b'; ledTop.style.boxShadow='0 0 0 rgba(139,139,139,0)';
   ledBottom.style.background='#8b8b8b'; ledBottom.style.boxShadow='0 0 0 rgba(139,139,139,0)';
 }
+
+let currentLedIntensity = 0;
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
   visualizerFrameCount++; if(isMobile && visualizerFrameCount%2!==0) { animationId = requestAnimationFrame(visualize); return; }
   analyzer.getByteFrequencyData(dataArray); const totalBins = dataArray.length; const binsPerBar = totalBins/barCount;
-  for(let i=0; i<barCount; i++) {
-    let sum=0, count=0;
-    for(let j=Math.floor(i*binsPerBar); j<Math.floor((i+1)*binsPerBar) && j<totalBins; j++) { sum += dataArray[j] * (i<4?1.4:i>=8?1.5:1.15); count++; }
-    const avg = count>0 ? sum/count : 0;
-    let height = Math.min(Math.sqrt(avg)*2.0, 28); height = Math.max(height, 2);
-    bars[i].style.height = height+'px';
-    const gf = Math.min(height/28,1);
-    bars[i].style.boxShadow = `0 0 ${8*gf}px rgba(0,255,65,${0.4+gf*0.6}), 0 0 ${12*gf}px rgba(189,0,255,${0.4*gf})`;
-    bars[i].style.background = height>20 ? 'linear-gradient(to top, #00ff41, #bd00ff)' : height>10 ? 'linear-gradient(to top, #00cc33, #9900ff)' : 'linear-gradient(to top, #008822, #7a00cc)';
-  }
-  updateLedStrips();
-  animationId = requestAnimationFrame(visualize);
-}
-
-/* ===================================================== */
-/* ✅ BARRAS LED AL RITMO DE LOS BAJOS */
-/* ===================================================== */
-function getBassIntensity() {
-  if (!analyzer || !dataArray) return 0;
+  
   let bassSum = 0;
-  for (let i = 0; i < 4; i++) { bassSum += dataArray[i]; }
-  return bassSum / 4;
-}
-function updateLedStrips() {
-  if (!isPlaying || !analyzer) {
-    ledTop.style.background = '#8b8b8b';
-    ledTop.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
-    ledBottom.style.background = '#8b8b8b';
-    ledBottom.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
-    return;
-  }
-  const bassIntensity = getBassIntensity();
+  for(let i = 0; i < 4; i++) { bassSum += dataArray[i]; }
+  const bassIntensity = bassSum / 4;
   const now = Date.now();
+  
   if (bassIntensity > beatThreshold && (now - lastBeatTime) > 150) {
     lastBeatTime = now;
     beatCount++;
+    currentLedIntensity = 1.0;
     if (beatCount >= colorChangeThreshold) {
       ledColorIndex = (ledColorIndex + 1) % ledColors.length;
       beatCount = 0;
     }
-    const currentColor = ledColors[ledColorIndex];
-    const intensity = Math.min(bassIntensity / 255, 1);
-    [ledTop, ledBottom].forEach(led => {
-      led.style.background = currentColor;
-      led.style.boxShadow = `
-        0 0 ${8 + intensity * 12}px ${currentColor},
-        0 0 ${15 + intensity * 20}px ${currentColor}80,
-        inset 0 0 ${5 + intensity * 8}px rgba(255,255,255,${0.3 + intensity * 0.4})
-      `;
-    });
   } else {
-    [ledTop, ledBottom].forEach(led => {
-      const currentShadow = led.style.boxShadow;
-      if (currentShadow && currentShadow.includes('px')) {
-        led.style.boxShadow = currentShadow.replace(/[\d.]+px/g, match => {
-          const val = parseFloat(match);
-          return `${Math.max(val * 0.85, 0)}px`;
-        });
-      }
-    });
+    currentLedIntensity *= 0.85;
+    if (currentLedIntensity < 0.01) currentLedIntensity = 0;
   }
+
+  if (currentLedIntensity > 0.01) {
+    const color = ledColors[ledColorIndex];
+    const s1 = 8 + currentLedIntensity * 12;
+    const s2 = 15 + currentLedIntensity * 20;
+    const s3 = 5 + currentLedIntensity * 8;
+    const alpha = 0.3 + currentLedIntensity * 0.4;
+    const shadowStr = `0 0 ${s1}px ${color}, 0 0 ${s2}px ${color}80, inset 0 0 ${s3}px rgba(255,255,255,${alpha})`;
+    ledTop.style.boxShadow = shadowStr;
+    ledBottom.style.boxShadow = shadowStr;
+    ledTop.style.background = color;
+    ledBottom.style.background = color;
+  } else {
+    ledTop.style.background = '#8b8b8b';
+    ledTop.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
+    ledBottom.style.background = '#8b8b8b';
+    ledBottom.style.boxShadow = '0 0 0 rgba(139, 139, 139, 0)';
+  }
+
+  for(let i=0; i<barCount; i++) {
+    let sum=0, count=0;
+    const startBin = Math.floor(i * binsPerBar);
+    const endBin = Math.min(Math.floor((i + 1) * binsPerBar), totalBins);
+    const multiplier = i < 4 ? 1.4 : (i >= 8 ? 1.5 : 1.15);
+    for(let j = startBin; j < endBin; j++) { sum += dataArray[j] * multiplier; count++; }
+    const avg = count>0 ? sum/count : 0;
+    let height = Math.min(Math.sqrt(avg)*2.0, 28); height = Math.max(height, 2);
+    bars[i].style.height = height+'px';
+    const gf = Math.min(height/28,1);
+    if (height > 20) {
+      bars[i].style.boxShadow = `0 0 ${8*gf}px rgba(0,255,65,${0.4+gf*0.6}), 0 0 ${12*gf}px rgba(189,0,255,${0.4*gf})`;
+      bars[i].style.background = 'linear-gradient(to top, #00ff41, #bd00ff)';
+    } else if (height > 10) {
+      bars[i].style.boxShadow = `0 0 ${5*gf}px rgba(0,204,51,${0.4+gf*0.4}), 0 0 ${8*gf}px rgba(153,0,255,${0.4*gf})`;
+      bars[i].style.background = 'linear-gradient(to top, #00cc33, #9900ff)';
+    } else {
+      bars[i].style.boxShadow = `0 0 ${3*gf}px rgba(0,136,34,${0.4+gf*0.3})`;
+      bars[i].style.background = 'linear-gradient(to top, #008822, #7a00cc)';
+    }
+  }
+  animationId = requestAnimationFrame(visualize);
 }
 
-/* ===================================================== */
-/* PLAY / PAUSE */
-/* ===================================================== */
 function togglePlayPause() {
   if(!isPlaying) {
     if(audio.src !== streamUrl) audio.src = streamUrl;
@@ -2394,57 +2339,72 @@ playPauseBtn.addEventListener('click', togglePlayPause);
 volumeSlider.addEventListener('input', () => { audio.volume = parseFloat(volumeSlider.value); updateVolumeDisplay(); });
 updateVolumeDisplay();
 
-/* ===================================================== */
-/* OBSERVERS */
-/* ===================================================== */
 function setupGlitchObservers() {
   if(sonicTitle) {
-    const obs = new MutationObserver(() => { updateGlitchDataText(sonicTitle); if(Math.random()<0.3) triggerRandomGlitch(sonicTitle); });
+    let titleUpdateTimeout;
+    const obs = new MutationObserver(() => {
+      clearTimeout(titleUpdateTimeout);
+      titleUpdateTimeout = setTimeout(() => {
+        updateGlitchDataText(sonicTitle);
+        if(Math.random()<0.3) triggerRandomGlitch(sonicTitle);
+      }, 200);
+    });
     obs.observe(sonicTitle, {childList:true, characterData:true, subtree:true}); updateGlitchDataText(sonicTitle);
   }
   if(sonicDj) {
+    let djUpdateTimeout;
     const obs = new MutationObserver(() => {
-      if(countryUpdateLock) return; countryUpdateLock = true;
-      updateGlitchDataText(sonicDj); checkAndUpdateDjImage();
-      updateDjCountryDisplay(sonicDj.textContent.trim());
-      
-      // ✅ ACTUALIZAR DISPONIBILIDAD DE PETICIONES CUANDO CAMBIA EL DJ
-      updateRequestsAvailability();
-      
-      if(Math.random()<0.3) triggerRandomGlitch(sonicDj);
-      setTimeout(()=>countryUpdateLock=false, 100);
+      clearTimeout(djUpdateTimeout);
+      djUpdateTimeout = setTimeout(() => {
+        if(countryUpdateLock) return; countryUpdateLock = true;
+        updateGlitchDataText(sonicDj); checkAndUpdateDjImage();
+        updateDjCountryDisplay(sonicDj.textContent.trim());
+        updateRequestsButtonState(sonicDj.textContent.trim());
+        if(Math.random()<0.3) triggerRandomGlitch(sonicDj);
+        setTimeout(()=>countryUpdateLock=false, 100);
+      }, 200);
     });
     obs.observe(sonicDj, {childList:true, characterData:true, subtree:true});
     updateGlitchDataText(sonicDj); checkAndUpdateDjImage(); updateDjCountryDisplay(sonicDj.textContent.trim());
-    
-    // ✅ INICIALIZAR ESTADO AL CARGAR
-    updateRequestsAvailability();
+    updateRequestsButtonState(sonicDj.textContent.trim());
   }
 }
-function updateAlbumArtBackground() { setTimeout(()=>{ const c=document.getElementById('sonic_art_full'); if(c&&c.querySelector('img')){ const s=c.querySelector('img').src; if(s){ albumArtBg.style.backgroundImage=`url('${s}')`; albumArtBg.style.opacity='0.4'; } } }, 500); }
 
-/* ===================================================== */
-/* INIT */
-/* ===================================================== */
+function updateAlbumArtBackground() { 
+  setTimeout(()=>{ 
+    const c=document.getElementById('sonic_art_full'); 
+    if(c&&c.querySelector('img')){ 
+      const s=c.querySelector('img').src; 
+      if(s){ 
+        albumArtBg.style.backgroundImage=`url('${s}')`; 
+        albumArtBg.style.opacity='0.4'; 
+      } 
+    } 
+  }, 500); 
+}
+
 window.addEventListener('load', function() {
   updateAlbumArtBackground();
   setupGlitchObservers();
+  initChatIframe();
   initChatListeners();
   initStaffListeners();
   initAdListeners();
   initRequestsListeners();
+  initPoemListeners();
   adjustChatIframeForMobile();
   updateDjCountryDisplay(sonicDj ? sonicDj.textContent.trim() : '');
-
+  setTimeout(() => { if (sonicDj) updateRequestsButtonState(sonicDj.textContent.trim()); }, 1000);
   const artContainer = document.getElementById('sonic_art_full');
   if (artContainer) {
+    let artUpdateTimeout;
     const artObserver = new MutationObserver(() => {
-      setTimeout(() => updateAlbumArtBackground(), 300);
+      clearTimeout(artUpdateTimeout);
+      artUpdateTimeout = setTimeout(() => updateAlbumArtBackground(), 500);
     });
     artObserver.observe(artContainer, { childList: true, subtree: true, attributes: true });
   }
-
-  console.log("🎧 Nexus Zone cargado correctamente.");
+  console.log("🎧 Nexus Zone cargado correctamente y optimizado contra fugas de memoria.");
 });
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
 audio.addEventListener('error', (e) => { console.error("✗ Audio error:", e); if(isPlaying) togglePlayPause(); });
