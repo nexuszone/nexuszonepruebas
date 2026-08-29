@@ -1801,6 +1801,9 @@ footer {
 
 <audio id="radio-player" crossorigin="anonymous" preload="metadata"></audio>
 <script>
+/* ===================================================== */
+/* MAPEO DE DJs A PAÍSES */
+/* ===================================================== */
 const djCountryMap = {
   'adharacanis': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
   'Amatista': { country: 'El Salvador', flagUrl: 'https://flagcdn.com/w40/sv.webp', code: 'SV' },
@@ -1819,6 +1822,10 @@ const AD_ENABLED = false;
 let countryUpdateLock = false;
 let lastCountryUpdate = 0;
 const COUNTRY_UPDATE_DEBOUNCE = 800;
+
+/* ✅ NUEVO: Temporizador para destruir el chat tras inactividad */
+let chatDestroyTimer = null;
+const CHAT_DESTROY_DELAY = 20 * 60 * 1000; // 20 minutos en milisegundos
 
 function getDjCountryInfo(djName) {
   if (!djName || djName.trim() === '') return djCountryMap['autodj'] || FALLBACK_COUNTRY;
@@ -1884,6 +1891,9 @@ function updateRequestsButtonState(djName = '') {
   }
 }
 
+/* ===================================================== */
+/* ELEMENTOS DEL DOM */
+/* ===================================================== */
 const audio = document.getElementById('radio-player');
 const playPauseBtn = document.getElementById('play-pause-btn');
 const tapeLeft = document.getElementById('tape-left');
@@ -1930,6 +1940,9 @@ const colorChangeThreshold = 3;
 const isMobile = window.innerWidth <= 768;
 audio.volume = 1.0; volumeSlider.value = 1.0; audio.crossOrigin = 'anonymous';
 
+/* ===================================================== */
+/* UTILIDADES */
+/* ===================================================== */
 function updateVolumeDisplay() {
   const percent = Math.round(audio.volume * 100);
   volumePercentage.textContent = percent + '%';
@@ -1968,6 +1981,9 @@ function checkAndUpdateDjImage() {
   return false;
 }
 
+/* ===================================================== */
+/* PUBLICIDAD */
+/* ===================================================== */
 let adTimer = null;
 function showAdOverlay() {
   if (!AD_ENABLED || !adOverlay || !adImage) return;
@@ -1985,6 +2001,9 @@ function initAdListeners() {
   setTimeout(showAdOverlay, 1000);
 }
 
+/* ===================================================== */
+/* ✅ CHAT CON DESTRUCCIÓN RETARDADA (20 MINUTOS) */
+/* ===================================================== */
 let chatIframeHtml = '';
 function initChatIframe() {
   const num = Math.floor(Math.random() * 1000);
@@ -2001,18 +2020,33 @@ function adjustChatIframeForMobile() {
 
 function toggleChat() {
   isChatVisible = !isChatVisible;
-  if(isChatVisible) { 
+  
+  if (isChatVisible) {
+    // 1. Si el usuario lo vuelve a abrir, CANCELAMOS la destrucción programada
+    if (chatDestroyTimer) {
+      clearTimeout(chatDestroyTimer);
+      chatDestroyTimer = null;
+      console.log("⏱️ Temporizador de destrucción del chat cancelado.");
+    }
+    
+    // 2. Si el iframe no existe (o ya fue destruido), lo recreamos
     if (!document.getElementById('chat-iframe-element')) {
        chatIframeContainer.innerHTML = chatIframeHtml;
     }
+    
     chatPanel.classList.remove('hidden'); 
     chatPanel.classList.add('visible'); 
     chatOverlay.classList.add('active'); 
     setTimeout(adjustChatIframeForMobile, 300); 
     document.body.style.overflow = 'hidden'; 
-  } else { 
-    // ✅ DESTROY IFRAME TO FREE MEMORY
-    chatIframeContainer.innerHTML = '';
+  } else {
+    // 3. Al cerrar, PROGRAMAMOS la destrucción para dentro de 20 minutos
+    chatDestroyTimer = setTimeout(() => {
+      chatIframeContainer.innerHTML = '';
+      chatDestroyTimer = null;
+      console.log("🗑️ Iframe del chat destruido por inactividad (20 minutos transcurridos). Memoria liberada.");
+    }, CHAT_DESTROY_DELAY);
+
     chatPanel.classList.remove('visible'); 
     chatPanel.classList.add('hidden'); 
     chatOverlay.classList.remove('active'); 
@@ -2028,6 +2062,9 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
+/* ===================================================== */
+/* STAFF */
+/* ===================================================== */
 function loadStaffImages() {
   staffGrid.innerHTML = ''; let loaded = 0;
   for(let i=1; i<=50; i++) {
@@ -2050,6 +2087,9 @@ function initStaffListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isStaffVisible) toggleStaffPanel(); });
 }
 
+/* ===================================================== */
+/* POEMA */
+/* ===================================================== */
 function togglePoemPanel() {
   isPoemVisible = !isPoemVisible;
   if (isPoemVisible) {
@@ -2077,6 +2117,9 @@ function initPoemListeners() {
   if (poemImage) { const preload = new Image(); preload.src = poemImage.src; }
 }
 
+/* ===================================================== */
+/* PETICIONES */
+/* ===================================================== */
 const DJ_PASS = 'dj2026';
 const LISTENER_PASS = 'nexus2026';
 let userRole = null;
@@ -2227,6 +2270,9 @@ function enterPanel() {
   renderRequests().then(() => startRefresh());
 }
 
+/* ===================================================== */
+/* AUDIO & VISUALIZADOR + BARRAS LED OPTIMIZADAS */
+/* ===================================================== */
 function setupAudioGraph() {
   if(audioGraphSetup || !audioContext) return;
   try {
@@ -2314,6 +2360,9 @@ function visualize() {
   animationId = requestAnimationFrame(visualize);
 }
 
+/* ===================================================== */
+/* PLAY / PAUSE */
+/* ===================================================== */
 function togglePlayPause() {
   if(!isPlaying) {
     if(audio.src !== streamUrl) audio.src = streamUrl;
@@ -2339,6 +2388,9 @@ playPauseBtn.addEventListener('click', togglePlayPause);
 volumeSlider.addEventListener('input', () => { audio.volume = parseFloat(volumeSlider.value); updateVolumeDisplay(); });
 updateVolumeDisplay();
 
+/* ===================================================== */
+/* OBSERVERS OPTIMIZADOS (DEBOUNCE) */
+/* ===================================================== */
 function setupGlitchObservers() {
   if(sonicTitle) {
     let titleUpdateTimeout;
@@ -2383,6 +2435,9 @@ function updateAlbumArtBackground() {
   }, 500); 
 }
 
+/* ===================================================== */
+/* INICIALIZACIÓN */
+/* ===================================================== */
 window.addEventListener('load', function() {
   updateAlbumArtBackground();
   setupGlitchObservers();
@@ -2395,6 +2450,7 @@ window.addEventListener('load', function() {
   adjustChatIframeForMobile();
   updateDjCountryDisplay(sonicDj ? sonicDj.textContent.trim() : '');
   setTimeout(() => { if (sonicDj) updateRequestsButtonState(sonicDj.textContent.trim()); }, 1000);
+  
   const artContainer = document.getElementById('sonic_art_full');
   if (artContainer) {
     let artUpdateTimeout;
@@ -2404,8 +2460,9 @@ window.addEventListener('load', function() {
     });
     artObserver.observe(artContainer, { childList: true, subtree: true, attributes: true });
   }
-  console.log("🎧 Nexus Zone cargado correctamente y optimizado contra fugas de memoria.");
+  console.log("🎧 Nexus Zone cargado correctamente. Chat configurado para autodestruirse a los 20 min de inactividad.");
 });
+
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
 audio.addEventListener('error', (e) => { console.error("✗ Audio error:", e); if(isPlaying) togglePlayPause(); });
 document.body.addEventListener('touchstart', function initMobile(){ if(!audioContext && window.AudioContext){ audioContext = new AudioContext(); audioContext.suspend(); } document.body.removeEventListener('touchstart', initMobile); }, {once:true});
