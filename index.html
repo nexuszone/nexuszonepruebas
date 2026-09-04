@@ -496,28 +496,26 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D (FORMA FÍSICA REAL NORELCO CASE)
+   ESTUCHE DE CASETE 3D RESTAURADO (VERSIÓN ANTERIOR FAVORITA)
    ========================================================= */
 .case-3d-wrapper {
-  perspective: 1200px;
+  perspective: 1100px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.cassette-case-outer {
+.cassette-case {
   width: 100%;
   max-width: 325px;
   aspect-ratio: 1 / 1.42;
-  /* Plástico acrílico moldeado con profundidad y sombra */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(38, 38, 46, 0.82) 18%, rgba(12, 12, 16, 0.96) 100%);
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-left: 10px solid rgba(255, 255, 255, 0.44); /* Lomo del estuche */
-  border-right: 6px solid rgba(255, 255, 255, 0.32); /* Borde de cierre */
-  border-radius: 14px 8px 8px 14px; /* Esquinas redondeadas del lomo y rectas del cierre */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(35, 35, 42, 0.8) 18%, rgba(12, 12, 16, 0.95) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-left: 8px solid rgba(255, 255, 255, 0.38); /* Lomo grueso acrílico */
+  border-radius: 12px;
   position: relative;
-  padding: 8px 9px 8px 11px;
+  padding: 8px 8px 8px 11px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -525,19 +523,12 @@ h1 {
   user-select: none;
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
-  box-shadow: 
-    0 22px 45px rgba(0, 0, 0, 0.95),
-    -14px 0 30px rgba(189, 0, 255, 0.42),
-    14px 0 30px rgba(0, 255, 65, 0.42),
-    inset 0 0 0 2px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 4px rgba(255, 255, 255, 0.2),
-    inset 0 3px 5px rgba(255, 255, 255, 0.55);
   animation: case3DLevitation 6s ease-in-out infinite alternate;
 }
 
 @keyframes case3DLevitation {
   0% {
-    transform: rotateY(-7deg) rotateX(3deg) translateY(0px);
+    transform: rotateY(-6deg) rotateX(3deg) translateY(0px);
     box-shadow: 0 20px 42px rgba(0, 0, 0, 0.95), -14px 0 30px rgba(189, 0, 255, 0.42), 14px 0 30px rgba(0, 255, 65, 0.42);
   }
   50% {
@@ -545,150 +536,83 @@ h1 {
     box-shadow: 0 28px 52px rgba(0, 0, 0, 0.9), -18px 0 38px rgba(189, 0, 255, 0.55), 18px 0 38px rgba(0, 255, 65, 0.55);
   }
   100% {
-    transform: rotateY(7deg) rotateX(-2deg) translateY(-3px);
+    transform: rotateY(6deg) rotateX(-2deg) translateY(-3px);
     box-shadow: 0 22px 45px rgba(0, 0, 0, 0.95), -14px 0 32px rgba(189, 0, 255, 0.45), 14px 0 32px rgba(0, 255, 65, 0.45);
   }
 }
 
-.cassette-case-outer:hover {
+.cassette-case:hover {
   animation-play-state: paused;
   transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.02);
   box-shadow: 0 28px 55px rgba(0, 0, 0, 0.98), -20px 0 42px rgba(189, 0, 255, 0.65), 20px 0 42px rgba(0, 255, 65, 0.65);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* BISAGRAS CIRCULARES REALES (ZÓCALO Y PIVOTE CENTRAL) */
-.case-hinge-socket {
-  position: absolute;
-  left: -6px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, rgba(200, 200, 215, 0.8) 40%, rgba(35, 35, 45, 0.95) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5), inset 0 1px 2px #000;
-  z-index: 15;
-}
-.case-hinge-socket.hinge-top { top: 32px; }
-.case-hinge-socket.hinge-bottom { bottom: 32px; }
-.hinge-pin {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #060608;
-  box-shadow: inset 0 1px 1px #000, 0 0 2px rgba(255,255,255,0.4);
+.case-acrylic-bezel {
+  position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px; pointer-events: none; z-index: 9;
 }
 
-/* PESTAÑA SALIENTE DE APERTURA PARA EL PULGAR (THUMB LIP) */
-.case-thumb-lip {
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 48px;
-  border-radius: 0 4px 4px 0;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(180, 180, 195, 0.25));
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: none;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6), inset 0 1px 1px #fff;
-  z-index: 12;
-  pointer-events: none;
+.case-hinge-lug {
+  position: absolute; left: -4px; width: 7px; height: 26px; border-radius: 3.5px;
+  background: linear-gradient(to right, #ffffff, #999999);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), inset 0 1px 1px #fff; z-index: 12;
+}
+.case-hinge-lug.top { top: 30px; }
+.case-hinge-lug.bottom { bottom: 30px; }
+
+.case-spool-peg {
+  position: absolute; right: 20px; width: 26px; height: 26px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.25) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 5; pointer-events: none;
+}
+.case-spool-peg.spool-top { top: 86px; }
+.case-spool-peg.spool-bottom { bottom: 86px; }
+.spool-peg-teeth {
+  width: 12px; height: 12px; border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.45);
 }
 
-/* LÍNEA DE ENCAJE / JUNTA DE LAS DOS MITADES DE LA CAJA */
-.case-seam-line {
-  position: absolute;
-  top: 4px; bottom: 4px;
-  right: 5px;
-  width: 1.5px;
-  background: linear-gradient(to bottom, transparent 2%, rgba(255,255,255,0.4) 10%, rgba(255,255,255,0.4) 90%, transparent 98%);
-  box-shadow: -1px 0 2px rgba(0,0,0,0.8);
-  z-index: 10;
-  pointer-events: none;
+.case-plastic-clip {
+  position: absolute; left: 11px; width: 7px; height: 18px; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.7); z-index: 11; pointer-events: none;
 }
+.case-plastic-clip.clip-top { top: 68px; }
+.case-plastic-clip.clip-bottom { bottom: 68px; }
 
-/* REPISA DEL BOLSILLO INTERIOR TRASLÚCIDO */
-.case-cradle-shelf {
-  position: absolute;
-  left: 6px; right: 6px;
-  bottom: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.5) 100%);
-  box-shadow: 0 -1px 1px rgba(255,255,255,0.7), 0 2px 4px rgba(0, 0, 0, 0.7);
-  border-radius: 1px;
-  z-index: 7;
-  pointer-events: none;
-}
-
-/* LOS 2 TOPES REALES DE BLOQUEO DE CARRETE (3 DIENTES RADIALES) */
-.spool-restraint {
-  position: absolute;
-  right: 22px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(0, 0, 0, 0.65) 80%, rgba(255, 255, 255, 0.3) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.28);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 6;
-  pointer-events: none;
-}
-.spool-restraint.restraint-top { top: 88px; }
-.spool-restraint.restraint-bottom { bottom: 88px; }
-.restraint-core {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #08080a; border: 1.5px solid rgba(255,255,255,0.4);
-  z-index: 2;
-}
-.restraint-spoke {
-  position: absolute;
-  width: 3px; height: 9px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 1px;
-  box-shadow: 0 0 2px rgba(255,255,255,0.4);
-}
-.restraint-spoke.r1 { transform: rotate(0deg) translateY(-8px); }
-.restraint-spoke.r2 { transform: rotate(120deg) translateY(-8px); }
-.restraint-spoke.r3 { transform: rotate(240deg) translateY(-8px); }
-
-/* DESTELLO ESPECULAR HOLOGRÁFICO */
-.case-specular-glare {
-  position: absolute;
-  top: -80%; left: -110%;
-  width: 140%; height: 260%;
+.case-shimmer-sweep {
+  position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
   background: linear-gradient(65deg, 
-    transparent 36%, 
-    rgba(255, 255, 255, 0.28) 47%, 
-    rgba(0, 255, 65, 0.18) 50%, 
-    rgba(189, 0, 255, 0.18) 53%, 
-    rgba(255, 255, 255, 0.08) 57%, 
-    transparent 66%
+    transparent 38%, 
+    rgba(255, 255, 255, 0.24) 48%, 
+    rgba(0, 255, 65, 0.18) 51%, 
+    rgba(189, 0, 255, 0.18) 54%, 
+    transparent 64%
   );
-  transform: rotate(24deg);
+  transform: rotate(25deg);
   pointer-events: none;
-  z-index: 11;
+  z-index: 10;
   animation: glassShimmerSweep 7s ease-in-out infinite;
 }
 @keyframes glassShimmerSweep {
-  0%, 25% { transform: translateX(-120%) rotate(24deg); opacity: 0; }
+  0%, 25% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
   35% { opacity: 1; }
-  50%, 100% { transform: translateX(230%) rotate(24deg); opacity: 0; }
+  50%, 100% { transform: translateX(230%) rotate(25deg); opacity: 0; }
 }
 
-.case-edge-refraction {
+.case-glass-bevel-highlight {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, rgba(255,255,255,0.03) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 45%, rgba(255,255,255,0.03) 100%);
   pointer-events: none; z-index: 8;
 }
 
-/* CARÁTULA / INLAY INTERIOR */
-.case-inlay {
+/* CARÁTULA J-CARD */
+.case-jcard {
   position: relative; z-index: 2; width: 100%; height: 100%;
   display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
   background: #0b0b10;
@@ -697,7 +621,7 @@ h1 {
 }
 
 /* FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO */
-.inlay-dj-strip {
+.jcard-header {
   height: 34px;
   background: linear-gradient(90deg, #111116 0%, #1a1a24 50%, #111116 100%);
   border-bottom: 2px solid #bd00ff;
@@ -723,8 +647,14 @@ h1 {
   text-transform: none !important;
 }
 
-/* ÁREA DE LA FOTO DEL DJ */
-.inlay-photo-frame {
+/* Contenido de la portada */
+.jcard-main-cover {
+  position: relative; width: 100%; flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+}
+
+/* Ventana fotográfica del DJ */
+.jcard-art-window {
   position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
@@ -732,16 +662,16 @@ h1 {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 0.4s ease;
 }
-.cassette-case-outer:hover #dj-profile-img {
+.cassette-case:hover #dj-profile-img {
   transform: scale(1.04);
 }
-.inlay-shadow-edge {
+.jcard-surface-texture {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   box-shadow: inset 0 0 16px rgba(0,0,0,0.65); pointer-events: none;
 }
 
-/* FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS */
-.inlay-country-strip {
+/* FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ CENTRADOS */
+.jcard-footer-strip {
   height: 34px;
   background: linear-gradient(90deg, #111116 0%, #171724 50%, #111116 100%);
   border-top: 2px solid #00ff41;
@@ -789,6 +719,84 @@ h1 {
   width: 100%; max-width: 325px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
   border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
+}
+
+/* =========================================================
+   STAFF: ESTUCHES DE CASETE MINIATURA (EN LUGAR DE CÍRCULOS)
+   ========================================================= */
+.staff-grid {
+  flex: 1; overflow-y: auto; padding: 1.2rem;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem; align-content: start;
+}
+
+.staff-cassette-card {
+  position: relative;
+  width: 100%;
+  max-width: 165px;
+  aspect-ratio: 1 / 1.42;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(20, 20, 26, 0.95) 100%);
+  border: 2.5px solid rgba(255, 255, 255, 0.22);
+  border-left: 6px solid rgba(255, 255, 255, 0.38); /* Lomo grueso del estuche */
+  border-radius: 9px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.85), 0 0 14px rgba(0, 255, 65, 0.25);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+.staff-cassette-card.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+.staff-cassette-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 255, 65, 0.6);
+  border-color: #00ff41;
+}
+.staff-case-glare {
+  position: absolute; top: -50%; left: -60%; width: 100%; height: 200%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.16) 48%, transparent 60%);
+  transform: rotate(22deg); pointer-events: none; z-index: 5;
+}
+.staff-photo-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+  background: #0a0a0e;
+}
+.staff-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.staff-case-tab {
+  height: 24px;
+  background: linear-gradient(90deg, #111116 0%, #09090d 100%);
+  border-top: 1.5px solid #00ff41;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  flex-shrink: 0;
+  z-index: 4;
+}
+.staff-case-tab span {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #00ff41;
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(0, 255, 65, 0.7);
 }
 
 /* =========================================================
@@ -901,6 +909,9 @@ footer {
 .staff-header { border-bottom: 2px solid #00ff41; }
 .poem-header { border-bottom: 2px solid #bd00ff; }
 
+.requests-header h3, .chat-header h3, .poem-header h3 { color: #00ff41; font-size: clamp(1rem, 1.5vw, 1.1rem); margin: 0; }
+.staff-header h3 { color: #bd00ff; font-size: clamp(1rem, 1.5vw, 1.1rem); margin: 0; }
+
 .requests-close-btn, .chat-close-btn, .staff-close-btn, .poem-close-btn {
   background: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
   font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem;
@@ -940,18 +951,6 @@ footer {
 .chat-iframe-container { flex: 1; overflow: hidden; position: relative; padding-bottom: env(safe-area-inset-bottom); }
 #chat-iframe { width: 100%; height: 100%; border: none; background: transparent; display: block; }
 
-.staff-grid {
-  flex: 1; overflow-y: auto; padding: 1.5rem; display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem; align-content: start;
-}
-.staff-photo {
-  width: 90%; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover;
-  border: 3px solid #00ff41; opacity: 0; transform: translateY(20px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out; display: block; margin: 0 auto;
-}
-.staff-photo.loaded { opacity: 1; transform: translateY(0); }
-.staff-photo.error { display: none; }
-
 .poem-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .poem-image { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; border: 2px solid rgba(189, 0, 255, 0.4); }
 
@@ -989,10 +988,10 @@ footer {
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
   /* Estuche 3D vertical en laptop */
-  .cassette-case-outer, .ad-overlay img.ad-image { max-width: 265px; }
-  .spool-restraint { width: 24px; height: 24px; right: 16px; }
-  .spool-restraint.restraint-top { top: 72px; }
-  .spool-restraint.restraint-bottom { bottom: 72px; }
+  .cassette-case, .ad-overlay img.ad-image { max-width: 265px; }
+  .case-spool-peg { width: 22px; height: 22px; right: 16px; }
+  .case-spool-peg.spool-top { top: 70px; }
+  .case-spool-peg.spool-bottom { bottom: 70px; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
 
@@ -1012,11 +1011,11 @@ footer {
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
   
   /* Estuche 3D vertical proporcionado en 720p */
-  .cassette-case-outer, .ad-overlay img.ad-image { max-width: 215px; }
-  .inlay-dj-strip { height: 28px; }
-  .inlay-country-strip { height: 28px; }
+  .cassette-case, .ad-overlay img.ad-image { max-width: 215px; }
+  .jcard-header { height: 28px; }
+  .jcard-footer-strip { height: 28px; }
   .dj-country-name { font-size: 0.7rem; }
-  .spool-restraint { display: none; }
+  .case-spool-peg { display: none; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
 
@@ -1038,11 +1037,10 @@ footer {
   .volume-control { width: 100%; max-width: 100%; }
   
   /* Estuche vertical 3D centrado y amplio en móvil */
-  .cassette-case-outer, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
-  .staff-grid { grid-template-columns: 1fr; }
   
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
@@ -1055,7 +1053,7 @@ footer {
   .tape-reel { width: 54px; height: 54px; }
   .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
   .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-case-outer, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
 }
 </style>
 <script type="application/ld+json">
@@ -1180,58 +1178,52 @@ footer {
 <h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (FORMA REAL NORELCO BOX) -->
+  <!-- ESTUCHE 3D REALISTA DE CASETE (RESTAURADO VERSIÓN FAVORITA) -->
   <div class="case-3d-wrapper">
-    <div class="cassette-case-outer">
+    <div class="cassette-case">
+      <!-- Bisel acrílico con refracción -->
+      <div class="case-acrylic-bezel"></div>
+      
       <!-- Bisagras cilíndricas mecánicas -->
-      <div class="case-hinge-socket hinge-top"><div class="hinge-pin"></div></div>
-      <div class="case-hinge-socket hinge-bottom"><div class="hinge-pin"></div></div>
+      <div class="case-hinge-lug top"></div>
+      <div class="case-hinge-lug bottom"></div>
 
-      <!-- Pestaña lateral saliente para abrir con el pulgar -->
-      <div class="case-thumb-lip"></div>
-
-      <!-- Línea de junta / encaje de las dos tapas -->
-      <div class="case-seam-line"></div>
-
-      <!-- Repisa interior translúcida donde descansa la tapa -->
-      <div class="case-cradle-shelf"></div>
-
-      <!-- Los 2 topes interiores reales de carretes (con 3 dientes radiales) -->
-      <div class="spool-restraint restraint-top">
-        <div class="restraint-spoke r1"></div>
-        <div class="restraint-spoke r2"></div>
-        <div class="restraint-spoke r3"></div>
-        <div class="restraint-core"></div>
+      <!-- Conos interiores que traban los carretes -->
+      <div class="case-spool-peg spool-top">
+        <div class="spool-peg-teeth"></div>
       </div>
-      <div class="spool-restraint restraint-bottom">
-        <div class="restraint-spoke r1"></div>
-        <div class="restraint-spoke r2"></div>
-        <div class="restraint-spoke r3"></div>
-        <div class="restraint-core"></div>
+      <div class="case-spool-peg spool-bottom">
+        <div class="spool-peg-teeth"></div>
       </div>
 
-      <!-- Destello holográfico que cruza el cristal y refracción -->
-      <div class="case-specular-glare"></div>
-      <div class="case-edge-refraction"></div>
+      <!-- Destello holográfico que cruza el cristal periódicamente -->
+      <div class="case-shimmer-sweep"></div>
+      <div class="case-glass-bevel-highlight"></div>
 
-      <!-- Carátula interior del DJ -->
-      <div class="case-inlay">
-        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO -->
-        <div class="inlay-dj-strip">
+      <!-- Pestañas transparentes delanteras de retención de papel -->
+      <div class="case-plastic-clip clip-top"></div>
+      <div class="case-plastic-clip clip-bottom"></div>
+
+      <!-- Carátula interior J-Card plegable -->
+      <div class="case-jcard">
+        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO (SIN "EMITE") -->
+        <div class="jcard-header">
           <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
         </div>
 
-        <!-- FOTO DEL DJ -->
-        <div class="inlay-photo-frame">
-          <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
-          <div class="inlay-shadow-edge"></div>
-        </div>
+        <div class="jcard-main-cover">
+          <!-- Imagen del DJ -->
+          <div class="jcard-art-window">
+            <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+            <div class="jcard-surface-texture"></div>
+          </div>
 
-        <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
-        <div class="inlay-country-strip">
-          <div class="dj-country-info" id="dj-country-info">
-            <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-            <span class="dj-country-name" id="dj-country-name">El Salvador</span>
+          <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
+          <div class="jcard-footer-strip">
+            <div class="dj-country-info" id="dj-country-info">
+              <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+              <span class="dj-country-name" id="dj-country-name">El Salvador</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1592,20 +1584,28 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
+/* CARGA DEL STAFF: MINI-ESTUCHES DE CASETE PERSONALIZADOS */
 function loadStaffImages() {
   staffGrid.innerHTML = '';
   const fragment = document.createDocumentFragment();
   for(let i = 1; i <= 50; i++) {
-    const img = document.createElement('img');
-    img.src = `staff/dj${i}.png`; img.alt = `Staff ${i}`; img.classList.add('staff-photo');
-    img.decoding = 'async';
-    img.loading = 'lazy';
-    img.onload = function() { this.classList.add('loaded'); };
-    img.onerror = function() { this.classList.add('error'); };
-    fragment.appendChild(img);
+    const card = document.createElement('div');
+    card.className = 'staff-cassette-card';
+    card.innerHTML = `
+      <div class="staff-case-glare"></div>
+      <div class="staff-photo-wrap">
+        <img src="staff/dj${i}.png" alt="Staff DJ ${i}" class="staff-photo" loading="lazy" decoding="async">
+      </div>
+      <div class="staff-case-tab"><span>DJ #${i}</span></div>
+    `;
+    const img = card.querySelector('img');
+    img.onload = function() { card.classList.add('loaded'); };
+    img.onerror = function() { card.style.display = 'none'; };
+    fragment.appendChild(card);
   }
   staffGrid.appendChild(fragment);
 }
+
 function toggleStaffPanel() {
   isStaffVisible = !isStaffVisible;
   if(isStaffVisible) { 
@@ -1832,7 +1832,7 @@ function updateLedsDirectKick() {
   const kickJump = kickEnergy - minBaseline;
   const now = Date.now();
 
-  // Pequeño ajuste equilibrado: estabilidad en salsa/reggaeton y detección fluida en drops de electrónica
+  // Detección equilibrada: estabilidad y detección en drops
   const isKickHit = (
     kickJump > 0.06 || 
     (kickEnergy > 0.28 && kickJump > 0.035) || 
@@ -1913,7 +1913,7 @@ function visualize() {
     }
   }
   
-  // Tiras LED con calibración precisa y equilibrada
+  // Tiras LED calibradas
   updateLedsDirectKick();
   
   animationId = requestAnimationFrame(visualize);
