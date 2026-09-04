@@ -115,15 +115,15 @@ h1 {
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
 
 /* =========================================================
-   CASETE HIPER-REALISTA RETRO-CYBERPUNK
+   CASETE REALISTA RETRO
    ========================================================= */
 .cassette-player {
-  width: 100%; max-width: 560px;
-  background: linear-gradient(165deg, #2c2c30 0%, #17171a 45%, #0f0f12 100%);
+  width: 100%; max-width: 565px;
+  background: linear-gradient(165deg, #2b2b30 0%, #17171a 45%, #0e0e11 100%);
   border-radius: 18px;
   box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+    inset 0 1px 2px rgba(255, 255, 255, 0.22),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.85),
     0 12px 35px rgba(0, 0, 0, 0.85),
     0 0 25px rgba(189, 0, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -135,7 +135,6 @@ h1 {
   user-select: none;
 }
 
-/* Relieve plástico biselado exterior */
 .cassette-player::after {
   content: '';
   position: absolute;
@@ -148,7 +147,7 @@ h1 {
 
 /* Tornillos de estrella realistas */
 .cassette-screw {
-  position: absolute; width: 15px; height: 15px; border-radius: 50%;
+  position: absolute; width: 14px; height: 14px; border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #9e9e9e 0%, #525252 50%, #292929 100%);
   border: 1px solid rgba(0, 0, 0, 0.7);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
@@ -167,51 +166,46 @@ h1 {
 .cassette-screw.bottom-left { bottom: 12px; left: 12px; }
 .cassette-screw.bottom-right { bottom: 12px; right: 12px; }
 
-/* Carátula en marca de agua tenue de fondo */
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-size: cover; background-position: center; opacity: 0.15; filter: blur(4px); z-index: 1;
 }
 
-/* PEGATINA / LABEL DEL CASETE */
+/* PEGATINA VINTAGE */
 .cassette-label {
   position: relative; z-index: 2;
-  background: linear-gradient(180deg, #1d1c22 0%, #141318 100%);
+  background: linear-gradient(180deg, #1e1d24 0%, #131317 100%);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.5);
   padding: 10px 14px 12px 14px;
   display: flex; flex-direction: column; gap: 8px;
 }
 
-/* Barra superior de la pegatina */
 .label-header-bar {
   display: flex; justify-content: space-between; align-items: center;
   border-bottom: 2px solid #bd00ff; padding-bottom: 5px;
 }
 .label-side {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.15rem;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.05rem;
   color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
   display: flex; align-items: center; gap: 6px;
 }
 .label-side span {
-  background: #bd00ff; color: #000; font-size: 0.75rem; padding: 1px 5px; border-radius: 3px; font-weight: 900;
-}
-.label-brand {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 2px;
-  color: #00ff41; text-transform: uppercase;
+  background: #bd00ff; color: #000; font-size: 0.72rem; padding: 1px 6px; border-radius: 3px; font-weight: 900;
 }
 .label-type {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #888;
-  border: 1px solid #555; padding: 1px 6px; border-radius: 2px;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: #00ff41;
+  border: 1px solid rgba(0, 255, 65, 0.4); padding: 1px 8px; border-radius: 3px;
+  letter-spacing: 1px;
 }
 
-/* Área de escritura de la cinta (Canción actual) */
+/* Zona de escritura con el título */
 .cassette-write-strip {
   background: repeating-linear-gradient(
     180deg,
-    rgba(255,255,255,0.03) 0px,
-    rgba(255,255,255,0.03) 24px,
+    rgba(255,255,255,0.02) 0px,
+    rgba(255,255,255,0.02) 24px,
     rgba(189, 0, 255, 0.25) 25px
   );
   border: 1px dashed rgba(255, 255, 255, 0.15);
@@ -227,29 +221,27 @@ h1 {
 }
 
 /* =========================================================
-   VENTANA CENTRAL DE CRISTAL TRANSPARENTE
+   VENTANA TRANSPARENTE CON ECUALIZADOR CENTRADO
    ========================================================= */
 .cassette-window-frame {
-  background: #09090b;
-  border-radius: 40px;
-  border: 2px solid #3a3a40;
-  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.9), 0 1px 1px rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
+  background: #08080a;
+  border-radius: 45px;
+  border: 2px solid #36363d;
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.95), 0 1px 1px rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
   position: relative;
   overflow: hidden;
   margin: 3px 0;
 }
 
-/* Reflejo de cristal y cinta magnética */
 .cassette-window-frame::before {
   content: ''; position: absolute; top: -50%; left: -30%; width: 60%; height: 200%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.07) 50%, transparent 60%);
-  transform: rotate(25deg); pointer-events: none; z-index: 8;
+  background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+  transform: rotate(25deg); pointer-events: none; z-index: 9;
 }
 
-/* Cinta magnética marrón que cruza el fondo */
 .tape-ribbon-track {
-  position: absolute; left: 10%; right: 10%; top: 50%; height: 60px;
+  position: absolute; left: 10%; right: 10%; top: 50%; height: 64px;
   transform: translateY(-50%);
   background: linear-gradient(180deg, #1b120c 0%, #301f14 50%, #150d08 100%);
   border-top: 1px solid rgba(0,0,0,0.6);
@@ -258,23 +250,12 @@ h1 {
   z-index: 1; opacity: 0.9;
 }
 
-/* Regla marcadora de cinta (100 - 50 - 0) */
-.tape-measure-marks {
-  position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 8px; align-items: center; z-index: 7;
-  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.4);
-  letter-spacing: 2px; pointer-events: none;
-}
-.tape-measure-marks span { width: 1px; height: 5px; background: rgba(255,255,255,0.3); }
-
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
   z-index: 5; height: 110px; width: 100%;
 }
 
-/* =========================================================
-   CARRETES DENTADOS REALISTAS (6 DIENTES)
-   ========================================================= */
+/* CARRETES DENTADOS */
 .tape-reel {
   width: 86px; height: 86px; border-radius: 50%;
   background: radial-gradient(circle at center, #26262b 0%, #1a1a1e 65%, #2a1810 70%, #1f110a 100%);
@@ -282,28 +263,21 @@ h1 {
   box-shadow: 0 0 0 2px #444, inset 0 0 10px rgba(0,0,0,0.95), 0 4px 8px rgba(0,0,0,0.6);
   display: flex; align-items: center; justify-content: center;
   position: relative; flex-shrink: 0;
-  transition: transform 0.1s linear;
 }
 
-/* Corona dentada interior del cassette */
 .reel-sprocket {
   position: absolute; width: 44px; height: 44px; border-radius: 50%;
   background: radial-gradient(circle at center, #050505 38%, #ececec 40%, #cfcfcf 68%, #888 100%);
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 0 4px rgba(0,0,0,0.8);
   display: flex; align-items: center; justify-content: center;
 }
-
-/* Centro hueco */
 .reel-sprocket::after {
   content: ''; width: 22px; height: 22px; border-radius: 50%;
   background: #08080a; border: 2px solid #222; z-index: 4;
 }
-
-/* 6 Dientes de arrastre mecánicos */
 .reel-sprocket .tooth {
   position: absolute; width: 4px; height: 11px;
   background: #ececec; border-radius: 1px; z-index: 3;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,0.4);
 }
 .reel-sprocket .tooth:nth-child(1) { transform: rotate(0deg) translateY(-14px); }
 .reel-sprocket .tooth:nth-child(2) { transform: rotate(60deg) translateY(-14px); }
@@ -312,57 +286,55 @@ h1 {
 .reel-sprocket .tooth:nth-child(5) { transform: rotate(240deg) translateY(-14px); }
 .reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-14px); }
 
-/* Efecto de giro y neón al reproducir */
-#tape-left.animated, #tape-right.animated {
-  animation: reelSpin 2.4s linear infinite;
-}
-#tape-left.animated .reel-sprocket {
-  box-shadow: 0 0 12px rgba(189, 0, 255, 0.8), inset 0 0 8px rgba(189, 0, 255, 0.5);
-}
-#tape-right.animated .reel-sprocket {
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.8), inset 0 0 8px rgba(0, 255, 65, 0.5);
+#tape-left.animated, #tape-right.animated { animation: reelSpin 2.4s linear infinite; }
+#tape-left.animated .reel-sprocket { box-shadow: 0 0 12px rgba(189, 0, 255, 0.85); }
+#tape-right.animated .reel-sprocket { box-shadow: 0 0 12px rgba(0, 255, 65, 0.85); }
+@keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* =========================================================
+   ECUALIZADOR PERFECTAMENTE CENTRADO (CON FILTRO CRT)
+   ========================================================= */
+.equalizer-center-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  padding: 0 14px;
+  height: 100%;
 }
 
-@keyframes reelSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* MÓDULO CENTRAL TRANSPARENTE CON BOTÓN Y ECUALIZADOR */
-.cassette-center-bridge {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 8px; z-index: 6; width: 140px;
-}
-
-.play-btn {
-  width: 72px; height: 32px;
-  background: linear-gradient(180deg, #252528 0%, #141416 100%);
-  border: 2px solid #00ff41; border-radius: 6px; cursor: pointer;
-  display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.05rem; color: #00ff41;
-  text-shadow: 0 0 6px rgba(0, 255, 65, 0.8);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.2s ease;
-}
-.play-btn:hover {
-  transform: translateY(-1px); box-shadow: 0 0 16px rgba(0, 255, 65, 0.8); border-color: #33ff77;
-}
-.play-btn.playing {
-  border-color: #bd00ff; color: #bd00ff;
-  text-shadow: 0 0 8px rgba(189, 0, 255, 0.9);
-  box-shadow: 0 0 12px rgba(189, 0, 255, 0.6);
-}
-
-/* ECUALIZADOR */
-.equalizer-compartment {
-  width: 100%; display: flex; justify-content: center; align-items: flex-end;
-}
 .equalizer-container {
-  width: 100%; height: 26px; display: flex; justify-content: space-between; align-items: flex-end;
-  gap: 3px; padding: 0 4px; position: relative;
+  width: 100%;
+  max-width: 200px;
+  height: 48px;
+  background: rgba(10, 10, 14, 0.85);
+  border: 2px solid #2e2e38;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 4px;
+  padding: 6px 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 8px rgba(0, 255, 65, 0.15);
 }
+
+/* FILTRO CRT SCANLINES */
+.equalizer-container::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.3) 50%, rgba(0, 255, 65, 0.08) 50%);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 8;
+  opacity: 0.9;
+}
+
 .bar {
-  width: 5px; height: 2px; border-radius: 2px 2px 0 0;
+  width: 6px; height: 3px; border-radius: 2px 2px 0 0;
   transform-origin: bottom; position: relative; flex: 1; will-change: height;
   background: linear-gradient(to top, #008822, #7a00cc);
   box-shadow: 0 0 4px rgba(0, 255, 65, 0.5);
@@ -370,58 +342,105 @@ h1 {
 }
 .bar.bar-mid {
   background: linear-gradient(to top, #00cc33, #9900ff);
-  box-shadow: 0 0 7px rgba(0, 255, 65, 0.7), 0 0 10px rgba(189, 0, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.8), 0 0 10px rgba(189, 0, 255, 0.6);
 }
 .bar.bar-high {
   background: linear-gradient(to top, #00ff41, #bd00ff);
-  box-shadow: 0 0 9px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 15px rgba(189, 0, 255, 0.9);
 }
 
 /* =========================================================
-   PARTE INFERIOR TRAPEZOIDAL DEL CASETE (ZONA CABEZAL)
+   ZONA INFERIOR DEL CASETE: BOTÓN PLAY/STOP & CABEZAL
    ========================================================= */
+.cassette-deck-controls {
+  position: relative; z-index: 4;
+  display: flex; justify-content: center; align-items: center;
+  padding: 8px 0 4px 0;
+}
+
+.play-btn {
+  width: 95px; height: 34px;
+  background: linear-gradient(180deg, #242429 0%, #121215 100%);
+  border: 2px solid #00ff41; border-radius: 7px; cursor: pointer;
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.15rem; color: #00ff41;
+  text-shadow: 0 0 7px rgba(0, 255, 65, 0.8);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.2s ease;
+}
+.play-btn:hover {
+  transform: translateY(-2px); box-shadow: 0 0 18px rgba(0, 255, 65, 0.8); border-color: #33ff77;
+}
+.play-btn.playing {
+  border-color: #bd00ff; color: #bd00ff;
+  text-shadow: 0 0 8px rgba(189, 0, 255, 0.9);
+  box-shadow: 0 0 15px rgba(189, 0, 255, 0.65);
+}
+
 .cassette-head-area {
   position: relative;
-  width: 82%; margin: 6px auto 0 auto; height: 34px;
-  background: linear-gradient(180deg, #18181c 0%, #101013 100%);
+  width: 78%; margin: 2px auto 0 auto; height: 30px;
+  background: linear-gradient(180deg, #18181d 0%, #0f0f12 100%);
   clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #303036;
   display: flex; justify-content: space-around; align-items: center;
-  padding: 0 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+  padding: 0 26px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
 }
 .head-hole {
-  width: 11px; height: 11px; border-radius: 50%;
+  width: 10px; height: 10px; border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #0a0a0c 40%, #2a2a30 90%, #444 100%);
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 1px 1px rgba(255,255,255,0.1);
 }
 .head-center-notch {
-  width: 28px; height: 8px; background: #0b0b0e;
-  border-radius: 2px; border: 1px solid #28282e;
-}
-
-/* CONTROL DE VOLUMEN ESTILO PLATINA HI-FI */
-.volume-control {
-  width: 100%; max-width: 560px; margin: 12px auto 0 auto;
-  background: rgba(22, 22, 26, 0.9); padding: 10px 14px; border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
-}
-.volume-label {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
-  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; letter-spacing: 1px;
-}
-.volume-slider {
-  width: 100%; height: 6px; -webkit-appearance: none;
-  background: linear-gradient(to right, #00ff41 0%, #00ff41 100%, #333 100%, #333 100%);
-  border-radius: 6px; outline: none;
-}
-.volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 16px; height: 16px; background: #00ff41; border-radius: 50%; cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); border: 2px solid #000;
+  width: 32px; height: 7px; background: #08080a;
+  border-radius: 2px; border: 1px solid #24242a;
 }
 
 /* =========================================================
-   TEXTOS GLITCH
+   CONTROL DE VOLUMEN (ARRASTRABLE TOTALMENTE)
+   ========================================================= */
+.volume-control {
+  width: 100%; max-width: 565px; margin: 12px auto 0 auto;
+  background: rgba(20, 20, 24, 0.92); padding: 12px 16px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: relative; z-index: 10;
+}
+.volume-label {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; letter-spacing: 1px;
+}
+.volume-slider {
+  width: 100%; height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(to right, #00ff41 0%, #00ff41 100%, #333 100%, #333 100%);
+  border-radius: 6px; outline: none;
+  cursor: pointer;
+  touch-action: none;
+  position: relative;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px; height: 22px;
+  background: #00ff41;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.95);
+  border: 2px solid #000;
+}
+.volume-slider::-moz-range-thumb {
+  width: 22px; height: 22px;
+  background: #00ff41;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.95);
+  border: 2px solid #000;
+}
+
+/* =========================================================
+   EFECTO CYBER-GLITCH COMPLETO Y RESTAURADO
    ========================================================= */
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
 .cyber-glitch {
@@ -434,25 +453,48 @@ h1 {
   overflow: hidden; text-align: center; pointer-events: none;
 }
 .cyber-glitch::before {
-  color: var(--pink-neon); clip-path: inset(2px 0 11px 0); animation: glitch-shift-1 2.0s infinite; z-index: -1; opacity: 0.85;
+  color: var(--pink-neon); clip-path: inset(2px 0 11px 0); animation: glitch-shift-1 1.9s infinite; z-index: -1; opacity: 0.85;
 }
 .cyber-glitch::after {
-  color: var(--green-neon); clip-path: inset(10px 0 3px 0); animation: glitch-shift-2 2.7s infinite; z-index: -2; opacity: 0.85;
+  color: var(--green-neon); clip-path: inset(10px 0 3px 0); animation: glitch-shift-2 2.5s infinite; z-index: -2; opacity: 0.85;
 }
+
 @keyframes glitch-shift-1 {
   0%, 100% { clip-path: inset(2px 0 11px 0); transform: translate(0, 0); }
   20% { clip-path: inset(1px 0 13px 0); transform: translate(-2px, 2px); }
   50% { clip-path: inset(4px 0 9px 0); transform: translate(2px, -1px); }
+  80% { clip-path: inset(8px 0 5px 0); transform: translate(-1px, -1px); }
 }
 @keyframes glitch-shift-2 {
   0%, 100% { clip-path: inset(10px 0 3px 0); transform: translate(0, 0); }
   25% { clip-path: inset(6px 0 7px 0); transform: translate(2px, -2px); }
   60% { clip-path: inset(12px 0 1px 0); transform: translate(-2px, 1px); }
+  85% { clip-path: inset(3px 0 10px 0); transform: translate(1px, 2px); }
 }
 @keyframes title-glow {
   from { text-shadow: 0 0 8px rgba(189, 0, 255, 0.9), 0 0 15px rgba(0, 255, 65, 0.7); }
-  to { text-shadow: 0 0 12px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.9); }
+  to { text-shadow: 0 0 14px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.95); }
 }
+
+.cyber-glitch.flash { animation: glitch-flash 0.3s ease; }
+.cyber-glitch.pulse { animation: glitch-pulse 0.4s ease; }
+.cyber-glitch.chaos { animation: glitch-chaos 0.5s steps(2, start); }
+
+@keyframes glitch-flash {
+  0%, 100% { opacity: 1; filter: none; }
+  50% { opacity: 0.4; filter: invert(1) hue-rotate(90deg); transform: scale(1.02); }
+}
+@keyframes glitch-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); text-shadow: 0 0 25px #bd00ff, 0 0 35px #00ff41; }
+}
+@keyframes glitch-chaos {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -1px); }
+}
+
 #sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.9rem, 1.6vw, 1.25rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
@@ -604,7 +646,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   MEDIA QUERIES (DESKTOP / LAPTOPS)
+   RESPONSIVIDAD PC / LAPTOPS
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -622,13 +664,13 @@ footer {
   .player-section, .dj-section { padding: 0.3rem; }
   .section-title { font-size: 1.05rem; margin-bottom: 0.5rem; }
   
-  .cassette-player { max-width: 470px; padding: 12px 12px 10px 12px; }
-  .cassette-tapes { height: 95px; }
-  .tape-reel { width: 72px; height: 72px; }
-  .reel-sprocket { width: 38px; height: 38px; }
-  .play-btn { width: 64px; height: 28px; font-size: 0.95rem; }
-  .equalizer-container { height: 20px; }
-  .cassette-head-area { height: 28px; }
+  .cassette-player { max-width: 470px; padding: 12px 12px 8px 12px; }
+  .cassette-tapes { height: 90px; }
+  .tape-reel { width: 70px; height: 70px; }
+  .reel-sprocket { width: 36px; height: 36px; }
+  .equalizer-container { height: 40px; }
+  .play-btn { width: 85px; height: 30px; font-size: 1rem; }
+  .cassette-head-area { height: 26px; }
   
   #dj-profile-img, .ad-overlay img.ad-image { max-width: 260px; width: 260px; height: 260px; }
   .dj-image-container { gap: 12px; }
@@ -643,11 +685,12 @@ footer {
   .main-container { padding: 0.3rem 1.2rem; gap: 1.2rem; }
   .section-title { font-size: 0.9rem; margin-bottom: 0.3rem; }
   .cassette-player { max-width: 410px; padding: 10px; }
-  .cassette-tapes { height: 85px; }
+  .cassette-tapes { height: 80px; }
   .tape-reel { width: 62px; height: 62px; }
   .reel-sprocket { width: 32px; height: 32px; }
-  .play-btn { width: 56px; height: 24px; font-size: 0.85rem; }
-  .cassette-head-area { height: 24px; }
+  .equalizer-container { height: 36px; }
+  .play-btn { width: 75px; height: 26px; font-size: 0.9rem; }
+  .cassette-head-area { height: 22px; }
   #dj-profile-img, .ad-overlay img.ad-image { max-width: 200px; width: 200px; height: 200px; }
   .dj-image-container { gap: 8px; }
   footer { min-height: 50px; padding: 0.1rem; }
@@ -668,9 +711,10 @@ footer {
   }
   .player-section, .dj-section { flex: none; width: 100%; max-width: 480px; padding: 0; }
   .cassette-player { width: 100%; max-width: 100%; padding: 14px 10px 10px 10px; }
-  .cassette-tapes { height: 95px; }
+  .cassette-tapes { height: 92px; }
   .tape-reel { width: 72px; height: 72px; }
   .reel-sprocket { width: 38px; height: 38px; }
+  .equalizer-container { height: 42px; }
   #dj-profile-img, .ad-overlay img.ad-image { width: 260px; height: 260px; max-width: 260px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
@@ -679,19 +723,17 @@ footer {
   
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
-  .cyber-glitch::before, .cyber-glitch::after { display: none !important; }
-  .cyber-glitch { animation: none !important; }
   #dj-profile-img { animation: none !important; }
 }
 
 @media (max-width: 375px) {
   .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.4rem; }
   .cassette-player { padding: 10px 8px; }
-  .cassette-tapes { height: 85px; }
-  .tape-reel { width: 62px; height: 62px; }
-  .reel-sprocket { width: 32px; height: 32px; }
-  .cassette-center-bridge { width: 110px; }
-  .play-btn { width: 56px; height: 26px; font-size: 0.9rem; }
+  .cassette-tapes { height: 82px; }
+  .tape-reel { width: 60px; height: 60px; }
+  .reel-sprocket { width: 30px; height: 30px; }
+  .equalizer-container { height: 36px; padding: 4px 6px; }
+  .play-btn { width: 75px; height: 28px; font-size: 0.95rem; }
   #dj-profile-img, .ad-overlay img.ad-image { width: 210px; height: 210px; }
 }
 </style>
@@ -717,7 +759,7 @@ footer {
 <section class="player-section">
 <h2 class="section-title player-title">Reproductor</h2>
 
-<!-- CASETE MEJORADO REALISTA -->
+<!-- CASETE REALISTA -->
 <div class="cassette-player">
   <div class="cassette-screw top-left"></div>
   <div class="cassette-screw top-center"></div>
@@ -726,27 +768,26 @@ footer {
   <div class="cassette-screw bottom-right"></div>
   <div class="album-art-bg" id="album-art-bg"></div>
 
-  <!-- ETIQUETA ADHESIVA VINTAGE -->
+  <!-- ETIQUETA VINTAGE -->
   <div class="cassette-label">
     <div class="label-header-bar">
       <div class="label-side">SIDE <span>A</span></div>
-      <div class="label-brand">NEXUS TAPE 90</div>
       <div class="label-type">CrO₂ / STEREO</div>
     </div>
     
-    <!-- LÍNEA DE ESCRITURA CON EL TÍTULO -->
+    <!-- TÍTULO CON EFECTO GLITCH -->
     <div class="cassette-write-strip">
       <div class="song-info">
         <div id='sonic_title' class="cyber-glitch" data-text="Cargando canción...">Cargando canción...</div>
       </div>
     </div>
 
-    <!-- VENTANA TRANSPARENTE DEL CASETE -->
+    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR CENTRADO -->
     <div class="cassette-window-frame">
       <div class="tape-ribbon-track"></div>
       
       <div class="cassette-tapes">
-        <!-- CARRETE DENTADO IZQUIERDO (6 DIENTES) -->
+        <!-- CARRETE IZQUIERDO -->
         <div class="tape-reel" id="tape-left">
           <div class="reel-sprocket">
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
@@ -754,20 +795,17 @@ footer {
           </div>
         </div>
 
-        <!-- CENTRO CON PLAY Y ECUALIZADOR -->
-        <div class="cassette-center-bridge">
-          <button class="play-btn" id="play-pause-btn" aria-label="Reproducir o Pausar">▶</button>
-          <div class="equalizer-compartment">
-            <div class="equalizer-container" id="equalizer">
-              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-              <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            </div>
+        <!-- ECUALIZADOR PERFECTAMENTE CENTRADO (CON SCANLINES CRT) -->
+        <div class="equalizer-center-box">
+          <div class="equalizer-container" id="equalizer">
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
           </div>
         </div>
 
-        <!-- CARRETE DENTADO DERECHO (6 DIENTES) -->
+        <!-- CARRETE DERECHO -->
         <div class="tape-reel" id="tape-right">
           <div class="reel-sprocket">
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
@@ -775,14 +813,15 @@ footer {
           </div>
         </div>
       </div>
-
-      <div class="tape-measure-marks">
-        <span></span> 100 <span></span> 50 <span></span> 0 <span></span>
-      </div>
     </div>
   </div>
 
-  <!-- BASE TRAPEZOIDAL INFERIOR DEL CABEZAL -->
+  <!-- BOTÓN PLAY/STOP UBICADO EN LA PARTE BAJA DEL CASETE -->
+  <div class="cassette-deck-controls">
+    <button class="play-btn" id="play-pause-btn" aria-label="Reproducir o Pausar">▶</button>
+  </div>
+
+  <!-- BASE TRAPEZOIDAL DEL CABEZAL -->
   <div class="cassette-head-area">
     <div class="head-hole"></div>
     <div class="head-center-notch"></div>
@@ -790,13 +829,13 @@ footer {
   </div>
 </div>
 
-<!-- CONTROL DE VOLUMEN HIFI -->
+<!-- CONTROL DE VOLUMEN TOTALMENTE ARRASTRABLE -->
 <div class="volume-control">
   <div class="volume-label">
-    <span>OUTPUT LEVEL:</span>
+    <span>NIVEL DE VOLUMEN:</span>
     <span id="volume-percentage">100%</span>
   </div>
-  <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.1" value="1" aria-label="Control de volumen">
+  <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
 </div>
 
 <div id='sonic_art_full' style="display:none;"></div>
@@ -1011,15 +1050,61 @@ function updateVolumeDisplay() {
   volumePercentage.textContent = percent + '%';
   volumeSlider.style.background = `linear-gradient(to right, #00ff41 0%, #00ff41 ${percent}%, #333 ${percent}%, #333 100%)`;
 }
-function updateGlitchDataText(el) { if(el && el.classList.contains('cyber-glitch') && !isMobileDevice) el.setAttribute('data-text', el.textContent.trim()); }
+
+/* GESTIÓN CONTINUA DE ARRASTRE DE VOLUMEN */
+function handleVolumeInput(val) {
+  const clamped = Math.max(0, Math.min(1, parseFloat(val)));
+  audio.volume = clamped;
+  volumeSlider.value = clamped;
+  updateVolumeDisplay();
+}
+
+volumeSlider.addEventListener('input', (e) => handleVolumeInput(e.target.value));
+volumeSlider.addEventListener('change', (e) => handleVolumeInput(e.target.value));
+
+let isDraggingVolume = false;
+function setVolumeFromPointer(e) {
+  const rect = volumeSlider.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const ratio = (clientX - rect.left) / rect.width;
+  handleVolumeInput(ratio);
+}
+
+volumeSlider.addEventListener('pointerdown', (e) => {
+  isDraggingVolume = true;
+  setVolumeFromPointer(e);
+  volumeSlider.setPointerCapture(e.pointerId);
+});
+volumeSlider.addEventListener('pointermove', (e) => {
+  if (isDraggingVolume) setVolumeFromPointer(e);
+});
+volumeSlider.addEventListener('pointerup', (e) => {
+  if (isDraggingVolume) {
+    isDraggingVolume = false;
+    try { volumeSlider.releasePointerCapture(e.pointerId); } catch(err){}
+  }
+});
+volumeSlider.addEventListener('pointercancel', () => { isDraggingVolume = false; });
+
+updateVolumeDisplay();
+
+/* SISTEMA GLITCH */
+function updateGlitchDataText(el) {
+  if (el && el.classList.contains('cyber-glitch')) {
+    el.setAttribute('data-text', el.textContent.trim());
+  }
+}
+
 function triggerRandomGlitch(el) {
-  if (isMobileDevice || !el || !el.classList.contains('cyber-glitch')) return;
+  if (!el || !el.classList.contains('cyber-glitch')) return;
   const effects = ['flash', 'pulse', 'chaos'];
   const randomEffect = effects[Math.floor(Math.random() * effects.length)];
   el.classList.remove('flash', 'pulse', 'chaos');
-  void el.offsetWidth; el.classList.add(randomEffect);
-  setTimeout(() => el.classList.remove(randomEffect), 1000);
+  void el.offsetWidth;
+  el.classList.add(randomEffect);
+  setTimeout(() => el.classList.remove(randomEffect), 600);
 }
+
 function sanitizeDjName(djName) { return djName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '_'); }
 function updateDjImage(djName = 'autodj') {
   if (!djProfileImg) return;
@@ -1036,6 +1121,7 @@ function updateDjImage(djName = 'autodj') {
     };
   }
 }
+
 function checkAndUpdateDjImage() {
   if (!sonicDj || !djProfileImg) return;
   const currentText = sonicDj.textContent.trim();
@@ -1283,7 +1369,7 @@ function startVisualizer() { if(isVisualizing || !analyzer) return; isVisualizin
 function stopVisualizer() {
   isVisualizing = false; if(animationId) cancelAnimationFrame(animationId); animationId = null;
   for(let i=0; i<barCount; i++) { 
-    bars[i].style.height='2px'; 
+    bars[i].style.height='3px'; 
     bars[i].className = 'bar';
   }
   ledTop.style.background='#8b8b8b'; ledTop.style.boxShadow='0 0 0 rgba(139,139,139,0)';
@@ -1310,13 +1396,13 @@ function visualize() {
       count++; 
     }
     const avg = count > 0 ? sum / count : 0;
-    let height = Math.min(Math.sqrt(avg) * 1.9, 24);
-    height = Math.max(height, 2);
+    let height = Math.min(Math.sqrt(avg) * 2.8, 38);
+    height = Math.max(height, 3);
     bars[i].style.height = height + 'px';
     
-    if (height > 16) {
+    if (height > 24) {
       bars[i].className = 'bar bar-high';
-    } else if (height > 8) {
+    } else if (height > 12) {
       bars[i].className = 'bar bar-mid';
     } else {
       bars[i].className = 'bar';
@@ -1397,14 +1483,12 @@ function togglePlayPause() {
   }
 }
 playPauseBtn.addEventListener('click', togglePlayPause);
-volumeSlider.addEventListener('input', () => { audio.volume = parseFloat(volumeSlider.value); updateVolumeDisplay(); });
-updateVolumeDisplay();
 
 function setupGlitchObservers() {
   if(sonicTitle) {
     const obs = new MutationObserver(() => { 
       updateGlitchDataText(sonicTitle); 
-      if(!isMobileDevice && Math.random()<0.3) triggerRandomGlitch(sonicTitle); 
+      if(Math.random()<0.35) triggerRandomGlitch(sonicTitle); 
     });
     obs.observe(sonicTitle, {childList:true, characterData:true}); 
     updateGlitchDataText(sonicTitle);
@@ -1415,7 +1499,7 @@ function setupGlitchObservers() {
       updateGlitchDataText(sonicDj); checkAndUpdateDjImage();
       const txt = sonicDj.textContent.trim();
       updateDjCountryDisplay(txt); updateRequestsButtonState(txt);
-      if(!isMobileDevice && Math.random()<0.3) triggerRandomGlitch(sonicDj);
+      if(Math.random()<0.35) triggerRandomGlitch(sonicDj);
       setTimeout(()=>countryUpdateLock=false, 150);
     });
     obs.observe(sonicDj, {childList:true, characterData:true});
