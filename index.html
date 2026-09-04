@@ -496,28 +496,28 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D CON BORDES GRUESOS Y DETALLES REALES
+   ESTUCHE DE CASETE 3D (FORMA FÍSICA REAL NORELCO CASE)
    ========================================================= */
 .case-3d-wrapper {
-  perspective: 1100px;
+  perspective: 1200px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
 
-.cassette-case {
+.cassette-case-outer {
   width: 100%;
   max-width: 325px;
   aspect-ratio: 1 / 1.42;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(45, 45, 55, 0.85) 15%, rgba(14, 14, 18, 0.96) 100%);
-  /* BORDES GRUESOS CON PROFUNDIDAD Y BISEL DOBLE */
-  border: 5px solid rgba(255, 255, 255, 0.28);
-  border-left: 13px solid rgba(255, 255, 255, 0.46); /* Lomo grueso acrílico */
-  border-right: 7px solid rgba(255, 255, 255, 0.32);
-  border-radius: 12px;
+  /* Plástico acrílico moldeado con profundidad y sombra */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(38, 38, 46, 0.82) 18%, rgba(12, 12, 16, 0.96) 100%);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-left: 10px solid rgba(255, 255, 255, 0.44); /* Lomo del estuche */
+  border-right: 6px solid rgba(255, 255, 255, 0.32); /* Borde de cierre */
+  border-radius: 14px 8px 8px 14px; /* Esquinas redondeadas del lomo y rectas del cierre */
   position: relative;
-  padding: 8px 9px 8px 12px;
+  padding: 8px 9px 8px 11px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -526,18 +526,18 @@ h1 {
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
   box-shadow: 
-    0 20px 42px rgba(0, 0, 0, 0.95),
+    0 22px 45px rgba(0, 0, 0, 0.95),
     -14px 0 30px rgba(189, 0, 255, 0.42),
     14px 0 30px rgba(0, 255, 65, 0.42),
-    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 4px rgba(255, 255, 255, 0.18),
-    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    inset 0 0 0 2px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.2),
+    inset 0 3px 5px rgba(255, 255, 255, 0.55);
   animation: case3DLevitation 6s ease-in-out infinite alternate;
 }
 
 @keyframes case3DLevitation {
   0% {
-    transform: rotateY(-6deg) rotateX(3deg) translateY(0px);
+    transform: rotateY(-7deg) rotateX(3deg) translateY(0px);
     box-shadow: 0 20px 42px rgba(0, 0, 0, 0.95), -14px 0 30px rgba(189, 0, 255, 0.42), 14px 0 30px rgba(0, 255, 65, 0.42);
   }
   50% {
@@ -545,117 +545,150 @@ h1 {
     box-shadow: 0 28px 52px rgba(0, 0, 0, 0.9), -18px 0 38px rgba(189, 0, 255, 0.55), 18px 0 38px rgba(0, 255, 65, 0.55);
   }
   100% {
-    transform: rotateY(6deg) rotateX(-2deg) translateY(-3px);
+    transform: rotateY(7deg) rotateX(-2deg) translateY(-3px);
     box-shadow: 0 22px 45px rgba(0, 0, 0, 0.95), -14px 0 32px rgba(189, 0, 255, 0.45), 14px 0 32px rgba(0, 255, 65, 0.45);
   }
 }
 
-.cassette-case:hover {
+.cassette-case-outer:hover {
   animation-play-state: paused;
   transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.02);
   box-shadow: 0 28px 55px rgba(0, 0, 0, 0.98), -20px 0 42px rgba(189, 0, 255, 0.65), 20px 0 42px rgba(0, 255, 65, 0.65);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Bisel de refracción perimetral */
-.case-acrylic-bezel {
-  position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px; pointer-events: none; z-index: 9;
+/* BISAGRAS CIRCULARES REALES (ZÓCALO Y PIVOTE CENTRAL) */
+.case-hinge-socket {
+  position: absolute;
+  left: -6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, rgba(200, 200, 215, 0.8) 40%, rgba(35, 35, 45, 0.95) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5), inset 0 1px 2px #000;
+  z-index: 15;
+}
+.case-hinge-socket.hinge-top { top: 32px; }
+.case-hinge-socket.hinge-bottom { bottom: 32px; }
+.hinge-pin {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #060608;
+  box-shadow: inset 0 1px 1px #000, 0 0 2px rgba(255,255,255,0.4);
 }
 
-/* Bisagras mecánicas de la caja */
-.case-hinge-lug {
-  position: absolute; left: -5px; width: 8px; height: 28px; border-radius: 4px;
-  background: linear-gradient(to right, #ffffff, #888888);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), inset 0 1px 1px #fff; z-index: 12;
-}
-.case-hinge-lug.top { top: 28px; }
-.case-hinge-lug.bottom { bottom: 28px; }
-
-/* PESTAÑAS DE FRENO DE APERTURA EN LA BISAGRA (LIMITADOR DE ÁNGULO) */
-.case-hinge-stop-tab {
-  position: absolute; left: 5px; width: 6px; height: 22px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.32);
-  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 1px 0 4px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  z-index: 11; pointer-events: none;
-}
-.case-hinge-stop-tab.stop-top { top: 58px; }
-.case-hinge-stop-tab.stop-bottom { bottom: 58px; }
-
-/* UÑERO DE APERTURA LATERAL (PESTAÑA FRONTAL) */
-.case-finger-notch {
-  position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
-  width: 5px; height: 38px; border-radius: 3px 0 0 3px;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0.4), rgba(160, 160, 160, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.3); border-right: none;
-  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.6); z-index: 12; pointer-events: none;
-}
-
-/* REPISA DEL BOLSILLO INTERIOR DONDE DESCANSA LA TAPA */
-.case-pocket-shelf {
-  position: absolute; left: 4px; right: 4px; bottom: 38px; height: 3px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.35) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  z-index: 8; pointer-events: none;
-}
-
-/* Conos interiores que traban los carretes */
-.case-spool-peg {
-  position: absolute; right: 20px; width: 26px; height: 26px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.3) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 5; pointer-events: none;
-}
-.case-spool-peg.spool-top { top: 86px; }
-.case-spool-peg.spool-bottom { bottom: 86px; }
-.spool-peg-teeth {
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.5);
-}
-
-/* Pestañas transparentes de retención delantera */
-.case-plastic-clip {
-  position: absolute; left: 14px; width: 7px; height: 18px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.7); z-index: 11; pointer-events: none;
-}
-.case-plastic-clip.clip-top { top: 86px; }
-.case-plastic-clip.clip-bottom { bottom: 86px; }
-
-/* Destello holográfico que cruza el cristal */
-.case-shimmer-sweep {
-  position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
-  background: linear-gradient(65deg, 
-    transparent 38%, 
-    rgba(255, 255, 255, 0.28) 48%, 
-    rgba(0, 255, 65, 0.2) 51%, 
-    rgba(189, 0, 255, 0.2) 54%, 
-    transparent 64%
-  );
-  transform: rotate(25deg);
+/* PESTAÑA SALIENTE DE APERTURA PARA EL PULGAR (THUMB LIP) */
+.case-thumb-lip {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 48px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(180, 180, 195, 0.25));
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: none;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.6), inset 0 1px 1px #fff;
+  z-index: 12;
   pointer-events: none;
+}
+
+/* LÍNEA DE ENCAJE / JUNTA DE LAS DOS MITADES DE LA CAJA */
+.case-seam-line {
+  position: absolute;
+  top: 4px; bottom: 4px;
+  right: 5px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, transparent 2%, rgba(255,255,255,0.4) 10%, rgba(255,255,255,0.4) 90%, transparent 98%);
+  box-shadow: -1px 0 2px rgba(0,0,0,0.8);
   z-index: 10;
+  pointer-events: none;
+}
+
+/* REPISA DEL BOLSILLO INTERIOR TRASLÚCIDO */
+.case-cradle-shelf {
+  position: absolute;
+  left: 6px; right: 6px;
+  bottom: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.5) 100%);
+  box-shadow: 0 -1px 1px rgba(255,255,255,0.7), 0 2px 4px rgba(0, 0, 0, 0.7);
+  border-radius: 1px;
+  z-index: 7;
+  pointer-events: none;
+}
+
+/* LOS 2 TOPES REALES DE BLOQUEO DE CARRETE (3 DIENTES RADIALES) */
+.spool-restraint {
+  position: absolute;
+  right: 22px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(0, 0, 0, 0.65) 80%, rgba(255, 255, 255, 0.3) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.9), 0 2px 4px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  pointer-events: none;
+}
+.spool-restraint.restraint-top { top: 88px; }
+.spool-restraint.restraint-bottom { bottom: 88px; }
+.restraint-core {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #08080a; border: 1.5px solid rgba(255,255,255,0.4);
+  z-index: 2;
+}
+.restraint-spoke {
+  position: absolute;
+  width: 3px; height: 9px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+  box-shadow: 0 0 2px rgba(255,255,255,0.4);
+}
+.restraint-spoke.r1 { transform: rotate(0deg) translateY(-8px); }
+.restraint-spoke.r2 { transform: rotate(120deg) translateY(-8px); }
+.restraint-spoke.r3 { transform: rotate(240deg) translateY(-8px); }
+
+/* DESTELLO ESPECULAR HOLOGRÁFICO */
+.case-specular-glare {
+  position: absolute;
+  top: -80%; left: -110%;
+  width: 140%; height: 260%;
+  background: linear-gradient(65deg, 
+    transparent 36%, 
+    rgba(255, 255, 255, 0.28) 47%, 
+    rgba(0, 255, 65, 0.18) 50%, 
+    rgba(189, 0, 255, 0.18) 53%, 
+    rgba(255, 255, 255, 0.08) 57%, 
+    transparent 66%
+  );
+  transform: rotate(24deg);
+  pointer-events: none;
+  z-index: 11;
   animation: glassShimmerSweep 7s ease-in-out infinite;
 }
 @keyframes glassShimmerSweep {
-  0%, 25% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
+  0%, 25% { transform: translateX(-120%) rotate(24deg); opacity: 0; }
   35% { opacity: 1; }
-  50%, 100% { transform: translateX(230%) rotate(25deg); opacity: 0; }
+  50%, 100% { transform: translateX(230%) rotate(24deg); opacity: 0; }
 }
 
-.case-glass-bevel-highlight {
+.case-edge-refraction {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, rgba(255,255,255,0.04) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, rgba(255,255,255,0.03) 100%);
   pointer-events: none; z-index: 8;
 }
 
-/* CARÁTULA J-CARD */
-.case-jcard {
+/* CARÁTULA / INLAY INTERIOR */
+.case-inlay {
   position: relative; z-index: 2; width: 100%; height: 100%;
   display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
   background: #0b0b10;
@@ -664,7 +697,7 @@ h1 {
 }
 
 /* FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO */
-.jcard-header {
+.inlay-dj-strip {
   height: 34px;
   background: linear-gradient(90deg, #111116 0%, #1a1a24 50%, #111116 100%);
   border-bottom: 2px solid #bd00ff;
@@ -690,14 +723,8 @@ h1 {
   text-transform: none !important;
 }
 
-/* Contenido de la portada */
-.jcard-main-cover {
-  position: relative; width: 100%; flex: 1; min-height: 0;
-  display: flex; flex-direction: column;
-}
-
-/* Ventana fotográfica del DJ */
-.jcard-art-window {
+/* ÁREA DE LA FOTO DEL DJ */
+.inlay-photo-frame {
   position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
@@ -705,16 +732,16 @@ h1 {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 0.4s ease;
 }
-.cassette-case:hover #dj-profile-img {
+.cassette-case-outer:hover #dj-profile-img {
   transform: scale(1.04);
 }
-.jcard-surface-texture {
+.inlay-shadow-edge {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   box-shadow: inset 0 0 16px rgba(0,0,0,0.65); pointer-events: none;
 }
 
 /* FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS */
-.jcard-footer-strip {
+.inlay-country-strip {
   height: 34px;
   background: linear-gradient(90deg, #111116 0%, #171724 50%, #111116 100%);
   border-top: 2px solid #00ff41;
@@ -874,9 +901,6 @@ footer {
 .staff-header { border-bottom: 2px solid #00ff41; }
 .poem-header { border-bottom: 2px solid #bd00ff; }
 
-.requests-header h3, .chat-header h3, .poem-header h3 { color: #00ff41; font-size: clamp(1rem, 1.5vw, 1.1rem); margin: 0; }
-.staff-header h3 { color: #bd00ff; font-size: clamp(1rem, 1.5vw, 1.1rem); margin: 0; }
-
 .requests-close-btn, .chat-close-btn, .staff-close-btn, .poem-close-btn {
   background: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
   font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem;
@@ -964,11 +988,11 @@ footer {
   .cassette-head-area { height: 20px; }
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
-  /* Estuche 3D vertical más grande en laptop */
-  .cassette-case, .ad-overlay img.ad-image { max-width: 265px; }
-  .case-spool-peg { width: 22px; height: 22px; right: 16px; }
-  .case-spool-peg.spool-top { top: 70px; }
-  .case-spool-peg.spool-bottom { bottom: 70px; }
+  /* Estuche 3D vertical en laptop */
+  .cassette-case-outer, .ad-overlay img.ad-image { max-width: 265px; }
+  .spool-restraint { width: 24px; height: 24px; right: 16px; }
+  .spool-restraint.restraint-top { top: 72px; }
+  .spool-restraint.restraint-bottom { bottom: 72px; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
 
@@ -988,11 +1012,11 @@ footer {
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
   
   /* Estuche 3D vertical proporcionado en 720p */
-  .cassette-case, .ad-overlay img.ad-image { max-width: 215px; }
-  .jcard-header { height: 28px; }
-  .jcard-footer-strip { height: 28px; }
+  .cassette-case-outer, .ad-overlay img.ad-image { max-width: 215px; }
+  .inlay-dj-strip { height: 28px; }
+  .inlay-country-strip { height: 28px; }
   .dj-country-name { font-size: 0.7rem; }
-  .case-spool-peg { display: none; }
+  .spool-restraint { display: none; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
 
@@ -1014,7 +1038,7 @@ footer {
   .volume-control { width: 100%; max-width: 100%; }
   
   /* Estuche vertical 3D centrado y amplio en móvil */
-  .cassette-case, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
+  .cassette-case-outer, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
@@ -1031,7 +1055,7 @@ footer {
   .tape-reel { width: 54px; height: 54px; }
   .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
   .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-case, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
+  .cassette-case-outer, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
 }
 </style>
 <script type="application/ld+json">
@@ -1156,62 +1180,58 @@ footer {
 <h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE AMPLIADO CON PESTAÑA Y REPISA) -->
+  <!-- ESTUCHE 3D REALISTA DE CASETE (FORMA REAL NORELCO BOX) -->
   <div class="case-3d-wrapper">
-    <div class="cassette-case">
-      <!-- Bisel acrílico con refracción -->
-      <div class="case-acrylic-bezel"></div>
-      
+    <div class="cassette-case-outer">
       <!-- Bisagras cilíndricas mecánicas -->
-      <div class="case-hinge-lug top"></div>
-      <div class="case-hinge-lug bottom"></div>
+      <div class="case-hinge-socket hinge-top"><div class="hinge-pin"></div></div>
+      <div class="case-hinge-socket hinge-bottom"><div class="hinge-pin"></div></div>
 
-      <!-- Pestañas de freno de ángulo de apertura en la bisagra -->
-      <div class="case-hinge-stop-tab stop-top"></div>
-      <div class="case-hinge-stop-tab stop-bottom"></div>
+      <!-- Pestaña lateral saliente para abrir con el pulgar -->
+      <div class="case-thumb-lip"></div>
 
-      <!-- Uñero de apertura frontal lateral -->
-      <div class="case-finger-notch"></div>
+      <!-- Línea de junta / encaje de las dos tapas -->
+      <div class="case-seam-line"></div>
 
-      <!-- Repisa / Bolsillo interior translúcido -->
-      <div class="case-pocket-shelf"></div>
+      <!-- Repisa interior translúcida donde descansa la tapa -->
+      <div class="case-cradle-shelf"></div>
 
-      <!-- Conos interiores que traban los carretes -->
-      <div class="case-spool-peg spool-top">
-        <div class="spool-peg-teeth"></div>
+      <!-- Los 2 topes interiores reales de carretes (con 3 dientes radiales) -->
+      <div class="spool-restraint restraint-top">
+        <div class="restraint-spoke r1"></div>
+        <div class="restraint-spoke r2"></div>
+        <div class="restraint-spoke r3"></div>
+        <div class="restraint-core"></div>
       </div>
-      <div class="case-spool-peg spool-bottom">
-        <div class="spool-peg-teeth"></div>
+      <div class="spool-restraint restraint-bottom">
+        <div class="restraint-spoke r1"></div>
+        <div class="restraint-spoke r2"></div>
+        <div class="restraint-spoke r3"></div>
+        <div class="restraint-core"></div>
       </div>
 
-      <!-- Destello holográfico que cruza el cristal periódicamente -->
-      <div class="case-shimmer-sweep"></div>
-      <div class="case-glass-bevel-highlight"></div>
+      <!-- Destello holográfico que cruza el cristal y refracción -->
+      <div class="case-specular-glare"></div>
+      <div class="case-edge-refraction"></div>
 
-      <!-- Pestañas transparentes delanteras de retención de papel -->
-      <div class="case-plastic-clip clip-top"></div>
-      <div class="case-plastic-clip clip-bottom"></div>
-
-      <!-- Carátula interior J-Card plegable -->
-      <div class="case-jcard">
+      <!-- Carátula interior del DJ -->
+      <div class="case-inlay">
         <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO -->
-        <div class="jcard-header">
+        <div class="inlay-dj-strip">
           <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
         </div>
 
-        <div class="jcard-main-cover">
-          <!-- Imagen del DJ -->
-          <div class="jcard-art-window">
-            <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
-            <div class="jcard-surface-texture"></div>
-          </div>
+        <!-- FOTO DEL DJ -->
+        <div class="inlay-photo-frame">
+          <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+          <div class="inlay-shadow-edge"></div>
+        </div>
 
-          <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
-          <div class="jcard-footer-strip">
-            <div class="dj-country-info" id="dj-country-info">
-              <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-              <span class="dj-country-name" id="dj-country-name">El Salvador</span>
-            </div>
+        <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
+        <div class="inlay-country-strip">
+          <div class="dj-country-info" id="dj-country-info">
+            <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+            <span class="dj-country-name" id="dj-country-name">El Salvador</span>
           </div>
         </div>
       </div>
@@ -1812,7 +1832,7 @@ function updateLedsDirectKick() {
   const kickJump = kickEnergy - minBaseline;
   const now = Date.now();
 
-  // Detección equilibrada: estabilidad y detección en drops
+  // Pequeño ajuste equilibrado: estabilidad en salsa/reggaeton y detección fluida en drops de electrónica
   const isKickHit = (
     kickJump > 0.06 || 
     (kickEnergy > 0.28 && kickJump > 0.035) || 
@@ -1893,7 +1913,7 @@ function visualize() {
     }
   }
   
-  // Tiras LED calibradas
+  // Tiras LED con calibración precisa y equilibrada
   updateLedsDirectKick();
   
   animationId = requestAnimationFrame(visualize);
