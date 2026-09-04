@@ -496,7 +496,7 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D (TAMAÑO MÁS GRANDE Y EQUILIBRADO)
+   ESTUCHE DE CASETE 3D CON BORDES GRUESOS Y DETALLES REALES
    ========================================================= */
 .case-3d-wrapper {
   perspective: 1100px;
@@ -508,14 +508,16 @@ h1 {
 
 .cassette-case {
   width: 100%;
-  max-width: 325px; /* Más grande para equilibrar con el reproductor */
+  max-width: 325px;
   aspect-ratio: 1 / 1.42;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(35, 35, 42, 0.8) 18%, rgba(12, 12, 16, 0.95) 100%);
-  border: 3px solid rgba(255, 255, 255, 0.25);
-  border-left: 8px solid rgba(255, 255, 255, 0.38); /* Lomo grueso acrílico */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(45, 45, 55, 0.85) 15%, rgba(14, 14, 18, 0.96) 100%);
+  /* BORDES GRUESOS CON PROFUNDIDAD Y BISEL DOBLE */
+  border: 5px solid rgba(255, 255, 255, 0.28);
+  border-left: 13px solid rgba(255, 255, 255, 0.46); /* Lomo grueso acrílico */
+  border-right: 7px solid rgba(255, 255, 255, 0.32);
   border-radius: 12px;
   position: relative;
-  padding: 8px 8px 8px 11px;
+  padding: 8px 9px 8px 12px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -523,6 +525,13 @@ h1 {
   user-select: none;
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
+  box-shadow: 
+    0 20px 42px rgba(0, 0, 0, 0.95),
+    -14px 0 30px rgba(189, 0, 255, 0.42),
+    14px 0 30px rgba(0, 255, 65, 0.42),
+    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.18),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
   animation: case3DLevitation 6s ease-in-out infinite alternate;
 }
 
@@ -548,25 +557,57 @@ h1 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Bisel de refracción perimetral */
 .case-acrylic-bezel {
   position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px; pointer-events: none; z-index: 9;
 }
 
+/* Bisagras mecánicas de la caja */
 .case-hinge-lug {
-  position: absolute; left: -4px; width: 7px; height: 26px; border-radius: 3.5px;
-  background: linear-gradient(to right, #ffffff, #999999);
+  position: absolute; left: -5px; width: 8px; height: 28px; border-radius: 4px;
+  background: linear-gradient(to right, #ffffff, #888888);
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), inset 0 1px 1px #fff; z-index: 12;
 }
-.case-hinge-lug.top { top: 30px; }
-.case-hinge-lug.bottom { bottom: 30px; }
+.case-hinge-lug.top { top: 28px; }
+.case-hinge-lug.bottom { bottom: 28px; }
 
+/* PESTAÑAS DE FRENO DE APERTURA EN LA BISAGRA (LIMITADOR DE ÁNGULO) */
+.case-hinge-stop-tab {
+  position: absolute; left: 5px; width: 6px; height: 22px; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 1px 0 4px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  z-index: 11; pointer-events: none;
+}
+.case-hinge-stop-tab.stop-top { top: 58px; }
+.case-hinge-stop-tab.stop-bottom { bottom: 58px; }
+
+/* UÑERO DE APERTURA LATERAL (PESTAÑA FRONTAL) */
+.case-finger-notch {
+  position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
+  width: 5px; height: 38px; border-radius: 3px 0 0 3px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.4), rgba(160, 160, 160, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.3); border-right: none;
+  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.6); z-index: 12; pointer-events: none;
+}
+
+/* REPISA DEL BOLSILLO INTERIOR DONDE DESCANSA LA TAPA */
+.case-pocket-shelf {
+  position: absolute; left: 4px; right: 4px; bottom: 38px; height: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.35) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  z-index: 8; pointer-events: none;
+}
+
+/* Conos interiores que traban los carretes */
 .case-spool-peg {
   position: absolute; right: 20px; width: 26px; height: 26px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.18) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.25) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.12);
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.3) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.15);
   display: flex; align-items: center; justify-content: center;
   z-index: 5; pointer-events: none;
 }
@@ -574,24 +615,26 @@ h1 {
 .case-spool-peg.spool-bottom { bottom: 86px; }
 .spool-peg-teeth {
   width: 12px; height: 12px; border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.45);
+  border: 2px dashed rgba(255,255,255,0.5);
 }
 
+/* Pestañas transparentes de retención delantera */
 .case-plastic-clip {
-  position: absolute; left: 11px; width: 7px; height: 18px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35);
+  position: absolute; left: 14px; width: 7px; height: 18px; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 1px 1px 3px rgba(0,0,0,0.7); z-index: 11; pointer-events: none;
 }
-.case-plastic-clip.clip-top { top: 68px; }
-.case-plastic-clip.clip-bottom { bottom: 68px; }
+.case-plastic-clip.clip-top { top: 86px; }
+.case-plastic-clip.clip-bottom { bottom: 86px; }
 
+/* Destello holográfico que cruza el cristal */
 .case-shimmer-sweep {
   position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
   background: linear-gradient(65deg, 
     transparent 38%, 
-    rgba(255, 255, 255, 0.24) 48%, 
-    rgba(0, 255, 65, 0.18) 51%, 
-    rgba(189, 0, 255, 0.18) 54%, 
+    rgba(255, 255, 255, 0.28) 48%, 
+    rgba(0, 255, 65, 0.2) 51%, 
+    rgba(189, 0, 255, 0.2) 54%, 
     transparent 64%
   );
   transform: rotate(25deg);
@@ -607,7 +650,7 @@ h1 {
 
 .case-glass-bevel-highlight {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 45%, rgba(255,255,255,0.03) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, rgba(255,255,255,0.04) 100%);
   pointer-events: none; z-index: 8;
 }
 
@@ -1110,11 +1153,10 @@ footer {
 </section>
 
 <section class="dj-section">
-<!-- TÍTULO DE SECCIÓN LIMPIO Y SIMÉTRICO CON REPRODUCTOR -->
 <h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE AMPLIADO) -->
+  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE AMPLIADO CON PESTAÑA Y REPISA) -->
   <div class="case-3d-wrapper">
     <div class="cassette-case">
       <!-- Bisel acrílico con refracción -->
@@ -1123,6 +1165,16 @@ footer {
       <!-- Bisagras cilíndricas mecánicas -->
       <div class="case-hinge-lug top"></div>
       <div class="case-hinge-lug bottom"></div>
+
+      <!-- Pestañas de freno de ángulo de apertura en la bisagra -->
+      <div class="case-hinge-stop-tab stop-top"></div>
+      <div class="case-hinge-stop-tab stop-bottom"></div>
+
+      <!-- Uñero de apertura frontal lateral -->
+      <div class="case-finger-notch"></div>
+
+      <!-- Repisa / Bolsillo interior translúcido -->
+      <div class="case-pocket-shelf"></div>
 
       <!-- Conos interiores que traban los carretes -->
       <div class="case-spool-peg spool-top">
@@ -1142,7 +1194,7 @@ footer {
 
       <!-- Carátula interior J-Card plegable -->
       <div class="case-jcard">
-        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO (SIN "EMITE") -->
+        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO -->
         <div class="jcard-header">
           <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
         </div>
@@ -1490,7 +1542,7 @@ function destroyChatIframe() {
   if (chatIframeContainer) chatIframeContainer.innerHTML = '';
 }
 
-/* DESPLAZAMIENTO SUAVE EXACTO A STAFF PANEL */
+/* DESPLAZAMIENTO SUAVE */
 function toggleChat() {
   isChatVisible = !isChatVisible;
   if(isChatVisible) {
@@ -1554,7 +1606,6 @@ function initStaffListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isStaffVisible) toggleStaffPanel(); });
 }
 
-/* DESPLAZAMIENTO SUAVE EXACTO A STAFF PANEL */
 function togglePoemPanel() {
   isPoemVisible = !isPoemVisible;
   if (isPoemVisible) {
@@ -1761,7 +1812,7 @@ function updateLedsDirectKick() {
   const kickJump = kickEnergy - minBaseline;
   const now = Date.now();
 
-  // Pequeño ajuste equilibrado: estabilidad en salsa/reggaeton y detección fluida en drops de electrónica
+  // Detección equilibrada: estabilidad y detección en drops
   const isKickHit = (
     kickJump > 0.06 || 
     (kickEnergy > 0.28 && kickJump > 0.035) || 
@@ -1842,7 +1893,7 @@ function visualize() {
     }
   }
   
-  // Tiras LED con calibración precisa y equilibrada
+  // Tiras LED calibradas
   updateLedsDirectKick();
   
   animationId = requestAnimationFrame(visualize);
