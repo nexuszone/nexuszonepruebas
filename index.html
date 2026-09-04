@@ -39,8 +39,6 @@ body {
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .background-image {
@@ -59,14 +57,14 @@ body {
   background-size: 40px 40px; pointer-events: none;
 }
 
-/* CABECERA (EL LOGO NUNCA SE MONTA SOBRE EL TÍTULO) */
+/* CABECERA */
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
   padding: 0.8rem 1.5rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
 }
 .header-content {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  position: relative; width: 100%; max-width: 1200px; margin: 0 auto;
+  position: relative; width: 100%; max-width: 1400px; margin: 0 auto;
 }
 .header-logo {
   position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
@@ -80,13 +78,13 @@ header {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;
 }
 h1 {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.2rem, 3.2vw, 2.4rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.2rem, 3vw, 2.3rem);
   letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(to right, #bd00ff, #00ff41);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(189, 0, 255, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 .header-subtitle {
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.65rem, 1.4vw, 0.95rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.65rem, 1.3vw, 0.95rem);
   letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(to right, #00ff41, #00cc33);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
@@ -98,10 +96,10 @@ h1 {
   box-shadow: 0 0 0 rgba(139, 139, 139, 0); flex-shrink: 0;
 }
 
-/* CONTENEDOR EN PC: AMPLITUD TOTAL Y SEPARACIÓN A AMBOS LADOS */
+/* CONTENEDOR PRINCIPAL */
 .main-container {
   display: flex; flex: 1; width: 100%;
-  padding: clamp(1.2rem, 2.8vw, 2.8rem) clamp(1.5rem, 3.5vw, 4rem);
+  padding: clamp(0.8rem, 2vh, 2.2rem) clamp(1.5rem, 3.5vw, 4rem);
   gap: clamp(1.5rem, 3vw, 4.5rem);
   position: relative; z-index: 1; align-items: center; justify-content: space-between;
 }
@@ -112,16 +110,16 @@ h1 {
 }
 
 .section-title {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.4rem);
-  margin-bottom: 1.2rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.95rem, 1.8vh, 1.35rem);
+  margin-bottom: 0.8rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
 }
-.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
+.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.2rem; }
 
 /* REPRODUCTOR CASETE */
 .cassette-player {
-  width: 95%; max-width: 560px; height: auto; min-height: 330px;
+  width: 95%; max-width: 560px; height: auto;
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 3px solid #8b8b8b; border-radius: 20px;
-  padding: 1.4rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
+  padding: 1.2rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
 }
 .cassette-player::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px;
@@ -137,10 +135,10 @@ h1 {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   width: 9px; height: 2px; background: rgba(51, 51, 51, 0.6); border-radius: 1px;
 }
-.cassette-screw.top-left { top: 12px; left: 12px; }
-.cassette-screw.top-right { top: 12px; right: 12px; }
-.cassette-screw.bottom-left { bottom: 12px; left: 12px; }
-.cassette-screw.bottom-right { bottom: 12px; right: 12px; }
+.cassette-screw.top-left { top: 10px; left: 10px; }
+.cassette-screw.top-right { top: 10px; right: 10px; }
+.cassette-screw.bottom-left { bottom: 10px; left: 10px; }
+.cassette-screw.bottom-right { bottom: 10px; right: 10px; }
 
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -148,12 +146,12 @@ h1 {
 }
 .cassette-content {
   position: relative; z-index: 2; width: 100%; height: 100%;
-  display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
 }
 .song-info {
   width: 100%; text-align: center; color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900;
-  font-size: clamp(1rem, 1.8vw, 1.4rem); text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(189, 0, 255, 0.7);
-  min-height: 30px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 1.5px;
+  font-size: clamp(0.9rem, 1.8vh, 1.35rem); text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(189, 0, 255, 0.7);
+  min-height: 26px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 1.5px;
 }
 
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
@@ -186,13 +184,13 @@ h1 {
   from { text-shadow: 0 0 8px rgba(189, 0, 255, 0.9), 0 0 15px rgba(0, 255, 65, 0.7); }
   to { text-shadow: 0 0 12px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.9); }
 }
-#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(1rem, 1.8vw, 1.4rem); text-align: center; }
+#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.9rem, 1.8vh, 1.35rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
-/* COMPARTIMENTO DE CARRETES EQUILIBRADO A LOS EXTREMOS */
+/* COMPARTIMENTO DE CARRETES */
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
-  height: 135px; margin-top: 4px; width: 100%; max-width: 430px;
+  height: 130px; margin-top: 2px; width: 100%; max-width: 430px;
   padding: 0 16px;
   background: rgba(0, 0, 0, 0.5); border-radius: 80px; border: 2px solid rgba(139, 139, 139, 0.3);
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -200,7 +198,7 @@ h1 {
 }
 
 .tape-reel {
-  width: 82px; height: 82px; border: 4px solid #8b8b8b; border-radius: 50%;
+  width: 80px; height: 80px; border: 4px solid #8b8b8b; border-radius: 50%;
   background: radial-gradient(circle at center, #333 0%, #2a2a2a 35%, #1a1a1a 60%, #444 100%);
   display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 3;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(139, 139, 139, 0.5);
@@ -264,7 +262,7 @@ h1 {
 
 /* CENTRO DEL CASETE */
 .cassette-center {
-  width: 165px; height: 115px; background: #1a1a1a; border: 3px solid #8b8b8b; border-radius: 8px;
+  width: 165px; height: 112px; background: #1a1a1a; border: 3px solid #8b8b8b; border-radius: 8px;
   position: relative; display: flex; flex-direction: column; justify-content: space-between;
   flex-shrink: 0; z-index: 3; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 8px rgba(139, 139, 139, 0.4);
   overflow: hidden;
@@ -275,9 +273,9 @@ h1 {
 }
 .button-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: center; position: relative; z-index: 6; }
 .play-btn {
-  width: 82px; height: 32px; background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  width: 80px; height: 30px; background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
   border: 2.5px solid #00ff41; border-radius: 6px; cursor: pointer; display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.05rem; color: #00ff41;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.8); box-shadow: 0 0 10px rgba(0, 255, 65, 0.6); transition: all 0.2s ease;
 }
 .play-btn:hover { transform: translateY(-1px); box-shadow: 0 0 16px rgba(0, 255, 65, 0.8); }
@@ -285,9 +283,9 @@ h1 {
   border-color: #bd00ff; color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.8); box-shadow: 0 0 10px rgba(189, 0, 255, 0.6);
 }
 
-/* ECUALIZADOR ORIGINAL CON SCANLINES Y 3 NIVELES DE RESPLANDOR */
-.equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 7px; }
-.equalizer-container { width: 100%; height: 26px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 6px; position: relative; z-index: 4; }
+/* ECUALIZADOR CON SCANLINES */
+.equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 6px; }
+.equalizer-container { width: 100%; height: 25px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 6px; position: relative; z-index: 4; }
 .equalizer-container::after {
   content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.2) 50%, rgba(0, 255, 65, 0.05) 50%);
@@ -313,10 +311,10 @@ h1 {
 
 .volume-control {
   width: 100%; max-width: 430px; margin: 0 auto;
-  background: rgba(20, 20, 20, 0.85); padding: 11px 14px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  background: rgba(20, 20, 20, 0.85); padding: 10px 14px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 .volume-label {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
   color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem;
 }
 .volume-slider {
@@ -331,7 +329,7 @@ h1 {
 
 /* SECCIÓN DJ */
 #dj-profile-img {
-  width: 360px; height: 360px; border-radius: 50%; border: 3px solid #8b8b8b;
+  width: 350px; height: 350px; border-radius: 50%; border: 3px solid #8b8b8b;
   object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6);
   animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
@@ -340,15 +338,15 @@ h1 {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.02); }
 }
-#sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; width: 100%; }
+#sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vh, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 16px; width: 100%; }
 .dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 18px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.85rem; color: #00ff41;
 }
 .dj-flag-img { width: 30px; height: 20px; border-radius: 3px; object-fit: cover; }
-.dj-country-name { color: #00ff41; font-size: 1rem; font-weight: 700; }
+.dj-country-name { color: #00ff41; font-size: 0.95rem; font-weight: 700; }
 
 .ad-overlay {
   position: absolute !important; top: 50%; left: 50%; transform: translate(-50%, -50%) !important;
@@ -357,7 +355,7 @@ h1 {
 }
 .ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: 360px; height: 360px; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
+  width: 350px; height: 350px; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: 0 0 25px rgba(189, 0, 255, 0.6); display: block;
 }
 .ad-close-btn {
@@ -366,11 +364,11 @@ h1 {
   font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 1001;
 }
 
-/* BOTONES DEL FOOTER (SIEMPRE EN UNA SOLA FILA) */
+/* FOOTER */
 footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.6rem 1rem; text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.5rem 1rem; text-align: center;
   position: relative; z-index: 10; display: flex; flex-direction: column;
-  justify-content: center; align-items: center; min-height: 75px; flex-shrink: 0;
+  justify-content: center; align-items: center; min-height: 70px; flex-shrink: 0;
 }
 .footer-brand { display: inline-flex; gap: 4px; align-items: center; margin-bottom: 0.2rem; }
 .footer-nexus { color: #bd00ff; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem; }
@@ -379,15 +377,15 @@ footer {
 
 .social-links {
   display: flex; justify-content: center; align-items: center;
-  flex-wrap: nowrap !important; /* Garantiza una sola fila siempre */
+  flex-wrap: nowrap !important;
   gap: clamp(8px, 2.4vw, 18px);
-  margin-bottom: 0.3rem; width: 100%; max-width: 440px;
+  margin-bottom: 0.2rem; width: 100%; max-width: 440px;
 }
 .social-link {
   display: inline-flex; width: clamp(32px, 8.5vw, 38px); height: clamp(32px, 8.5vw, 38px);
   border-radius: 50%; background: linear-gradient(135deg, #00ff41, #bd00ff);
   align-items: center; justify-content: center; text-decoration: none; color: white; cursor: pointer;
-  flex-shrink: 0 !important; /* Nunca se aplasta */
+  flex-shrink: 0 !important;
   box-shadow: 0 0 12px rgba(0, 255, 65, 0.3); transition: transform 0.2s ease;
 }
 .social-link svg { width: clamp(16px, 4vw, 18px); height: clamp(16px, 4vw, 18px); fill: white; }
@@ -481,10 +479,119 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   ADAPTACIÓN RESPONSIVA Y CONTROL DE PANTALLAS
+   SISTEMA DE PANTALLA FIJA EN PC (1080P, 768P, 720P, PORTÁTILES)
+   SIN SCROLL VERTICAL: TODO CABE AUTOMÁTICAMENTE
+   ========================================================= */
+@media (min-width: 901px) {
+  html, body {
+    height: 100vh;
+    overflow: hidden !important; /* Bloquea completamente el scroll en PC */
+  }
+  .main-container {
+    height: calc(100vh - 160px);
+    min-height: 0;
+    overflow: hidden;
+    padding: clamp(0.4rem, 1.8vh, 1.8rem) clamp(1.5rem, 3.5vw, 4rem);
+    gap: clamp(1rem, 2.5vw, 4rem);
+  }
+  .player-section, .dj-section {
+    height: 100%;
+    min-height: 0;
+    justify-content: center;
+  }
+  .section-title {
+    margin-bottom: clamp(0.3rem, 1vh, 0.9rem);
+    font-size: clamp(0.9rem, 1.8vh, 1.35rem);
+  }
+  
+  /* El casete se adapta a la altura de la pantalla en portátiles/720p */
+  .cassette-player {
+    max-width: clamp(380px, 46vw, 560px);
+    padding: clamp(0.6rem, 1.6vh, 1.2rem);
+    min-height: 0;
+  }
+  .cassette-content {
+    gap: clamp(6px, 1.4vh, 12px);
+  }
+  .song-info {
+    min-height: clamp(20px, 3vh, 28px);
+    font-size: clamp(0.85rem, 1.8vh, 1.3rem);
+  }
+  .cassette-tapes {
+    height: clamp(92px, 15vh, 130px);
+    max-width: clamp(310px, 38vw, 430px);
+    padding: 0 clamp(8px, 1.5vw, 16px);
+  }
+  .tape-reel {
+    width: clamp(56px, 9.2vh, 80px);
+    height: clamp(56px, 9.2vh, 80px);
+  }
+  .cassette-center {
+    width: clamp(120px, 19vw, 165px);
+    height: clamp(76px, 13vh, 112px);
+  }
+  .play-btn {
+    width: clamp(62px, 10vw, 80px);
+    height: clamp(24px, 4vh, 30px);
+    font-size: clamp(0.85rem, 1.5vh, 1.05rem);
+  }
+  .equalizer-container {
+    height: clamp(18px, 3.2vh, 25px);
+  }
+  .volume-control {
+    max-width: clamp(310px, 38vw, 430px);
+    padding: clamp(5px, 1vh, 10px) clamp(8px, 1.5vw, 14px);
+  }
+  .volume-label {
+    font-size: clamp(0.7rem, 1.2vh, 0.85rem);
+    margin-bottom: clamp(2px, 0.6vh, 6px);
+  }
+
+  /* La imagen del DJ escala suavemente con la altura */
+  #dj-profile-img, .ad-overlay img.ad-image {
+    width: clamp(180px, 35vh, 350px);
+    height: clamp(180px, 35vh, 350px);
+  }
+  .dj-image-container {
+    gap: clamp(8px, 1.8vh, 16px);
+  }
+  .dj-country-info {
+    padding: clamp(4px, 1vh, 8px) clamp(10px, 1.5vw, 18px);
+    font-size: clamp(0.75rem, 1.3vh, 0.85rem);
+  }
+  header {
+    padding: clamp(0.4rem, 1vh, 0.8rem) 1.5rem;
+  }
+  .header-logo {
+    max-height: clamp(45px, 8vh, 85px);
+  }
+  h1 {
+    font-size: clamp(1.1rem, 2.5vh, 2.2rem);
+  }
+  .header-subtitle {
+    font-size: clamp(0.6rem, 1.2vh, 0.9rem);
+  }
+  footer {
+    padding: clamp(0.3rem, 0.8vh, 0.5rem) 1rem;
+    min-height: clamp(55px, 8vh, 70px);
+  }
+  .social-link {
+    width: clamp(28px, 4vh, 35px);
+    height: clamp(28px, 4vh, 35px);
+  }
+  .social-link svg {
+    width: clamp(14px, 2vh, 18px);
+    height: clamp(14px, 2vh, 18px);
+  }
+}
+
+/* =========================================================
+   MÓVILES (SCROLL FLUIDO VERTICAL INTACTO)
    ========================================================= */
 @media (max-width: 900px) {
-  /* Cabecera en móvil: el logo va alineado al lado del título, nunca superpuesto */
+  body {
+    overflow-y: auto; /* Permite scroll vertical únicamente en móviles */
+  }
   .header-content {
     flex-direction: row;
     justify-content: center;
@@ -503,7 +610,6 @@ footer {
     text-align: left;
   }
 
-  /* Scroll vertical natural desbloqueado */
   .main-container {
     flex-direction: column;
     height: auto;
@@ -523,7 +629,6 @@ footer {
     min-height: auto;
     padding: 1.1rem 0.8rem;
   }
-  /* Carretes amplios en Redmi 10 (sin apretarse al medio) */
   .cassette-tapes {
     height: 125px;
     max-width: 100%;
@@ -547,7 +652,6 @@ footer {
   }
   .staff-grid { grid-template-columns: 1fr; }
   
-  /* Aceleración de GPU */
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
   .cyber-glitch::before, .cyber-glitch::after { display: none !important; }
@@ -555,7 +659,6 @@ footer {
   #dj-profile-img { animation: none !important; }
 }
 
-/* PANTALLAS ESTRECHAS (REALME 14X, 360PX O ESCALADO ALTO) */
 @media (max-width: 375px) {
   .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.5rem; }
   .cassette-player { padding: 0.8rem 0.5rem; }
@@ -564,7 +667,6 @@ footer {
     padding: 0 10px;
     border-radius: 60px;
   }
-  /* En el Realme entran perfectos sin cortarse y guardando su separación */
   .tape-reel { width: 64px; height: 64px; }
   .cassette-center { width: 124px; height: 86px; }
   .play-btn { width: 62px; height: 26px; font-size: 0.95rem; }
@@ -1114,7 +1216,6 @@ function stopVisualizer() {
   ledIsLit = false;
 }
 
-/* VISUALIZADOR CON CÁLCULO DINÁMICO ORIGINAL Y RESPLANDOR TRICOLOR */
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
   const frameSkip = isMobileDevice ? 2 : 1;
@@ -1134,12 +1235,11 @@ function visualize() {
       count++; 
     }
     const avg = count > 0 ? sum / count : 0;
-    let height = Math.min(Math.sqrt(avg) * 2.0, 26);
+    let height = Math.min(Math.sqrt(avg) * 2.0, 25);
     height = Math.max(height, 2);
     bars[i].style.height = height + 'px';
     
-    // Cambio dinámico de clases con el gradiente y filtro neón original
-    if (height > 18) {
+    if (height > 17) {
       bars[i].className = 'bar bar-high';
     } else if (height > 9) {
       bars[i].className = 'bar bar-mid';
@@ -1294,7 +1394,7 @@ window.addEventListener('load', function() {
     });
     artObserver.observe(artContainer, { childList: true, subtree: true });
   }
-  console.log("🎧 Nexus Zone cargado al 100%.");
+  console.log("🎧 Nexus Zone adaptable PC/Móvil cargado.");
 });
 
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
