@@ -25,8 +25,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  width: 100%;
+html {
   overflow-x: hidden;
 }
 
@@ -39,8 +38,9 @@ body {
   display: flex;
   flex-direction: column;
   position: relative;
-  touch-action: pan-y pinch-zoom;
-  overscroll-behavior-y: contain;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .background-image {
@@ -61,27 +61,27 @@ body {
 
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  padding: 0.8rem 1.2rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
+  padding: 0.9rem 1.5rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
 }
 .header-content {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; position: relative;
 }
 .header-logo {
-  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
-  height: 80%; max-height: 85px; width: auto; max-width: 180px; object-fit: contain; z-index: 11;
+  position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%);
+  height: 100%; max-height: 90px; width: auto; max-width: 200px; object-fit: contain; z-index: 11;
   filter: drop-shadow(0 0 8px rgba(189, 0, 255, 0.6)); transition: filter 0.3s ease, transform 0.3s ease;
 }
 .header-logo:hover {
   filter: drop-shadow(0 0 12px rgba(0, 255, 65, 0.8)); transform: translateY(-50%) scale(1.05);
 }
 h1 {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.2rem, 3.2vw, 2.4rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.3rem, 3.5vw, 2.5rem);
   letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(to right, #bd00ff, #00ff41);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(189, 0, 255, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 .header-subtitle {
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.65rem, 1.4vw, 0.95rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 1rem);
   letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(to right, #00ff41, #00cc33);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
@@ -93,60 +93,61 @@ h1 {
   box-shadow: 0 0 0 rgba(139, 139, 139, 0); flex-shrink: 0;
 }
 
-/* CONTENEDOR PRINCIPAL FLUIDO (PC / TABLET / MÓVIL) */
+/* CONTENEDOR EN PC: AMPLIA SEPARACIÓN A AMBOS LADOS */
 .main-container {
-  display: flex; flex: 1; width: 100%; max-width: 1400px; margin: 0 auto;
-  padding: clamp(0.8rem, 2vw, 1.5rem); gap: clamp(1rem, 2.5vw, 2.5rem);
-  position: relative; z-index: 1; align-items: center; justify-content: center;
+  display: flex; flex: 1; width: 100%;
+  padding: clamp(1rem, 3vw, 2.5rem); gap: clamp(1.5rem, 3vw, 4rem);
+  position: relative; z-index: 1; align-items: center; justify-content: space-between;
 }
 
 .player-section, .dj-section {
-  flex: 1; width: 100%; max-width: 580px; background: transparent; border-radius: 10px;
+  flex: 1; width: 100%; background: transparent; border-radius: 10px;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 
 .section-title {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.35rem);
-  margin-bottom: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.4rem);
+  margin-bottom: 1.2rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
 }
-.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.3rem; }
+.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
 
-/* CASETE ADAPTABLE */
+/* CASETE ORIGINAL Y PROPORCIONADO */
 .cassette-player {
-  width: 100%; max-width: 540px; height: auto;
+  width: 95%; max-width: 560px; height: auto; min-height: 330px;
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 3px solid #8b8b8b; border-radius: 20px;
-  padding: clamp(0.8rem, 2vw, 1.4rem); position: relative; overflow: hidden; display: flex; flex-direction: column;
+  padding: 1.4rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
 }
 .cassette-player::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px;
   background: linear-gradient(90deg, #00ff41, #bd00ff, #00ff41); opacity: 0.8;
 }
 .cassette-screw {
-  position: absolute; width: clamp(14px, 2vw, 20px); height: clamp(14px, 2vw, 20px); border-radius: 50%;
+  position: absolute; width: 18px; height: 18px; border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, rgba(85, 85, 85, 0.5) 0%, rgba(42, 42, 42, 0.4) 40%, rgba(26, 26, 26, 0.3) 70%, rgba(10, 10, 10, 0.2) 100%);
   border: 2px solid rgba(102, 102, 102, 0.5);
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3); z-index: 10;
 }
 .cassette-screw::after {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 50%; height: 2px; background: rgba(51, 51, 51, 0.6); border-radius: 1px;
+  width: 9px; height: 2px; background: rgba(51, 51, 51, 0.6); border-radius: 1px;
 }
-.cassette-screw.top-left { top: 10px; left: 10px; }
-.cassette-screw.top-right { top: 10px; right: 10px; }
-.cassette-screw.bottom-left { bottom: 10px; left: 10px; }
-.cassette-screw.bottom-right { bottom: 10px; right: 10px; }
+.cassette-screw.top-left { top: 12px; left: 12px; }
+.cassette-screw.top-right { top: 12px; right: 12px; }
+.cassette-screw.bottom-left { bottom: 12px; left: 12px; }
+.cassette-screw.bottom-right { bottom: 12px; right: 12px; }
 
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-size: cover; background-position: center; opacity: 0.4; filter: blur(3px); z-index: 1;
 }
 .cassette-content {
-  position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
+  position: relative; z-index: 2; width: 100%; height: 100%;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 14px;
 }
 .song-info {
   width: 100%; text-align: center; color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900;
-  font-size: clamp(0.95rem, 1.8vw, 1.35rem); text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(189, 0, 255, 0.7);
-  min-height: 28px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 1.5px;
+  font-size: clamp(1rem, 1.8vw, 1.4rem); text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(189, 0, 255, 0.7);
+  min-height: 30px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 1.5px;
 }
 
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
@@ -179,22 +180,21 @@ h1 {
   from { text-shadow: 0 0 8px rgba(189, 0, 255, 0.9), 0 0 15px rgba(0, 255, 65, 0.7); }
   to { text-shadow: 0 0 12px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.9); }
 }
-#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.95rem, 1.8vw, 1.35rem); text-align: center; }
+#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(1rem, 1.8vw, 1.4rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
-/* COMPARTIMENTO DE CARRETES (ELÁSTICO Y PROPORCIONAL) */
+/* COMPARTIMENTO DE CARRETES CON EQUILIBRIO PERFECTO */
 .cassette-tapes {
-  display: flex; justify-content: center; align-items: center; position: relative;
-  width: 100%; max-width: 440px; margin: 4px auto 0 auto;
-  padding: 0.5rem clamp(6px, 1.8vw, 12px); gap: clamp(6px, 2vw, 18px);
+  display: flex; justify-content: space-between; align-items: center; position: relative;
+  height: 135px; margin-top: 4px; width: 100%; max-width: 430px;
+  padding: 0 16px;
   background: rgba(0, 0, 0, 0.5); border-radius: 80px; border: 2px solid rgba(139, 139, 139, 0.3);
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
-  overflow: hidden; flex-wrap: nowrap;
+  margin-left: auto; margin-right: auto; overflow: hidden; flex-wrap: nowrap;
 }
 
 .tape-reel {
-  width: clamp(56px, 15vw, 85px); height: clamp(56px, 15vw, 85px);
-  border: 3.5px solid #8b8b8b; border-radius: 50%;
+  width: 82px; height: 82px; border: 4px solid #8b8b8b; border-radius: 50%;
   background: radial-gradient(circle at center, #333 0%, #2a2a2a 35%, #1a1a1a 60%, #444 100%);
   display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 3;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(139, 139, 139, 0.5);
@@ -202,10 +202,9 @@ h1 {
 }
 @keyframes subtleSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* Aros concéntricos proporcionales al tamaño del carrete */
 .tape-reel::before {
   content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 70%; height: 70%; border: 2.5px solid #8b8b8b; border-radius: 50%;
+  width: 70%; height: 70%; border: 3px solid #8b8b8b; border-radius: 50%;
   background: radial-gradient(circle at center, #444 0%, #333 40%, #222 100%);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
 }
@@ -215,14 +214,13 @@ h1 {
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8); z-index: 2;
 }
 
-/* Radios internos del carrete proporcionales y perfectamente centrados */
 .tape-reel span {
   position: absolute; width: 8%; height: 28%; background: #8b8b8b; border-radius: 3px; z-index: 1;
   top: 50%; left: 50%;
 }
 .tape-reel span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg) translateY(-78%); }
 .tape-reel span:nth-child(2) { transform: translate(-50%, -50%) rotate(135deg) translateY(-78%); }
-.tape-reel span:nth-child(3) { transform: translate(-50%, -50%) rotate(225deg) translateY(-78%); }
+.tape-reel span:nth-child(3) { transform: rotate(135deg) translate(0, 0); transform: translate(-50%, -50%) rotate(225deg) translateY(-78%); }
 .tape-reel span:nth-child(4) { transform: translate(-50%, -50%) rotate(315deg) translateY(-78%); }
 
 #tape-left {
@@ -260,8 +258,7 @@ h1 {
 
 /* CENTRO DEL CASETE */
 .cassette-center {
-  width: clamp(118px, 32vw, 170px); height: clamp(82px, 22vw, 118px);
-  background: #1a1a1a; border: 3px solid #8b8b8b; border-radius: 8px;
+  width: 165px; height: 115px; background: #1a1a1a; border: 3px solid #8b8b8b; border-radius: 8px;
   position: relative; display: flex; flex-direction: column; justify-content: space-between;
   flex-shrink: 0; z-index: 3; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 8px rgba(139, 139, 139, 0.4);
   overflow: hidden;
@@ -272,21 +269,18 @@ h1 {
 }
 .button-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: center; position: relative; z-index: 6; }
 .play-btn {
-  width: clamp(60px, 18vw, 85px); height: clamp(24px, 7vw, 33px);
-  background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 2.5px solid #00ff41; border-radius: 6px;
-  cursor: pointer; display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  color: #00ff41; text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 0.6); transition: all 0.2s ease;
+  width: 82px; height: 32px; background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 2.5px solid #00ff41; border-radius: 6px; cursor: pointer; display: flex; justify-content: center; align-items: center;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8); box-shadow: 0 0 10px rgba(0, 255, 65, 0.6); transition: all 0.2s ease;
 }
 .play-btn:hover { transform: translateY(-1px); box-shadow: 0 0 16px rgba(0, 255, 65, 0.8); }
 .play-btn.playing {
-  border-color: #bd00ff; color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.8);
-  box-shadow: 0 0 10px rgba(189, 0, 255, 0.6);
+  border-color: #bd00ff; color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.8); box-shadow: 0 0 10px rgba(189, 0, 255, 0.6);
 }
 
-.equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 6px; }
-.equalizer-container { width: 100%; height: clamp(18px, 5vw, 28px); display: flex; justify-content: space-between; align-items: flex-end; gap: 3px; padding: 0 6px; }
+.equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 7px; }
+.equalizer-container { width: 100%; height: 26px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 6px; }
 .bar {
   width: 100%; max-width: 6px; height: 2px; background: linear-gradient(to top, #00ff41, #bd00ff);
   border-radius: 2px 2px 0 0; box-shadow: 0 0 5px rgba(0, 255, 65, 0.6);
@@ -294,11 +288,11 @@ h1 {
 }
 
 .volume-control {
-  width: 100%; max-width: 440px; margin: 0 auto;
-  background: rgba(20, 20, 20, 0.85); padding: 10px 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  width: 100%; max-width: 430px; margin: 0 auto;
+  background: rgba(20, 20, 20, 0.85); padding: 11px 14px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 .volume-label {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px;
   color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem;
 }
 .volume-slider {
@@ -311,26 +305,26 @@ h1 {
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.8); border: 2px solid #000;
 }
 
-/* SECCIÓN DJ FLUIDA */
+/* SECCIÓN DJ */
 #dj-profile-img {
-  width: clamp(210px, 45vw, 360px); height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
+  width: 360px; height: 360px; border-radius: 50%; border: 3px solid #8b8b8b;
   object-fit: cover;
-  box-shadow: -12px 0 22px rgba(189, 0, 255, 0.6), 12px 0 22px rgba(0, 255, 65, 0.6);
+  box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6);
   animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
 }
 @keyframes dj-breathing {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.02); }
 }
-#sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.35rem); margin-left: 8px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 16px; width: 100%; }
+#sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; width: 100%; }
 .dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.85rem; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
 }
-.dj-flag-img { width: 28px; height: 18px; border-radius: 3px; object-fit: cover; }
-.dj-country-name { color: #00ff41; font-size: 0.95rem; font-weight: 700; }
+.dj-flag-img { width: 30px; height: 20px; border-radius: 3px; object-fit: cover; }
+.dj-country-name { color: #00ff41; font-size: 1rem; font-weight: 700; }
 
 .ad-overlay {
   position: absolute !important; top: 50%; left: 50%; transform: translate(-50%, -50%) !important;
@@ -339,7 +333,7 @@ h1 {
 }
 .ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: clamp(210px, 45vw, 360px); height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
+  width: 360px; height: 360px; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: 0 0 25px rgba(189, 0, 255, 0.6); display: block;
 }
 .ad-close-btn {
@@ -349,17 +343,17 @@ h1 {
 }
 
 footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.4rem; text-align: center;
-  position: relative; z-index: 1; display: flex; flex-direction: column;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.5rem 1rem; text-align: center;
+  position: relative; z-index: 10; display: flex; flex-direction: column;
   justify-content: center; align-items: center; min-height: 75px; flex-shrink: 0;
 }
 .footer-brand { display: inline-flex; gap: 4px; align-items: center; margin-bottom: 0.2rem; }
 .footer-nexus { color: #bd00ff; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem; }
 .footer-zone { color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem; }
 .footer-separator, .footer-credit { color: #888; font-size: 0.85rem; }
-.social-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.2rem; flex-wrap: wrap; }
+.social-links { display: flex; justify-content: center; gap: 1.1rem; margin-bottom: 0.2rem; flex-wrap: wrap; }
 .social-link {
-  display: inline-flex; width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #00ff41, #bd00ff);
+  display: inline-flex; width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(135deg, #00ff41, #bd00ff);
   align-items: center; justify-content: center; text-decoration: none; color: white; cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -367,7 +361,7 @@ footer {
 .social-link:hover { transform: scale(1.1); }
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
-/* PANELES LATERALES ADAPTABLES */
+/* PANELES LATERALES */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
   position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
   background: #0a0a0a; z-index: 1000; transition: right 0.3s ease-out; display: flex; flex-direction: column;
@@ -453,27 +447,55 @@ footer {
 }
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
-/* ADAPTACIÓN INTELIGENTE A MÓVILES Y PANTALLAS VERTICALES */
+/* =========================================================
+   ADAPTACIÓN RESPONSIVA Y SCROLL TOTAL EN MÓVILES
+   ========================================================= */
 @media (max-width: 900px) {
+  /* Permite que el cuerpo crezca y se pueda hacer scroll vertical completo */
   .main-container {
     flex-direction: column;
-    padding: 0.6rem 0.5rem;
-    gap: 1.2rem;
+    height: auto;
+    flex: none;
+    padding: 1.2rem 0.8rem 2rem 0.8rem;
+    gap: 1.8rem;
+    justify-content: flex-start;
   }
   .player-section, .dj-section {
+    flex: none;
+    width: 100%;
     max-width: 480px;
-    padding: 0;
   }
+  .cassette-player {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    padding: 1.1rem 0.8rem;
+  }
+  /* Carretes equilibrados y separados */
+  .cassette-tapes {
+    height: 125px;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+  .tape-reel {
+    width: 72px; height: 72px;
+  }
+  .cassette-center {
+    width: 142px; height: 98px;
+  }
+  #dj-profile-img, .ad-overlay img.ad-image {
+    width: 270px; height: 270px;
+  }
+
   .requests-panel, .chat-panel, .staff-panel, .poem-panel {
     width: 100vw !important; right: -100vw;
   }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible {
     right: 0 !important;
   }
-  .staff-grid {
-    grid-template-columns: 1fr;
-  }
-  /* Optimización GPU móvil */
+  .staff-grid { grid-template-columns: 1fr; }
+  
+  /* Alivio de GPU en móviles */
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
   .cyber-glitch::before, .cyber-glitch::after { display: none !important; }
@@ -481,10 +503,22 @@ footer {
   #dj-profile-img { animation: none !important; }
 }
 
-@media (max-width: 480px) {
-  .header-logo { max-height: 55px; max-width: 120px; }
+/* PANTALLAS MÓVILES ESTRECHAS (REALME 14X, 360PX O ZOOM ALTO) */
+@media (max-width: 400px) {
+  .header-logo { max-height: 50px; max-width: 110px; }
+  .main-container { padding: 0.8rem 0.4rem 1.8rem 0.4rem; gap: 1.5rem; }
   .cassette-player { padding: 0.8rem 0.5rem; }
-  .cassette-tapes { border-radius: 50px; }
+  .cassette-tapes {
+    height: 110px;
+    padding: 0 8px;
+    border-radius: 60px;
+  }
+  /* En el Realme entra completo sin cortarse y manteniendo su separación natural */
+  .tape-reel { width: 64px; height: 64px; }
+  .cassette-center { width: 124px; height: 86px; }
+  .play-btn { width: 62px; height: 26px; font-size: 0.95rem; }
+  .equalizer-container { height: 20px; }
+  #dj-profile-img, .ad-overlay img.ad-image { width: 220px; height: 220px; }
 }
 </style>
 <script type="application/ld+json">
@@ -1040,7 +1074,7 @@ function visualize() {
     const end = Math.floor((i + 1) * binsPerBar);
     for(let j=start; j<end && j<totalBins; j++) { sum += dataArray[j]; count++; }
     const avg = count > 0 ? sum / count : 0;
-    const height = Math.max(2, Math.min(Math.round(Math.sqrt(avg) * 2.1), 28));
+    const height = Math.max(2, Math.min(Math.round(Math.sqrt(avg) * 2.1), 26));
     bars[i].style.height = height + 'px';
   }
   
@@ -1190,7 +1224,7 @@ window.addEventListener('load', function() {
     });
     artObserver.observe(artContainer, { childList: true, subtree: true });
   }
-  console.log("🎧 Nexus Zone adaptable cargado correctamente.");
+  console.log("🎧 Nexus Zone optimizado y adaptativo cargado.");
 });
 
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
