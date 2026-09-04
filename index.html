@@ -60,7 +60,7 @@ body {
 /* CABECERA */
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  padding: 0.8rem 1.2rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
+  padding: 0.7rem 1.2rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
 }
 .header-content {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -68,7 +68,7 @@ header {
 }
 .header-logo {
   position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%);
-  height: 100%; max-height: 95px; width: auto; max-width: 200px; object-fit: contain; z-index: 11;
+  height: 100%; max-height: 90px; width: auto; max-width: 200px; object-fit: contain; z-index: 11;
   filter: drop-shadow(0 0 8px rgba(189, 0, 255, 0.6)); transition: filter 0.3s ease, transform 0.3s ease;
 }
 .header-logo:hover {
@@ -115,7 +115,7 @@ h1 {
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.2rem; }
 
 /* =========================================================
-   CASETE REALISTA - DISEÑO FLUIDO ANTI-CORTE
+   CASETE REALISTA - ADAPTABILIDAD TOTAL
    ========================================================= */
 .cassette-player {
   width: 100%; max-width: 550px;
@@ -224,9 +224,7 @@ h1 {
   letter-spacing: 1.1px; min-height: 26px; display: flex; align-items: center; justify-content: center;
 }
 
-/* =========================================================
-   VENTANA TRANSPARENTE DEL CASETE (100% RESPONSIVA)
-   ========================================================= */
+/* VENTANA TRANSPARENTE DEL CASETE */
 .cassette-window-frame {
   background: #070709;
   border-radius: 35px;
@@ -260,9 +258,7 @@ h1 {
   z-index: 5; height: clamp(75px, 19vw, 105px); width: 100%; gap: clamp(4px, 1.2vw, 10px);
 }
 
-/* =========================================================
-   CARRETES REALISTAS CON CINTA Y DIENTES NEÓN
-   ========================================================= */
+/* CARRETES CON CINTA Y DIENTES NEÓN */
 .tape-reel {
   width: clamp(56px, 16.5vw, 84px);
   height: clamp(56px, 16.5vw, 84px);
@@ -272,7 +268,7 @@ h1 {
   aspect-ratio: 1 / 1;
 }
 
-/* Carrete izquierdo (Púrpura / Violeta Neón) */
+/* Carrete izquierdo (Violeta Neón) */
 #tape-left {
   background: radial-gradient(circle at center, #2e103d 0%, #1c0926 48%, #361f14 52%, #1a0f0a 100%);
   border: 3px solid #bd00ff;
@@ -295,7 +291,7 @@ h1 {
   100% { box-shadow: 0 0 20px rgba(189, 0, 255, 1), inset 0 0 14px rgba(189, 0, 255, 0.85); }
 }
 
-/* Carrete derecho (Verde Eléctrico Neón) */
+/* Carrete derecho (Verde Neón) */
 #tape-right {
   background: radial-gradient(circle at center, #0e3318 0%, #08210f 48%, #361f14 52%, #1a0f0a 100%);
   border: 3px solid #00ff41;
@@ -344,7 +340,7 @@ h1 {
 @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* =========================================================
-   ECUALIZADOR CENTRADO: RESPONDE DE IZQ A DER (BAJOS A ALTOS)
+   ECUALIZADOR CENTRADO: DINÁMICO Y CALIBRADO
    ========================================================= */
 .equalizer-center-box {
   flex: 1; min-width: 0;
@@ -379,7 +375,7 @@ h1 {
   transform-origin: bottom; position: relative; flex: 1; will-change: height;
   background: linear-gradient(to top, #008822, #7a00cc);
   box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
-  transition: height 0.04s ease-out;
+  transition: height 0.05s ease-out;
 }
 .bar.bar-mid {
   background: linear-gradient(to top, #00cc33, #9900ff);
@@ -387,7 +383,7 @@ h1 {
 }
 .bar.bar-high {
   background: linear-gradient(to top, #00ff41, #bd00ff);
-  box-shadow: 0 0 9px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.95);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.95);
 }
 
 /* =========================================================
@@ -438,7 +434,7 @@ h1 {
 }
 
 /* =========================================================
-   NUEVO MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI
+   MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI
    ========================================================= */
 .volume-control {
   width: 100%; max-width: 440px; margin: 10px auto 0 auto;
@@ -542,19 +538,22 @@ h1 {
 #sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.85rem, 2vw, 1.25rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
-/* SECCIÓN DJ */
+/* =========================================================
+   SECCIÓN DJ (TAMAÑO 1080P CONSERVADO EN CUALQUIER PC)
+   ========================================================= */
 #dj-profile-img {
   width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
   object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6), 0 0 30px rgba(139, 139, 139, 0.4);
   animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
+  flex-shrink: 0;
 }
 @keyframes dj-breathing {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.03); }
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; width: 100%; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 18px; width: 100%; }
 .dj-country-info {
   display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 18px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
@@ -570,7 +569,7 @@ h1 {
 }
 .ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 400px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
+  width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
 }
 .ad-close-btn {
@@ -690,7 +689,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   PANTALLA FIJA EN PC / PORTÁTILES (SIN SCROLL)
+   PANTALLA FIJA EN PC (PRESERVANDO TAMAÑOS REALES EN 720P/1080P)
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -699,44 +698,49 @@ footer {
   }
 }
 
+/* Portátiles y pantallas de altura media (850px) */
 @media (min-width: 901px) and (max-height: 850px) {
-  header { padding: 0.4rem 1.2rem; }
-  .header-logo { max-height: 65px; max-width: 140px; }
-  h1 { font-size: 1.6rem; }
+  header { padding: 0.35rem 1.2rem; }
+  .header-logo { max-height: 60px; max-width: 130px; }
+  h1 { font-size: 1.55rem; }
   .header-subtitle { font-size: 0.75rem; }
-  .main-container { padding: 0.4rem 1.8rem; gap: 1.8rem; }
+  .main-container { padding: 0.4rem 1.6rem; gap: 1.6rem; }
   .section-title { font-size: 1rem; margin-bottom: 0.4rem; }
   
-  .cassette-player { max-width: 460px; padding: 10px 10px 6px 10px; }
-  .cassette-tapes { height: 88px; }
+  .cassette-player { max-width: 470px; padding: 9px 10px 5px 10px; }
+  .cassette-tapes { height: 86px; }
   .tape-reel { width: 68px; height: 68px; }
   .equalizer-container { height: 38px; }
   .play-btn { width: 80px; height: 28px; font-size: 0.95rem; }
   .cassette-head-area { height: 20px; }
-  .volume-control { max-width: 380px; padding: 7px 12px 5px 12px; margin-top: 6px; }
+  .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 250px; width: 250px; height: 250px; }
+  /* La imagen del DJ mantiene su tamaño sin achicarse */
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 340px; width: 340px; height: 340px; }
   .dj-image-container { gap: 12px; }
   .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
-  footer { min-height: 60px; padding: 0.2rem 1rem; }
+  footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
 
+/* Portátiles y monitores de 720p (altura ~560-680px) */
 @media (min-width: 901px) and (max-height: 700px) {
-  header { padding: 0.25rem 1rem; }
-  .header-logo { max-height: 48px; max-width: 110px; }
+  header { padding: 0.2rem 1rem; }
+  .header-logo { max-height: 48px; max-width: 105px; }
   h1 { font-size: 1.3rem; }
-  .main-container { padding: 0.3rem 1.2rem; gap: 1.2rem; }
-  .section-title { font-size: 0.9rem; margin-bottom: 0.3rem; }
-  .cassette-player { max-width: 400px; padding: 8px 8px 4px 8px; }
-  .cassette-tapes { height: 76px; }
+  .main-container { padding: 0.25rem 1.2rem; gap: 1.2rem; }
+  .section-title { font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .cassette-player { max-width: 410px; padding: 7px 8px 4px 8px; }
+  .cassette-tapes { height: 75px; }
   .tape-reel { width: 58px; height: 58px; }
   .equalizer-container { height: 32px; }
-  .play-btn { width: 70px; height: 24px; font-size: 0.85rem; }
+  .play-btn { width: 72px; height: 24px; font-size: 0.85rem; }
   .cassette-head-area { height: 16px; }
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 200px; width: 200px; height: 200px; }
+  
+  /* Se conserva proporcionada e idéntica a 1080p, sin deformar ni verse enana */
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 300px; width: 300px; height: 300px; }
   .dj-image-container { gap: 8px; }
-  footer { min-height: 48px; padding: 0.1rem; }
+  footer { min-height: 46px; padding: 0.1rem; }
 }
 
 /* =========================================================
@@ -1411,7 +1415,7 @@ function enterPanel() { requestsAuth.style.display = 'none'; requestsMain.style.
 function setupAudioGraph() {
   if(audioGraphSetup || !audioContext) return;
   try {
-    analyzer = audioContext.createAnalyser(); analyzer.fftSize = 512; analyzer.smoothingTimeConstant = 0.72;
+    analyzer = audioContext.createAnalyser(); analyzer.fftSize = 512; analyzer.smoothingTimeConstant = 0.82;
     dataArray = new Uint8Array(analyzer.frequencyBinCount);
     const source = audioContext.createMediaElementSource(audio);
     source.connect(analyzer); analyzer.connect(audioContext.destination); audioGraphSetup = true;
@@ -1429,20 +1433,20 @@ function stopVisualizer() {
   ledIsLit = false;
 }
 
-/* 12 BANDAS DE FRECUENCIA CALIBRADAS DE IZQ A DER (BAJOS -> MEDIOS -> ALTOS) */
+/* 12 BANDAS CALIBRADAS PARA MÁXIMA DINÁMICA SIN SATURARSE ARRIBA */
 const freqSpectrumBands = [
-  { start: 1, end: 2, mult: 1.15 },    // Sub-Bass (Bombo / Subgraves ~80-170Hz)
-  { start: 2, end: 4, mult: 1.15 },    // Bass (Bajo principal ~170-340Hz)
-  { start: 4, end: 7, mult: 1.22 },    // Low-Mid (Pegada / Calidez ~340-600Hz)
-  { start: 7, end: 11, mult: 1.30 },   // Mid-Low (Cuerpo vocal / Teclados ~600-950Hz)
-  { start: 11, end: 17, mult: 1.40 },  // Mid (Cuerpo de caja / Voz ~950-1450Hz)
-  { start: 17, end: 26, mult: 1.55 },  // Mid-High (Guitarras / Sintes ~1.4k-2.2kHz)
-  { start: 26, end: 38, mult: 1.75 },  // Presence (Claridad / Ataque ~2.2k-3.3kHz)
-  { start: 38, end: 54, mult: 2.10 },  // High-Presence (Definición ~3.3k-4.6kHz)
-  { start: 54, end: 75, mult: 2.55 },  // Treble Low (Ataque de platillos ~4.6k-6.5kHz)
-  { start: 75, end: 105, mult: 3.10 }, // Treble (Charles / Hi-Hats ~6.5k-9.0kHz)
-  { start: 105, end: 140, mult: 3.80 },// Highs (Brillo ~9.0k-12.0kHz)
-  { start: 140, end: 180, mult: 4.60 } // Air / High Brilliance (Aire superior ~12k-15.5kHz)
+  { start: 1, end: 3, mult: 0.82 },    // Sub-Bass (Bombos)
+  { start: 3, end: 6, mult: 0.84 },    // Bass (Bajo eléctrico/sintetizado)
+  { start: 6, end: 10, mult: 0.88 },   // Low-Mid (Pegada de bombo/caja)
+  { start: 10, end: 16, mult: 0.94 },  // Mid-Low (Cuerpo vocal)
+  { start: 16, end: 24, mult: 1.02 },  // Mid (Vocales y teclados)
+  { start: 24, end: 36, mult: 1.12 },  // Upper-Mid (Claridad y ataque)
+  { start: 36, end: 52, mult: 1.25 },  // Presence (Guitarras/Snare)
+  { start: 52, end: 72, mult: 1.42 },  // High-Presence (Platillos ataque)
+  { start: 72, end: 98, mult: 1.65 },  // Treble Low (Brillo medio)
+  { start: 98, end: 130, mult: 1.95 }, // Treble (Charles/Hi-Hats)
+  { start: 130, end: 165, mult: 2.35 },// Highs (Brillo superior)
+  { start: 165, end: 200, mult: 2.85 } // Air (Armónicos de aire)
 ];
 
 function visualize() {
@@ -1453,6 +1457,9 @@ function visualize() {
   
   analyzer.getByteFrequencyData(dataArray); 
   const totalBins = dataArray.length;
+  const containerHeight = equalizer.clientHeight || 42;
+  const maxHeight = containerHeight - 5;
+  const minHeight = 3;
   
   for(let i=0; i<barCount; i++) {
     const band = freqSpectrumBands[i];
@@ -1465,13 +1472,18 @@ function visualize() {
       count++; 
     }
     const avg = count > 0 ? sum / count : 0;
-    let height = Math.min(Math.sqrt(avg) * (2.15 * band.mult), 40);
-    height = Math.max(height, 3);
+    
+    // Curva de respuesta con rango dinámico amplio (evita quedarse pegado arriba)
+    let norm = (avg / 255) * band.mult;
+    norm = Math.min(1, Math.max(0, norm));
+    let dynamicNorm = Math.pow(norm, 1.35); // Curva exponencial que da margen de rebote
+    let height = Math.round(minHeight + dynamicNorm * (maxHeight - minHeight));
+    
     bars[i].style.height = height + 'px';
     
-    if (height > 25) {
+    if (height >= maxHeight * 0.78) {
       bars[i].className = 'bar bar-high';
-    } else if (height > 13) {
+    } else if (height >= maxHeight * 0.42) {
       bars[i].className = 'bar bar-mid';
     } else {
       bars[i].className = 'bar';
