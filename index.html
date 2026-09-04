@@ -59,29 +59,34 @@ body {
   background-size: 40px 40px; pointer-events: none;
 }
 
+/* CABECERA (EL LOGO NUNCA SE MONTA SOBRE EL TÍTULO) */
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  padding: 0.9rem 1.5rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
+  padding: 0.8rem 1.5rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
 }
 .header-content {
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3rem; position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; width: 100%; max-width: 1200px; margin: 0 auto;
 }
 .header-logo {
-  position: absolute; left: 1.5rem; top: 50%; transform: translateY(-50%);
-  height: 100%; max-height: 90px; width: auto; max-width: 200px; object-fit: contain; z-index: 11;
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  height: 85%; max-height: 85px; width: auto; max-width: 180px; object-fit: contain; z-index: 11;
   filter: drop-shadow(0 0 8px rgba(189, 0, 255, 0.6)); transition: filter 0.3s ease, transform 0.3s ease;
 }
 .header-logo:hover {
   filter: drop-shadow(0 0 12px rgba(0, 255, 65, 0.8)); transform: translateY(-50%) scale(1.05);
 }
+.header-text-group {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem;
+}
 h1 {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.2rem, 3.2vw, 2.4rem);
   letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(to right, #bd00ff, #00ff41);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(189, 0, 255, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 .header-subtitle {
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: clamp(0.65rem, 1.4vw, 0.95rem);
   letter-spacing: 2px; text-transform: uppercase; background: linear-gradient(to right, #00ff41, #00cc33);
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-fill-color: transparent;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
@@ -93,10 +98,11 @@ h1 {
   box-shadow: 0 0 0 rgba(139, 139, 139, 0); flex-shrink: 0;
 }
 
-/* CONTENEDOR EN PC: AMPLIA SEPARACIÓN A AMBOS LADOS */
+/* CONTENEDOR EN PC: AMPLITUD TOTAL Y SEPARACIÓN A AMBOS LADOS */
 .main-container {
   display: flex; flex: 1; width: 100%;
-  padding: clamp(1rem, 3vw, 2.5rem); gap: clamp(1.5rem, 3vw, 4rem);
+  padding: clamp(1.2rem, 2.8vw, 2.8rem) clamp(1.5rem, 3.5vw, 4rem);
+  gap: clamp(1.5rem, 3vw, 4.5rem);
   position: relative; z-index: 1; align-items: center; justify-content: space-between;
 }
 
@@ -111,7 +117,7 @@ h1 {
 }
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
 
-/* CASETE ORIGINAL Y PROPORCIONADO */
+/* REPRODUCTOR CASETE */
 .cassette-player {
   width: 95%; max-width: 560px; height: auto; min-height: 330px;
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 3px solid #8b8b8b; border-radius: 20px;
@@ -183,7 +189,7 @@ h1 {
 #sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(1rem, 1.8vw, 1.4rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
-/* COMPARTIMENTO DE CARRETES CON EQUILIBRIO PERFECTO */
+/* COMPARTIMENTO DE CARRETES EQUILIBRADO A LOS EXTREMOS */
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
   height: 135px; margin-top: 4px; width: 100%; max-width: 430px;
@@ -220,7 +226,7 @@ h1 {
 }
 .tape-reel span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg) translateY(-78%); }
 .tape-reel span:nth-child(2) { transform: translate(-50%, -50%) rotate(135deg) translateY(-78%); }
-.tape-reel span:nth-child(3) { transform: rotate(135deg) translate(0, 0); transform: translate(-50%, -50%) rotate(225deg) translateY(-78%); }
+.tape-reel span:nth-child(3) { transform: translate(-50%, -50%) rotate(225deg) translateY(-78%); }
 .tape-reel span:nth-child(4) { transform: translate(-50%, -50%) rotate(315deg) translateY(-78%); }
 
 #tape-left {
@@ -279,12 +285,30 @@ h1 {
   border-color: #bd00ff; color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.8); box-shadow: 0 0 10px rgba(189, 0, 255, 0.6);
 }
 
+/* ECUALIZADOR ORIGINAL CON SCANLINES Y 3 NIVELES DE RESPLANDOR */
 .equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 7px; }
-.equalizer-container { width: 100%; height: 26px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 6px; }
+.equalizer-container { width: 100%; height: 26px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 6px; position: relative; z-index: 4; }
+.equalizer-container::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.2) 50%, rgba(0, 255, 65, 0.05) 50%);
+  background-size: 100% 4px; pointer-events: none; z-index: 6; opacity: 0.7;
+}
+
 .bar {
-  width: 100%; max-width: 6px; height: 2px; background: linear-gradient(to top, #00ff41, #bd00ff);
-  border-radius: 2px 2px 0 0; box-shadow: 0 0 5px rgba(0, 255, 65, 0.6);
-  transform-origin: bottom; flex: 1; will-change: height;
+  width: 100%; max-width: 6px; height: 2px;
+  border-radius: 2px 2px 0 0;
+  transform-origin: bottom; position: relative; flex: 1; will-change: height;
+  background: linear-gradient(to top, #008822, #7a00cc);
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.4);
+  transition: height 0.03s ease-out;
+}
+.bar.bar-mid {
+  background: linear-gradient(to top, #00cc33, #9900ff);
+  box-shadow: 0 0 7px rgba(0, 255, 65, 0.7), 0 0 10px rgba(189, 0, 255, 0.4);
+}
+.bar.bar-high {
+  background: linear-gradient(to top, #00ff41, #bd00ff);
+  box-shadow: 0 0 9px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.8);
 }
 
 .volume-control {
@@ -342,8 +366,9 @@ h1 {
   font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 1001;
 }
 
+/* BOTONES DEL FOOTER (SIEMPRE EN UNA SOLA FILA) */
 footer {
-  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.5rem 1rem; text-align: center;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%); padding: 0.6rem 1rem; text-align: center;
   position: relative; z-index: 10; display: flex; flex-direction: column;
   justify-content: center; align-items: center; min-height: 75px; flex-shrink: 0;
 }
@@ -351,13 +376,21 @@ footer {
 .footer-nexus { color: #bd00ff; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem; }
 .footer-zone { color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem; }
 .footer-separator, .footer-credit { color: #888; font-size: 0.85rem; }
-.social-links { display: flex; justify-content: center; gap: 1.1rem; margin-bottom: 0.2rem; flex-wrap: wrap; }
-.social-link {
-  display: inline-flex; width: 35px; height: 35px; border-radius: 50%; background: linear-gradient(135deg, #00ff41, #bd00ff);
-  align-items: center; justify-content: center; text-decoration: none; color: white; cursor: pointer;
-  transition: transform 0.2s ease;
+
+.social-links {
+  display: flex; justify-content: center; align-items: center;
+  flex-wrap: nowrap !important; /* Garantiza una sola fila siempre */
+  gap: clamp(8px, 2.4vw, 18px);
+  margin-bottom: 0.3rem; width: 100%; max-width: 440px;
 }
-.social-link svg { width: 18px; height: 18px; fill: white; }
+.social-link {
+  display: inline-flex; width: clamp(32px, 8.5vw, 38px); height: clamp(32px, 8.5vw, 38px);
+  border-radius: 50%; background: linear-gradient(135deg, #00ff41, #bd00ff);
+  align-items: center; justify-content: center; text-decoration: none; color: white; cursor: pointer;
+  flex-shrink: 0 !important; /* Nunca se aplasta */
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.3); transition: transform 0.2s ease;
+}
+.social-link svg { width: clamp(16px, 4vw, 18px); height: clamp(16px, 4vw, 18px); fill: white; }
 .social-link:hover { transform: scale(1.1); }
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
@@ -448,15 +481,34 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   ADAPTACIÓN RESPONSIVA Y SCROLL TOTAL EN MÓVILES
+   ADAPTACIÓN RESPONSIVA Y CONTROL DE PANTALLAS
    ========================================================= */
 @media (max-width: 900px) {
-  /* Permite que el cuerpo crezca y se pueda hacer scroll vertical completo */
+  /* Cabecera en móvil: el logo va alineado al lado del título, nunca superpuesto */
+  .header-content {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo {
+    position: static;
+    transform: none;
+    max-height: 52px;
+    max-width: 58px;
+    flex-shrink: 0;
+  }
+  .header-text-group {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Scroll vertical natural desbloqueado */
   .main-container {
     flex-direction: column;
     height: auto;
     flex: none;
-    padding: 1.2rem 0.8rem 2rem 0.8rem;
+    padding: 1.2rem 0.8rem 2.2rem 0.8rem;
     gap: 1.8rem;
     justify-content: flex-start;
   }
@@ -471,11 +523,11 @@ footer {
     min-height: auto;
     padding: 1.1rem 0.8rem;
   }
-  /* Carretes equilibrados y separados */
+  /* Carretes amplios en Redmi 10 (sin apretarse al medio) */
   .cassette-tapes {
     height: 125px;
     max-width: 100%;
-    padding: 0 12px;
+    padding: 0 14px;
   }
   .tape-reel {
     width: 72px; height: 72px;
@@ -495,7 +547,7 @@ footer {
   }
   .staff-grid { grid-template-columns: 1fr; }
   
-  /* Alivio de GPU en móviles */
+  /* Aceleración de GPU */
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
   .cyber-glitch::before, .cyber-glitch::after { display: none !important; }
@@ -503,17 +555,16 @@ footer {
   #dj-profile-img { animation: none !important; }
 }
 
-/* PANTALLAS MÓVILES ESTRECHAS (REALME 14X, 360PX O ZOOM ALTO) */
-@media (max-width: 400px) {
-  .header-logo { max-height: 50px; max-width: 110px; }
-  .main-container { padding: 0.8rem 0.4rem 1.8rem 0.4rem; gap: 1.5rem; }
+/* PANTALLAS ESTRECHAS (REALME 14X, 360PX O ESCALADO ALTO) */
+@media (max-width: 375px) {
+  .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.5rem; }
   .cassette-player { padding: 0.8rem 0.5rem; }
   .cassette-tapes {
-    height: 110px;
-    padding: 0 8px;
+    height: 112px;
+    padding: 0 10px;
     border-radius: 60px;
   }
-  /* En el Realme entra completo sin cortarse y manteniendo su separación natural */
+  /* En el Realme entran perfectos sin cortarse y guardando su separación */
   .tape-reel { width: 64px; height: 64px; }
   .cassette-center { width: 124px; height: 86px; }
   .play-btn { width: 62px; height: 26px; font-size: 0.95rem; }
@@ -532,8 +583,10 @@ footer {
 <header>
 <div class="header-content">
 <img src="img/logo.png" alt="Nexus Zone Logo" class="header-logo">
-<h1>Nexus Zone</h1>
-<p class="header-subtitle">Música sin límites</p>
+<div class="header-text-group">
+  <h1>Nexus Zone</h1>
+  <p class="header-subtitle">Música sin límites</p>
+</div>
 </div>
 </header>
 <div class="led-strip-top" id="led-top"></div>
@@ -1052,12 +1105,16 @@ function setupAudioGraph() {
 function startVisualizer() { if(isVisualizing || !analyzer) return; isVisualizing = true; visualize(); }
 function stopVisualizer() {
   isVisualizing = false; if(animationId) cancelAnimationFrame(animationId); animationId = null;
-  for(let i=0; i<barCount; i++) { bars[i].style.height='2px'; }
+  for(let i=0; i<barCount; i++) { 
+    bars[i].style.height='2px'; 
+    bars[i].className = 'bar';
+  }
   ledTop.style.background='#8b8b8b'; ledTop.style.boxShadow='0 0 0 rgba(139,139,139,0)';
   ledBottom.style.background='#8b8b8b'; ledBottom.style.boxShadow='0 0 0 rgba(139,139,139,0)';
   ledIsLit = false;
 }
 
+/* VISUALIZADOR CON CÁLCULO DINÁMICO ORIGINAL Y RESPLANDOR TRICOLOR */
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
   const frameSkip = isMobileDevice ? 2 : 1;
@@ -1072,10 +1129,23 @@ function visualize() {
     let sum=0, count=0;
     const start = Math.floor(i * binsPerBar);
     const end = Math.floor((i + 1) * binsPerBar);
-    for(let j=start; j<end && j<totalBins; j++) { sum += dataArray[j]; count++; }
+    for(let j=start; j<end && j<totalBins; j++) { 
+      sum += dataArray[j] * (i < 4 ? 1.4 : i >= 8 ? 1.5 : 1.15); 
+      count++; 
+    }
     const avg = count > 0 ? sum / count : 0;
-    const height = Math.max(2, Math.min(Math.round(Math.sqrt(avg) * 2.1), 26));
+    let height = Math.min(Math.sqrt(avg) * 2.0, 26);
+    height = Math.max(height, 2);
     bars[i].style.height = height + 'px';
+    
+    // Cambio dinámico de clases con el gradiente y filtro neón original
+    if (height > 18) {
+      bars[i].className = 'bar bar-high';
+    } else if (height > 9) {
+      bars[i].className = 'bar bar-mid';
+    } else {
+      bars[i].className = 'bar';
+    }
   }
   
   updateLedStrips();
@@ -1224,7 +1294,7 @@ window.addEventListener('load', function() {
     });
     artObserver.observe(artContainer, { childList: true, subtree: true });
   }
-  console.log("🎧 Nexus Zone optimizado y adaptativo cargado.");
+  console.log("🎧 Nexus Zone cargado al 100%.");
 });
 
 audio.addEventListener('ended', () => { if(isPlaying) togglePlayPause(); });
