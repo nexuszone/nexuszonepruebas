@@ -90,10 +90,10 @@ h1 {
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 
-/* TIRAS LED: FLASH RÍTMICO EN EL BOMBO */
+/* TIRAS LED */
 .led-strip-top, .led-strip-bottom {
   height: 8px; background: #8b8b8b; position: relative; z-index: 10;
-  transition: background 0.05s ease-out, box-shadow 0.05s ease-out;
+  transition: background 0.06s ease-out, box-shadow 0.06s ease-out;
   box-shadow: 0 0 0 rgba(139, 139, 139, 0); flex-shrink: 0;
 }
 
@@ -496,22 +496,24 @@ h1 {
 }
 
 /* =========================================================
-   NUEVA CAJA DE CASETE VERTICAL (ESTUCHE / JEWEL CASE)
+   ESTUCHE DE CASETE VERTICAL HIPER-REALISTA (JEWEL CASE)
    ========================================================= */
 .cassette-case {
   width: 100%;
-  max-width: 290px;
-  aspect-ratio: 1 / 1.42;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(18, 18, 24, 0.95) 100%);
-  border: 3px solid rgba(255, 255, 255, 0.15);
-  border-left: 6px solid rgba(255, 255, 255, 0.25); /* Lomo del estuche */
+  max-width: 285px;
+  aspect-ratio: 1 / 1.44;
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.16) 0%, rgba(35, 35, 42, 0.85) 20%, rgba(15, 15, 18, 0.95) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-left: 7px solid rgba(255, 255, 255, 0.32); /* Lomo grueso acrílico */
   border-radius: 12px;
   box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.85),
-    -12px 0 25px rgba(189, 0, 255, 0.35),
-    12px 0 25px rgba(0, 255, 65, 0.35);
+    0 20px 40px rgba(0, 0, 0, 0.95),
+    -12px 0 26px rgba(189, 0, 255, 0.38),
+    12px 0 26px rgba(0, 255, 65, 0.38),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset -1px 0 2px rgba(255, 255, 255, 0.25);
   position: relative;
-  padding: 8px;
+  padding: 8px 8px 8px 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -522,62 +524,136 @@ h1 {
 .cassette-case:hover {
   transform: translateY(-3px);
   box-shadow: 
-    0 18px 40px rgba(0, 0, 0, 0.9),
-    -16px 0 32px rgba(189, 0, 255, 0.55),
-    16px 0 32px rgba(0, 255, 65, 0.55);
+    0 22px 45px rgba(0, 0, 0, 0.98),
+    -16px 0 35px rgba(189, 0, 255, 0.55),
+    16px 0 35px rgba(0, 255, 65, 0.55);
 }
 
-/* Bisagras acrílicas del estuche */
-.case-hinge {
-  position: absolute; left: -2px; width: 5px; height: 18px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.45); box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); z-index: 6;
+/* Bisagras cilíndricas mecánicas de la caja acrílica */
+.case-hinge-pin {
+  position: absolute; left: -3px; width: 6px; height: 22px; border-radius: 3px;
+  background: linear-gradient(to right, rgba(255,255,255,0.7), rgba(180,180,180,0.5));
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5), inset 0 1px 1px #fff; z-index: 8;
 }
-.case-hinge-top { top: 26px; }
-.case-hinge-bottom { bottom: 26px; }
+.case-hinge-pin.top { top: 28px; }
+.case-hinge-pin.bottom { bottom: 28px; }
 
-/* Reflejo diagonal de cristal pulido */
-.case-glass-glare {
+/* Pestañas transparentes de sujeción de la carátula */
+.case-retention-tab {
+  position: absolute; left: 10px; width: 8px; height: 18px; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.6); z-index: 7; pointer-events: none;
+}
+.case-retention-tab.left-top { top: 60px; }
+.case-retention-tab.left-bottom { bottom: 60px; }
+
+/* Topes circulares interiores que traban los carretes */
+.case-spool-lock {
+  position: absolute; right: 18px; width: 22px; height: 22px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 35%, rgba(0,0,0,0.6) 80%, rgba(255,255,255,0.15) 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.7), 0 1px 2px rgba(255,255,255,0.1);
+  z-index: 4; pointer-events: none;
+}
+.case-spool-lock.top-spool { top: 75px; }
+.case-spool-lock.bottom-spool { bottom: 75px; }
+
+/* Reflejos ópticos y destellos realistas */
+.case-acrylic-sheen {
   position: absolute; top: -50%; left: -60%; width: 100%; height: 220%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.14) 48%, rgba(255, 255, 255, 0.02) 56%, transparent 64%);
-  transform: rotate(22deg); pointer-events: none; z-index: 5;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.18) 48%, rgba(255, 255, 255, 0.03) 56%, transparent 64%);
+  transform: rotate(22deg); pointer-events: none; z-index: 6;
+}
+.case-glass-scratch {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 40%, rgba(255,255,255,0.02) 100%);
+  pointer-events: none; z-index: 6;
 }
 
-/* Carátula / J-Card interior */
-.case-insert {
+/* CARÁTULA DE PAPEL SATINADO PLEGABLE (J-CARD) */
+.case-jcard {
   position: relative; z-index: 2; width: 100%; height: 100%;
   display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
-  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
-  background: #08080a;
+  background: #0d0d12;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.95), 0 1px 3px rgba(0,0,0,0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Cabecera técnica de cinta analógica */
+.jcard-header {
+  height: 22px; background: #060608; border-bottom: 2px solid #bd00ff;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 8px; flex-shrink: 0; z-index: 3;
+}
+.jcard-badge-left {
+  display: flex; align-items: center; gap: 4px;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #bd00ff; font-weight: 700;
+}
+.jcard-cassette-icon { font-size: 0.75rem; line-height: 1; }
+.jcard-side { letter-spacing: 1px; }
+.jcard-dolby-logo {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: #888; letter-spacing: 0.5px;
+}
+.jcard-cat-no {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.6rem; color: #00ff41; font-weight: 700;
+}
+
+/* Fotografía del DJ dentro del estuche */
+.jcard-cover-art {
+  position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
 }
 #dj-profile-img {
-  width: 100%; flex: 1; min-height: 0; object-fit: cover; display: block;
-  border-radius: 6px 6px 0 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 0.4s ease;
 }
 .cassette-case:hover #dj-profile-img {
   transform: scale(1.03);
 }
+.jcard-paper-glare {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.6); pointer-events: none;
+}
 
-/* Pestaña serigrafiada inferior de la carátula */
-.case-spine-tab {
-  height: 28px;
-  background: linear-gradient(90deg, #181820 0%, #0d0d12 100%);
+/* Solapa doblada inferior con código de barras retro */
+.jcard-flap {
+  height: 32px; background: linear-gradient(90deg, #121218 0%, #09090d 100%);
   border-top: 2px solid #00ff41;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 10px; flex-shrink: 0; z-index: 3;
+  padding: 0 8px; flex-shrink: 0; z-index: 3;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.7);
 }
-.case-spine-text {
+.jcard-spine-info {
+  display: flex; flex-direction: column; justify-content: center; gap: 1px;
+}
+.jcard-title {
   font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 900;
-  color: #00ff41; letter-spacing: 1px; text-shadow: 0 0 6px rgba(0, 255, 65, 0.8);
+  color: #00ff41; letter-spacing: 1.2px; text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
 }
-.case-stereo-badge {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; font-weight: 700;
-  color: #bd00ff; letter-spacing: 1px; text-shadow: 0 0 6px rgba(189, 0, 255, 0.8);
+.jcard-sub {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.52rem; color: #888; letter-spacing: 0.8px;
 }
+.jcard-barcode {
+  display: flex; align-items: center; gap: 2px; height: 18px; padding: 2px 4px;
+  background: rgba(255,255,255,0.08); border-radius: 2px;
+}
+.jcard-barcode span {
+  background: #ccc; height: 100%; border-radius: 0.5px;
+}
+.jcard-barcode span:nth-child(1) { width: 1.5px; }
+.jcard-barcode span:nth-child(2) { width: 3px; }
+.jcard-barcode span:nth-child(3) { width: 1px; }
+.jcard-barcode span:nth-child(4) { width: 2px; }
+.jcard-barcode span:nth-child(5) { width: 1px; }
+.jcard-barcode span:nth-child(6) { width: 2.5px; }
+.jcard-barcode span:nth-child(7) { width: 1.5px; }
+.jcard-barcode span:nth-child(8) { width: 3px; }
+.jcard-barcode span:nth-child(9) { width: 1px; }
+.jcard-barcode span:nth-child(10) { width: 2px; }
 
 /* Publicidad adaptada al estuche vertical */
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 290px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
+  width: 100%; max-width: 285px; height: auto; aspect-ratio: 1 / 1.44; border-radius: 12px;
   border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
 }
@@ -791,8 +867,11 @@ footer {
   .cassette-head-area { height: 20px; }
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
-  /* Estuche de casete vertical escalado en laptop */
+  /* Estuche vertical escalado en laptop */
   .cassette-case, .ad-overlay img.ad-image { max-width: 240px; }
+  .case-spool-lock { width: 18px; height: 18px; right: 14px; }
+  .case-spool-lock.top-spool { top: 60px; }
+  .case-spool-lock.bottom-spool { bottom: 60px; }
   .dj-image-container { gap: 10px; }
   .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
@@ -815,7 +894,10 @@ footer {
   
   /* Estuche vertical proporcionado en 720p */
   .cassette-case, .ad-overlay img.ad-image { max-width: 195px; }
-  .case-spine-tab { height: 24px; }
+  .jcard-flap { height: 26px; }
+  .jcard-title { font-size: 0.58rem; }
+  .jcard-sub { display: none; }
+  .case-spool-lock { display: none; }
   .dj-image-container { gap: 6px; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
@@ -838,7 +920,7 @@ footer {
   .volume-control { width: 100%; max-width: 100%; }
   
   /* Estuche vertical centrado en móvil */
-  .cassette-case, .ad-overlay img.ad-image { width: 230px; max-width: 230px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 235px; max-width: 235px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
@@ -855,7 +937,7 @@ footer {
   .tape-reel { width: 54px; height: 54px; }
   .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
   .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-case, .ad-overlay img.ad-image { width: 190px; max-width: 190px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 195px; max-width: 195px; }
 }
 </style>
 <script type="application/ld+json">
@@ -980,16 +1062,48 @@ footer {
 <h2 class="section-title dj-title">Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff41; display: inline; margin-left: 10px; font-weight: 900;"></div></h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE DE CASETE VERTICAL (JEWEL CASE CON J-CARD) -->
+  <!-- ESTUCHE DE CASETE VERTICAL HIPER-REALISTA (JEWEL CASE CON J-CARD) -->
   <div class="cassette-case">
-    <div class="case-hinge case-hinge-top"></div>
-    <div class="case-hinge case-hinge-bottom"></div>
-    <div class="case-glass-glare"></div>
-    <div class="case-insert">
-      <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
-      <div class="case-spine-tab">
-        <span class="case-spine-text">LIVE SESSION</span>
-        <span class="case-stereo-badge">DIGITAL STEREO</span>
+    <!-- Bisagras y anclajes acrílicos -->
+    <div class="case-hinge-pin top"></div>
+    <div class="case-hinge-pin bottom"></div>
+    <div class="case-retention-tab left-top"></div>
+    <div class="case-retention-tab left-bottom"></div>
+    
+    <!-- Topes circulares interiores para los carretes -->
+    <div class="case-spool-lock top-spool"></div>
+    <div class="case-spool-lock bottom-spool"></div>
+
+    <!-- Reflejos ópticos de plástico transparente -->
+    <div class="case-acrylic-sheen"></div>
+    <div class="case-glass-scratch"></div>
+
+    <!-- Carátula satinada plegable J-Card -->
+    <div class="case-jcard">
+      <div class="jcard-header">
+        <div class="jcard-badge-left">
+          <span class="jcard-cassette-icon">📼</span>
+          <span class="jcard-side">SIDE 1</span>
+        </div>
+        <div class="jcard-dolby-logo">🄳🄳 DOLBY B-C NR</div>
+        <div class="jcard-cat-no">NZ-2026-HQ</div>
+      </div>
+
+      <!-- Fotografía del DJ dentro del estuche -->
+      <div class="jcard-cover-art">
+        <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+        <div class="jcard-paper-glare"></div>
+      </div>
+
+      <!-- Solapa inferior doblada con código de barras vintage -->
+      <div class="jcard-flap">
+        <div class="jcard-spine-info">
+          <span class="jcard-title">LIVE ON AIR</span>
+          <span class="jcard-sub">NEXUS MASTER TAPE</span>
+        </div>
+        <div class="jcard-barcode">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
       </div>
     </div>
   </div>
