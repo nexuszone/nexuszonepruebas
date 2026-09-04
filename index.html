@@ -90,9 +90,10 @@ h1 {
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 
+/* TIRAS LED: FLASH RÍTMICO EN EL BOMBO */
 .led-strip-top, .led-strip-bottom {
   height: 8px; background: #8b8b8b; position: relative; z-index: 10;
-  transition: background 0.12s ease-out, box-shadow 0.22s ease-out;
+  transition: background 0.05s ease-out, box-shadow 0.05s ease-out;
   box-shadow: 0 0 0 rgba(139, 139, 139, 0); flex-shrink: 0;
 }
 
@@ -115,7 +116,7 @@ h1 {
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.2rem; }
 
 /* =========================================================
-   CASETE REALISTA - ADAPTABILIDAD TOTAL
+   CASETE REALISTA
    ========================================================= */
 .cassette-player {
   width: 100%; max-width: 550px;
@@ -340,7 +341,7 @@ h1 {
 @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* =========================================================
-   ECUALIZADOR CENTRADO: DINÁMICO Y CALIBRADO
+   ECUALIZADOR ORIGINAL DEL CASETE (INTACTO)
    ========================================================= */
 .equalizer-center-box {
   flex: 1; min-width: 0;
@@ -495,6 +496,93 @@ h1 {
 }
 
 /* =========================================================
+   NUEVA CAJA DE CASETE VERTICAL (ESTUCHE / JEWEL CASE)
+   ========================================================= */
+.cassette-case {
+  width: 100%;
+  max-width: 290px;
+  aspect-ratio: 1 / 1.42;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(18, 18, 24, 0.95) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-left: 6px solid rgba(255, 255, 255, 0.25); /* Lomo del estuche */
+  border-radius: 12px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.85),
+    -12px 0 25px rgba(189, 0, 255, 0.35),
+    12px 0 25px rgba(0, 255, 65, 0.35);
+  position: relative;
+  padding: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+.cassette-case:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 18px 40px rgba(0, 0, 0, 0.9),
+    -16px 0 32px rgba(189, 0, 255, 0.55),
+    16px 0 32px rgba(0, 255, 65, 0.55);
+}
+
+/* Bisagras acrílicas del estuche */
+.case-hinge {
+  position: absolute; left: -2px; width: 5px; height: 18px; border-radius: 2px;
+  background: rgba(255, 255, 255, 0.45); box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); z-index: 6;
+}
+.case-hinge-top { top: 26px; }
+.case-hinge-bottom { bottom: 26px; }
+
+/* Reflejo diagonal de cristal pulido */
+.case-glass-glare {
+  position: absolute; top: -50%; left: -60%; width: 100%; height: 220%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.14) 48%, rgba(255, 255, 255, 0.02) 56%, transparent 64%);
+  transform: rotate(22deg); pointer-events: none; z-index: 5;
+}
+
+/* Carátula / J-Card interior */
+.case-insert {
+  position: relative; z-index: 2; width: 100%; height: 100%;
+  display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+  background: #08080a;
+}
+#dj-profile-img {
+  width: 100%; flex: 1; min-height: 0; object-fit: cover; display: block;
+  border-radius: 6px 6px 0 0;
+  transition: transform 0.4s ease;
+}
+.cassette-case:hover #dj-profile-img {
+  transform: scale(1.03);
+}
+
+/* Pestaña serigrafiada inferior de la carátula */
+.case-spine-tab {
+  height: 28px;
+  background: linear-gradient(90deg, #181820 0%, #0d0d12 100%);
+  border-top: 2px solid #00ff41;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 10px; flex-shrink: 0; z-index: 3;
+}
+.case-spine-text {
+  font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 900;
+  color: #00ff41; letter-spacing: 1px; text-shadow: 0 0 6px rgba(0, 255, 65, 0.8);
+}
+.case-stereo-badge {
+  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; font-weight: 700;
+  color: #bd00ff; letter-spacing: 1px; text-shadow: 0 0 6px rgba(189, 0, 255, 0.8);
+}
+
+/* Publicidad adaptada al estuche vertical */
+.ad-overlay img.ad-image {
+  width: 100%; max-width: 290px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
+  border: 3px solid #bd00ff; object-fit: cover;
+  box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
+}
+
+/* =========================================================
    GLITCH ORIGINAL DE LA PÁGINA (CYBER-GLITCH)
    ========================================================= */
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
@@ -538,24 +626,11 @@ h1 {
 #sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.85rem, 2vw, 1.25rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
-/* =========================================================
-   SECCIÓN DJ (TAMAÑO 1080P CONSERVADO EN CUALQUIER PC)
-   ========================================================= */
-#dj-profile-img {
-  width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
-  object-fit: cover;
-  box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6), 0 0 30px rgba(139, 139, 139, 0.4);
-  animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
-  flex-shrink: 0;
-}
-@keyframes dj-breathing {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
+/* SECCIÓN DJ */
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 18px; width: 100%; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 14px; width: 100%; }
 .dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 18px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 18px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
   font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
 }
@@ -568,10 +643,6 @@ h1 {
   align-items: center; justify-content: center; padding: 10px; width: auto !important; height: auto !important;
 }
 .ad-overlay.active { display: flex !important; }
-.ad-overlay img.ad-image {
-  width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
-  box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
-}
 .ad-close-btn {
   position: absolute; top: 10px; right: 10px; background: #0a0a0a; border: 2px solid #bd00ff; color: #bd00ff;
   width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-family: 'Orbitron', sans-serif;
@@ -602,10 +673,14 @@ footer {
 .social-link:hover { transform: scale(1.1); }
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
-/* PANELES LATERALES */
+/* =========================================================
+   PANELES LATERALES: DESPLAZAMIENTO SUAVE EXACTO A STAFF
+   ========================================================= */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
   position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
-  background: #0a0a0a; z-index: 1000; transition: right 0.3s ease-out; display: flex; flex-direction: column;
+  background: #0a0a0a; z-index: 1000;
+  transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex; flex-direction: column;
   font-family: 'Orbitron', sans-serif; -webkit-overflow-scrolling: touch;
 }
 .requests-panel { border-left: 3px solid #bd00ff; }
@@ -613,8 +688,9 @@ footer {
 .staff-panel { border-left: 3px solid #00ff41; }
 .poem-panel { border-left: 3px solid #bd00ff; }
 
-.requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0; }
-.requests-panel.hidden, .chat-panel.hidden, .poem-panel.hidden { display: none; }
+.requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { 
+  right: 0 !important; 
+}
 
 .requests-header, .chat-header, .staff-header, .poem-header {
   padding: 1rem; background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
@@ -689,7 +765,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   PANTALLA FIJA EN PC (PRESERVANDO TAMAÑOS REALES EN 720P/1080P)
+   PANTALLA FIJA EN PC (ESCALADO PROPORCIONAL EXACTO)
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -715,9 +791,9 @@ footer {
   .cassette-head-area { height: 20px; }
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
-  /* La imagen del DJ mantiene su tamaño sin achicarse */
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 340px; width: 340px; height: 340px; }
-  .dj-image-container { gap: 12px; }
+  /* Estuche de casete vertical escalado en laptop */
+  .cassette-case, .ad-overlay img.ad-image { max-width: 240px; }
+  .dj-image-container { gap: 10px; }
   .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
@@ -737,9 +813,10 @@ footer {
   .cassette-head-area { height: 16px; }
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
   
-  /* Se conserva proporcionada e idéntica a 1080p, sin deformar ni verse enana */
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 300px; width: 300px; height: 300px; }
-  .dj-image-container { gap: 8px; }
+  /* Estuche vertical proporcionado en 720p */
+  .cassette-case, .ad-overlay img.ad-image { max-width: 195px; }
+  .case-spine-tab { height: 24px; }
+  .dj-image-container { gap: 6px; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
 
@@ -759,7 +836,9 @@ footer {
   .player-section, .dj-section { flex: none; width: 100%; max-width: 480px; padding: 0; }
   .cassette-player { width: 100%; max-width: 100%; }
   .volume-control { width: 100%; max-width: 100%; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 250px; height: 250px; max-width: 250px; }
+  
+  /* Estuche vertical centrado en móvil */
+  .cassette-case, .ad-overlay img.ad-image { width: 230px; max-width: 230px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
@@ -767,7 +846,6 @@ footer {
   
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
-  #dj-profile-img { animation: none !important; }
 }
 
 @media (max-width: 360px) {
@@ -777,7 +855,7 @@ footer {
   .tape-reel { width: 54px; height: 54px; }
   .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
   .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 200px; height: 200px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 190px; max-width: 190px; }
 }
 </style>
 <script type="application/ld+json">
@@ -802,7 +880,7 @@ footer {
 <section class="player-section">
 <h2 class="section-title player-title">Reproductor</h2>
 
-<!-- CASETE MEJORADO ANTI-CORTE -->
+<!-- CASETE REALISTA (INTACTO) -->
 <div class="cassette-player">
   <div class="cassette-screw top-left"></div>
   <div class="cassette-screw top-center"></div>
@@ -825,7 +903,7 @@ footer {
       </div>
     </div>
 
-    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR FLUIDO -->
+    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR -->
     <div class="cassette-window-frame">
       <div class="tape-ribbon-track"></div>
       
@@ -839,7 +917,7 @@ footer {
           </div>
         </div>
 
-        <!-- ECUALIZADOR (12 BANDAS DE BAJOS A AGUDOS CON SCANLINES) -->
+        <!-- ECUALIZADOR ORIGINAL RESTAURADO (INTACTO) -->
         <div class="equalizer-center-box">
           <div class="equalizer-container" id="equalizer">
             <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -874,7 +952,7 @@ footer {
   </div>
 </div>
 
-<!-- NUEVO MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI -->
+<!-- MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI -->
 <div class="volume-control">
   <div class="volume-header">
     <div class="volume-title">
@@ -901,10 +979,24 @@ footer {
 <section class="dj-section">
 <h2 class="section-title dj-title">Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff41; display: inline; margin-left: 10px; font-weight: 900;"></div></h2>
 <div class="dj-image-container">
-  <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+  
+  <!-- ESTUCHE DE CASETE VERTICAL (JEWEL CASE CON J-CARD) -->
+  <div class="cassette-case">
+    <div class="case-hinge case-hinge-top"></div>
+    <div class="case-hinge case-hinge-bottom"></div>
+    <div class="case-glass-glare"></div>
+    <div class="case-insert">
+      <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+      <div class="case-spine-tab">
+        <span class="case-spine-text">LIVE SESSION</span>
+        <span class="case-stereo-badge">DIGITAL STEREO</span>
+      </div>
+    </div>
+  </div>
+
   <div class="dj-country-info" id="dj-country-info">
-  <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-  <span class="dj-country-name" id="dj-country-name">El Salvador</span>
+    <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+    <span class="dj-country-name" id="dj-country-name">El Salvador</span>
   </div>
   <div class="ad-overlay" id="ad-overlay">
     <button class="ad-close-btn" id="ad-close-btn" aria-label="Cerrar publicidad">×</button>
@@ -932,7 +1024,8 @@ footer {
 </div>
 </footer>
 
-<div class="poem-panel hidden" id="poem-panel">
+<!-- PANELES LATERALES: DESPLAZAMIENTO SUAVE -->
+<div class="poem-panel" id="poem-panel">
   <div class="poem-header">
     <h3>✨ Poema / Frase de la Semana ✨</h3>
     <button class="poem-close-btn" id="poem-close" aria-label="Cerrar">×</button>
@@ -943,7 +1036,7 @@ footer {
 </div>
 <div class="poem-overlay" id="poem-overlay"></div>
 
-<div class="chat-panel hidden" id="chat-panel">
+<div class="chat-panel" id="chat-panel">
 <div class="chat-header"><h3>💬 Chat Nexus</h3><button class="chat-close-btn" id="chat-close">×</button></div>
 <div class="chat-iframe-container" id="chat-iframe-container"></div>
 </div>
@@ -955,7 +1048,7 @@ footer {
 </div>
 <div class="staff-overlay" id="staff-overlay"></div>
 
-<div class="requests-panel hidden" id="requests-panel">
+<div class="requests-panel" id="requests-panel">
   <div class="requests-header"><h3>🎵 Peticiones</h3><button class="requests-close-btn" id="requests-close">×</button></div>
   <div class="requests-content">
     <div id="requests-auth" class="requests-auth">
@@ -1091,12 +1184,22 @@ let audioContext = null, analyzer = null, dataArray = null, animationId = null;
 let isVisualizing = false, audioGraphSetup = false;
 let isChatVisible = false, isStaffVisible = false, isPoemVisible = false, staffLoaded = false;
 const barCount = bars.length;
-const ledColors = ['#8b8b8b', '#bd00ff', '#00ff41'];
-let ledColorIndex = 0, lastBeatTime = 0, beatCount = 0, visualizerFrameCount = 0;
-const beatThreshold = 175;
-const colorChangeThreshold = 3;
+let visualizerFrameCount = 0;
 let isMobileDevice = window.innerWidth <= 900;
+
+/* =========================================================
+   TIRAS LED: CALIBRACIÓN EQUILIBRADA (SUB-BASS PURO)
+   ========================================================= */
+const ledColors = ['#00ff41', '#bd00ff', '#ffffff'];
+let ledColorIndex = 0;
 let ledIsLit = false;
+let lastKickTime = 0;
+let beatIntensity = 0;
+
+// Ventana para conocer el nivel base de la música
+const historySize = 10;
+const bar0History = new Float32Array(historySize);
+let historyIdx = 0;
 
 window.addEventListener('resize', () => { isMobileDevice = window.innerWidth <= 900; }, { passive: true });
 
@@ -1220,6 +1323,7 @@ function destroyChatIframe() {
   if (chatIframeContainer) chatIframeContainer.innerHTML = '';
 }
 
+/* DESPLAZAMIENTO SUAVE EXACTO A STAFF PANEL */
 function toggleChat() {
   isChatVisible = !isChatVisible;
   if(isChatVisible) {
@@ -1228,13 +1332,17 @@ function toggleChat() {
       const num = Math.floor(Math.random() * 1000);
       chatIframeContainer.innerHTML = `<iframe id="chat-iframe" src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`;
     }
-    chatPanel.classList.remove('hidden'); chatPanel.classList.add('visible'); chatOverlay.classList.add('active'); 
-    setTimeout(adjustChatIframeForMobile, 300); document.body.style.overflow = 'hidden';
+    chatPanel.classList.add('visible');
+    chatOverlay.classList.add('active'); 
+    setTimeout(adjustChatIframeForMobile, 300);
+    document.body.style.overflow = '';
     if (isVisualizing) { isVisualizing = false; if (animationId) cancelAnimationFrame(animationId); }
   } else {
     chatDestroyTimer = setTimeout(() => { destroyChatIframe(); chatDestroyTimer = null; }, CHAT_DESTROY_DELAY);
-    chatPanel.classList.remove('visible'); chatPanel.classList.add('hidden'); chatOverlay.classList.remove('active'); 
-    chatPanel.style.height = ''; document.body.style.overflow = '';
+    chatPanel.classList.remove('visible');
+    chatOverlay.classList.remove('active'); 
+    chatPanel.style.height = '';
+    document.body.style.overflow = '';
     if (isPlaying && analyzer && !isVisualizing) { isVisualizing = true; visualize(); }
   }
 }
@@ -1264,7 +1372,7 @@ function toggleStaffPanel() {
   if(isStaffVisible) { 
     staffPanel.classList.add('visible'); 
     staffOverlay.classList.add('active'); 
-    document.body.style.overflow='hidden'; 
+    document.body.style.overflow = ''; 
     if(!staffLoaded){ loadStaffImages(); staffLoaded=true; } 
   } else { 
     staffPanel.classList.remove('visible'); 
@@ -1279,12 +1387,17 @@ function initStaffListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isStaffVisible) toggleStaffPanel(); });
 }
 
+/* DESPLAZAMIENTO SUAVE EXACTO A STAFF PANEL */
 function togglePoemPanel() {
   isPoemVisible = !isPoemVisible;
   if (isPoemVisible) {
-    poemPanel.classList.remove('hidden'); poemPanel.classList.add('visible'); poemOverlay.classList.add('active'); document.body.style.overflow = 'hidden';
+    poemPanel.classList.add('visible');
+    poemOverlay.classList.add('active');
+    document.body.style.overflow = '';
   } else {
-    poemPanel.classList.remove('visible'); poemPanel.classList.add('hidden'); poemOverlay.classList.remove('active'); document.body.style.overflow = '';
+    poemPanel.classList.remove('visible');
+    poemOverlay.classList.remove('active');
+    document.body.style.overflow = '';
   }
 }
 function initPoemListeners() {
@@ -1378,10 +1491,10 @@ async function deleteRequest(idx) {
 function toggleRequestsPanel() {
   const isVisible = requestsPanel.classList.contains('visible');
   if (!isVisible) {
-    requestsPanel.classList.remove('hidden'); requestsPanel.classList.add('visible'); requestsOverlay.classList.add('active'); document.body.style.overflow = 'hidden';
+    requestsPanel.classList.add('visible'); requestsOverlay.classList.add('active'); document.body.style.overflow = '';
     if (!userRole) { requestPassInput.focus(); } else { renderRequests().then(() => startRefresh()); }
   } else {
-    requestsPanel.classList.remove('visible'); requestsPanel.classList.add('hidden'); requestsOverlay.classList.remove('active'); document.body.style.overflow = ''; stopRefresh();
+    requestsPanel.classList.remove('visible'); requestsOverlay.classList.remove('active'); document.body.style.overflow = ''; stopRefresh();
   }
 }
 function startRefresh() {
@@ -1431,11 +1544,13 @@ function stopVisualizer() {
   ledTop.style.background='#8b8b8b'; ledTop.style.boxShadow='0 0 0 rgba(139,139,139,0)';
   ledBottom.style.background='#8b8b8b'; ledBottom.style.boxShadow='0 0 0 rgba(139,139,139,0)';
   ledIsLit = false;
+  beatIntensity = 0;
+  bar0History.fill(0);
 }
 
-/* 12 BANDAS CALIBRADAS PARA MÁXIMA DINÁMICA SIN SATURARSE ARRIBA */
+/* 12 BANDAS CALIBRADAS PARA MÁXIMA DINÁMICA DE BAJOS A AGUDOS */
 const freqSpectrumBands = [
-  { start: 1, end: 3, mult: 0.82 },    // Sub-Bass (Bombos)
+  { start: 1, end: 3, mult: 0.82 },    // Sub-Bass (Bombos) -> BARRA 1
   { start: 3, end: 6, mult: 0.84 },    // Bass (Bajo eléctrico/sintetizado)
   { start: 6, end: 10, mult: 0.88 },   // Low-Mid (Pegada de bombo/caja)
   { start: 10, end: 16, mult: 0.94 },  // Mid-Low (Cuerpo vocal)
@@ -1448,6 +1563,76 @@ const freqSpectrumBands = [
   { start: 130, end: 165, mult: 2.35 },// Highs (Brillo superior)
   { start: 165, end: 200, mult: 2.85 } // Air (Armónicos de aire)
 ];
+
+/* SINCRONIZACIÓN DE TIRAS LED: FILTRADO SUB-GRAVE PURO CON LÍNEA BASE DINÁMICA */
+function updateLedsDirectKick() {
+  if (!isPlaying || !analyzer || !dataArray) {
+    if (ledIsLit) {
+      ledIsLit = false;
+      beatIntensity = 0;
+      ledTop.style.background = '#8b8b8b';
+      ledTop.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
+      ledBottom.style.background = '#8b8b8b';
+      ledBottom.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
+    }
+    return;
+  }
+
+  // Aislamos únicamente 40-120Hz (inmune a voces, cajas y agudos)
+  const rawSub = (dataArray[1] * 1.6 + dataArray[2] * 0.7) / 2.3;
+  const kickEnergy = Math.pow(Math.min(1, (rawSub / 235) * 0.9), 1.3);
+
+  // Registro en ventana para calcular el nivel continuo
+  bar0History[historyIdx] = kickEnergy;
+  historyIdx = (historyIdx + 1) % historySize;
+
+  let minBaseline = 1.0;
+  for (let k = 0; k < historySize; k++) {
+    if (bar0History[k] < minBaseline) minBaseline = bar0History[k];
+  }
+
+  const kickJump = kickEnergy - minBaseline;
+  const now = Date.now();
+
+  // Pequeño ajuste equilibrado: estabilidad en salsa/reggaeton y detección fluida en drops de electrónica
+  const isKickHit = (
+    kickJump > 0.06 || 
+    (kickEnergy > 0.28 && kickJump > 0.035) || 
+    (kickEnergy > 0.62 && kickJump > 0.020)
+  ) && (now - lastKickTime > 215);
+
+  if (isKickHit) {
+    lastKickTime = now;
+    ledColorIndex = (ledColorIndex + 1) % ledColors.length;
+    beatIntensity = Math.min(1.0, Math.max(0.65, kickJump * 2.5 + kickEnergy * 0.35));
+  } else {
+    beatIntensity *= 0.86;
+  }
+
+  if (beatIntensity > 0.05) {
+    const currentColor = ledColors[ledColorIndex];
+    const glow1 = Math.round(10 + beatIntensity * 16);
+    const glow2 = Math.round(18 + beatIntensity * 26);
+    const alpha = (0.35 + beatIntensity * 0.65).toFixed(2);
+
+    if (currentColor === '#ffffff') {
+      ledTop.style.background = `rgba(250, 250, 250, ${alpha})`;
+      ledTop.style.boxShadow = `0 0 ${glow1}px #ffffff, 0 0 ${glow2}px rgba(255, 255, 255, ${alpha}), inset 0 0 6px rgba(255, 255, 255, 0.9)`;
+    } else {
+      ledTop.style.background = currentColor;
+      ledTop.style.boxShadow = `0 0 ${glow1}px ${currentColor}, 0 0 ${glow2}px ${currentColor}, inset 0 0 6px rgba(255, 255, 255, 0.65)`;
+    }
+    ledBottom.style.background = ledTop.style.background;
+    ledBottom.style.boxShadow = ledTop.style.boxShadow;
+    ledIsLit = true;
+  } else if (ledIsLit) {
+    ledIsLit = false;
+    ledTop.style.background = '#8b8b8b';
+    ledTop.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
+    ledBottom.style.background = '#8b8b8b';
+    ledBottom.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
+  }
+}
 
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
@@ -1476,9 +1661,9 @@ function visualize() {
     // Curva de respuesta con rango dinámico amplio (evita quedarse pegado arriba)
     let norm = (avg / 255) * band.mult;
     norm = Math.min(1, Math.max(0, norm));
-    let dynamicNorm = Math.pow(norm, 1.35); // Curva exponencial que da margen de rebote
+    let dynamicNorm = Math.pow(norm, 1.35);
     let height = Math.round(minHeight + dynamicNorm * (maxHeight - minHeight));
-    
+
     bars[i].style.height = height + 'px';
     
     if (height >= maxHeight * 0.78) {
@@ -1490,49 +1675,10 @@ function visualize() {
     }
   }
   
-  updateLedStrips();
+  // Tiras LED con calibración precisa y equilibrada
+  updateLedsDirectKick();
+  
   animationId = requestAnimationFrame(visualize);
-}
-
-function getBassIntensity() {
-  if (!analyzer || !dataArray) return 0;
-  return (dataArray[1] + dataArray[2] + dataArray[3] + dataArray[4]) / 4;
-}
-
-function updateLedStrips() {
-  if (!isPlaying || !analyzer) {
-    if (ledIsLit) {
-      ledIsLit = false;
-      ledTop.style.background = '#8b8b8b'; ledTop.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-      ledBottom.style.background = '#8b8b8b'; ledBottom.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-    }
-    return;
-  }
-  const bassIntensity = getBassIntensity(); 
-  const now = Date.now();
-  if (bassIntensity > beatThreshold && (now - lastBeatTime) > 150) {
-    lastBeatTime = now; beatCount++;
-    if (beatCount >= colorChangeThreshold) { 
-      ledColorIndex = (ledColorIndex + 1) % ledColors.length; 
-      beatCount = 0; 
-    }
-    const currentColor = ledColors[ledColorIndex];
-    const shadowGlow = currentColor === '#8b8b8b'
-      ? '0 0 16px #8b8b8b, 0 0 28px rgba(220, 220, 220, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.7)'
-      : `0 0 16px ${currentColor}, 0 0 28px ${currentColor}80, inset 0 0 8px rgba(255, 255, 255, 0.4)`;
-
-    ledTop.style.background = currentColor;
-    ledTop.style.boxShadow = shadowGlow;
-    ledBottom.style.background = currentColor;
-    ledBottom.style.boxShadow = shadowGlow;
-    ledIsLit = true;
-  } else if (ledIsLit && (now - lastBeatTime) > 140) {
-    ledIsLit = false;
-    ledTop.style.background = '#8b8b8b';
-    ledTop.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-    ledBottom.style.background = '#8b8b8b';
-    ledBottom.style.boxShadow = '0 0 0 rgba(0,0,0,0)';
-  }
 }
 
 function togglePlayPause() {
