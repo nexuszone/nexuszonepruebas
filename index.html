@@ -60,7 +60,7 @@ body {
 /* CABECERA */
 header {
   background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
-  padding: 0.9rem 1.5rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
+  padding: 0.8rem 1.2rem; text-align: center; position: relative; z-index: 10; flex-shrink: 0;
 }
 .header-content {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -99,7 +99,7 @@ h1 {
 /* CONTENEDOR EN PC */
 .main-container {
   display: flex; flex: 1; width: 100%;
-  padding: clamp(1rem, 2.5vw, 2.5rem); gap: clamp(1.5rem, 3vw, 4rem);
+  padding: clamp(0.8rem, 2vw, 2rem); gap: clamp(1.2rem, 2.5vw, 3.5rem);
   position: relative; z-index: 1; align-items: center; justify-content: space-between;
 }
 
@@ -109,25 +109,25 @@ h1 {
 }
 
 .section-title {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.4rem);
-  margin-bottom: 1.2rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.35rem);
+  margin-bottom: 0.8rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
 }
-.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
+.player-title, .dj-title { color: #bd00ff; padding-bottom: 0.2rem; }
 
 /* =========================================================
-   CASETE REALISTA RETRO-CYBERPUNK
+   CASETE REALISTA - DISEÑO FLUIDO ANTI-CORTE
    ========================================================= */
 .cassette-player {
-  width: 95%; max-width: 575px; height: auto; min-height: 340px;
+  width: 100%; max-width: 550px;
   background: linear-gradient(165deg, #2a2a2f 0%, #161619 45%, #0e0e11 100%);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
     inset 0 -2px 5px rgba(0, 0, 0, 0.85),
-    0 12px 35px rgba(0, 0, 0, 0.85),
+    0 12px 30px rgba(0, 0, 0, 0.85),
     0 0 25px rgba(189, 0, 255, 0.25);
-  border: 2px solid #555;
-  padding: 16px 14px 10px 14px;
+  border: 2px solid #4a4a54;
+  padding: clamp(10px, 2vw, 15px) clamp(8px, 1.8vw, 14px) clamp(8px, 1.5vw, 12px) clamp(8px, 1.8vw, 14px);
   position: relative;
   overflow: hidden;
   display: flex;
@@ -139,16 +139,16 @@ h1 {
 .cassette-player::after {
   content: '';
   position: absolute;
-  top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  top: 5px; left: 5px; right: 5px; bottom: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-  border-radius: 14px;
+  border-radius: 12px;
   pointer-events: none;
 }
 
-/* Tornillos de estrella */
+/* Tornillos de estrella metálicos */
 .cassette-screw {
-  position: absolute; width: 14px; height: 14px; border-radius: 50%;
+  position: absolute; width: clamp(11px, 2.2vw, 14px); height: clamp(11px, 2.2vw, 14px); border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #9e9e9e 0%, #525252 50%, #292929 100%);
   border: 1px solid rgba(0, 0, 0, 0.7);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
@@ -158,80 +158,85 @@ h1 {
   content: ''; position: absolute; top: 50%; left: 50%;
   background: #111; border-radius: 0.5px;
 }
-.cassette-screw::before { width: 8px; height: 2px; transform: translate(-50%, -50%); }
-.cassette-screw::after { width: 2px; height: 8px; transform: translate(-50%, -50%); }
+.cassette-screw::before { width: 7px; height: 1.8px; transform: translate(-50%, -50%); }
+.cassette-screw::after { width: 1.8px; height: 7px; transform: translate(-50%, -50%); }
 
-.cassette-screw.top-left { top: 10px; left: 10px; }
-.cassette-screw.top-right { top: 10px; right: 10px; }
-.cassette-screw.top-center { top: 8px; left: 50%; transform: translateX(-50%); }
-.cassette-screw.bottom-left { bottom: 10px; left: 10px; }
-.cassette-screw.bottom-right { bottom: 10px; right: 10px; }
+.cassette-screw.top-left { top: 8px; left: 8px; }
+.cassette-screw.top-right { top: 8px; right: 8px; }
+.cassette-screw.top-center { top: 6px; left: 50%; transform: translateX(-50%); }
+.cassette-screw.bottom-left { bottom: 8px; left: 8px; }
+.cassette-screw.bottom-right { bottom: 8px; right: 8px; }
 
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-size: cover; background-position: center; opacity: 0.15; filter: blur(4px); z-index: 1;
 }
 
-/* PEGATINA VINTAGE */
+/* ETIQUETA ADHESIVA VINTAGE */
 .cassette-label {
   position: relative; z-index: 2;
   background: linear-gradient(180deg, #1e1d24 0%, #121216 100%);
-  border-radius: 12px;
+  border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.5);
-  padding: 8px 12px 10px 12px;
-  display: flex; flex-direction: column; gap: 7px;
+  padding: clamp(6px, 1.5vw, 10px) clamp(8px, 1.8vw, 12px);
+  display: flex; flex-direction: column; gap: 6px;
+  width: 100%;
 }
 
 .label-header-bar {
   display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 2px solid #bd00ff; padding-bottom: 4px;
+  border-bottom: 2px solid #bd00ff; padding-bottom: 3px;
 }
 .label-side {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.95rem;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.85rem, 1.8vw, 0.95rem);
   color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
-  display: flex; align-items: center; gap: 6px;
+  display: flex; align-items: center; gap: 5px;
 }
 .label-side span {
-  background: #bd00ff; color: #000; font-size: 0.7rem; padding: 1px 6px; border-radius: 3px; font-weight: 900;
+  background: #bd00ff; color: #000; font-size: 0.68rem; padding: 1px 5px; border-radius: 3px; font-weight: 900;
 }
 .label-type {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #00ff41;
+  font-family: 'Share Tech Mono', monospace; font-size: clamp(0.75rem, 1.6vw, 0.85rem); font-weight: 700; color: #00ff41;
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
-  border: 1px solid rgba(0, 255, 65, 0.45); padding: 1px 10px; border-radius: 4px;
+  border: 1px solid rgba(0, 255, 65, 0.45); padding: 1px 8px; border-radius: 4px;
   letter-spacing: 2px;
 }
 
-/* Título con línea de escritura de la cinta */
+/* Banda de título con líneas rayadas */
 .cassette-write-strip {
   background: repeating-linear-gradient(
     180deg,
     rgba(255,255,255,0.02) 0px,
-    rgba(255,255,255,0.02) 22px,
-    rgba(189, 0, 255, 0.22) 23px
+    rgba(255,255,255,0.02) 20px,
+    rgba(189, 0, 255, 0.22) 21px
   );
   border: 1px dashed rgba(255, 255, 255, 0.15);
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 3px 6px;
-  min-height: 38px;
+  min-height: 36px;
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
 }
 .song-info {
   width: 100%; text-align: center; color: #00ff41;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.95rem, 1.7vw, 1.3rem);
-  letter-spacing: 1.2px; min-height: 28px; display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.85rem, 2.2vw, 1.2rem);
+  letter-spacing: 1.1px; min-height: 26px; display: flex; align-items: center; justify-content: center;
 }
 
-/* VENTANA TRANSPARENTE */
+/* =========================================================
+   VENTANA TRANSPARENTE DEL CASETE (100% RESPONSIVA)
+   ========================================================= */
 .cassette-window-frame {
   background: #070709;
-  border-radius: 45px;
+  border-radius: 35px;
   border: 2px solid #36363d;
   box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.95), 0 1px 1px rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
+  padding: 5px clamp(6px, 1.8vw, 12px);
   position: relative;
   overflow: hidden;
   margin: 2px 0;
+  width: 100%;
 }
 
 .cassette-window-frame::before {
@@ -241,158 +246,148 @@ h1 {
 }
 
 .tape-ribbon-track {
-  position: absolute; left: 8%; right: 8%; top: 50%; height: 60px;
+  position: absolute; left: 5%; right: 5%; top: 50%; height: clamp(44px, 12vw, 62px);
   transform: translateY(-50%);
-  background: linear-gradient(180deg, #1a100a 0%, #2a190f 50%, #120905 100%);
-  border-top: 1px solid rgba(0,0,0,0.6);
-  border-bottom: 1px solid rgba(0,0,0,0.6);
-  border-radius: 20px;
+  background: linear-gradient(180deg, #1b1008 0%, #2f1a0e 50%, #150904 100%);
+  border-top: 1px solid rgba(0,0,0,0.65);
+  border-bottom: 1px solid rgba(0,0,0,0.65);
+  border-radius: 18px;
   z-index: 1; opacity: 0.95;
 }
 
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
-  z-index: 5; height: 108px; width: 100%;
+  z-index: 5; height: clamp(75px, 19vw, 105px); width: 100%; gap: clamp(4px, 1.2vw, 10px);
 }
 
 /* =========================================================
-   CARRETES CON COLORES NEÓN VIVOS Y RESPLANDECIENTES
+   CARRETES REALISTAS CON CINTA Y DIENTES NEÓN
    ========================================================= */
 .tape-reel {
-  width: 84px; height: 84px; border-radius: 50%;
+  width: clamp(56px, 16.5vw, 84px);
+  height: clamp(56px, 16.5vw, 84px);
+  border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   position: relative; flex-shrink: 0;
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  aspect-ratio: 1 / 1;
 }
 
-/* Carrete izquierdo (Violeta Neón Intenso) */
+/* Carrete izquierdo (Púrpura / Violeta Neón) */
 #tape-left {
-  background: radial-gradient(circle at center, #2e103d 0%, #1b0726 50%, #0e0314 100%);
-  border: 3.5px solid #bd00ff;
-  box-shadow: 
-    0 0 12px rgba(189, 0, 255, 0.75),
-    inset 0 0 12px rgba(189, 0, 255, 0.5),
-    0 4px 10px rgba(0, 0, 0, 0.8);
+  background: radial-gradient(circle at center, #2e103d 0%, #1c0926 48%, #361f14 52%, #1a0f0a 100%);
+  border: 3px solid #bd00ff;
+  box-shadow: 0 0 12px rgba(189, 0, 255, 0.75), inset 0 0 10px rgba(189, 0, 255, 0.5);
 }
 #tape-left .reel-sprocket {
   border: 2px solid #bd00ff;
-  background: radial-gradient(circle at center, #11001a 38%, #bd00ff 40%, #500e70 70%, #200030 100%);
-  box-shadow: 0 0 8px rgba(189, 0, 255, 0.8);
+  background: radial-gradient(circle at center, #0e0014 36%, #bd00ff 40%, #4a0c66 70%, #1f022b 100%);
+  box-shadow: 0 0 8px rgba(189, 0, 255, 0.85);
 }
 #tape-left .reel-sprocket .tooth {
-  background: #f2a8ff;
-  box-shadow: 0 0 4px #bd00ff;
+  background: #f4b8ff; box-shadow: 0 0 4px #bd00ff;
 }
+#tape-left .tape-clamp-notch { background: #bd00ff; }
 #tape-left.animated {
   animation: reelSpin 2.4s linear infinite, purpleReelPulse 1.6s ease-in-out infinite alternate;
 }
 @keyframes purpleReelPulse {
-  0% { box-shadow: 0 0 12px rgba(189, 0, 255, 0.7), inset 0 0 10px rgba(189, 0, 255, 0.5); }
-  100% { box-shadow: 0 0 24px rgba(189, 0, 255, 1), inset 0 0 16px rgba(189, 0, 255, 0.85); }
+  0% { box-shadow: 0 0 10px rgba(189, 0, 255, 0.7), inset 0 0 8px rgba(189, 0, 255, 0.5); }
+  100% { box-shadow: 0 0 20px rgba(189, 0, 255, 1), inset 0 0 14px rgba(189, 0, 255, 0.85); }
 }
 
-/* Carrete derecho (Verde Neón Intenso) */
+/* Carrete derecho (Verde Eléctrico Neón) */
 #tape-right {
-  background: radial-gradient(circle at center, #0e3318 0%, #08210f 50%, #031107 100%);
-  border: 3.5px solid #00ff41;
-  box-shadow: 
-    0 0 12px rgba(0, 255, 65, 0.75),
-    inset 0 0 12px rgba(0, 255, 65, 0.5),
-    0 4px 10px rgba(0, 0, 0, 0.8);
+  background: radial-gradient(circle at center, #0e3318 0%, #08210f 48%, #361f14 52%, #1a0f0a 100%);
+  border: 3px solid #00ff41;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.75), inset 0 0 10px rgba(0, 255, 65, 0.5);
 }
 #tape-right .reel-sprocket {
   border: 2px solid #00ff41;
-  background: radial-gradient(circle at center, #001205 38%, #00ff41 40%, #0c5720 70%, #04260d 100%);
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+  background: radial-gradient(circle at center, #001205 36%, #00ff41 40%, #0d5921 70%, #04240c 100%);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.85);
 }
 #tape-right .reel-sprocket .tooth {
-  background: #a3ffbd;
-  box-shadow: 0 0 4px #00ff41;
+  background: #aaffc4; box-shadow: 0 0 4px #00ff41;
 }
+#tape-right .tape-clamp-notch { background: #00ff41; }
 #tape-right.animated {
   animation: reelSpin 2.4s linear infinite, greenReelPulse 1.6s ease-in-out infinite alternate;
 }
 @keyframes greenReelPulse {
-  0% { box-shadow: 0 0 12px rgba(0, 255, 65, 0.7), inset 0 0 10px rgba(0, 255, 65, 0.5); }
-  100% { box-shadow: 0 0 24px rgba(0, 255, 65, 1), inset 0 0 16px rgba(0, 255, 65, 0.85); }
+  0% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.7), inset 0 0 8px rgba(0, 255, 65, 0.5); }
+  100% { box-shadow: 0 0 20px rgba(0, 255, 65, 1), inset 0 0 14px rgba(0, 255, 65, 0.85); }
 }
 
 .reel-sprocket {
-  position: absolute; width: 44px; height: 44px; border-radius: 50%;
+  position: absolute; width: 52%; height: 52%; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
 }
 .reel-sprocket::after {
-  content: ''; width: 20px; height: 20px; border-radius: 50%;
-  background: #08080a; border: 2px solid #222; z-index: 4;
+  content: ''; width: 44%; height: 44%; border-radius: 50%;
+  background: #08080a; border: 1.5px solid #222; z-index: 4;
 }
+.tape-clamp-notch {
+  position: absolute; width: 4px; height: 7px; top: 12%; left: 50%;
+  transform: translateX(-50%); border-radius: 1px; z-index: 5;
+}
+
 .reel-sprocket .tooth {
-  position: absolute; width: 4px; height: 11px;
+  position: absolute; width: 10%; height: 26%;
   border-radius: 1px; z-index: 3;
 }
-.reel-sprocket .tooth:nth-child(1) { transform: rotate(0deg) translateY(-14px); }
-.reel-sprocket .tooth:nth-child(2) { transform: rotate(60deg) translateY(-14px); }
-.reel-sprocket .tooth:nth-child(3) { transform: rotate(120deg) translateY(-14px); }
-.reel-sprocket .tooth:nth-child(4) { transform: rotate(180deg) translateY(-14px); }
-.reel-sprocket .tooth:nth-child(5) { transform: rotate(240deg) translateY(-14px); }
-.reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-14px); }
+.reel-sprocket .tooth:nth-child(1) { transform: rotate(0deg) translateY(-140%); }
+.reel-sprocket .tooth:nth-child(2) { transform: rotate(60deg) translateY(-140%); }
+.reel-sprocket .tooth:nth-child(3) { transform: rotate(120deg) translateY(-140%); }
+.reel-sprocket .tooth:nth-child(4) { transform: rotate(180deg) translateY(-140%); }
+.reel-sprocket .tooth:nth-child(5) { transform: rotate(240deg) translateY(-140%); }
+.reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-140%); }
 @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* =========================================================
-   ECUALIZADOR CENTRADO CON FILTRO CRT (12 BARRAS ACTIVAS)
+   ECUALIZADOR CENTRADO: RESPONDE DE IZQ A DER (BAJOS A ALTOS)
    ========================================================= */
 .equalizer-center-box {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 6;
-  padding: 0 12px;
-  height: 100%;
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 6; height: 100%;
 }
 
 .equalizer-container {
-  width: 100%;
-  max-width: 210px;
-  height: 48px;
-  background: rgba(10, 10, 14, 0.9);
-  border: 2px solid #30303c;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 4px;
-  padding: 5px 8px;
+  width: 100%; max-width: 200px; min-width: 0;
+  height: clamp(34px, 8.5vw, 46px);
+  background: rgba(10, 10, 14, 0.92);
+  border: 1.5px solid #32323e;
+  border-radius: 6px;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: clamp(1.5px, 0.6vw, 3.5px);
+  padding: 4px clamp(3px, 1vw, 6px);
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 14px rgba(0,0,0,0.95), 0 0 10px rgba(0, 255, 65, 0.15);
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.95), 0 0 8px rgba(0, 255, 65, 0.15);
 }
 
 /* FILTRO SCANLINES CRT */
 .equalizer-container::after {
   content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3) 50%, rgba(0, 255, 65, 0.08) 50%);
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 8;
-  opacity: 0.9;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.35) 50%, rgba(0, 255, 65, 0.08) 50%);
+  background-size: 100% 4px; pointer-events: none; z-index: 8; opacity: 0.9;
 }
 
 .bar {
-  width: 6px; height: 3px; border-radius: 2px 2px 0 0;
+  width: 100%; height: 3px; border-radius: 1.5px 1.5px 0 0;
   transform-origin: bottom; position: relative; flex: 1; will-change: height;
   background: linear-gradient(to top, #008822, #7a00cc);
-  box-shadow: 0 0 5px rgba(0, 255, 65, 0.6);
+  box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
   transition: height 0.04s ease-out;
 }
 .bar.bar-mid {
   background: linear-gradient(to top, #00cc33, #9900ff);
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.8), 0 0 10px rgba(189, 0, 255, 0.6);
+  box-shadow: 0 0 7px rgba(0, 255, 65, 0.8), 0 0 9px rgba(189, 0, 255, 0.6);
 }
 .bar.bar-high {
   background: linear-gradient(to top, #00ff41, #bd00ff);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 16px rgba(189, 0, 255, 0.95);
+  box-shadow: 0 0 9px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.95);
 }
 
 /* =========================================================
@@ -401,15 +396,15 @@ h1 {
 .cassette-deck-controls {
   position: relative; z-index: 4;
   display: flex; justify-content: center; align-items: center;
-  padding: 6px 0 3px 0;
+  padding: 5px 0 2px 0;
 }
 
 .play-btn {
-  width: 90px; height: 32px;
+  width: clamp(76px, 20vw, 92px); height: clamp(26px, 6.5vw, 32px);
   background: linear-gradient(180deg, #242429 0%, #121215 100%);
   border: 2px solid #00ff41; border-radius: 6px; cursor: pointer;
   display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.9rem, 2.2vw, 1.1rem); color: #00ff41;
   text-shadow: 0 0 7px rgba(0, 255, 65, 0.8);
   box-shadow: 0 0 12px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease;
@@ -425,41 +420,46 @@ h1 {
 
 .cassette-head-area {
   position: relative;
-  width: 78%; margin: 2px auto 0 auto; height: 26px;
+  width: 78%; margin: 2px auto 0 auto; height: clamp(18px, 4.5vw, 24px);
   background: linear-gradient(180deg, #18181d 0%, #0f0f12 100%);
   clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
   border-bottom: 2px solid #303036;
   display: flex; justify-content: space-around; align-items: center;
-  padding: 0 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
+  padding: 0 20px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
 }
 .head-hole {
-  width: 9px; height: 9px; border-radius: 50%;
+  width: clamp(7px, 1.8vw, 9px); height: clamp(7px, 1.8vw, 9px); border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #0a0a0c 40%, #2a2a30 90%, #444 100%);
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 1px 1px rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
 }
 .head-center-notch {
-  width: 30px; height: 6px; background: #08080a;
+  width: clamp(22px, 5.5vw, 30px); height: 5px; background: #08080a;
   border-radius: 2px; border: 1px solid #24242a;
 }
 
 /* =========================================================
-   CONTROL DE VOLUMEN CIBERNÉTICO HI-FI
+   NUEVO MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI
    ========================================================= */
 .volume-control {
-  width: 95%; max-width: 440px; margin: 12px auto 0 auto;
-  background: linear-gradient(180deg, rgba(28, 28, 34, 0.95) 0%, rgba(16, 16, 20, 0.95) 100%);
-  padding: 10px 16px 8px 16px; border-radius: 12px;
-  border: 1.5px solid #3d3d4a;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  width: 100%; max-width: 440px; margin: 10px auto 0 auto;
+  background: linear-gradient(180deg, rgba(24, 24, 30, 0.96) 0%, rgba(13, 13, 16, 0.96) 100%);
+  padding: 9px 14px 7px 14px; border-radius: 10px;
+  border: 1px solid #383845;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
   position: relative; z-index: 10;
 }
-.volume-label {
+.volume-header {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
-  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; letter-spacing: 1px;
 }
+.volume-title {
+  display: flex; align-items: center; gap: 6px;
+  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 1.5px;
+}
+.volume-title svg { width: 14px; height: 14px; fill: #00ff41; filter: drop-shadow(0 0 4px #00ff41); }
 .volume-badge {
-  background: #000; border: 1px solid #00ff41; padding: 1px 6px; border-radius: 4px;
-  box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+  background: #000; border: 1px solid #00ff41; color: #00ff41;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; padding: 1px 8px; border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
 }
 .volume-slider-wrap {
   position: relative; width: 100%; display: flex; flex-direction: column; gap: 4px;
@@ -468,38 +468,38 @@ h1 {
   width: 100%; height: 8px;
   -webkit-appearance: none;
   appearance: none;
-  background: linear-gradient(to right, #bd00ff 0%, #00ff41 100%);
+  background: linear-gradient(to right, #bd00ff 0%, #00ff41 100%, #202025 100%);
   border-radius: 6px; outline: none;
   cursor: pointer;
   touch-action: none;
   position: relative;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.85);
 }
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 20px; height: 20px;
-  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #00661a 100%);
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #004d13 100%);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
-  border: 2px solid #0a0a0a;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
+  border: 2px solid #08080a;
 }
 .volume-slider::-moz-range-thumb {
   width: 20px; height: 20px;
-  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #00661a 100%);
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #004d13 100%);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
-  border: 2px solid #0a0a0a;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
+  border: 2px solid #08080a;
 }
 .volume-scale {
   display: flex; justify-content: space-between; padding: 0 2px;
-  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #777;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: #666;
 }
 
 /* =========================================================
-   GLITCH ORIGINAL DE LA PÁGINA
+   GLITCH ORIGINAL DE LA PÁGINA (CYBER-GLITCH)
    ========================================================= */
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
 .cyber-glitch {
@@ -539,12 +539,12 @@ h1 {
 @keyframes glitch-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 25px #bd00ff, 0 0 35px #00ff41; } }
 @keyframes glitch-chaos { 0%, 100% { transform: translate(0,0); } 30% { transform: translate(-3px, 2px); } 70% { transform: translate(3px, -2px); } }
 
-#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.95rem, 1.7vw, 1.3rem); text-align: center; }
+#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.85rem, 2vw, 1.25rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
 /* SECCIÓN DJ */
 #dj-profile-img {
-  width: 100%; max-width: 412px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
+  width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
   object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6), 0 0 30px rgba(139, 139, 139, 0.4);
   animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
@@ -554,9 +554,9 @@ h1 {
   50% { transform: scale(1.03); }
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 24px; width: 100%; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; width: 100%; }
 .dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 18px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
   font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
 }
@@ -570,7 +570,7 @@ h1 {
 }
 .ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 432px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
+  width: 100%; max-width: 400px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
 }
 .ad-close-btn {
@@ -690,7 +690,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   SISTEMA DE PANTALLA FIJA EN PC (ESCALADO ORIGINAL EXACTO)
+   PANTALLA FIJA EN PC / PORTÁTILES (SIN SCROLL)
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -699,72 +699,63 @@ footer {
   }
 }
 
-/* Para portátiles (1366x768, 1440x900 o 1600x900 con altura real ~600-750px) */
 @media (min-width: 901px) and (max-height: 850px) {
-  header { padding: 0.5rem 1.2rem; }
-  .header-logo { max-height: 70px; max-width: 150px; }
-  h1 { font-size: 1.7rem; }
-  .header-subtitle { font-size: 0.8rem; }
-  .main-container { padding: 0.6rem 2rem; gap: 2rem; }
-  .player-section, .dj-section { padding: 0.4rem; }
-  .section-title { font-size: 1.1rem; margin-bottom: 0.6rem; }
+  header { padding: 0.4rem 1.2rem; }
+  .header-logo { max-height: 65px; max-width: 140px; }
+  h1 { font-size: 1.6rem; }
+  .header-subtitle { font-size: 0.75rem; }
+  .main-container { padding: 0.4rem 1.8rem; gap: 1.8rem; }
+  .section-title { font-size: 1rem; margin-bottom: 0.4rem; }
   
-  .cassette-player { max-width: 480px; min-height: 280px; padding: 10px 12px 6px 12px; }
-  .cassette-tapes { height: 92px; }
-  .tape-reel { width: 70px; height: 70px; }
-  .reel-sprocket { width: 36px; height: 36px; }
+  .cassette-player { max-width: 460px; padding: 10px 10px 6px 10px; }
+  .cassette-tapes { height: 88px; }
+  .tape-reel { width: 68px; height: 68px; }
   .equalizer-container { height: 38px; }
-  .play-btn { width: 78px; height: 28px; font-size: 0.95rem; }
-  .cassette-head-area { height: 22px; }
-  .volume-control { max-width: 360px; padding: 7px 12px 6px 12px; margin-top: 8px; }
+  .play-btn { width: 80px; height: 28px; font-size: 0.95rem; }
+  .cassette-head-area { height: 20px; }
+  .volume-control { max-width: 380px; padding: 7px 12px 5px 12px; margin-top: 6px; }
   
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 270px; width: 270px; height: 270px; }
-  .dj-image-container { gap: 14px; }
-  .dj-country-info { padding: 6px 14px; font-size: 0.8rem; }
-  footer { min-height: 65px; padding: 0.2rem 1rem; }
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 250px; width: 250px; height: 250px; }
+  .dj-image-container { gap: 12px; }
+  .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
+  footer { min-height: 60px; padding: 0.2rem 1rem; }
 }
 
-/* Para pantallas de 720p (altura útil del navegador ~560-600px) */
 @media (min-width: 901px) and (max-height: 700px) {
-  header { padding: 0.3rem 1rem; }
-  .header-logo { max-height: 52px; max-width: 120px; }
-  h1 { font-size: 1.4rem; }
-  .main-container { padding: 0.4rem 1.5rem; gap: 1.5rem; }
-  .section-title { font-size: 0.95rem; margin-bottom: 0.4rem; }
-  .cassette-player { max-width: 420px; min-height: 240px; padding: 8px 10px 4px 10px; }
-  .cassette-tapes { height: 80px; }
-  .tape-reel { width: 60px; height: 60px; }
-  .reel-sprocket { width: 30px; height: 30px; }
-  .equalizer-container { height: 34px; }
-  .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-head-area { height: 18px; }
-  .volume-control { max-width: 310px; padding: 5px 10px; margin-top: 6px; }
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 215px; width: 215px; height: 215px; }
-  .dj-image-container { gap: 10px; }
-  footer { min-height: 52px; padding: 0.15rem; }
+  header { padding: 0.25rem 1rem; }
+  .header-logo { max-height: 48px; max-width: 110px; }
+  h1 { font-size: 1.3rem; }
+  .main-container { padding: 0.3rem 1.2rem; gap: 1.2rem; }
+  .section-title { font-size: 0.9rem; margin-bottom: 0.3rem; }
+  .cassette-player { max-width: 400px; padding: 8px 8px 4px 8px; }
+  .cassette-tapes { height: 76px; }
+  .tape-reel { width: 58px; height: 58px; }
+  .equalizer-container { height: 32px; }
+  .play-btn { width: 70px; height: 24px; font-size: 0.85rem; }
+  .cassette-head-area { height: 16px; }
+  .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 200px; width: 200px; height: 200px; }
+  .dj-image-container { gap: 8px; }
+  footer { min-height: 48px; padding: 0.1rem; }
 }
 
 /* =========================================================
-   MÓVILES (REDMI 10, REALME 14X Y PANTALLAS TÁCTILES)
+   MÓVILES (REALME 14X, REDMI 10 Y CUALQUIER PANTALLA)
    ========================================================= */
 @media (max-width: 900px) {
   body { overflow-y: auto; }
-  .header-content { flex-direction: row; justify-content: center; align-items: center; gap: 12px; }
-  .header-logo { position: static; transform: none; max-height: 52px; max-width: 58px; flex-shrink: 0; }
+  .header-content { flex-direction: row; justify-content: center; align-items: center; gap: 10px; }
+  .header-logo { position: static; transform: none; max-height: 50px; max-width: 55px; flex-shrink: 0; }
   .header-text-group { align-items: flex-start; text-align: left; }
 
   .main-container {
     flex-direction: column; height: auto; flex: none;
-    padding: 1.2rem 0.8rem 2.2rem 0.8rem; gap: 1.8rem; justify-content: flex-start;
+    padding: 1rem 0.6rem 2rem 0.6rem; gap: 1.6rem; justify-content: flex-start;
   }
   .player-section, .dj-section { flex: none; width: 100%; max-width: 480px; padding: 0; }
-  .cassette-player { width: 100%; max-width: 100%; min-height: auto; padding: 12px 10px 8px 10px; }
-  .cassette-tapes { height: 90px; }
-  .tape-reel { width: 68px; height: 68px; }
-  .reel-sprocket { width: 36px; height: 36px; }
-  .equalizer-container { height: 40px; }
+  .cassette-player { width: 100%; max-width: 100%; }
   .volume-control { width: 100%; max-width: 100%; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 270px; height: 270px; max-width: 270px; }
+  #dj-profile-img, .ad-overlay img.ad-image { width: 250px; height: 250px; max-width: 250px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
@@ -775,15 +766,14 @@ footer {
   #dj-profile-img { animation: none !important; }
 }
 
-@media (max-width: 375px) {
-  .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.4rem; }
-  .cassette-player { padding: 10px 8px 6px 8px; }
-  .cassette-tapes { height: 80px; }
-  .tape-reel { width: 58px; height: 58px; }
-  .reel-sprocket { width: 30px; height: 30px; }
-  .equalizer-container { height: 34px; padding: 4px 6px; }
-  .play-btn { width: 70px; height: 26px; font-size: 0.9rem; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 220px; height: 220px; }
+@media (max-width: 360px) {
+  .main-container { padding: 0.6rem 0.3rem 1.8rem 0.3rem; gap: 1.2rem; }
+  .cassette-player { padding: 8px 6px 4px 6px; }
+  .cassette-window-frame { padding: 4px 6px; }
+  .tape-reel { width: 54px; height: 54px; }
+  .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
+  .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
+  #dj-profile-img, .ad-overlay img.ad-image { width: 200px; height: 200px; }
 }
 </style>
 <script type="application/ld+json">
@@ -808,7 +798,7 @@ footer {
 <section class="player-section">
 <h2 class="section-title player-title">Reproductor</h2>
 
-<!-- CASETE MEJORADO REALISTA -->
+<!-- CASETE MEJORADO ANTI-CORTE -->
 <div class="cassette-player">
   <div class="cassette-screw top-left"></div>
   <div class="cassette-screw top-center"></div>
@@ -831,7 +821,7 @@ footer {
       </div>
     </div>
 
-    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR -->
+    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR FLUIDO -->
     <div class="cassette-window-frame">
       <div class="tape-ribbon-track"></div>
       
@@ -839,12 +829,13 @@ footer {
         <!-- CARRETE IZQUIERDO (VIOLETA NEÓN) -->
         <div class="tape-reel" id="tape-left">
           <div class="reel-sprocket">
+            <div class="tape-clamp-notch"></div>
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
           </div>
         </div>
 
-        <!-- ECUALIZADOR CENTRADO CRT (12 BARRAS ACTIVAS) -->
+        <!-- ECUALIZADOR (12 BANDAS DE BAJOS A AGUDOS CON SCANLINES) -->
         <div class="equalizer-center-box">
           <div class="equalizer-container" id="equalizer">
             <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -857,6 +848,7 @@ footer {
         <!-- CARRETE DERECHO (VERDE NEÓN) -->
         <div class="tape-reel" id="tape-right">
           <div class="reel-sprocket">
+            <div class="tape-clamp-notch"></div>
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
           </div>
@@ -878,16 +870,19 @@ footer {
   </div>
 </div>
 
-<!-- CONTROL DE VOLUMEN CIBERNÉTICO HI-FI -->
+<!-- NUEVO MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI -->
 <div class="volume-control">
-  <div class="volume-label">
-    <span>NIVEL DE SALIDA:</span>
+  <div class="volume-header">
+    <div class="volume-title">
+      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      <span>VOLUME LEVEL</span>
+    </div>
     <span class="volume-badge" id="volume-percentage">100%</span>
   </div>
   <div class="volume-slider-wrap">
     <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
     <div class="volume-scale">
-      <span>MIN</span>
+      <span>0%</span>
       <span>25%</span>
       <span>50%</span>
       <span>75%</span>
@@ -1106,7 +1101,7 @@ audio.volume = 1.0; volumeSlider.value = 1.0; audio.crossOrigin = 'anonymous';
 function updateVolumeDisplay() {
   const percent = Math.round(audio.volume * 100);
   volumePercentage.textContent = percent + '%';
-  volumeSlider.style.background = `linear-gradient(to right, #00ff41 0%, #00ff41 ${percent}%, #333 ${percent}%, #333 100%)`;
+  volumeSlider.style.background = `linear-gradient(to right, #bd00ff 0%, #00ff41 ${percent}%, #202025 ${percent}%, #202025 100%)`;
 }
 
 function handleVolumeInput(val) {
@@ -1145,7 +1140,7 @@ volumeSlider.addEventListener('pointercancel', () => { isDraggingVolume = false;
 
 updateVolumeDisplay();
 
-/* SISTEMA GLITCH */
+/* SISTEMA GLITCH ORIGINAL */
 function updateGlitchDataText(el) {
   if (el && el.classList.contains('cyber-glitch')) {
     el.setAttribute('data-text', el.textContent.trim());
@@ -1416,7 +1411,7 @@ function enterPanel() { requestsAuth.style.display = 'none'; requestsMain.style.
 function setupAudioGraph() {
   if(audioGraphSetup || !audioContext) return;
   try {
-    analyzer = audioContext.createAnalyser(); analyzer.fftSize = 512; analyzer.smoothingTimeConstant = 0.7;
+    analyzer = audioContext.createAnalyser(); analyzer.fftSize = 512; analyzer.smoothingTimeConstant = 0.72;
     dataArray = new Uint8Array(analyzer.frequencyBinCount);
     const source = audioContext.createMediaElementSource(audio);
     source.connect(analyzer); analyzer.connect(audioContext.destination); audioGraphSetup = true;
@@ -1434,20 +1429,20 @@ function stopVisualizer() {
   ledIsLit = false;
 }
 
-/* DISTRIBUCIÓN LOGARÍTMICA AUDIBLE (12 BANDAS MUSICALES ACTIVAS) */
-const eqBands = [
-  { start: 1, end: 3, mult: 1.4 },
-  { start: 3, end: 6, mult: 1.35 },
-  { start: 6, end: 10, mult: 1.3 },
-  { start: 10, end: 16, mult: 1.3 },
-  { start: 16, end: 24, mult: 1.38 },
-  { start: 24, end: 36, mult: 1.48 },
-  { start: 36, end: 50, mult: 1.62 },
-  { start: 50, end: 68, mult: 1.8 },
-  { start: 68, end: 90, mult: 2.1 },
-  { start: 90, end: 115, mult: 2.5 },
-  { start: 115, end: 145, mult: 2.9 },
-  { start: 145, end: 175, mult: 3.4 }
+/* 12 BANDAS DE FRECUENCIA CALIBRADAS DE IZQ A DER (BAJOS -> MEDIOS -> ALTOS) */
+const freqSpectrumBands = [
+  { start: 1, end: 2, mult: 1.15 },    // Sub-Bass (Bombo / Subgraves ~80-170Hz)
+  { start: 2, end: 4, mult: 1.15 },    // Bass (Bajo principal ~170-340Hz)
+  { start: 4, end: 7, mult: 1.22 },    // Low-Mid (Pegada / Calidez ~340-600Hz)
+  { start: 7, end: 11, mult: 1.30 },   // Mid-Low (Cuerpo vocal / Teclados ~600-950Hz)
+  { start: 11, end: 17, mult: 1.40 },  // Mid (Cuerpo de caja / Voz ~950-1450Hz)
+  { start: 17, end: 26, mult: 1.55 },  // Mid-High (Guitarras / Sintes ~1.4k-2.2kHz)
+  { start: 26, end: 38, mult: 1.75 },  // Presence (Claridad / Ataque ~2.2k-3.3kHz)
+  { start: 38, end: 54, mult: 2.10 },  // High-Presence (Definición ~3.3k-4.6kHz)
+  { start: 54, end: 75, mult: 2.55 },  // Treble Low (Ataque de platillos ~4.6k-6.5kHz)
+  { start: 75, end: 105, mult: 3.10 }, // Treble (Charles / Hi-Hats ~6.5k-9.0kHz)
+  { start: 105, end: 140, mult: 3.80 },// Highs (Brillo ~9.0k-12.0kHz)
+  { start: 140, end: 180, mult: 4.60 } // Air / High Brilliance (Aire superior ~12k-15.5kHz)
 ];
 
 function visualize() {
@@ -1460,7 +1455,7 @@ function visualize() {
   const totalBins = dataArray.length;
   
   for(let i=0; i<barCount; i++) {
-    const band = eqBands[i];
+    const band = freqSpectrumBands[i];
     let sum = 0, count = 0;
     const start = Math.min(band.start, totalBins - 1);
     const end = Math.min(band.end, totalBins);
@@ -1470,13 +1465,13 @@ function visualize() {
       count++; 
     }
     const avg = count > 0 ? sum / count : 0;
-    let height = Math.min(Math.sqrt(avg) * (2.1 * band.mult), 38);
+    let height = Math.min(Math.sqrt(avg) * (2.15 * band.mult), 40);
     height = Math.max(height, 3);
     bars[i].style.height = height + 'px';
     
-    if (height > 24) {
+    if (height > 25) {
       bars[i].className = 'bar bar-high';
-    } else if (height > 12) {
+    } else if (height > 13) {
       bars[i].className = 'bar bar-mid';
     } else {
       bars[i].className = 'bar';
