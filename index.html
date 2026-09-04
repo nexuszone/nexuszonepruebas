@@ -115,23 +115,24 @@ h1 {
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.4rem; }
 
 /* =========================================================
-   CASETE REALISTA RETRO
+   CASETE REALISTA RETRO-CYBERPUNK
    ========================================================= */
 .cassette-player {
-  width: 100%; max-width: 565px;
-  background: linear-gradient(165deg, #2b2b30 0%, #17171a 45%, #0e0e11 100%);
+  width: 95%; max-width: 575px; height: auto; min-height: 340px;
+  background: linear-gradient(165deg, #2a2a2f 0%, #161619 45%, #0e0e11 100%);
   border-radius: 18px;
   box-shadow: 
     inset 0 1px 2px rgba(255, 255, 255, 0.22),
     inset 0 -2px 5px rgba(0, 0, 0, 0.85),
     0 12px 35px rgba(0, 0, 0, 0.85),
     0 0 25px rgba(189, 0, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 18px 16px 14px 16px;
+  border: 2px solid #555;
+  padding: 16px 14px 10px 14px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   user-select: none;
 }
 
@@ -139,13 +140,13 @@ h1 {
   content: '';
   position: absolute;
   top: 6px; left: 6px; right: 6px; bottom: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.6);
   border-radius: 14px;
   pointer-events: none;
 }
 
-/* Tornillos de estrella realistas */
+/* Tornillos de estrella */
 .cassette-screw {
   position: absolute; width: 14px; height: 14px; border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #9e9e9e 0%, #525252 50%, #292929 100%);
@@ -160,11 +161,11 @@ h1 {
 .cassette-screw::before { width: 8px; height: 2px; transform: translate(-50%, -50%); }
 .cassette-screw::after { width: 2px; height: 8px; transform: translate(-50%, -50%); }
 
-.cassette-screw.top-left { top: 12px; left: 12px; }
-.cassette-screw.top-right { top: 12px; right: 12px; }
-.cassette-screw.top-center { top: 10px; left: 50%; transform: translateX(-50%); }
-.cassette-screw.bottom-left { bottom: 12px; left: 12px; }
-.cassette-screw.bottom-right { bottom: 12px; right: 12px; }
+.cassette-screw.top-left { top: 10px; left: 10px; }
+.cassette-screw.top-right { top: 10px; right: 10px; }
+.cassette-screw.top-center { top: 8px; left: 50%; transform: translateX(-50%); }
+.cassette-screw.bottom-left { bottom: 10px; left: 10px; }
+.cassette-screw.bottom-right { bottom: 10px; right: 10px; }
 
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -174,110 +175,159 @@ h1 {
 /* PEGATINA VINTAGE */
 .cassette-label {
   position: relative; z-index: 2;
-  background: linear-gradient(180deg, #1e1d24 0%, #131317 100%);
+  background: linear-gradient(180deg, #1e1d24 0%, #121216 100%);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.5);
-  padding: 10px 14px 12px 14px;
-  display: flex; flex-direction: column; gap: 8px;
+  padding: 8px 12px 10px 12px;
+  display: flex; flex-direction: column; gap: 7px;
 }
 
 .label-header-bar {
   display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 2px solid #bd00ff; padding-bottom: 5px;
+  border-bottom: 2px solid #bd00ff; padding-bottom: 4px;
 }
 .label-side {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.05rem;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.95rem;
   color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
   display: flex; align-items: center; gap: 6px;
 }
 .label-side span {
-  background: #bd00ff; color: #000; font-size: 0.72rem; padding: 1px 6px; border-radius: 3px; font-weight: 900;
+  background: #bd00ff; color: #000; font-size: 0.7rem; padding: 1px 6px; border-radius: 3px; font-weight: 900;
 }
 .label-type {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.75rem; color: #00ff41;
-  border: 1px solid rgba(0, 255, 65, 0.4); padding: 1px 8px; border-radius: 3px;
-  letter-spacing: 1px;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+  border: 1px solid rgba(0, 255, 65, 0.45); padding: 1px 10px; border-radius: 4px;
+  letter-spacing: 2px;
 }
 
-/* Zona de escritura con el título */
+/* Título con línea de escritura de la cinta */
 .cassette-write-strip {
   background: repeating-linear-gradient(
     180deg,
     rgba(255,255,255,0.02) 0px,
-    rgba(255,255,255,0.02) 24px,
-    rgba(189, 0, 255, 0.25) 25px
+    rgba(255,255,255,0.02) 22px,
+    rgba(189, 0, 255, 0.22) 23px
   );
   border: 1px dashed rgba(255, 255, 255, 0.15);
   border-radius: 6px;
-  padding: 4px 8px;
-  min-height: 42px;
+  padding: 3px 6px;
+  min-height: 38px;
   display: flex; align-items: center; justify-content: center;
 }
 .song-info {
   width: 100%; text-align: center; color: #00ff41;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.9rem, 1.6vw, 1.25rem);
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.95rem, 1.7vw, 1.3rem);
   letter-spacing: 1.2px; min-height: 28px; display: flex; align-items: center; justify-content: center;
 }
 
-/* =========================================================
-   VENTANA TRANSPARENTE CON ECUALIZADOR CENTRADO
-   ========================================================= */
+/* VENTANA TRANSPARENTE */
 .cassette-window-frame {
-  background: #08080a;
+  background: #070709;
   border-radius: 45px;
   border: 2px solid #36363d;
   box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.95), 0 1px 1px rgba(255, 255, 255, 0.1);
-  padding: 8px 14px;
+  padding: 6px 12px;
   position: relative;
   overflow: hidden;
-  margin: 3px 0;
+  margin: 2px 0;
 }
 
 .cassette-window-frame::before {
   content: ''; position: absolute; top: -50%; left: -30%; width: 60%; height: 200%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.06) 50%, transparent 60%);
+  background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
   transform: rotate(25deg); pointer-events: none; z-index: 9;
 }
 
 .tape-ribbon-track {
-  position: absolute; left: 10%; right: 10%; top: 50%; height: 64px;
+  position: absolute; left: 8%; right: 8%; top: 50%; height: 60px;
   transform: translateY(-50%);
-  background: linear-gradient(180deg, #1b120c 0%, #301f14 50%, #150d08 100%);
+  background: linear-gradient(180deg, #1a100a 0%, #2a190f 50%, #120905 100%);
   border-top: 1px solid rgba(0,0,0,0.6);
   border-bottom: 1px solid rgba(0,0,0,0.6);
   border-radius: 20px;
-  z-index: 1; opacity: 0.9;
+  z-index: 1; opacity: 0.95;
 }
 
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
-  z-index: 5; height: 110px; width: 100%;
+  z-index: 5; height: 108px; width: 100%;
 }
 
-/* CARRETES DENTADOS */
+/* =========================================================
+   CARRETES CON COLORES NEÓN VIVOS Y RESPLANDECIENTES
+   ========================================================= */
 .tape-reel {
-  width: 86px; height: 86px; border-radius: 50%;
-  background: radial-gradient(circle at center, #26262b 0%, #1a1a1e 65%, #2a1810 70%, #1f110a 100%);
-  border: 3px solid #111;
-  box-shadow: 0 0 0 2px #444, inset 0 0 10px rgba(0,0,0,0.95), 0 4px 8px rgba(0,0,0,0.6);
+  width: 84px; height: 84px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   position: relative; flex-shrink: 0;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Carrete izquierdo (Violeta Neón Intenso) */
+#tape-left {
+  background: radial-gradient(circle at center, #2e103d 0%, #1b0726 50%, #0e0314 100%);
+  border: 3.5px solid #bd00ff;
+  box-shadow: 
+    0 0 12px rgba(189, 0, 255, 0.75),
+    inset 0 0 12px rgba(189, 0, 255, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.8);
+}
+#tape-left .reel-sprocket {
+  border: 2px solid #bd00ff;
+  background: radial-gradient(circle at center, #11001a 38%, #bd00ff 40%, #500e70 70%, #200030 100%);
+  box-shadow: 0 0 8px rgba(189, 0, 255, 0.8);
+}
+#tape-left .reel-sprocket .tooth {
+  background: #f2a8ff;
+  box-shadow: 0 0 4px #bd00ff;
+}
+#tape-left.animated {
+  animation: reelSpin 2.4s linear infinite, purpleReelPulse 1.6s ease-in-out infinite alternate;
+}
+@keyframes purpleReelPulse {
+  0% { box-shadow: 0 0 12px rgba(189, 0, 255, 0.7), inset 0 0 10px rgba(189, 0, 255, 0.5); }
+  100% { box-shadow: 0 0 24px rgba(189, 0, 255, 1), inset 0 0 16px rgba(189, 0, 255, 0.85); }
+}
+
+/* Carrete derecho (Verde Neón Intenso) */
+#tape-right {
+  background: radial-gradient(circle at center, #0e3318 0%, #08210f 50%, #031107 100%);
+  border: 3.5px solid #00ff41;
+  box-shadow: 
+    0 0 12px rgba(0, 255, 65, 0.75),
+    inset 0 0 12px rgba(0, 255, 65, 0.5),
+    0 4px 10px rgba(0, 0, 0, 0.8);
+}
+#tape-right .reel-sprocket {
+  border: 2px solid #00ff41;
+  background: radial-gradient(circle at center, #001205 38%, #00ff41 40%, #0c5720 70%, #04260d 100%);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+}
+#tape-right .reel-sprocket .tooth {
+  background: #a3ffbd;
+  box-shadow: 0 0 4px #00ff41;
+}
+#tape-right.animated {
+  animation: reelSpin 2.4s linear infinite, greenReelPulse 1.6s ease-in-out infinite alternate;
+}
+@keyframes greenReelPulse {
+  0% { box-shadow: 0 0 12px rgba(0, 255, 65, 0.7), inset 0 0 10px rgba(0, 255, 65, 0.5); }
+  100% { box-shadow: 0 0 24px rgba(0, 255, 65, 1), inset 0 0 16px rgba(0, 255, 65, 0.85); }
 }
 
 .reel-sprocket {
   position: absolute; width: 44px; height: 44px; border-radius: 50%;
-  background: radial-gradient(circle at center, #050505 38%, #ececec 40%, #cfcfcf 68%, #888 100%);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6), 0 0 4px rgba(0,0,0,0.8);
   display: flex; align-items: center; justify-content: center;
 }
 .reel-sprocket::after {
-  content: ''; width: 22px; height: 22px; border-radius: 50%;
+  content: ''; width: 20px; height: 20px; border-radius: 50%;
   background: #08080a; border: 2px solid #222; z-index: 4;
 }
 .reel-sprocket .tooth {
   position: absolute; width: 4px; height: 11px;
-  background: #ececec; border-radius: 1px; z-index: 3;
+  border-radius: 1px; z-index: 3;
 }
 .reel-sprocket .tooth:nth-child(1) { transform: rotate(0deg) translateY(-14px); }
 .reel-sprocket .tooth:nth-child(2) { transform: rotate(60deg) translateY(-14px); }
@@ -285,14 +335,10 @@ h1 {
 .reel-sprocket .tooth:nth-child(4) { transform: rotate(180deg) translateY(-14px); }
 .reel-sprocket .tooth:nth-child(5) { transform: rotate(240deg) translateY(-14px); }
 .reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-14px); }
-
-#tape-left.animated, #tape-right.animated { animation: reelSpin 2.4s linear infinite; }
-#tape-left.animated .reel-sprocket { box-shadow: 0 0 12px rgba(189, 0, 255, 0.85); }
-#tape-right.animated .reel-sprocket { box-shadow: 0 0 12px rgba(0, 255, 65, 0.85); }
 @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
 /* =========================================================
-   ECUALIZADOR PERFECTAMENTE CENTRADO (CON FILTRO CRT)
+   ECUALIZADOR CENTRADO CON FILTRO CRT (12 BARRAS ACTIVAS)
    ========================================================= */
 .equalizer-center-box {
   flex: 1;
@@ -300,28 +346,28 @@ h1 {
   align-items: center;
   justify-content: center;
   z-index: 6;
-  padding: 0 14px;
+  padding: 0 12px;
   height: 100%;
 }
 
 .equalizer-container {
   width: 100%;
-  max-width: 200px;
+  max-width: 210px;
   height: 48px;
-  background: rgba(10, 10, 14, 0.85);
-  border: 2px solid #2e2e38;
+  background: rgba(10, 10, 14, 0.9);
+  border: 2px solid #30303c;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 4px;
-  padding: 6px 8px;
+  padding: 5px 8px;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 8px rgba(0, 255, 65, 0.15);
+  box-shadow: inset 0 0 14px rgba(0,0,0,0.95), 0 0 10px rgba(0, 255, 65, 0.15);
 }
 
-/* FILTRO CRT SCANLINES */
+/* FILTRO SCANLINES CRT */
 .equalizer-container::after {
   content: '';
   position: absolute;
@@ -337,8 +383,8 @@ h1 {
   width: 6px; height: 3px; border-radius: 2px 2px 0 0;
   transform-origin: bottom; position: relative; flex: 1; will-change: height;
   background: linear-gradient(to top, #008822, #7a00cc);
-  box-shadow: 0 0 4px rgba(0, 255, 65, 0.5);
-  transition: height 0.03s ease-out;
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.6);
+  transition: height 0.04s ease-out;
 }
 .bar.bar-mid {
   background: linear-gradient(to top, #00cc33, #9900ff);
@@ -346,30 +392,30 @@ h1 {
 }
 .bar.bar-high {
   background: linear-gradient(to top, #00ff41, #bd00ff);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 15px rgba(189, 0, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 16px rgba(189, 0, 255, 0.95);
 }
 
 /* =========================================================
-   ZONA INFERIOR DEL CASETE: BOTÓN PLAY/STOP & CABEZAL
+   ZONA INFERIOR: BOTÓN PLAY / STOP Y CABEZAL
    ========================================================= */
 .cassette-deck-controls {
   position: relative; z-index: 4;
   display: flex; justify-content: center; align-items: center;
-  padding: 8px 0 4px 0;
+  padding: 6px 0 3px 0;
 }
 
 .play-btn {
-  width: 95px; height: 34px;
+  width: 90px; height: 32px;
   background: linear-gradient(180deg, #242429 0%, #121215 100%);
-  border: 2px solid #00ff41; border-radius: 7px; cursor: pointer;
+  border: 2px solid #00ff41; border-radius: 6px; cursor: pointer;
   display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.15rem; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #00ff41;
   text-shadow: 0 0 7px rgba(0, 255, 65, 0.8);
   box-shadow: 0 0 12px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease;
 }
 .play-btn:hover {
-  transform: translateY(-2px); box-shadow: 0 0 18px rgba(0, 255, 65, 0.8); border-color: #33ff77;
+  transform: translateY(-2px); box-shadow: 0 0 18px rgba(0, 255, 65, 0.85); border-color: #33ff77;
 }
 .play-btn.playing {
   border-color: #bd00ff; color: #bd00ff;
@@ -379,68 +425,81 @@ h1 {
 
 .cassette-head-area {
   position: relative;
-  width: 78%; margin: 2px auto 0 auto; height: 30px;
+  width: 78%; margin: 2px auto 0 auto; height: 26px;
   background: linear-gradient(180deg, #18181d 0%, #0f0f12 100%);
   clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
   border-bottom: 2px solid #303036;
   display: flex; justify-content: space-around; align-items: center;
-  padding: 0 26px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
+  padding: 0 24px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
 }
 .head-hole {
-  width: 10px; height: 10px; border-radius: 50%;
+  width: 9px; height: 9px; border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, #0a0a0c 40%, #2a2a30 90%, #444 100%);
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.9), 0 1px 1px rgba(255,255,255,0.1);
 }
 .head-center-notch {
-  width: 32px; height: 7px; background: #08080a;
+  width: 30px; height: 6px; background: #08080a;
   border-radius: 2px; border: 1px solid #24242a;
 }
 
 /* =========================================================
-   CONTROL DE VOLUMEN (ARRASTRABLE TOTALMENTE)
+   CONTROL DE VOLUMEN CIBERNÉTICO HI-FI
    ========================================================= */
 .volume-control {
-  width: 100%; max-width: 565px; margin: 12px auto 0 auto;
-  background: rgba(20, 20, 24, 0.92); padding: 12px 16px; border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  width: 95%; max-width: 440px; margin: 12px auto 0 auto;
+  background: linear-gradient(180deg, rgba(28, 28, 34, 0.95) 0%, rgba(16, 16, 20, 0.95) 100%);
+  padding: 10px 16px 8px 16px; border-radius: 12px;
+  border: 1.5px solid #3d3d4a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.1);
   position: relative; z-index: 10;
 }
 .volume-label {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
-  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; letter-spacing: 1px;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; letter-spacing: 1px;
+}
+.volume-badge {
+  background: #000; border: 1px solid #00ff41; padding: 1px 6px; border-radius: 4px;
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+.volume-slider-wrap {
+  position: relative; width: 100%; display: flex; flex-direction: column; gap: 4px;
 }
 .volume-slider {
   width: 100%; height: 8px;
   -webkit-appearance: none;
   appearance: none;
-  background: linear-gradient(to right, #00ff41 0%, #00ff41 100%, #333 100%, #333 100%);
+  background: linear-gradient(to right, #bd00ff 0%, #00ff41 100%);
   border-radius: 6px; outline: none;
   cursor: pointer;
   touch-action: none;
   position: relative;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.8);
 }
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px; height: 22px;
-  background: #00ff41;
+  width: 20px; height: 20px;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #00661a 100%);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.95);
-  border: 2px solid #000;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
+  border: 2px solid #0a0a0a;
 }
 .volume-slider::-moz-range-thumb {
-  width: 22px; height: 22px;
-  background: #00ff41;
+  width: 20px; height: 20px;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #00661a 100%);
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.95);
-  border: 2px solid #000;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
+  border: 2px solid #0a0a0a;
+}
+.volume-scale {
+  display: flex; justify-content: space-between; padding: 0 2px;
+  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #777;
 }
 
 /* =========================================================
-   EFECTO CYBER-GLITCH COMPLETO Y RESTAURADO
+   GLITCH ORIGINAL DE LA PÁGINA
    ========================================================= */
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
 .cyber-glitch {
@@ -453,54 +512,39 @@ h1 {
   overflow: hidden; text-align: center; pointer-events: none;
 }
 .cyber-glitch::before {
-  color: var(--pink-neon); clip-path: inset(2px 0 11px 0); animation: glitch-shift-1 1.9s infinite; z-index: -1; opacity: 0.85;
+  color: var(--pink-neon); clip-path: inset(2px 0 11px 0); animation: glitch-shift-1 2.0s infinite; z-index: -1; opacity: 0.85;
 }
 .cyber-glitch::after {
-  color: var(--green-neon); clip-path: inset(10px 0 3px 0); animation: glitch-shift-2 2.5s infinite; z-index: -2; opacity: 0.85;
+  color: var(--green-neon); clip-path: inset(10px 0 3px 0); animation: glitch-shift-2 2.7s infinite; z-index: -2; opacity: 0.85;
 }
-
 @keyframes glitch-shift-1 {
   0%, 100% { clip-path: inset(2px 0 11px 0); transform: translate(0, 0); }
   20% { clip-path: inset(1px 0 13px 0); transform: translate(-2px, 2px); }
   50% { clip-path: inset(4px 0 9px 0); transform: translate(2px, -1px); }
-  80% { clip-path: inset(8px 0 5px 0); transform: translate(-1px, -1px); }
 }
 @keyframes glitch-shift-2 {
   0%, 100% { clip-path: inset(10px 0 3px 0); transform: translate(0, 0); }
   25% { clip-path: inset(6px 0 7px 0); transform: translate(2px, -2px); }
   60% { clip-path: inset(12px 0 1px 0); transform: translate(-2px, 1px); }
-  85% { clip-path: inset(3px 0 10px 0); transform: translate(1px, 2px); }
 }
 @keyframes title-glow {
   from { text-shadow: 0 0 8px rgba(189, 0, 255, 0.9), 0 0 15px rgba(0, 255, 65, 0.7); }
-  to { text-shadow: 0 0 14px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.95); }
+  to { text-shadow: 0 0 12px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.9); }
 }
 
 .cyber-glitch.flash { animation: glitch-flash 0.3s ease; }
 .cyber-glitch.pulse { animation: glitch-pulse 0.4s ease; }
 .cyber-glitch.chaos { animation: glitch-chaos 0.5s steps(2, start); }
+@keyframes glitch-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; transform: scale(1.03); } }
+@keyframes glitch-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 25px #bd00ff, 0 0 35px #00ff41; } }
+@keyframes glitch-chaos { 0%, 100% { transform: translate(0,0); } 30% { transform: translate(-3px, 2px); } 70% { transform: translate(3px, -2px); } }
 
-@keyframes glitch-flash {
-  0%, 100% { opacity: 1; filter: none; }
-  50% { opacity: 0.4; filter: invert(1) hue-rotate(90deg); transform: scale(1.02); }
-}
-@keyframes glitch-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); text-shadow: 0 0 25px #bd00ff, 0 0 35px #00ff41; }
-}
-@keyframes glitch-chaos {
-  0%, 100% { transform: translate(0,0); }
-  25% { transform: translate(-3px, 2px); }
-  50% { transform: translate(3px, -2px); }
-  75% { transform: translate(-2px, -1px); }
-}
-
-#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.9rem, 1.6vw, 1.25rem); text-align: center; }
+#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.95rem, 1.7vw, 1.3rem); text-align: center; }
 #sonic_dj { text-transform: none !important; }
 
 /* SECCIÓN DJ */
 #dj-profile-img {
-  width: 100%; max-width: 380px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
+  width: 100%; max-width: 412px; height: auto; aspect-ratio: 1 / 1; border-radius: 50%; border: 3px solid #8b8b8b;
   object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6), 0 0 30px rgba(139, 139, 139, 0.4);
   animation: dj-breathing 3s ease-in-out infinite; display: block; margin: 0 auto;
@@ -510,9 +554,9 @@ h1 {
   50% { transform: scale(1.03); }
 }
 #sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 20px; width: 100%; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 24px; width: 100%; }
 .dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 18px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px 20px;
   background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
   font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
 }
@@ -526,7 +570,7 @@ h1 {
 }
 .ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 400px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
+  width: 100%; max-width: 432px; height: auto; aspect-ratio: 1 / 1; border-radius: 20px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
 }
 .ad-close-btn {
@@ -646,7 +690,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   RESPONSIVIDAD PC / LAPTOPS
+   SISTEMA DE PANTALLA FIJA EN PC (ESCALADO ORIGINAL EXACTO)
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -655,49 +699,53 @@ footer {
   }
 }
 
+/* Para portátiles (1366x768, 1440x900 o 1600x900 con altura real ~600-750px) */
 @media (min-width: 901px) and (max-height: 850px) {
   header { padding: 0.5rem 1.2rem; }
   .header-logo { max-height: 70px; max-width: 150px; }
   h1 { font-size: 1.7rem; }
   .header-subtitle { font-size: 0.8rem; }
   .main-container { padding: 0.6rem 2rem; gap: 2rem; }
-  .player-section, .dj-section { padding: 0.3rem; }
-  .section-title { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .player-section, .dj-section { padding: 0.4rem; }
+  .section-title { font-size: 1.1rem; margin-bottom: 0.6rem; }
   
-  .cassette-player { max-width: 470px; padding: 12px 12px 8px 12px; }
-  .cassette-tapes { height: 90px; }
+  .cassette-player { max-width: 480px; min-height: 280px; padding: 10px 12px 6px 12px; }
+  .cassette-tapes { height: 92px; }
   .tape-reel { width: 70px; height: 70px; }
   .reel-sprocket { width: 36px; height: 36px; }
-  .equalizer-container { height: 40px; }
-  .play-btn { width: 85px; height: 30px; font-size: 1rem; }
-  .cassette-head-area { height: 26px; }
+  .equalizer-container { height: 38px; }
+  .play-btn { width: 78px; height: 28px; font-size: 0.95rem; }
+  .cassette-head-area { height: 22px; }
+  .volume-control { max-width: 360px; padding: 7px 12px 6px 12px; margin-top: 8px; }
   
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 260px; width: 260px; height: 260px; }
-  .dj-image-container { gap: 12px; }
-  .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 270px; width: 270px; height: 270px; }
+  .dj-image-container { gap: 14px; }
+  .dj-country-info { padding: 6px 14px; font-size: 0.8rem; }
   footer { min-height: 65px; padding: 0.2rem 1rem; }
 }
 
+/* Para pantallas de 720p (altura útil del navegador ~560-600px) */
 @media (min-width: 901px) and (max-height: 700px) {
   header { padding: 0.3rem 1rem; }
-  .header-logo { max-height: 50px; max-width: 110px; }
-  h1 { font-size: 1.35rem; }
-  .main-container { padding: 0.3rem 1.2rem; gap: 1.2rem; }
-  .section-title { font-size: 0.9rem; margin-bottom: 0.3rem; }
-  .cassette-player { max-width: 410px; padding: 10px; }
+  .header-logo { max-height: 52px; max-width: 120px; }
+  h1 { font-size: 1.4rem; }
+  .main-container { padding: 0.4rem 1.5rem; gap: 1.5rem; }
+  .section-title { font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .cassette-player { max-width: 420px; min-height: 240px; padding: 8px 10px 4px 10px; }
   .cassette-tapes { height: 80px; }
-  .tape-reel { width: 62px; height: 62px; }
-  .reel-sprocket { width: 32px; height: 32px; }
-  .equalizer-container { height: 36px; }
-  .play-btn { width: 75px; height: 26px; font-size: 0.9rem; }
-  .cassette-head-area { height: 22px; }
-  #dj-profile-img, .ad-overlay img.ad-image { max-width: 200px; width: 200px; height: 200px; }
-  .dj-image-container { gap: 8px; }
-  footer { min-height: 50px; padding: 0.1rem; }
+  .tape-reel { width: 60px; height: 60px; }
+  .reel-sprocket { width: 30px; height: 30px; }
+  .equalizer-container { height: 34px; }
+  .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
+  .cassette-head-area { height: 18px; }
+  .volume-control { max-width: 310px; padding: 5px 10px; margin-top: 6px; }
+  #dj-profile-img, .ad-overlay img.ad-image { max-width: 215px; width: 215px; height: 215px; }
+  .dj-image-container { gap: 10px; }
+  footer { min-height: 52px; padding: 0.15rem; }
 }
 
 /* =========================================================
-   MÓVILES
+   MÓVILES (REDMI 10, REALME 14X Y PANTALLAS TÁCTILES)
    ========================================================= */
 @media (max-width: 900px) {
   body { overflow-y: auto; }
@@ -710,12 +758,13 @@ footer {
     padding: 1.2rem 0.8rem 2.2rem 0.8rem; gap: 1.8rem; justify-content: flex-start;
   }
   .player-section, .dj-section { flex: none; width: 100%; max-width: 480px; padding: 0; }
-  .cassette-player { width: 100%; max-width: 100%; padding: 14px 10px 10px 10px; }
-  .cassette-tapes { height: 92px; }
-  .tape-reel { width: 72px; height: 72px; }
-  .reel-sprocket { width: 38px; height: 38px; }
-  .equalizer-container { height: 42px; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 260px; height: 260px; max-width: 260px; }
+  .cassette-player { width: 100%; max-width: 100%; min-height: auto; padding: 12px 10px 8px 10px; }
+  .cassette-tapes { height: 90px; }
+  .tape-reel { width: 68px; height: 68px; }
+  .reel-sprocket { width: 36px; height: 36px; }
+  .equalizer-container { height: 40px; }
+  .volume-control { width: 100%; max-width: 100%; }
+  #dj-profile-img, .ad-overlay img.ad-image { width: 270px; height: 270px; max-width: 270px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
@@ -728,13 +777,13 @@ footer {
 
 @media (max-width: 375px) {
   .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.4rem; }
-  .cassette-player { padding: 10px 8px; }
-  .cassette-tapes { height: 82px; }
-  .tape-reel { width: 60px; height: 60px; }
+  .cassette-player { padding: 10px 8px 6px 8px; }
+  .cassette-tapes { height: 80px; }
+  .tape-reel { width: 58px; height: 58px; }
   .reel-sprocket { width: 30px; height: 30px; }
-  .equalizer-container { height: 36px; padding: 4px 6px; }
-  .play-btn { width: 75px; height: 28px; font-size: 0.95rem; }
-  #dj-profile-img, .ad-overlay img.ad-image { width: 210px; height: 210px; }
+  .equalizer-container { height: 34px; padding: 4px 6px; }
+  .play-btn { width: 70px; height: 26px; font-size: 0.9rem; }
+  #dj-profile-img, .ad-overlay img.ad-image { width: 220px; height: 220px; }
 }
 </style>
 <script type="application/ld+json">
@@ -759,7 +808,7 @@ footer {
 <section class="player-section">
 <h2 class="section-title player-title">Reproductor</h2>
 
-<!-- CASETE REALISTA -->
+<!-- CASETE MEJORADO REALISTA -->
 <div class="cassette-player">
   <div class="cassette-screw top-left"></div>
   <div class="cassette-screw top-center"></div>
@@ -772,22 +821,22 @@ footer {
   <div class="cassette-label">
     <div class="label-header-bar">
       <div class="label-side">SIDE <span>A</span></div>
-      <div class="label-type">CrO₂ / STEREO</div>
+      <div class="label-type">NEXUS</div>
     </div>
     
-    <!-- TÍTULO CON EFECTO GLITCH -->
+    <!-- TÍTULO CON GLITCH ORIGINAL -->
     <div class="cassette-write-strip">
       <div class="song-info">
         <div id='sonic_title' class="cyber-glitch" data-text="Cargando canción...">Cargando canción...</div>
       </div>
     </div>
 
-    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR CENTRADO -->
+    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR -->
     <div class="cassette-window-frame">
       <div class="tape-ribbon-track"></div>
       
       <div class="cassette-tapes">
-        <!-- CARRETE IZQUIERDO -->
+        <!-- CARRETE IZQUIERDO (VIOLETA NEÓN) -->
         <div class="tape-reel" id="tape-left">
           <div class="reel-sprocket">
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
@@ -795,7 +844,7 @@ footer {
           </div>
         </div>
 
-        <!-- ECUALIZADOR PERFECTAMENTE CENTRADO (CON SCANLINES CRT) -->
+        <!-- ECUALIZADOR CENTRADO CRT (12 BARRAS ACTIVAS) -->
         <div class="equalizer-center-box">
           <div class="equalizer-container" id="equalizer">
             <div class="bar"></div><div class="bar"></div><div class="bar"></div>
@@ -805,7 +854,7 @@ footer {
           </div>
         </div>
 
-        <!-- CARRETE DERECHO -->
+        <!-- CARRETE DERECHO (VERDE NEÓN) -->
         <div class="tape-reel" id="tape-right">
           <div class="reel-sprocket">
             <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
@@ -816,7 +865,7 @@ footer {
     </div>
   </div>
 
-  <!-- BOTÓN PLAY/STOP UBICADO EN LA PARTE BAJA DEL CASETE -->
+  <!-- PARTE BAJA: BOTÓN PLAY / STOP -->
   <div class="cassette-deck-controls">
     <button class="play-btn" id="play-pause-btn" aria-label="Reproducir o Pausar">▶</button>
   </div>
@@ -829,13 +878,22 @@ footer {
   </div>
 </div>
 
-<!-- CONTROL DE VOLUMEN TOTALMENTE ARRASTRABLE -->
+<!-- CONTROL DE VOLUMEN CIBERNÉTICO HI-FI -->
 <div class="volume-control">
   <div class="volume-label">
-    <span>NIVEL DE VOLUMEN:</span>
-    <span id="volume-percentage">100%</span>
+    <span>NIVEL DE SALIDA:</span>
+    <span class="volume-badge" id="volume-percentage">100%</span>
   </div>
-  <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
+  <div class="volume-slider-wrap">
+    <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
+    <div class="volume-scale">
+      <span>MIN</span>
+      <span>25%</span>
+      <span>50%</span>
+      <span>75%</span>
+      <span>MAX</span>
+    </div>
+  </div>
 </div>
 
 <div id='sonic_art_full' style="display:none;"></div>
@@ -1051,7 +1109,6 @@ function updateVolumeDisplay() {
   volumeSlider.style.background = `linear-gradient(to right, #00ff41 0%, #00ff41 ${percent}%, #333 ${percent}%, #333 100%)`;
 }
 
-/* GESTIÓN CONTINUA DE ARRASTRE DE VOLUMEN */
 function handleVolumeInput(val) {
   const clamped = Math.max(0, Math.min(1, parseFloat(val)));
   audio.volume = clamped;
@@ -1102,7 +1159,7 @@ function triggerRandomGlitch(el) {
   el.classList.remove('flash', 'pulse', 'chaos');
   void el.offsetWidth;
   el.classList.add(randomEffect);
-  setTimeout(() => el.classList.remove(randomEffect), 600);
+  setTimeout(() => el.classList.remove(randomEffect), 800);
 }
 
 function sanitizeDjName(djName) { return djName.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '_'); }
@@ -1377,6 +1434,22 @@ function stopVisualizer() {
   ledIsLit = false;
 }
 
+/* DISTRIBUCIÓN LOGARÍTMICA AUDIBLE (12 BANDAS MUSICALES ACTIVAS) */
+const eqBands = [
+  { start: 1, end: 3, mult: 1.4 },
+  { start: 3, end: 6, mult: 1.35 },
+  { start: 6, end: 10, mult: 1.3 },
+  { start: 10, end: 16, mult: 1.3 },
+  { start: 16, end: 24, mult: 1.38 },
+  { start: 24, end: 36, mult: 1.48 },
+  { start: 36, end: 50, mult: 1.62 },
+  { start: 50, end: 68, mult: 1.8 },
+  { start: 68, end: 90, mult: 2.1 },
+  { start: 90, end: 115, mult: 2.5 },
+  { start: 115, end: 145, mult: 2.9 },
+  { start: 145, end: 175, mult: 3.4 }
+];
+
 function visualize() {
   if(!isVisualizing || !analyzer || !isPlaying) { stopVisualizer(); return; }
   const frameSkip = isMobileDevice ? 2 : 1;
@@ -1384,19 +1457,20 @@ function visualize() {
   if(visualizerFrameCount % frameSkip !== 0) { animationId = requestAnimationFrame(visualize); return; }
   
   analyzer.getByteFrequencyData(dataArray); 
-  const totalBins = dataArray.length; 
-  const binsPerBar = totalBins / barCount;
+  const totalBins = dataArray.length;
   
   for(let i=0; i<barCount; i++) {
-    let sum=0, count=0;
-    const start = Math.floor(i * binsPerBar);
-    const end = Math.floor((i + 1) * binsPerBar);
-    for(let j=start; j<end && j<totalBins; j++) { 
-      sum += dataArray[j] * (i < 4 ? 1.4 : i >= 8 ? 1.5 : 1.15); 
+    const band = eqBands[i];
+    let sum = 0, count = 0;
+    const start = Math.min(band.start, totalBins - 1);
+    const end = Math.min(band.end, totalBins);
+    
+    for(let j=start; j<end; j++) { 
+      sum += dataArray[j]; 
       count++; 
     }
     const avg = count > 0 ? sum / count : 0;
-    let height = Math.min(Math.sqrt(avg) * 2.8, 38);
+    let height = Math.min(Math.sqrt(avg) * (2.1 * band.mult), 38);
     height = Math.max(height, 3);
     bars[i].style.height = height + 'px';
     
