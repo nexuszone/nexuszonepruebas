@@ -90,7 +90,7 @@ h1 {
   text-shadow: 0 0 8px rgba(0, 255, 65, 0.5); margin: 0; display: inline-block; line-height: 1.1;
 }
 
-/* TIRAS LED: CALIBRACIÓN FIRME */
+/* TIRAS LED */
 .led-strip-top, .led-strip-bottom {
   height: 8px; background: #8b8b8b; position: relative; z-index: 10;
   transition: background 0.06s ease-out, box-shadow 0.06s ease-out;
@@ -496,7 +496,7 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D HIPER-REALISTA (JEWEL CASE CON ANIMACIÓN)
+   ESTUCHE DE CASETE 3D CON CARÁTULA J-CARD
    ========================================================= */
 .case-3d-wrapper {
   perspective: 1100px;
@@ -523,11 +523,9 @@ h1 {
   user-select: none;
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
-  /* Animación 3D de levitación y oscilación suave */
   animation: case3DLevitation 6s ease-in-out infinite alternate;
 }
 
-/* Animación 3D de perspectiva viva */
 @keyframes case3DLevitation {
   0% {
     transform: rotateY(-6deg) rotateX(3deg) translateY(0px);
@@ -543,7 +541,6 @@ h1 {
   }
 }
 
-/* Interacción al pasar el ratón: se orienta hacia el usuario */
 .cassette-case:hover {
   animation-play-state: paused;
   transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.02);
@@ -551,14 +548,12 @@ h1 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Bisel de refracción perimetral */
 .case-acrylic-bezel {
   position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px; pointer-events: none; z-index: 9;
 }
 
-/* Bisagras cilíndricas mecánicas de la caja */
 .case-hinge-lug {
   position: absolute; left: -4px; width: 7px; height: 24px; border-radius: 3.5px;
   background: linear-gradient(to right, #ffffff, #999999);
@@ -567,7 +562,6 @@ h1 {
 .case-hinge-lug.top { top: 26px; }
 .case-hinge-lug.bottom { bottom: 26px; }
 
-/* Conos interiores de plástico translúcido que traban los carretes */
 .case-spool-peg {
   position: absolute; right: 18px; width: 24px; height: 24px; border-radius: 50%;
   background: radial-gradient(circle, rgba(255,255,255,0.18) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.25) 100%);
@@ -583,7 +577,6 @@ h1 {
   border: 2px dashed rgba(255,255,255,0.45);
 }
 
-/* Pestañas transparentes de retención delantera */
 .case-plastic-clip {
   position: absolute; left: 11px; width: 7px; height: 16px; border-radius: 2px;
   background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35);
@@ -592,7 +585,6 @@ h1 {
 .case-plastic-clip.clip-top { top: 62px; }
 .case-plastic-clip.clip-bottom { bottom: 62px; }
 
-/* ANIMACIÓN DE DESTELLO HOLOGRÁFICO QUE CRUZA EL CRISTAL */
 .case-shimmer-sweep {
   position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
   background: linear-gradient(65deg, 
@@ -619,7 +611,7 @@ h1 {
   pointer-events: none; z-index: 8;
 }
 
-/* CARÁTULA J-CARD IMPRESA EN PAPEL SATINADO */
+/* CARÁTULA J-CARD */
 .case-jcard {
   position: relative; z-index: 2; width: 100%; height: 100%;
   display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
@@ -628,38 +620,37 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
 
-/* Lomo interior de la J-Card */
-.jcard-spine-fold {
-  height: 20px; background: #040406; border-bottom: 2px solid #bd00ff;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 8px; flex-shrink: 0; z-index: 3;
+/* FRANJA SUPERIOR: NOMBRE DEL DJ (SIN "EMITE") */
+.jcard-header {
+  height: 32px;
+  background: linear-gradient(90deg, #111116 0%, #1a1a24 50%, #111116 100%);
+  border-bottom: 2px solid #bd00ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  flex-shrink: 0;
+  z-index: 4;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
-.jcard-spine-brand {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: #ffffff; font-weight: 700; letter-spacing: 1px;
-}
-.jcard-spine-code {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; color: #00ff41; font-weight: 700;
-}
-.jcard-dolby-badge {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; color: #bd00ff; font-weight: 900;
+#sonic_dj {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  color: #00ff41;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-transform: none !important;
 }
 
 /* Contenido de la portada */
 .jcard-main-cover {
   position: relative; width: 100%; flex: 1; min-height: 0;
   display: flex; flex-direction: column;
-}
-
-.jcard-header-tag {
-  height: 18px; background: rgba(0, 0, 0, 0.7);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 8px; flex-shrink: 0; z-index: 4;
-}
-.jcard-tape-logo {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.58rem; color: #bd00ff;
-}
-.jcard-stereo-tag {
-  font-family: 'Share Tech Mono', monospace; font-size: 0.55rem; color: #00ff41; font-weight: 700;
 }
 
 /* Ventana fotográfica del DJ */
@@ -679,30 +670,51 @@ h1 {
   box-shadow: inset 0 0 16px rgba(0,0,0,0.65); pointer-events: none;
 }
 
-/* Solapa inferior con código de barras y LED Live */
+/* FRANJA INFERIOR: BANDERA, PAÍS Y CÓDIGO DE BARRAS */
 .jcard-footer-strip {
-  height: 32px; background: linear-gradient(90deg, #101016 0%, #07070a 100%);
+  height: 32px;
+  background: linear-gradient(90deg, #101016 0%, #07070a 100%);
   border-top: 2px solid #00ff41;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 8px; flex-shrink: 0; z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  flex-shrink: 0;
+  z-index: 4;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.8);
 }
-.jcard-live-label {
-  display: flex; align-items: center; gap: 5px;
+
+.dj-country-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  color: #00ff41;
 }
-.live-dot {
-  width: 7px; height: 7px; border-radius: 50%; background: #00ff41;
-  box-shadow: 0 0 6px #00ff41; animation: liveBlink 1.4s infinite alternate;
+.dj-flag-img {
+  width: 22px;
+  height: 15px;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
+  transition: opacity 0.2s ease;
 }
-@keyframes liveBlink {
-  0% { opacity: 0.4; } 100% { opacity: 1; }
+.dj-country-name {
+  color: #00ff41;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
 }
-.live-text {
-  font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: 900;
-  color: #00ff41; letter-spacing: 1px; text-shadow: 0 0 6px rgba(0, 255, 65, 0.8);
-}
+
 .jcard-vintage-barcode {
-  display: flex; align-items: center; gap: 2px; height: 18px; padding: 2px 4px;
+  display: flex; align-items: center; gap: 2px; height: 16px; padding: 2px 4px;
   background: rgba(255,255,255,0.08); border-radius: 2px;
 }
 .jcard-vintage-barcode span {
@@ -768,18 +780,9 @@ h1 {
 @keyframes glitch-chaos { 0%, 100% { transform: translate(0,0); } 30% { transform: translate(-3px, 2px); } 70% { transform: translate(3px, -2px); } }
 
 #sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.85rem, 2vw, 1.25rem); text-align: center; }
-#sonic_dj { text-transform: none !important; }
 
 /* SECCIÓN DJ */
-#sonic_dj.cyber-glitch { font-size: clamp(1rem, 1.8vw, 1.4rem); margin-left: 10px; display: inline-block; vertical-align: middle; }
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; gap: 14px; width: 100%; }
-.dj-country-info {
-  display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 18px;
-  background: rgba(26, 26, 26, 0.5); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 20px;
-  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.9rem; color: #00ff41;
-}
-.dj-flag-img { width: 30px; height: 20px; border-radius: 3px; object-fit: cover; }
-.dj-country-name { color: #00ff41; font-size: 1rem; font-weight: 700; }
+.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; }
 
 .ad-overlay {
   position: absolute !important; top: 50%; left: 50%; transform: translate(-50%, -50%) !important;
@@ -940,8 +943,6 @@ footer {
   .case-spool-peg { width: 18px; height: 18px; right: 14px; }
   .case-spool-peg.spool-top { top: 62px; }
   .case-spool-peg.spool-bottom { bottom: 62px; }
-  .dj-image-container { gap: 10px; }
-  .dj-country-info { padding: 5px 12px; font-size: 0.8rem; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
 
@@ -962,10 +963,10 @@ footer {
   
   /* Estuche 3D vertical proporcionado en 720p */
   .cassette-case, .ad-overlay img.ad-image { max-width: 185px; }
+  .jcard-header { height: 26px; }
   .jcard-footer-strip { height: 26px; }
-  .live-text { font-size: 0.58rem; }
+  .dj-country-name { font-size: 0.65rem; }
   .case-spool-peg { display: none; }
-  .dj-image-container { gap: 6px; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
 
@@ -1126,10 +1127,11 @@ footer {
 </section>
 
 <section class="dj-section">
-<h2 class="section-title dj-title">Emite: <div id='sonic_dj' class="cyber-glitch" data-text="" style="color: #00ff41; display: inline; margin-left: 10px; font-weight: 900;"></div></h2>
+<!-- TÍTULO DE SECCIÓN LIMPIO Y SIMÉTRICO CON REPRODUCTOR -->
+<h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE CON ANIMACIÓN DE FLOTACIÓN Y DESTELLO) -->
+  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE) -->
   <div class="case-3d-wrapper">
     <div class="cassette-case">
       <!-- Bisel acrílico con refracción -->
@@ -1157,30 +1159,23 @@ footer {
 
       <!-- Carátula interior J-Card plegable -->
       <div class="case-jcard">
-        <!-- Lomo interior de la J-Card -->
-        <div class="jcard-spine-fold">
-          <span class="jcard-spine-brand">COMPACT CASSETTE</span>
-          <span class="jcard-spine-code">NZ-CHROMA-90</span>
-          <span class="jcard-dolby-badge">🄳🄳</span>
+        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ (SIN "EMITE") -->
+        <div class="jcard-header">
+          <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
         </div>
 
         <div class="jcard-main-cover">
-          <div class="jcard-header-tag">
-            <span class="jcard-tape-logo">📼 COMPACT CASSETTE</span>
-            <span class="jcard-stereo-tag">STEREO / TYPE II</span>
-          </div>
-
           <!-- Imagen del DJ -->
           <div class="jcard-art-window">
             <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
             <div class="jcard-surface-texture"></div>
           </div>
 
-          <!-- Solapa inferior doblada con código de barras y LED Live -->
+          <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ + CÓDIGO DE BARRAS -->
           <div class="jcard-footer-strip">
-            <div class="jcard-live-label">
-              <span class="live-dot"></span>
-              <span class="live-text">LIVE SESSION</span>
+            <div class="dj-country-info" id="dj-country-info">
+              <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+              <span class="dj-country-name" id="dj-country-name">El Salvador</span>
             </div>
             <div class="jcard-vintage-barcode">
               <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -1191,10 +1186,6 @@ footer {
     </div>
   </div>
 
-  <div class="dj-country-info" id="dj-country-info">
-    <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-    <span class="dj-country-name" id="dj-country-name">El Salvador</span>
-  </div>
   <div class="ad-overlay" id="ad-overlay">
     <button class="ad-close-btn" id="ad-close-btn" aria-label="Cerrar publicidad">×</button>
     <img src="img/publicidad.png" alt="Publicidad" class="ad-image" id="ad-image">
@@ -1393,7 +1384,6 @@ let ledIsLit = false;
 let lastKickTime = 0;
 let beatIntensity = 0;
 
-// Ventana para conocer el nivel base de la música
 const historySize = 10;
 const bar0History = new Float32Array(historySize);
 let historyIdx = 0;
