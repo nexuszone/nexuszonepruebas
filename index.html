@@ -933,10 +933,10 @@ footer {
 .staff-panel { border-left: 3px solid #00ff41; }
 .poem-panel { border-left: 3px solid #bd00ff; }
 
-/* EL CHAT EN PC AHORA TIENE 1024PX DE ANCHO EXACTOS */
+/* EL CHAT EN PC: EXACTAMENTE UN 20% MENOS DE ANCHO QUE LOS 50vw (40vw) */
 .chat-panel { 
-  width: min(1024px, 100vw);
-  right: -1050px;
+  width: 40vw;
+  right: -40vw;
   border-left: 3px solid #bd00ff; 
   contain: strict; 
 }
@@ -1018,7 +1018,6 @@ footer {
   transition: filter 0.25s ease;
 }
 
-/* Primer filtro equilibrado + ajuste de saturación suave (135%) */
 #chat-iframe.dark-mode {
   filter: invert(90%) hue-rotate(180deg) contrast(96%) saturate(135%);
 }
