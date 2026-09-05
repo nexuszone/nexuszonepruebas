@@ -830,22 +830,22 @@ footer {
 .staff-close-btn { border: 2px solid #00ff41; color: #00ff41; }
 
 /* =========================================================
-   STAFF EN CUADRÍCULA CON ESTUCHES REALISTAS DE CASETE
+   STAFF: EN PC TAMAÑO AMPLIADO EN 2 COLUMNAS (PROPORCIONAL)
    ========================================================= */
 .staff-grid {
   flex: 1; overflow-y: auto;
-  padding: clamp(0.8rem, 1.8vw, 1.5rem);
+  padding: clamp(1rem, 2vw, 2rem);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1rem, 1.8vw, 1.6rem);
+  gap: clamp(1.2rem, 2.2vw, 2.2rem);
   align-content: start;
   justify-items: center;
 }
 
 .staff-case-wrapper {
-  perspective: 900px;
+  perspective: 1100px;
   width: 100%;
-  max-width: 245px;
+  max-width: 335px; /* Tamaño real y generoso en PC */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -860,27 +860,27 @@ footer {
 
 .staff-case {
   width: 100%;
-  max-width: 245px;
+  max-width: 335px;
   aspect-ratio: 1 / 1.42;
   animation: none;
   transform: rotateY(-3deg) rotateX(2deg);
-  padding: 6px 7px 6px 10px;
-  border-width: 4px;
-  border-left-width: 10px;
-  border-right-width: 6px;
+  padding: 8px 9px 8px 12px;
+  border-width: 5px;
+  border-left-width: 13px;
+  border-right-width: 7px;
   box-shadow: 
-    0 12px 26px rgba(0, 0, 0, 0.9),
-    -8px 0 20px rgba(189, 0, 255, 0.3),
-    8px 0 20px rgba(0, 255, 65, 0.3);
+    0 16px 36px rgba(0, 0, 0, 0.92),
+    -10px 0 25px rgba(189, 0, 255, 0.35),
+    10px 0 25px rgba(0, 255, 65, 0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .staff-case:hover {
-  transform: rotateY(0deg) rotateX(0deg) translateY(-5px) scale(1.025);
+  transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.03);
   box-shadow: 
-    0 18px 36px rgba(0, 0, 0, 0.98),
-    -12px 0 28px rgba(189, 0, 255, 0.55),
-    12px 0 28px rgba(0, 255, 65, 0.55);
+    0 24px 45px rgba(0, 0, 0, 0.98),
+    -15px 0 32px rgba(189, 0, 255, 0.6),
+    15px 0 32px rgba(0, 255, 65, 0.6);
 }
 
 .staff-case .jcard-main-cover {
@@ -966,6 +966,7 @@ footer {
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
   .cassette-case, .ad-overlay img.ad-image { max-width: 265px; }
+  .staff-case-wrapper, .staff-case { max-width: 280px; }
   .case-spool-peg { width: 22px; height: 22px; right: 16px; }
   .case-spool-peg.spool-top { top: 70px; }
   .case-spool-peg.spool-bottom { bottom: 70px; }
@@ -987,6 +988,7 @@ footer {
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
   
   .cassette-case, .ad-overlay img.ad-image { max-width: 215px; }
+  .staff-case-wrapper, .staff-case { max-width: 230px; }
   .jcard-header { height: 28px; }
   .jcard-footer-strip { height: 28px; }
   .dj-country-name { font-size: 0.7rem; }
@@ -995,7 +997,7 @@ footer {
 }
 
 /* =========================================================
-   MÓVILES
+   MÓVILES (SE MANTIENE TAL CUAL EN 1 COLUMNA EXACTA)
    ========================================================= */
 @media (max-width: 900px) {
   body { overflow-y: auto; }
@@ -1016,7 +1018,7 @@ footer {
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
   
-  /* En móviles se muestra estrictamente en 1 columna centrada */
+  /* En móviles se mantiene en 1 columna centrada y el tamaño que te gustó */
   .staff-grid { 
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1024,6 +1026,10 @@ footer {
   }
   .staff-case-wrapper, .staff-case {
     max-width: 250px;
+    border-width: 4px;
+    border-left-width: 10px;
+    border-right-width: 6px;
+    padding: 6px 7px 6px 10px;
   }
   
   .background-image { filter: none !important; opacity: 0.25 !important; }
@@ -1552,9 +1558,7 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
-/* =========================================================
-   CARGA DE STAFF: ESTUCHES DE CASETE 3D (SOLO IMAGEN)
-   ========================================================= */
+/* CARGA DE STAFF */
 function loadStaffImages() {
   staffGrid.innerHTML = '';
   const fragment = document.createDocumentFragment();
@@ -1563,7 +1567,6 @@ function loadStaffImages() {
     const wrapper = document.createElement('div');
     wrapper.className = 'staff-case-wrapper';
     
-    // Plantilla del estuche idéntica al DJ, eliminando las bandas de texto
     wrapper.innerHTML = `
       <div class="cassette-case staff-case">
         <div class="case-acrylic-bezel"></div>
@@ -1592,7 +1595,6 @@ function loadStaffImages() {
     img.onload = function() {
       wrapper.classList.add('loaded');
     };
-    // Si la imagen no existe en la carpeta staff, se retira el estuche completo limpiamente
     img.onerror = function() {
       wrapper.remove();
     };
