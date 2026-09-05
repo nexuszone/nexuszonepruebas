@@ -58,7 +58,7 @@ body {
   overflow-x: hidden;
 }
 
-/* FONDOS AMBIENTALES CON AURA DE COLOR */
+/* FONDOS AMBIENTALES */
 .background-image {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
   background-image: url('img/fondo.png'); background-size: cover;
@@ -80,7 +80,7 @@ body {
   background-size: 38px 38px; pointer-events: none;
 }
 
-/* CABECERA CON EFECTO VIDRIO */
+/* CABECERA */
 header {
   background: linear-gradient(180deg, rgba(28, 28, 36, 0.95) 0%, rgba(14, 14, 18, 0.92) 100%);
   backdrop-filter: blur(10px);
@@ -120,7 +120,7 @@ h1 {
   filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.7)); margin: 0; display: inline-block; line-height: 1.1;
 }
 
-/* TIRAS LED: DIFUSOR ACRÍLICO SEGMENTADO */
+/* TIRAS LED */
 .led-strip-top, .led-strip-bottom {
   height: 8px; background: #26262e; position: relative; z-index: 10;
   transition: background 0.05s ease-out, box-shadow 0.05s ease-out;
@@ -150,17 +150,16 @@ h1 {
   font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.35rem);
   margin-bottom: 0.8rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
 }
-.player-title {
-  color: #bd00ff; text-shadow: 0 0 12px rgba(189, 0, 255, 0.7);
-  padding-bottom: 0.2rem;
-}
-.dj-title {
-  color: #00ff41; text-shadow: 0 0 12px rgba(0, 255, 65, 0.7);
+
+/* AMBOS TÍTULOS EN COLOR MORADO NEÓN */
+.player-title, .dj-title {
+  color: #bd00ff;
+  text-shadow: 0 0 12px rgba(189, 0, 255, 0.75);
   padding-bottom: 0.2rem;
 }
 
 /* =========================================================
-   CASETE REALISTA (REPRODUCTOR MEJORADO GRÁFICAMENTE)
+   CASETE REALISTA (REPRODUCTOR)
    ========================================================= */
 .cassette-player {
   width: 100%; max-width: 550px;
@@ -194,7 +193,6 @@ h1 {
   pointer-events: none;
 }
 
-/* Tornillos de aleación metálica */
 .cassette-screw {
   position: absolute; width: clamp(11px, 2.2vw, 14px); height: clamp(11px, 2.2vw, 14px); border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #e0e0e8 0%, #767682 45%, #2a2a32 100%);
@@ -221,7 +219,6 @@ h1 {
   background-size: cover; background-position: center; opacity: 0.16; filter: blur(4px); z-index: 1;
 }
 
-/* ETIQUETA ADHESIVA VINTAGE (CHROME FOIL ACCENTS) */
 .cassette-label {
   position: relative; z-index: 2;
   background: 
@@ -262,7 +259,6 @@ h1 {
   letter-spacing: 2.5px;
 }
 
-/* BANDA RAYADA DE ESCRITURA */
 .cassette-write-strip {
   background: 
     repeating-linear-gradient(
@@ -286,7 +282,6 @@ h1 {
   letter-spacing: 1.1px; min-height: 26px; display: flex; align-items: center; justify-content: center;
 }
 
-/* VENTANA TRANSPARENTE DEL CASETE (CON REFLEJO ACRÍLICO GLOSS) */
 .cassette-window-frame {
   background: #060608;
   border-radius: 35px;
@@ -324,7 +319,6 @@ h1 {
   z-index: 5; height: clamp(75px, 19vw, 105px); width: 100%; gap: clamp(4px, 1.2vw, 10px);
 }
 
-/* CARRETES Y DIENTES */
 .tape-reel {
   width: clamp(56px, 16.5vw, 84px);
   height: clamp(56px, 16.5vw, 84px);
@@ -403,7 +397,6 @@ h1 {
 .reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-140%); }
 @keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-/* ECUALIZADOR (EFECTO VFD / PHOSPHOR DISPLAY) */
 .equalizer-center-box {
   flex: 1; min-width: 0;
   display: flex; align-items: center; justify-content: center;
@@ -450,7 +443,6 @@ h1 {
   box-shadow: 0 0 12px rgba(0, 255, 65, 1), 0 0 16px rgba(189, 0, 255, 0.95);
 }
 
-/* CONTROLES CASETE (BOTÓN TÁCTIL HI-FI) */
 .cassette-deck-controls {
   position: relative; z-index: 4;
   display: flex; justify-content: center; align-items: center;
@@ -481,7 +473,6 @@ h1 {
   box-shadow: 0 0 18px rgba(189, 0, 255, 0.75), inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-/* CABEZAL DE CINTA DE BRONCE/ACERO */
 .cassette-head-area {
   position: relative;
   width: 78%; margin: 2px auto 0 auto; height: clamp(18px, 4.5vw, 24px);
@@ -565,7 +556,7 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D (REFLEJOS ACRÍLICOS Y REFRACCIÓN)
+   ESTUCHE DE CASETE 3D
    ========================================================= */
 .case-3d-wrapper {
   perspective: 1100px;
@@ -689,7 +680,6 @@ h1 {
 .case-plastic-clip.clip-top { top: 86px; }
 .case-plastic-clip.clip-bottom { bottom: 86px; }
 
-/* DESTELLO HOLOGRÁFICO CON REFRACCIÓN PRISMÁTICA */
 .case-shimmer-sweep {
   position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
   background: linear-gradient(65deg, 
@@ -850,12 +840,14 @@ h1 {
   font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 1001;
 }
 
-/* FOOTER CON LÍNEA NEÓN Y BOTONES LIQUID GLOW */
+/* =========================================================
+   FOOTER Y NUEVOS BOTONES ESTILO CONSOLA HI-FI CYBER
+   ========================================================= */
 footer {
   background: linear-gradient(180deg, rgba(26, 26, 34, 0.95) 0%, rgba(10, 10, 14, 0.98) 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 -4px 20px rgba(0,0,0,0.7), 0 -1px 0 rgba(0, 255, 65, 0.3);
-  padding: 0.35rem 1rem; text-align: center;
+  padding: 0.4rem 1rem; text-align: center;
   position: relative; z-index: 10; display: flex; flex-direction: column;
   justify-content: center; align-items: center; min-height: 80px; flex-shrink: 0;
 }
@@ -866,26 +858,63 @@ footer {
 
 .social-links {
   display: flex; justify-content: center; align-items: center;
-  flex-wrap: nowrap !important; gap: clamp(8px, 1.8vw, 1.2rem); margin-bottom: 0.2rem;
+  flex-wrap: nowrap !important; gap: clamp(8px, 1.8vw, 1.2rem); margin-bottom: 0.3rem;
 }
+
+/* NUEVOS BOTONES: PULSADORES TÁCTILES NEÓN DE CONSOLA */
 .social-link {
-  display: inline-flex; width: 35px; height: 35px; border-radius: 50%;
-  background: linear-gradient(135deg, #00ff41, #bd00ff);
-  align-items: center; justify-content: center; text-decoration: none; color: white; cursor: pointer;
-  flex-shrink: 0 !important; 
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.6); 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-flex;
+  width: clamp(38px, 4.2vw, 44px);
+  height: clamp(38px, 4.2vw, 44px);
+  border-radius: 10px;
+  background: linear-gradient(165deg, #2a2a36 0%, #16161f 55%, #0e0e13 100%);
+  align-items: center; justify-content: center; text-decoration: none; cursor: pointer;
+  flex-shrink: 0 !important;
+  position: relative;
+  border: 1.5px solid #3e3e4e;
+  box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.85),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.7);
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.social-link svg { width: 18px; height: 18px; fill: white; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6)); }
-.social-link:hover { 
-  transform: translateY(-2px) scale(1.12); 
-  box-shadow: 0 0 20px rgba(189, 0, 255, 0.8), 0 0 10px rgba(0, 255, 65, 0.8);
+
+.social-link::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 38%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 100%);
+  border-radius: 8px 8px 0 0; pointer-events: none;
 }
+
+.social-link svg {
+  width: 19px; height: 19px; fill: #ececf4;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.8));
+  transition: all 0.22s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px) scale(1.08);
+  border-color: #00ff41;
+  background: linear-gradient(165deg, #353545 0%, #1f1f2a 55%, #12121a 100%);
+  box-shadow: 
+    0 8px 18px rgba(0, 0, 0, 0.95),
+    0 0 14px rgba(0, 255, 65, 0.6),
+    inset 0 0 10px rgba(189, 0, 255, 0.4);
+}
+
+.social-link:hover svg {
+  fill: #00ff41;
+  filter: drop-shadow(0 0 8px #00ff41);
+}
+
+.social-link:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.9), 0 0 8px rgba(0, 255, 65, 0.4);
+}
+
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
 /* =========================================================
-   PANELES LATERALES
+   PANELES LATERALES (SIN SOMBRA LATERAL CUANDO ESTÁN CERRADOS)
    ========================================================= */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
   position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
@@ -893,15 +922,17 @@ footer {
   transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex; flex-direction: column;
   font-family: 'Orbitron', sans-serif; -webkit-overflow-scrolling: touch;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
+  box-shadow: none; /* ELIMINA LA SOMBRA EN EL BORDE DERECHO AL ESTAR CERRADO */
 }
 .requests-panel { border-left: 3px solid #bd00ff; }
 .chat-panel { border-left: 3px solid #bd00ff; contain: strict; }
 .staff-panel { border-left: 3px solid #00ff41; }
 .poem-panel { border-left: 3px solid #bd00ff; }
 
+/* LA SOMBRA SOLO APARECE CUANDO EL PANEL SE DESPLIEGA */
 .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { 
-  right: 0 !important; 
+  right: 0 !important;
+  box-shadow: -15px 0 40px rgba(0, 0, 0, 0.88);
 }
 
 .requests-header, .chat-header, .staff-header, .poem-header {
@@ -1113,7 +1144,7 @@ footer {
 }
 
 /* =========================================================
-   MÓVILES (INTACTO EN PROPORCIONES Y TAMAÑOS)
+   MÓVILES
    ========================================================= */
 @media (max-width: 900px) {
   body { overflow-y: auto; }
@@ -1339,7 +1370,7 @@ footer {
 <a href="#" class="social-link" id="staff-btn" title="Staff"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></a>
 <a href="#" class="social-link" id="chat-btn" title="Chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></a>
 <a href="#" class="social-link" id="poem-btn" title="Poema de la Semana">
-  <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+  <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
 </a>
 <a href="#" class="social-link" id="requests-btn" title="Pedir Canción"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></a>
 </div>
