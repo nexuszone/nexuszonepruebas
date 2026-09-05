@@ -493,7 +493,7 @@ h1 {
   border-radius: 2px; border: 1px solid #2d2d38;
 }
 
-/* MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI */
+/* MÓDULO DE VOLUMEN */
 .volume-control {
   width: 100%; max-width: 440px; margin: 10px auto 0 auto;
   background: linear-gradient(180deg, rgba(26, 26, 34, 0.96) 0%, rgba(14, 14, 18, 0.96) 100%);
@@ -861,7 +861,7 @@ footer {
   flex-wrap: nowrap !important; gap: clamp(8px, 1.8vw, 1.2rem); margin-bottom: 0.3rem;
 }
 
-/* NUEVOS BOTONES: PULSADORES TÁCTILES NEÓN DE CONSOLA */
+/* BOTONES TÁCTILES NEÓN DE CONSOLA */
 .social-link {
   display: inline-flex;
   width: clamp(38px, 4.2vw, 44px);
@@ -914,7 +914,7 @@ footer {
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
 /* =========================================================
-   PANELES LATERALES (SIN SOMBRA LATERAL CUANDO ESTÁN CERRADOS)
+   PANELES LATERALES
    ========================================================= */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
   position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
@@ -922,14 +922,13 @@ footer {
   transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex; flex-direction: column;
   font-family: 'Orbitron', sans-serif; -webkit-overflow-scrolling: touch;
-  box-shadow: none; /* ELIMINA LA SOMBRA EN EL BORDE DERECHO AL ESTAR CERRADO */
+  box-shadow: none;
 }
 .requests-panel { border-left: 3px solid #bd00ff; }
 .chat-panel { border-left: 3px solid #bd00ff; contain: strict; }
 .staff-panel { border-left: 3px solid #00ff41; }
 .poem-panel { border-left: 3px solid #bd00ff; }
 
-/* LA SOMBRA SOLO APARECE CUANDO EL PANEL SE DESPLIEGA */
 .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { 
   right: 0 !important;
   box-shadow: -15px 0 40px rgba(0, 0, 0, 0.88);
@@ -972,8 +971,49 @@ footer {
   transform: scale(1.15) rotate(90deg);
 }
 
+/* BOTÓN ALTERNAR TEMA DE CHAT */
+.chat-theme-btn {
+  background: linear-gradient(165deg, #2a2a36 0%, #16161f 55%, #0e0e13 100%);
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid #00ff41; color: #00ff41;
+  font-size: 0.95rem; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
+  transition: all 0.2s ease;
+}
+.chat-theme-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.85);
+  border-color: #33ff77;
+}
+
 /* =========================================================
-   STAFF: EN PC TAMAÑO AMPLIADO EN 2 COLUMNAS (PROPORCIONAL)
+   MODO OSCURO FORZADO EN EL CHAT (CHATZONA IFRAME)
+   ========================================================= */
+.chat-iframe-container { 
+  flex: 1; 
+  overflow: hidden; 
+  position: relative; 
+  padding-bottom: env(safe-area-inset-bottom);
+  background: #121217;
+}
+
+#chat-iframe { 
+  width: 100%; 
+  height: 100%; 
+  border: none; 
+  background: transparent; 
+  display: block; 
+  transition: filter 0.25s ease;
+}
+
+/* Inversión cromática calculada: oscurece el fondo sin arruinar los colores */
+#chat-iframe.dark-mode {
+  filter: invert(90%) hue-rotate(180deg) contrast(95%) brightness(95%);
+  background: #14141a;
+}
+
+/* =========================================================
+   STAFF
    ========================================================= */
 .staff-grid {
   flex: 1; overflow-y: auto;
@@ -1043,7 +1083,7 @@ footer {
   transform: scale(1.04);
 }
 
-/* Peticiones, Chat y Poema */
+/* Peticiones y Poema */
 .requests-content { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; }
 .requests-auth, .requests-main { display: flex; flex-direction: column; gap: 1rem; width: 100%; }
 .request-input {
@@ -1074,9 +1114,6 @@ footer {
   background: none; border: 1px solid #ff3333; color: #ff3333; width: 22px; height: 22px; border-radius: 50%;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
 }
-
-.chat-iframe-container { flex: 1; overflow: hidden; position: relative; padding-bottom: env(safe-area-inset-bottom); }
-#chat-iframe { width: 100%; height: 100%; border: none; background: transparent; display: block; }
 
 .poem-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .poem-image { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; border: 2px solid rgba(189, 0, 255, 0.4); }
@@ -1370,7 +1407,7 @@ footer {
 <a href="#" class="social-link" id="staff-btn" title="Staff"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></a>
 <a href="#" class="social-link" id="chat-btn" title="Chat"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg></a>
 <a href="#" class="social-link" id="poem-btn" title="Poema de la Semana">
-  <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
+  <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:white;"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>
 </a>
 <a href="#" class="social-link" id="requests-btn" title="Pedir Canción"><svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></a>
 </div>
@@ -1394,7 +1431,13 @@ footer {
 <div class="poem-overlay" id="poem-overlay"></div>
 
 <div class="chat-panel" id="chat-panel">
-<div class="chat-header"><h3>💬 Chat Nexus</h3><button class="chat-close-btn" id="chat-close">×</button></div>
+<div class="chat-header">
+  <h3>💬 Chat Nexus</h3>
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <button class="chat-theme-btn" id="chat-theme-btn" title="Alternar Modo Oscuro / Claro" aria-label="Cambiar tema">🌙</button>
+    <button class="chat-close-btn" id="chat-close">×</button>
+  </div>
+</div>
 <div class="chat-iframe-container" id="chat-iframe-container"></div>
 </div>
 <div class="chat-overlay" id="chat-overlay"></div>
@@ -1447,6 +1490,7 @@ let lastCountryUpdate = 0;
 const COUNTRY_UPDATE_DEBOUNCE = 800;
 let chatDestroyTimer = null;
 const CHAT_DESTROY_DELAY = 30 * 60 * 1000;
+let isChatDarkMode = true; // Modo oscuro activado por defecto
 
 function getDjCountryInfo(djName) {
   if (!djName || djName.trim() === '') return FALLBACK_COUNTRY;
@@ -1675,13 +1719,27 @@ function destroyChatIframe() {
   if (chatIframeContainer) chatIframeContainer.innerHTML = '';
 }
 
+function updateChatThemeUI() {
+  const iframe = document.getElementById('chat-iframe');
+  const themeBtn = document.getElementById('chat-theme-btn');
+  if (iframe) {
+    if (isChatDarkMode) {
+      iframe.classList.add('dark-mode');
+      if (themeBtn) { themeBtn.textContent = '🌙'; themeBtn.title = 'Modo Oscuro Activo (Click para cambiar a claro)'; }
+    } else {
+      iframe.classList.remove('dark-mode');
+      if (themeBtn) { themeBtn.textContent = '☀️'; themeBtn.title = 'Modo Claro Activo (Click para cambiar a oscuro)'; }
+    }
+  }
+}
+
 function toggleChat() {
   isChatVisible = !isChatVisible;
   if(isChatVisible) {
     if (chatDestroyTimer) { clearTimeout(chatDestroyTimer); chatDestroyTimer = null; }
     if (!document.getElementById('chat-iframe')) {
       const num = Math.floor(Math.random() * 1000);
-      chatIframeContainer.innerHTML = `<iframe id="chat-iframe" src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`;
+      chatIframeContainer.innerHTML = `<iframe id="chat-iframe" class="${isChatDarkMode ? 'dark-mode' : ''}" src="https://chat.chatzona.org/index.html#nick=nexus_user${num}&channel=Nexus_Zone" width="100%" height="100%" frameborder="0" loading="lazy" allow="microphone"></iframe>`;
     }
     chatPanel.classList.add('visible');
     chatOverlay.classList.add('active'); 
@@ -1697,11 +1755,20 @@ function toggleChat() {
     if (isPlaying && analyzer && !isVisualizing) { isVisualizing = true; visualize(); }
   }
 }
+
 function initChatListeners() {
   chatBtn.addEventListener('click', (e) => { e.preventDefault(); toggleChat(); });
   chatClose.addEventListener('click', toggleChat);
   chatOverlay.addEventListener('click', toggleChat);
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
+  
+  const themeBtn = document.getElementById('chat-theme-btn');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      isChatDarkMode = !isChatDarkMode;
+      updateChatThemeUI();
+    });
+  }
 }
 
 /* CARGA DE STAFF */
