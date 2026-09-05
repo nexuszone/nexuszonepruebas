@@ -151,7 +151,7 @@ h1 {
   margin-bottom: 0.8rem; text-align: center; text-transform: uppercase; letter-spacing: 2px;
 }
 
-/* AMBOS TÍTULOS EN COLOR MORADO NEÓN */
+/* TÍTULOS EN COLOR MORADO NEÓN */
 .player-title, .dj-title {
   color: #bd00ff;
   text-shadow: 0 0 12px rgba(189, 0, 255, 0.75);
@@ -916,17 +916,30 @@ footer {
    PANELES LATERALES
    ========================================================= */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
-  position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
+  position: fixed; top: 0; height: 100vh; height: 100dvh;
   background: #0a0a0f; z-index: 1000;
   transition: right 0.35s cubic-bezier(0.25, 1, 0.5, 1);
   display: flex; flex-direction: column;
   font-family: 'Orbitron', sans-serif; -webkit-overflow-scrolling: touch;
   box-shadow: none;
 }
+
+/* Staff, peticiones y poema conservan 50vw */
+.requests-panel, .staff-panel, .poem-panel {
+  width: 50vw;
+  right: -50vw;
+}
 .requests-panel { border-left: 3px solid #bd00ff; }
-.chat-panel { border-left: 3px solid #bd00ff; contain: strict; }
 .staff-panel { border-left: 3px solid #00ff41; }
 .poem-panel { border-left: 3px solid #bd00ff; }
+
+/* EL CHAT EN PC AHORA TIENE 1024PX DE ANCHO EXACTOS */
+.chat-panel { 
+  width: min(1024px, 100vw);
+  right: -1050px;
+  border-left: 3px solid #bd00ff; 
+  contain: strict; 
+}
 
 .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { 
   right: 0 !important;
@@ -1005,9 +1018,7 @@ footer {
   transition: filter 0.25s ease;
 }
 
-/* Restauramos exactamente el primer filtro uniforme, 
-   añadiendo únicamente un toque suave de saturación (saturate 135%) 
-   para que los nicks, letras y emojis no se vean lavados ni pálidos */
+/* Primer filtro equilibrado + ajuste de saturación suave (135%) */
 #chat-iframe.dark-mode {
   filter: invert(90%) hue-rotate(180deg) contrast(96%) saturate(135%);
 }
@@ -1199,8 +1210,14 @@ footer {
   
   .cassette-case, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
 
-  .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
-  .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
+  /* En móviles se expande a pantalla completa */
+  .requests-panel, .chat-panel, .staff-panel, .poem-panel { 
+    width: 100vw !important; 
+    right: -100vw !important; 
+  }
+  .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { 
+    right: 0 !important; 
+  }
   
   .staff-grid { 
     grid-template-columns: 1fr;
