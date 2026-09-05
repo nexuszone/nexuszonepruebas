@@ -496,148 +496,75 @@ h1 {
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D DEL DJ (TAMAÑO AMPLIO Y EQUILIBRADO)
+   ESTUCHE DE CASETE DEL DJ (DISEÑO FAVORITO RESTAURADO)
    ========================================================= */
-.case-3d-wrapper {
-  perspective: 1100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
 .cassette-case {
   width: 100%;
-  max-width: 325px;
+  max-width: 280px;
   aspect-ratio: 1 / 1.42;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(35, 35, 42, 0.8) 18%, rgba(12, 12, 16, 0.95) 100%);
-  border: 3px solid rgba(255, 255, 255, 0.25);
-  border-left: 8px solid rgba(255, 255, 255, 0.38); /* Lomo grueso acrílico */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(18, 18, 24, 0.95) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-left: 7px solid rgba(255, 255, 255, 0.35); /* Lomo del estuche */
   border-radius: 12px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.85),
+    -12px 0 25px rgba(189, 0, 255, 0.35),
+    12px 0 25px rgba(0, 255, 65, 0.35);
   position: relative;
-  padding: 8px 8px 8px 11px;
+  padding: 7px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  user-select: none;
-  transform-style: preserve-3d;
-  will-change: transform, box-shadow;
-  animation: case3DLevitation 6s ease-in-out infinite alternate;
-}
-
-@keyframes case3DLevitation {
-  0% {
-    transform: rotateY(-6deg) rotateX(3deg) translateY(0px);
-    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.95), -14px 0 30px rgba(189, 0, 255, 0.42), 14px 0 30px rgba(0, 255, 65, 0.42);
-  }
-  50% {
-    transform: rotateY(1deg) rotateX(1deg) translateY(-8px);
-    box-shadow: 0 28px 52px rgba(0, 0, 0, 0.9), -18px 0 38px rgba(189, 0, 255, 0.55), 18px 0 38px rgba(0, 255, 65, 0.55);
-  }
-  100% {
-    transform: rotateY(6deg) rotateX(-2deg) translateY(-3px);
-    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.95), -14px 0 32px rgba(189, 0, 255, 0.45), 14px 0 32px rgba(0, 255, 65, 0.45);
-  }
-}
-
-.cassette-case:hover {
-  animation-play-state: paused;
-  transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.02);
-  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.98), -20px 0 42px rgba(189, 0, 255, 0.65), 20px 0 42px rgba(0, 255, 65, 0.65);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  margin: 0 auto;
+}
+.cassette-case:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 20px 42px rgba(0, 0, 0, 0.95),
+    -16px 0 32px rgba(189, 0, 255, 0.55),
+    16px 0 32px rgba(0, 255, 65, 0.55);
 }
 
-.case-acrylic-bezel {
-  position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 8px; pointer-events: none; z-index: 9;
+.case-hinge {
+  position: absolute; left: -2px; width: 5px; height: 20px; border-radius: 2.5px;
+  background: rgba(255, 255, 255, 0.5); box-shadow: 0 0 6px rgba(255, 255, 255, 0.4); z-index: 6;
+}
+.case-hinge-top { top: 28px; }
+.case-hinge-bottom { bottom: 28px; }
+
+.case-glass-glare {
+  position: absolute; top: -50%; left: -60%; width: 100%; height: 220%;
+  background: linear-gradient(60deg, transparent 40%, rgba(255, 255, 255, 0.16) 48%, rgba(255, 255, 255, 0.02) 56%, transparent 64%);
+  transform: rotate(22deg); pointer-events: none; z-index: 5;
 }
 
-.case-hinge-lug {
-  position: absolute; left: -4px; width: 7px; height: 26px; border-radius: 3.5px;
-  background: linear-gradient(to right, #ffffff, #999999);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), inset 0 1px 1px #fff; z-index: 12;
-}
-.case-hinge-lug.top { top: 30px; }
-.case-hinge-lug.bottom { bottom: 30px; }
-
-.case-spool-peg {
-  position: absolute; right: 20px; width: 26px; height: 26px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.18) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.25) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.12);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 5; pointer-events: none;
-}
-.case-spool-peg.spool-top { top: 86px; }
-.case-spool-peg.spool-bottom { bottom: 86px; }
-.spool-peg-teeth {
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.45);
-}
-
-.case-plastic-clip {
-  position: absolute; left: 11px; width: 7px; height: 18px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.7); z-index: 11; pointer-events: none;
-}
-.case-plastic-clip.clip-top { top: 68px; }
-.case-plastic-clip.clip-bottom { bottom: 68px; }
-
-.case-shimmer-sweep {
-  position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
-  background: linear-gradient(65deg, 
-    transparent 38%, 
-    rgba(255, 255, 255, 0.24) 48%, 
-    rgba(0, 255, 65, 0.18) 51%, 
-    rgba(189, 0, 255, 0.18) 54%, 
-    transparent 64%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  z-index: 10;
-  animation: glassShimmerSweep 7s ease-in-out infinite;
-}
-@keyframes glassShimmerSweep {
-  0%, 25% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
-  35% { opacity: 1; }
-  50%, 100% { transform: translateX(230%) rotate(25deg); opacity: 0; }
-}
-
-.case-glass-bevel-highlight {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 45%, rgba(255,255,255,0.03) 100%);
-  pointer-events: none; z-index: 8;
-}
-
-/* CARÁTULA J-CARD */
-.case-jcard {
+.case-insert {
   position: relative; z-index: 2; width: 100%; height: 100%;
   display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
-  background: #0b0b10;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0,0,0,0.85);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #08080c;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
 }
 
 /* FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO */
-.jcard-header {
-  height: 34px;
+.case-dj-header {
+  height: 32px;
   background: linear-gradient(90deg, #111116 0%, #1a1a24 50%, #111116 100%);
   border-bottom: 2px solid #bd00ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 8px;
   flex-shrink: 0;
-  z-index: 4;
+  z-index: 3;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 #sonic_dj {
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
-  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
+  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
   color: #00ff41;
   text-align: center;
   white-space: nowrap;
@@ -647,14 +574,8 @@ h1 {
   text-transform: none !important;
 }
 
-/* Contenido de la portada */
-.jcard-main-cover {
-  position: relative; width: 100%; flex: 1; min-height: 0;
-  display: flex; flex-direction: column;
-}
-
-/* Ventana fotográfica del DJ */
-.jcard-art-window {
+/* FOTO DEL DJ */
+.case-photo-frame {
   position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
 }
@@ -663,27 +584,21 @@ h1 {
   transition: transform 0.4s ease;
 }
 .cassette-case:hover #dj-profile-img {
-  transform: scale(1.04);
-}
-.jcard-surface-texture {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  box-shadow: inset 0 0 16px rgba(0,0,0,0.65); pointer-events: none;
+  transform: scale(1.03);
 }
 
-/* FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS */
-.jcard-footer-strip {
-  height: 34px;
+/* FRANJA INFERIOR: BANDERA Y PAÍS CENTRADOS */
+.case-country-footer {
+  height: 32px;
   background: linear-gradient(90deg, #111116 0%, #171724 50%, #111116 100%);
   border-top: 2px solid #00ff41;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 10px;
+  padding: 0 8px;
   flex-shrink: 0;
-  z-index: 4;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.8);
+  z-index: 3;
 }
-
 .dj-country-info {
   display: flex;
   align-items: center;
@@ -694,43 +609,43 @@ h1 {
   border: none;
   font-family: 'Orbitron', sans-serif;
   font-weight: 700;
-  font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+  font-size: clamp(0.72rem, 1.6vw, 0.82rem);
   color: #00ff41;
 }
 .dj-flag-img {
-  width: 24px;
-  height: 16px;
+  width: 22px;
+  height: 15px;
   border-radius: 2px;
   object-fit: cover;
-  box-shadow: 0 0 4px rgba(0,0,0,0.6);
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
   transition: opacity 0.2s ease;
 }
 .dj-country-name {
   color: #00ff41;
-  font-size: clamp(0.75rem, 1.6vw, 0.85rem);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
   white-space: nowrap;
   transition: opacity 0.2s ease;
 }
 
 /* Publicidad adaptada al estuche vertical */
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 325px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
+  width: 100%; max-width: 280px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
   border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
 }
 
 /* =========================================================
-   STAFF: ESTUCHES DE CASETE GRANDES (SÓLO IMAGEN)
+   STAFF: ESTUCHES DE CASETE EN 2 COLUMNAS (SÓLO IMAGEN)
    ========================================================= */
 .staff-grid {
   flex: 1;
   overflow-y: auto;
-  padding: clamp(1rem, 2vw, 2rem);
+  padding: 1.2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: clamp(1.2rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(2, 1fr) !important; /* SIEMPRE 2 COLUMNAS */
+  gap: 1.2rem;
   align-content: start;
   justify-items: center;
 }
@@ -738,21 +653,21 @@ h1 {
 .staff-cassette-card {
   position: relative;
   width: 100%;
-  max-width: 270px;
+  max-width: 195px;
   aspect-ratio: 1 / 1.42;
   margin: 0 auto;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(30, 30, 38, 0.85) 18%, rgba(12, 12, 16, 0.96) 100%);
-  border: 3px solid rgba(255, 255, 255, 0.25);
-  border-left: 8px solid rgba(255, 255, 255, 0.38); /* Lomo grueso del estuche */
-  border-radius: 12px;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.9), 0 0 16px rgba(0, 255, 65, 0.25);
-  padding: 6px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(20, 20, 26, 0.95) 100%);
+  border: 2.5px solid rgba(255, 255, 255, 0.22);
+  border-left: 6px solid rgba(255, 255, 255, 0.38); /* Lomo del estuche */
+  border-radius: 9px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.85), 0 0 14px rgba(0, 255, 65, 0.25);
+  padding: 5px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  transform: translateY(18px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
   user-select: none;
 }
 .staff-cassette-card.loaded {
@@ -760,8 +675,8 @@ h1 {
   transform: translateY(0);
 }
 .staff-cassette-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 255, 65, 0.6);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 255, 65, 0.6);
   border-color: #00ff41;
 }
 .staff-case-glare {
@@ -776,9 +691,8 @@ h1 {
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 5px;
   background: #08080c;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.9);
 }
 .staff-photo {
   width: 100%;
@@ -979,10 +893,7 @@ footer {
   .cassette-head-area { height: 20px; }
   .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
   
-  .cassette-case, .ad-overlay img.ad-image { max-width: 265px; }
-  .case-spool-peg { width: 22px; height: 22px; right: 16px; }
-  .case-spool-peg.spool-top { top: 70px; }
-  .case-spool-peg.spool-bottom { bottom: 70px; }
+  .cassette-case, .ad-overlay img.ad-image { max-width: 240px; }
   footer { min-height: 58px; padding: 0.2rem 1rem; }
 }
 
@@ -1001,11 +912,10 @@ footer {
   .cassette-head-area { height: 16px; }
   .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
   
-  .cassette-case, .ad-overlay img.ad-image { max-width: 215px; }
-  .jcard-header { height: 28px; }
-  .jcard-footer-strip { height: 28px; }
-  .dj-country-name { font-size: 0.7rem; }
-  .case-spool-peg { display: none; }
+  .cassette-case, .ad-overlay img.ad-image { max-width: 195px; }
+  .case-dj-header { height: 26px; }
+  .case-country-footer { height: 26px; }
+  .dj-country-name { font-size: 0.65rem; }
   footer { min-height: 46px; padding: 0.1rem; }
 }
 
@@ -1026,21 +936,20 @@ footer {
   .cassette-player { width: 100%; max-width: 100%; }
   .volume-control { width: 100%; max-width: 100%; }
   
-  .cassette-case, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 235px; max-width: 235px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
   
-  /* Staff en móvil con estuches de casete amplios */
+  /* STAFF EN MÓVIL: SIEMPRE 2 COLUMNAS AMPLIAS (NUNCA UNA ENCIMA DE OTRA) */
   .staff-grid {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    gap: 1.6rem;
-    padding: 1.5rem 1rem;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem !important;
+    padding: 1rem 0.6rem !important;
   }
   .staff-cassette-card {
-    width: clamp(240px, 75vw, 280px);
-    max-width: 280px;
+    width: 100% !important;
+    max-width: 175px !important;
   }
 
   .background-image { filter: none !important; opacity: 0.25 !important; }
@@ -1054,8 +963,15 @@ footer {
   .tape-reel { width: 54px; height: 54px; }
   .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
   .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-case, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
-  .staff-cassette-card { width: 220px; max-width: 220px; }
+  .cassette-case, .ad-overlay img.ad-image { width: 195px; max-width: 195px; }
+  
+  .staff-grid {
+    gap: 0.6rem !important;
+    padding: 0.8rem 0.4rem !important;
+  }
+  .staff-cassette-card {
+    max-width: 145px !important;
+  }
 }
 </style>
 <script type="application/ld+json">
@@ -1180,53 +1096,28 @@ footer {
 <h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE) -->
-  <div class="case-3d-wrapper">
-    <div class="cassette-case">
-      <!-- Bisel acrílico con refracción -->
-      <div class="case-acrylic-bezel"></div>
-      
-      <!-- Bisagras cilíndricas mecánicas -->
-      <div class="case-hinge-lug top"></div>
-      <div class="case-hinge-lug bottom"></div>
+  <!-- ESTUCHE DE CASETE DEL DJ (DISEÑO FAVORITO RESTAURADO) -->
+  <div class="cassette-case">
+    <div class="case-hinge case-hinge-top"></div>
+    <div class="case-hinge case-hinge-bottom"></div>
+    <div class="case-glass-glare"></div>
 
-      <!-- Conos interiores que traban los carretes -->
-      <div class="case-spool-peg spool-top">
-        <div class="spool-peg-teeth"></div>
-      </div>
-      <div class="case-spool-peg spool-bottom">
-        <div class="spool-peg-teeth"></div>
+    <div class="case-insert">
+      <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO (SIN "EMITE") -->
+      <div class="case-dj-header">
+        <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
       </div>
 
-      <!-- Destello holográfico que cruza el cristal periódicamente -->
-      <div class="case-shimmer-sweep"></div>
-      <div class="case-glass-bevel-highlight"></div>
+      <!-- FOTO DEL DJ -->
+      <div class="case-photo-frame">
+        <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
+      </div>
 
-      <!-- Pestañas transparentes delanteras de retención de papel -->
-      <div class="case-plastic-clip clip-top"></div>
-      <div class="case-plastic-clip clip-bottom"></div>
-
-      <!-- Carátula interior J-Card plegable -->
-      <div class="case-jcard">
-        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO (SIN "EMITE") -->
-        <div class="jcard-header">
-          <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
-        </div>
-
-        <div class="jcard-main-cover">
-          <!-- Imagen del DJ -->
-          <div class="jcard-art-window">
-            <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
-            <div class="jcard-surface-texture"></div>
-          </div>
-
-          <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
-          <div class="jcard-footer-strip">
-            <div class="dj-country-info" id="dj-country-info">
-              <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-              <span class="dj-country-name" id="dj-country-name">El Salvador</span>
-            </div>
-          </div>
+      <!-- FRANJA INFERIOR: BANDERA Y PAÍS CENTRADOS -->
+      <div class="case-country-footer">
+        <div class="dj-country-info" id="dj-country-info">
+          <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+          <span class="dj-country-name" id="dj-country-name">El Salvador</span>
         </div>
       </div>
     </div>
@@ -1586,7 +1477,7 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
-/* CARGA DEL STAFF: ESTUCHES DE CASETE GRANDES (SÓLO IMAGEN) */
+/* CARGA DEL STAFF: ESTUCHES DE CASETE EN 2 COLUMNAS (SÓLO IMAGEN) */
 function loadStaffImages() {
   staffGrid.innerHTML = '';
   const fragment = document.createDocumentFragment();
@@ -1833,7 +1724,7 @@ function updateLedsDirectKick() {
   const kickJump = kickEnergy - minBaseline;
   const now = Date.now();
 
-  // Detección equilibrada: estabilidad en salsa/reggaeton y detección fluida en drops de electrónica
+  // Detección equilibrada: estabilidad y detección en drops
   const isKickHit = (
     kickJump > 0.06 || 
     (kickEnergy > 0.28 && kickJump > 0.035) || 
@@ -1914,7 +1805,7 @@ function visualize() {
     }
   }
   
-  // Tiras LED con calibración precisa
+  // Tiras LED calibradas
   updateLedsDirectKick();
   
   animationId = requestAnimationFrame(visualize);
