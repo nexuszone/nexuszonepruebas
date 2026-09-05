@@ -100,7 +100,7 @@ h1 {
 /* CONTENEDOR EN PC */
 .main-container {
   display: flex; flex: 1; width: 100%;
-  padding: clamp(0.8rem, 2vw, 2rem); gap: clamp(1.2rem, 2.5vw, 3.5rem);
+  padding: clamp(0.8rem, 2vw, 2rem); gap: clamp(1.2rem, 2.5vw, 3rem);
   position: relative; z-index: 1; align-items: center; justify-content: space-between;
 }
 
@@ -116,656 +116,290 @@ h1 {
 .player-title, .dj-title { color: #bd00ff; padding-bottom: 0.2rem; }
 
 /* =========================================================
-   CASETE REALISTA (REPRODUCTOR)
+   REPRODUCTOR CASETE ORIGINAL DE CASSETTE.HTML
    ========================================================= */
 .cassette-player {
-  width: 100%; max-width: 550px;
-  background: linear-gradient(165deg, #2a2a2f 0%, #161619 45%, #0e0e11 100%);
-  border-radius: 16px;
-  box-shadow: 
-    inset 0 1px 2px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 5px rgba(0, 0, 0, 0.85),
-    0 12px 30px rgba(0, 0, 0, 0.85),
-    0 0 25px rgba(189, 0, 255, 0.25);
-  border: 2px solid #4a4a54;
-  padding: clamp(10px, 2vw, 15px) clamp(8px, 1.8vw, 14px) clamp(8px, 1.5vw, 12px) clamp(8px, 1.8vw, 14px);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  user-select: none;
+  width: 95%; max-width: 575px; height: auto; min-height: 340px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 3px solid #8b8b8b; border-radius: 20px;
+  padding: 1.5rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 255, 65, 0.2);
 }
-
-.cassette-player::after {
-  content: '';
-  position: absolute;
-  top: 5px; left: 5px; right: 5px; bottom: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
-  border-radius: 12px;
-  pointer-events: none;
+.cassette-player::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px;
+  background: linear-gradient(90deg, #00ff41, #bd00ff, #00ff41); opacity: 0.8;
 }
-
-/* Tornillos de estrella metálicos */
 .cassette-screw {
-  position: absolute; width: clamp(11px, 2.2vw, 14px); height: clamp(11px, 2.2vw, 14px); border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #9e9e9e 0%, #525252 50%, #292929 100%);
-  border: 1px solid rgba(0, 0, 0, 0.7);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 1px 2px rgba(0, 0, 0, 0.7);
-  z-index: 15;
+  position: absolute; width: 20px; height: 20px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(85, 85, 85, 0.5) 0%, rgba(42, 42, 42, 0.4) 40%, rgba(26, 26, 26, 0.3) 70%, rgba(10, 10, 10, 0.2) 100%);
+  border: 2px solid rgba(102, 102, 102, 0.5);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3); z-index: 10;
 }
-.cassette-screw::before, .cassette-screw::after {
-  content: ''; position: absolute; top: 50%; left: 50%;
-  background: #111; border-radius: 0.5px;
+.cassette-screw::after {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 10px; height: 3px; background: rgba(51, 51, 51, 0.6); border-radius: 1px;
 }
-.cassette-screw::before { width: 7px; height: 1.8px; transform: translate(-50%, -50%); }
-.cassette-screw::after { width: 1.8px; height: 7px; transform: translate(-50%, -50%); }
-
-.cassette-screw.top-left { top: 8px; left: 8px; }
-.cassette-screw.top-right { top: 8px; right: 8px; }
-.cassette-screw.top-center { top: 6px; left: 50%; transform: translateX(-50%); }
-.cassette-screw.bottom-left { bottom: 8px; left: 8px; }
-.cassette-screw.bottom-right { bottom: 8px; right: 8px; }
+.cassette-screw.top-left { top: 12px; left: 12px; }
+.cassette-screw.top-right { top: 12px; right: 12px; }
+.cassette-screw.bottom-left { bottom: 12px; left: 12px; }
+.cassette-screw.bottom-right { bottom: 12px; right: 12px; }
 
 .album-art-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background-size: cover; background-position: center; opacity: 0.15; filter: blur(4px); z-index: 1;
+  background-size: cover; background-position: center; opacity: 0.3; filter: blur(3px); z-index: 1;
 }
-
-/* ETIQUETA ADHESIVA VINTAGE */
-.cassette-label {
-  position: relative; z-index: 2;
-  background: linear-gradient(180deg, #1e1d24 0%, #121216 100%);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 1px 3px rgba(0,0,0,0.5);
-  padding: clamp(6px, 1.5vw, 10px) clamp(8px, 1.8vw, 12px);
-  display: flex; flex-direction: column; gap: 6px;
-  width: 100%;
-}
-
-.label-header-bar {
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 2px solid #bd00ff; padding-bottom: 3px;
-}
-.label-side {
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-  color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.6);
-  display: flex; align-items: center; gap: 5px;
-}
-.label-side span {
-  background: #bd00ff; color: #000; font-size: 0.68rem; padding: 1px 5px; border-radius: 3px; font-weight: 900;
-}
-.label-type {
-  font-family: 'Share Tech Mono', monospace; font-size: clamp(0.75rem, 1.6vw, 0.85rem); font-weight: 700; color: #00ff41;
-  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
-  border: 1px solid rgba(0, 255, 65, 0.45); padding: 1px 8px; border-radius: 4px;
-  letter-spacing: 2px;
-}
-
-/* Banda de título con líneas rayadas */
-.cassette-write-strip {
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255,255,255,0.02) 0px,
-    rgba(255,255,255,0.02) 20px,
-    rgba(189, 0, 255, 0.22) 21px
-  );
-  border: 1px dashed rgba(255, 255, 255, 0.15);
-  border-radius: 5px;
-  padding: 3px 6px;
-  min-height: 36px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
+.cassette-content {
+  position: relative; z-index: 2; width: 100%; height: 100%;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 15px;
 }
 .song-info {
-  width: 100%; text-align: center; color: #00ff41;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.85rem, 2.2vw, 1.2rem);
-  letter-spacing: 1.1px; min-height: 26px; display: flex; align-items: center; justify-content: center;
+  width: 100%; text-align: center; margin-bottom: 5px; color: #00ff41;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1rem, 1.8vw, 1.4rem);
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(189, 0, 255, 0.7);
+  min-height: 30px; display: flex; align-items: center; justify-content: center; padding: 0 5px; letter-spacing: 1.5px;
 }
 
-/* VENTANA TRANSPARENTE DEL CASETE */
-.cassette-window-frame {
-  background: #070709;
-  border-radius: 35px;
-  border: 2px solid #36363d;
-  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.95), 0 1px 1px rgba(255, 255, 255, 0.1);
-  padding: 5px clamp(6px, 1.8vw, 12px);
-  position: relative;
-  overflow: hidden;
-  margin: 2px 0;
-  width: 100%;
-}
-
-.cassette-window-frame::before {
-  content: ''; position: absolute; top: -50%; left: -30%; width: 60%; height: 200%;
-  background: linear-gradient(60deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
-  transform: rotate(25deg); pointer-events: none; z-index: 9;
-}
-
-.tape-ribbon-track {
-  position: absolute; left: 5%; right: 5%; top: 50%; height: clamp(44px, 12vw, 62px);
-  transform: translateY(-50%);
-  background: linear-gradient(180deg, #1b1008 0%, #2f1a0e 50%, #150904 100%);
-  border-top: 1px solid rgba(0,0,0,0.65);
-  border-bottom: 1px solid rgba(0,0,0,0.65);
-  border-radius: 18px;
-  z-index: 1; opacity: 0.95;
-}
-
+/* COMPARTIMENTO DE CARRETES ORIGINAL */
 .cassette-tapes {
   display: flex; justify-content: space-between; align-items: center; position: relative;
-  z-index: 5; height: clamp(75px, 19vw, 105px); width: 100%; gap: clamp(4px, 1.2vw, 10px);
+  height: 140px; margin-top: 5px; width: 100%; max-width: 420px;
+  padding: 0 14px;
+  background: rgba(0, 0, 0, 0.5); border-radius: 80px; border: 2px solid rgba(139, 139, 139, 0.3);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-left: auto; margin-right: auto; overflow: hidden; flex-wrap: nowrap;
 }
 
-/* CARRETES CON CINTA Y DIENTES NEÓN */
 .tape-reel {
-  width: clamp(56px, 16.5vw, 84px);
-  height: clamp(56px, 16.5vw, 84px);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  position: relative; flex-shrink: 0;
-  aspect-ratio: 1 / 1;
+  width: 85px; height: 85px; border: 4px solid #8b8b8b; border-radius: 50%;
+  background: radial-gradient(circle at center, #333 0%, #2a2a2a 35%, #1a1a1a 60%, #444 100%);
+  display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 3;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8), 0 0 5px rgba(139, 139, 139, 0.5);
+  animation: subtleSpin 15s linear infinite; flex-shrink: 0; aspect-ratio: 1 / 1; min-width: 85px; max-width: 85px;
+}
+@keyframes subtleSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+.tape-reel::before {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 60px; height: 60px; border: 3px solid #8b8b8b; border-radius: 50%;
+  background: radial-gradient(circle at center, #444 0%, #333 40%, #222 100%);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
+}
+.tape-reel::after {
+  content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 28px; height: 28px; border: 2px solid #8b8b8b; border-radius: 50%; background: #555;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8); z-index: 2;
 }
 
-/* Carrete izquierdo (Violeta Neón) */
+.tape-reel span {
+  position: absolute; width: 8px; height: 25px; background: #8b8b8b; border-radius: 4px; z-index: 1;
+}
+.tape-reel span:nth-child(1) { transform: rotate(45deg) translate(23px, -5px); }
+.tape-reel span:nth-child(2) { transform: rotate(135deg) translate(23px, -5px); }
+.tape-reel span:nth-child(3) { transform: rotate(225deg) translate(23px, -5px); }
+.tape-reel span:nth-child(4) { transform: rotate(315deg) translate(23px, -5px); }
+
 #tape-left {
-  background: radial-gradient(circle at center, #2e103d 0%, #1c0926 48%, #361f14 52%, #1a0f0a 100%);
-  border: 3px solid #bd00ff;
-  box-shadow: 0 0 12px rgba(189, 0, 255, 0.75), inset 0 0 10px rgba(189, 0, 255, 0.5);
+  border-color: #bd00ff;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9), 0 0 8px rgba(139, 139, 139, 0.5), 0 0 15px rgba(189, 0, 255, 0.4);
 }
-#tape-left .reel-sprocket {
-  border: 2px solid #bd00ff;
-  background: radial-gradient(circle at center, #0e0014 36%, #bd00ff 40%, #4a0c66 70%, #1f022b 100%);
-  box-shadow: 0 0 8px rgba(189, 0, 255, 0.85);
-}
-#tape-left .reel-sprocket .tooth {
-  background: #f4b8ff; box-shadow: 0 0 4px #bd00ff;
-}
-#tape-left .tape-clamp-notch { background: #bd00ff; }
+#tape-left::before { border-color: #bd00ff; background: radial-gradient(circle at center, #4a3366 0%, #3a2a55 40%, #2a1a44 100%); }
+#tape-left::after { border-color: #bd00ff; background: #664488; }
+#tape-left span { background: #bd00ff; box-shadow: 0 0 5px rgba(189, 0, 255, 0.8); }
 #tape-left.animated {
-  animation: reelSpin 2.4s linear infinite, purpleReelPulse 1.6s ease-in-out infinite alternate;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(189, 0, 255, 0.7);
+  animation: fastSpin 4s linear infinite, purple-pulse 1.5s ease-in-out infinite;
 }
-@keyframes purpleReelPulse {
-  0% { box-shadow: 0 0 10px rgba(189, 0, 255, 0.7), inset 0 0 8px rgba(189, 0, 255, 0.5); }
-  100% { box-shadow: 0 0 20px rgba(189, 0, 255, 1), inset 0 0 14px rgba(189, 0, 255, 0.85); }
+@keyframes purple-pulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 20px rgba(189,0,255,0.7); }
+  50% { box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 25px rgba(189,0,255,0.9); }
 }
 
-/* Carrete derecho (Verde Neón) */
 #tape-right {
-  background: radial-gradient(circle at center, #0e3318 0%, #08210f 48%, #361f14 52%, #1a0f0a 100%);
-  border: 3px solid #00ff41;
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.75), inset 0 0 10px rgba(0, 255, 65, 0.5);
+  border-color: #00ff41;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9), 0 0 8px rgba(139, 139, 139, 0.5), 0 0 15px rgba(0, 255, 65, 0.4);
 }
-#tape-right .reel-sprocket {
-  border: 2px solid #00ff41;
-  background: radial-gradient(circle at center, #001205 36%, #00ff41 40%, #0d5921 70%, #04240c 100%);
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.85);
-}
-#tape-right .reel-sprocket .tooth {
-  background: #aaffc4; box-shadow: 0 0 4px #00ff41;
-}
-#tape-right .tape-clamp-notch { background: #00ff41; }
+#tape-right::before { border-color: #00ff41; background: radial-gradient(circle at center, #224433 0%, #1a3a2a 40%, #112a1a 100%); }
+#tape-right::after { border-color: #00ff41; background: #336644; }
+#tape-right span { background: #00ff41; box-shadow: 0 0 5px rgba(0, 255, 65, 0.8); }
 #tape-right.animated {
-  animation: reelSpin 2.4s linear infinite, greenReelPulse 1.6s ease-in-out infinite alternate;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 255, 65, 0.7);
+  animation: fastSpin 4s linear infinite, green-pulse 1.5s ease-in-out infinite;
 }
-@keyframes greenReelPulse {
-  0% { box-shadow: 0 0 10px rgba(0, 255, 65, 0.7), inset 0 0 8px rgba(0, 255, 65, 0.5); }
-  100% { box-shadow: 0 0 20px rgba(0, 255, 65, 1), inset 0 0 14px rgba(0, 255, 65, 0.85); }
+@keyframes green-pulse {
+  0%, 100% { box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,255,65,0.7); }
+  50% { box-shadow: inset 0 0 12px rgba(0,0,0,0.9), 0 0 25px rgba(0,255,65,0.9); }
+}
+@keyframes fastSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(720deg); } }
+
+/* CENTRO DEL CASETE */
+.cassette-center {
+  width: 170px; height: 118px; background: #1a1a1a; border: 3px solid #8b8b8b; border-radius: 8px;
+  position: relative; display: flex; flex-direction: column; justify-content: space-between;
+  flex-shrink: 0; z-index: 3; box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7), 0 0 8px rgba(139, 139, 139, 0.4);
+  overflow: hidden; min-width: 170px; max-width: 170px;
+}
+.cassette-center::before {
+  content: ''; position: absolute; width: 85%; height: 3px; background: linear-gradient(to right, #333, #555, #333);
+  top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 2px; z-index: 5;
+}
+.button-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: center; position: relative; z-index: 6; }
+.play-btn {
+  width: 85px; height: 33px; background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border: 3px solid #00ff41; border-radius: 6px; cursor: pointer; display: flex; justify-content: center; align-items: center;
+  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.1rem; color: #00ff41;
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8); box-shadow: 0 0 12px rgba(0, 255, 65, 0.6); transition: all 0.2s ease;
+}
+.play-btn:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(0, 255, 65, 0.8); border-color: #00ff88; }
+.play-btn.playing {
+  border-color: #bd00ff; color: #bd00ff; text-shadow: 0 0 8px rgba(189, 0, 255, 0.8); box-shadow: 0 0 12px rgba(189, 0, 255, 0.6);
 }
 
-.reel-sprocket {
-  position: absolute; width: 52%; height: 52%; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-.reel-sprocket::after {
-  content: ''; width: 44%; height: 44%; border-radius: 50%;
-  background: #08080a; border: 1.5px solid #222; z-index: 4;
-}
-.tape-clamp-notch {
-  position: absolute; width: 4px; height: 7px; top: 12%; left: 50%;
-  transform: translateX(-50%); border-radius: 1px; z-index: 5;
-}
-
-.reel-sprocket .tooth {
-  position: absolute; width: 10%; height: 26%;
-  border-radius: 1px; z-index: 3;
-}
-.reel-sprocket .tooth:nth-child(1) { transform: rotate(0deg) translateY(-140%); }
-.reel-sprocket .tooth:nth-child(2) { transform: rotate(60deg) translateY(-140%); }
-.reel-sprocket .tooth:nth-child(3) { transform: rotate(120deg) translateY(-140%); }
-.reel-sprocket .tooth:nth-child(4) { transform: rotate(180deg) translateY(-140%); }
-.reel-sprocket .tooth:nth-child(5) { transform: rotate(240deg) translateY(-140%); }
-.reel-sprocket .tooth:nth-child(6) { transform: rotate(300deg) translateY(-140%); }
-@keyframes reelSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-/* =========================================================
-   ECUALIZADOR ORIGINAL DEL CASETE (INTACTO)
-   ========================================================= */
-.equalizer-center-box {
-  flex: 1; min-width: 0;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 6; height: 100%;
-}
-
-.equalizer-container {
-  width: 100%; max-width: 200px; min-width: 0;
-  height: clamp(34px, 8.5vw, 46px);
-  background: rgba(10, 10, 14, 0.92);
-  border: 1.5px solid #32323e;
-  border-radius: 6px;
-  display: flex; justify-content: space-between; align-items: flex-end;
-  gap: clamp(1.5px, 0.6vw, 3.5px);
-  padding: 4px clamp(3px, 1vw, 6px);
-  position: relative;
-  overflow: hidden;
-  box-shadow: inset 0 0 12px rgba(0,0,0,0.95), 0 0 8px rgba(0, 255, 65, 0.15);
-}
-
-/* FILTRO SCANLINES CRT */
+/* ECUALIZADOR CON SCANLINES */
+.equalizer-compartment { height: 50%; width: 100%; display: flex; justify-content: center; align-items: flex-end; position: relative; z-index: 4; padding-bottom: 8px; }
+.equalizer-container { width: 100%; height: 28px; display: flex; justify-content: space-between; align-items: flex-end; gap: 4px; padding: 0 5px; position: relative; z-index: 4; }
 .equalizer-container::after {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.35) 50%, rgba(0, 255, 65, 0.08) 50%);
-  background-size: 100% 4px; pointer-events: none; z-index: 8; opacity: 0.9;
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.2) 50%, rgba(0, 255, 65, 0.05) 50%);
+  background-size: 100% 4px; pointer-events: none; z-index: 6; opacity: 0.7;
 }
 
 .bar {
-  width: 100%; height: 3px; border-radius: 1.5px 1.5px 0 0;
+  width: 6px; height: 2px;
+  border-radius: 2px 2px 0 0;
   transform-origin: bottom; position: relative; flex: 1; will-change: height;
   background: linear-gradient(to top, #008822, #7a00cc);
-  box-shadow: 0 0 4px rgba(0, 255, 65, 0.6);
-  transition: height 0.05s ease-out;
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  transition: height 0.03s ease-out;
 }
 .bar.bar-mid {
   background: linear-gradient(to top, #00cc33, #9900ff);
-  box-shadow: 0 0 7px rgba(0, 255, 65, 0.8), 0 0 9px rgba(189, 0, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 255, 65, 0.7), 0 0 12px rgba(189, 0, 255, 0.5);
 }
 .bar.bar-high {
   background: linear-gradient(to top, #00ff41, #bd00ff);
-  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 14px rgba(189, 0, 255, 0.95);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 0 16px rgba(189, 0, 255, 0.9);
 }
 
-/* =========================================================
-   ZONA INFERIOR: BOTÓN PLAY / STOP Y CABEZAL
-   ========================================================= */
-.cassette-deck-controls {
-  position: relative; z-index: 4;
-  display: flex; justify-content: center; align-items: center;
-  padding: 5px 0 2px 0;
-}
-
-.play-btn {
-  width: clamp(76px, 20vw, 92px); height: clamp(26px, 6.5vw, 32px);
-  background: linear-gradient(180deg, #242429 0%, #121215 100%);
-  border: 2px solid #00ff41; border-radius: 6px; cursor: pointer;
-  display: flex; justify-content: center; align-items: center;
-  font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.9rem, 2.2vw, 1.1rem); color: #00ff41;
-  text-shadow: 0 0 7px rgba(0, 255, 65, 0.8);
-  box-shadow: 0 0 12px rgba(0, 255, 65, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  transition: all 0.2s ease;
-}
-.play-btn:hover {
-  transform: translateY(-2px); box-shadow: 0 0 18px rgba(0, 255, 65, 0.85); border-color: #33ff77;
-}
-.play-btn.playing {
-  border-color: #bd00ff; color: #bd00ff;
-  text-shadow: 0 0 8px rgba(189, 0, 255, 0.9);
-  box-shadow: 0 0 15px rgba(189, 0, 255, 0.65);
-}
-
-.cassette-head-area {
-  position: relative;
-  width: 78%; margin: 2px auto 0 auto; height: clamp(18px, 4.5vw, 24px);
-  background: linear-gradient(180deg, #18181d 0%, #0f0f12 100%);
-  clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
-  border-bottom: 2px solid #303036;
-  display: flex; justify-content: space-around; align-items: center;
-  padding: 0 20px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.85);
-}
-.head-hole {
-  width: clamp(7px, 1.8vw, 9px); height: clamp(7px, 1.8vw, 9px); border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #0a0a0c 40%, #2a2a30 90%, #444 100%);
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
-}
-.head-center-notch {
-  width: clamp(22px, 5.5vw, 30px); height: 5px; background: #08080a;
-  border-radius: 2px; border: 1px solid #24242a;
-}
-
-/* =========================================================
-   MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI
-   ========================================================= */
 .volume-control {
-  width: 100%; max-width: 440px; margin: 10px auto 0 auto;
-  background: linear-gradient(180deg, rgba(24, 24, 30, 0.96) 0%, rgba(13, 13, 16, 0.96) 100%);
-  padding: 9px 14px 7px 14px; border-radius: 10px;
-  border: 1px solid #383845;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-  position: relative; z-index: 10;
+  width: 100%; max-width: 402.5px; margin: 0 auto;
+  background: rgba(20, 20, 20, 0.85); padding: 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
-.volume-header {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
-}
-.volume-title {
-  display: flex; align-items: center; gap: 6px;
-  color: #00ff41; font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; letter-spacing: 1.5px;
-}
-.volume-title svg { width: 14px; height: 14px; fill: #00ff41; filter: drop-shadow(0 0 4px #00ff41); }
-.volume-badge {
-  background: #000; border: 1px solid #00ff41; color: #00ff41;
-  font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; padding: 1px 8px; border-radius: 4px;
-  box-shadow: 0 0 8px rgba(0, 255, 65, 0.4);
-}
-.volume-slider-wrap {
-  position: relative; width: 100%; display: flex; flex-direction: column; gap: 4px;
+.volume-label {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;
+  color: #00ff41; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 0.85rem;
 }
 .volume-slider {
-  width: 100%; height: 8px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: linear-gradient(to right, #bd00ff 0%, #00ff41 100%, #202025 100%);
-  border-radius: 6px; outline: none;
-  cursor: pointer;
-  touch-action: none;
-  position: relative;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.85);
+  width: 100%; height: 6px; -webkit-appearance: none;
+  background: linear-gradient(to right, #00ff41 0%, #00ff41 100%, #333 100%, #333 100%);
+  border-radius: 6px; outline: none; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer; touch-action: none;
 }
 .volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px; height: 20px;
-  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #004d13 100%);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
-  border: 2px solid #08080a;
+  -webkit-appearance: none; width: 16px; height: 16px; background: #00ff41; border-radius: 50%; cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.8); border: 2px solid #000;
 }
 .volume-slider::-moz-range-thumb {
-  width: 20px; height: 20px;
-  background: radial-gradient(circle at 35% 35%, #fff 0%, #00ff41 50%, #004d13 100%);
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 255, 65, 1), 0 2px 4px rgba(0,0,0,0.8);
-  border: 2px solid #08080a;
-}
-.volume-scale {
-  display: flex; justify-content: space-between; padding: 0 2px;
-  font-family: 'Share Tech Mono', monospace; font-size: 0.62rem; color: #666;
+  width: 16px; height: 16px; background: #00ff41; border-radius: 50%; cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.8); border: 2px solid #000;
 }
 
 /* =========================================================
-   ESTUCHE DE CASETE 3D CON BORDES GRUESOS Y DETALLES REALES
+   ESTUCHE CASETE ADAPTADO PARA LA IMAGEN DEL DJ
    ========================================================= */
-.case-3d-wrapper {
-  perspective: 1100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+.dj-cassette-player {
+  width: 95%; max-width: 450px; height: auto; min-height: 340px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 3px solid #8b8b8b; border-radius: 20px;
+  padding: 1.2rem; position: relative; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.85), 0 0 20px rgba(189, 0, 255, 0.2);
+  margin: 0 auto;
+}
+.dj-cassette-player::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px;
+  background: linear-gradient(90deg, #bd00ff, #00ff41, #bd00ff); opacity: 0.8;
 }
 
-.cassette-case {
-  width: 100%;
-  max-width: 325px;
-  aspect-ratio: 1 / 1.42;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(45, 45, 55, 0.85) 15%, rgba(14, 14, 18, 0.96) 100%);
-  /* BORDES GRUESOS CON PROFUNDIDAD Y BISEL DOBLE */
-  border: 5px solid rgba(255, 255, 255, 0.28);
-  border-left: 13px solid rgba(255, 255, 255, 0.46); /* Lomo grueso acrílico */
-  border-right: 7px solid rgba(255, 255, 255, 0.32);
-  border-radius: 12px;
-  position: relative;
-  padding: 8px 9px 8px 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  user-select: none;
-  transform-style: preserve-3d;
-  will-change: transform, box-shadow;
-  box-shadow: 
-    0 20px 42px rgba(0, 0, 0, 0.95),
-    -14px 0 30px rgba(189, 0, 255, 0.42),
-    14px 0 30px rgba(0, 255, 65, 0.42),
-    inset 0 0 0 2px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 4px rgba(255, 255, 255, 0.18),
-    inset 0 2px 4px rgba(255, 255, 255, 0.5);
-  animation: case3DLevitation 6s ease-in-out infinite alternate;
-}
-
-@keyframes case3DLevitation {
-  0% {
-    transform: rotateY(-6deg) rotateX(3deg) translateY(0px);
-    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.95), -14px 0 30px rgba(189, 0, 255, 0.42), 14px 0 30px rgba(0, 255, 65, 0.42);
-  }
-  50% {
-    transform: rotateY(1deg) rotateX(1deg) translateY(-8px);
-    box-shadow: 0 28px 52px rgba(0, 0, 0, 0.9), -18px 0 38px rgba(189, 0, 255, 0.55), 18px 0 38px rgba(0, 255, 65, 0.55);
-  }
-  100% {
-    transform: rotateY(6deg) rotateX(-2deg) translateY(-3px);
-    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.95), -14px 0 32px rgba(189, 0, 255, 0.45), 14px 0 32px rgba(0, 255, 65, 0.45);
-  }
-}
-
-.cassette-case:hover {
-  animation-play-state: paused;
-  transform: rotateY(0deg) rotateX(0deg) translateY(-6px) scale(1.02);
-  box-shadow: 0 28px 55px rgba(0, 0, 0, 0.98), -20px 0 42px rgba(189, 0, 255, 0.65), 20px 0 42px rgba(0, 255, 65, 0.65);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Bisel de refracción perimetral */
-.case-acrylic-bezel {
-  position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px; pointer-events: none; z-index: 9;
-}
-
-/* Bisagras mecánicas de la caja */
-.case-hinge-lug {
-  position: absolute; left: -5px; width: 8px; height: 28px; border-radius: 4px;
-  background: linear-gradient(to right, #ffffff, #888888);
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), inset 0 1px 1px #fff; z-index: 12;
-}
-.case-hinge-lug.top { top: 28px; }
-.case-hinge-lug.bottom { bottom: 28px; }
-
-/* PESTAÑAS DE FRENO DE APERTURA EN LA BISAGRA (LIMITADOR DE ÁNGULO) */
-.case-hinge-stop-tab {
-  position: absolute; left: 5px; width: 6px; height: 22px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.32);
-  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.8), 1px 0 4px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  z-index: 11; pointer-events: none;
-}
-.case-hinge-stop-tab.stop-top { top: 58px; }
-.case-hinge-stop-tab.stop-bottom { bottom: 58px; }
-
-/* UÑERO DE APERTURA LATERAL (PESTAÑA FRONTAL) */
-.case-finger-notch {
-  position: absolute; right: -2px; top: 50%; transform: translateY(-50%);
-  width: 5px; height: 38px; border-radius: 3px 0 0 3px;
-  background: linear-gradient(to left, rgba(255, 255, 255, 0.4), rgba(160, 160, 160, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.3); border-right: none;
-  box-shadow: -1px 0 4px rgba(0, 0, 0, 0.6); z-index: 12; pointer-events: none;
-}
-
-/* REPISA DEL BOLSILLO INTERIOR DONDE DESCANSA LA TAPA */
-.case-pocket-shelf {
-  position: absolute; left: 4px; right: 4px; bottom: 38px; height: 3px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.35) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-  z-index: 8; pointer-events: none;
-}
-
-/* Conos interiores que traban los carretes */
-.case-spool-peg {
-  position: absolute; right: 20px; width: 26px; height: 26px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 30%, rgba(0,0,0,0.7) 75%, rgba(255,255,255,0.3) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.85), 0 1px 3px rgba(255,255,255,0.15);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 5; pointer-events: none;
-}
-.case-spool-peg.spool-top { top: 86px; }
-.case-spool-peg.spool-bottom { bottom: 86px; }
-.spool-peg-teeth {
-  width: 12px; height: 12px; border-radius: 50%;
-  border: 2px dashed rgba(255,255,255,0.5);
-}
-
-/* Pestañas transparentes de retención delantera */
-.case-plastic-clip {
-  position: absolute; left: 14px; width: 7px; height: 18px; border-radius: 2px;
-  background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.7); z-index: 11; pointer-events: none;
-}
-.case-plastic-clip.clip-top { top: 86px; }
-.case-plastic-clip.clip-bottom { bottom: 86px; }
-
-/* Destello holográfico que cruza el cristal */
-.case-shimmer-sweep {
-  position: absolute; top: -70%; left: -100%; width: 120%; height: 240%;
-  background: linear-gradient(65deg, 
-    transparent 38%, 
-    rgba(255, 255, 255, 0.28) 48%, 
-    rgba(0, 255, 65, 0.2) 51%, 
-    rgba(189, 0, 255, 0.2) 54%, 
-    transparent 64%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  z-index: 10;
-  animation: glassShimmerSweep 7s ease-in-out infinite;
-}
-@keyframes glassShimmerSweep {
-  0%, 25% { transform: translateX(-120%) rotate(25deg); opacity: 0; }
-  35% { opacity: 1; }
-  50%, 100% { transform: translateX(230%) rotate(25deg); opacity: 0; }
-}
-
-.case-glass-bevel-highlight {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 45%, rgba(255,255,255,0.04) 100%);
-  pointer-events: none; z-index: 8;
-}
-
-/* CARÁTULA J-CARD */
-.case-jcard {
-  position: relative; z-index: 2; width: 100%; height: 100%;
-  display: flex; flex-direction: column; overflow: hidden; border-radius: 6px;
-  background: #0b0b10;
-  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.98), 0 1px 4px rgba(0,0,0,0.85);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-/* FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO */
-.jcard-header {
-  height: 34px;
-  background: linear-gradient(90deg, #111116 0%, #1a1a24 50%, #111116 100%);
-  border-bottom: 2px solid #bd00ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  flex-shrink: 0;
-  z-index: 4;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
-}
-#sonic_dj {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
-  color: #00ff41;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  text-transform: none !important;
-}
-
-/* Contenido de la portada */
-.jcard-main-cover {
-  position: relative; width: 100%; flex: 1; min-height: 0;
-  display: flex; flex-direction: column;
-}
-
-/* Ventana fotográfica del DJ */
-.jcard-art-window {
-  position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+.dj-window-frame {
+  width: 100%; max-width: 320px; aspect-ratio: 1 / 1;
+  background: rgba(0, 0, 0, 0.6); border-radius: 14px;
+  border: 2px solid rgba(139, 139, 139, 0.4);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  margin: 5px auto; position: relative;
 }
 #dj-profile-img {
   width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 0.4s ease;
 }
-.cassette-case:hover #dj-profile-img {
-  transform: scale(1.04);
-}
-.jcard-surface-texture {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  box-shadow: inset 0 0 16px rgba(0,0,0,0.65); pointer-events: none;
+.dj-cassette-player:hover #dj-profile-img {
+  transform: scale(1.03);
 }
 
-/* FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS */
-.jcard-footer-strip {
-  height: 34px;
-  background: linear-gradient(90deg, #111116 0%, #171724 50%, #111116 100%);
-  border-top: 2px solid #00ff41;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 10px;
-  flex-shrink: 0;
-  z-index: 4;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.8);
+.dj-country-strip {
+  width: 100%; display: flex; justify-content: center; align-items: center;
+  margin-top: 5px;
 }
-
 .dj-country-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 0;
-  background: transparent;
-  border: none;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  font-size: clamp(0.75rem, 1.6vw, 0.85rem);
-  color: #00ff41;
+  display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 16px;
+  background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(139, 139, 139, 0.3); border-radius: 15px;
+  font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 0.85rem; color: #00ff41;
 }
-.dj-flag-img {
-  width: 24px;
-  height: 16px;
-  border-radius: 2px;
-  object-fit: cover;
-  box-shadow: 0 0 4px rgba(0,0,0,0.6);
-  transition: opacity 0.2s ease;
-}
-.dj-country-name {
-  color: #00ff41;
-  font-size: clamp(0.75rem, 1.6vw, 0.85rem);
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  white-space: nowrap;
-  transition: opacity 0.2s ease;
-}
+.dj-flag-img { width: 26px; height: 18px; border-radius: 2px; object-fit: cover; }
+.dj-country-name { color: #00ff41; font-size: 0.85rem; font-weight: 700; }
 
-/* Publicidad adaptada al estuche vertical */
+.ad-overlay {
+  position: absolute !important; top: 50%; left: 50%; transform: translate(-50%, -50%) !important;
+  z-index: 1000 !important; display: none !important; pointer-events: auto; background: transparent !important;
+  align-items: center; justify-content: center; padding: 10px; width: auto !important; height: auto !important;
+}
+.ad-overlay.active { display: flex !important; }
 .ad-overlay img.ad-image {
-  width: 100%; max-width: 325px; height: auto; aspect-ratio: 1 / 1.42; border-radius: 12px;
-  border: 3px solid #bd00ff; object-fit: cover;
+  width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1; border-radius: 16px; border: 3px solid #bd00ff; object-fit: cover;
   box-shadow: -15px 0 25px rgba(189, 0, 255, 0.6), 15px 0 25px rgba(0, 255, 65, 0.6); display: block;
+}
+.ad-close-btn {
+  position: absolute; top: 10px; right: 10px; background: #0a0a0a; border: 2px solid #bd00ff; color: #bd00ff;
+  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-family: 'Orbitron', sans-serif;
+  font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 1001;
 }
 
 /* =========================================================
-   GLITCH ORIGINAL DE LA PÁGINA (CYBER-GLITCH)
+   STAFF: EN 2 COLUMNAS (SÓLO IMAGEN, TIPO CASETE)
+   ========================================================= */
+.staff-grid {
+  flex: 1; overflow-y: auto; padding: 1.2rem;
+  display: grid; grid-template-columns: repeat(2, 1fr) !important;
+  gap: 1.2rem; align-content: start; justify-items: center;
+}
+
+.staff-cassette-card {
+  position: relative; width: 100%; max-width: 210px; aspect-ratio: 1 / 1.35;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a); border: 2.5px solid #8b8b8b;
+  border-radius: 12px; padding: 6px; display: flex; flex-direction: column; overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8), 0 0 12px rgba(0, 255, 65, 0.25);
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+.staff-cassette-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, #00ff41, #bd00ff); opacity: 0.8;
+}
+.staff-cassette-card.loaded { opacity: 1; transform: translateY(0); }
+.staff-cassette-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 255, 65, 0.6);
+  border-color: #00ff41;
+}
+.staff-photo-wrap {
+  position: relative; width: 100%; height: 100%; flex: 1; min-height: 0;
+  overflow: hidden; border-radius: 8px; background: #0c0c0e;
+  border: 1.5px solid rgba(139, 139, 139, 0.3);
+}
+.staff-photo {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* =========================================================
+   TEXTOS GLITCH ORIGINALES
    ========================================================= */
 :root { --pink-neon: #bd00ff; --green-neon: #00ff41; }
 .cyber-glitch {
@@ -798,29 +432,8 @@ h1 {
   to { text-shadow: 0 0 12px rgba(189, 0, 255, 1), 0 0 25px rgba(0, 255, 65, 0.9); }
 }
 
-.cyber-glitch.flash { animation: glitch-flash 0.3s ease; }
-.cyber-glitch.pulse { animation: glitch-pulse 0.4s ease; }
-.cyber-glitch.chaos { animation: glitch-chaos 0.5s steps(2, start); }
-@keyframes glitch-flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; transform: scale(1.03); } }
-@keyframes glitch-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); text-shadow: 0 0 25px #bd00ff, 0 0 35px #00ff41; } }
-@keyframes glitch-chaos { 0%, 100% { transform: translate(0,0); } 30% { transform: translate(-3px, 2px); } 70% { transform: translate(3px, -2px); } }
-
-#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(0.85rem, 2vw, 1.25rem); text-align: center; }
-
-/* SECCIÓN DJ */
-.dj-image-container { position: relative; display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100%; }
-
-.ad-overlay {
-  position: absolute !important; top: 50%; left: 50%; transform: translate(-50%, -50%) !important;
-  z-index: 1000 !important; display: none !important; pointer-events: auto; background: transparent !important;
-  align-items: center; justify-content: center; padding: 10px; width: auto !important; height: auto !important;
-}
-.ad-overlay.active { display: flex !important; }
-.ad-close-btn {
-  position: absolute; top: 10px; right: 10px; background: #0a0a0a; border: 2px solid #bd00ff; color: #bd00ff;
-  width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-family: 'Orbitron', sans-serif;
-  font-weight: 900; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; z-index: 1001;
-}
+#sonic_title { font-family: 'Orbitron', sans-serif; font-weight: 900; word-break: break-word; font-size: clamp(1rem, 1.8vw, 1.4rem); text-align: center; }
+#sonic_dj { text-transform: none !important; font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(0.9rem, 1.8vw, 1.25rem); }
 
 /* FOOTER */
 footer {
@@ -847,7 +460,7 @@ footer {
 .copyright { color: #666; font-size: 0.6rem; margin-top: 0.2rem; }
 
 /* =========================================================
-   PANELES LATERALES: DESPLAZAMIENTO SUAVE EXACTO A STAFF
+   PANELES LATERALES: DESPLAZAMIENTO SUAVE
    ========================================================= */
 .requests-panel, .chat-panel, .staff-panel, .poem-panel {
   position: fixed; top: 0; right: -50vw; width: 50vw; height: 100vh; height: 100dvh;
@@ -916,18 +529,6 @@ footer {
 .chat-iframe-container { flex: 1; overflow: hidden; position: relative; padding-bottom: env(safe-area-inset-bottom); }
 #chat-iframe { width: 100%; height: 100%; border: none; background: transparent; display: block; }
 
-.staff-grid {
-  flex: 1; overflow-y: auto; padding: 1.5rem; display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem; align-content: start;
-}
-.staff-photo {
-  width: 90%; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover;
-  border: 3px solid #00ff41; opacity: 0; transform: translateY(20px);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out; display: block; margin: 0 auto;
-}
-.staff-photo.loaded { opacity: 1; transform: translateY(0); }
-.staff-photo.error { display: none; }
-
 .poem-content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .poem-image { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; border: 2px solid rgba(189, 0, 255, 0.4); }
 
@@ -938,7 +539,7 @@ footer {
 .requests-overlay.active, .chat-overlay.active, .staff-overlay.active, .poem-overlay.active { opacity: 1; visibility: visible; }
 
 /* =========================================================
-   PANTALLA FIJA EN PC (ESCALADO PROPORCIONAL EXACTO)
+   PANTALLA FIJA EN PC (ESCALADO PROPORCIONAL)
    ========================================================= */
 @media (min-width: 901px) {
   html, body {
@@ -947,91 +548,101 @@ footer {
   }
 }
 
-/* Portátiles y pantallas de altura media (850px) */
 @media (min-width: 901px) and (max-height: 850px) {
-  header { padding: 0.35rem 1.2rem; }
-  .header-logo { max-height: 60px; max-width: 130px; }
-  h1 { font-size: 1.55rem; }
-  .header-subtitle { font-size: 0.75rem; }
-  .main-container { padding: 0.4rem 1.6rem; gap: 1.6rem; }
-  .section-title { font-size: 1rem; margin-bottom: 0.4rem; }
+  header { padding: 0.5rem 1.2rem; }
+  .header-logo { max-height: 70px; max-width: 150px; }
+  h1 { font-size: 1.7rem; }
+  .header-subtitle { font-size: 0.8rem; }
+  .main-container { padding: 0.6rem 2rem; gap: 2rem; }
+  .player-section, .dj-section { padding: 0.4rem; }
+  .section-title { font-size: 1.1rem; margin-bottom: 0.6rem; }
   
-  .cassette-player { max-width: 470px; padding: 9px 10px 5px 10px; }
-  .cassette-tapes { height: 86px; }
-  .tape-reel { width: 68px; height: 68px; }
-  .equalizer-container { height: 38px; }
-  .play-btn { width: 80px; height: 28px; font-size: 0.95rem; }
-  .cassette-head-area { height: 20px; }
-  .volume-control { max-width: 380px; padding: 6px 12px 5px 12px; margin-top: 6px; }
+  .cassette-player { max-width: 480px; min-height: 280px; padding: 1rem; }
+  .cassette-tapes { height: 115px; max-width: 360px; padding: 0 10px; }
+  .tape-reel { width: 70px; height: 70px; min-width: 70px; max-width: 70px; }
+  .cassette-center { width: 145px; height: 100px; min-width: 145px; max-width: 145px; }
+  .play-btn { width: 72px; height: 28px; font-size: 1rem; }
+  .equalizer-container { height: 22px; }
+  .volume-control { max-width: 360px; padding: 8px 12px; }
   
-  /* Estuche 3D vertical más grande en laptop */
-  .cassette-case, .ad-overlay img.ad-image { max-width: 265px; }
-  .case-spool-peg { width: 22px; height: 22px; right: 16px; }
-  .case-spool-peg.spool-top { top: 70px; }
-  .case-spool-peg.spool-bottom { bottom: 70px; }
-  footer { min-height: 58px; padding: 0.2rem 1rem; }
+  .dj-cassette-player, .ad-overlay img.ad-image { max-width: 380px; min-height: 280px; padding: 1rem; }
+  .dj-window-frame { max-width: 250px; }
+  footer { min-height: 65px; padding: 0.2rem 1rem; }
 }
 
-/* Portátiles y monitores de 720p (altura ~560-680px) */
 @media (min-width: 901px) and (max-height: 700px) {
-  header { padding: 0.2rem 1rem; }
-  .header-logo { max-height: 48px; max-width: 105px; }
-  h1 { font-size: 1.3rem; }
-  .main-container { padding: 0.25rem 1.2rem; gap: 1.2rem; }
-  .section-title { font-size: 0.9rem; margin-bottom: 0.25rem; }
-  .cassette-player { max-width: 410px; padding: 7px 8px 4px 8px; }
-  .cassette-tapes { height: 75px; }
-  .tape-reel { width: 58px; height: 58px; }
-  .equalizer-container { height: 32px; }
-  .play-btn { width: 72px; height: 24px; font-size: 0.85rem; }
-  .cassette-head-area { height: 16px; }
-  .volume-control { max-width: 320px; padding: 5px 10px; margin-top: 5px; }
+  header { padding: 0.3rem 1rem; }
+  .header-logo { max-height: 52px; max-width: 120px; }
+  h1 { font-size: 1.4rem; }
+  .main-container { padding: 0.4rem 1.5rem; gap: 1.5rem; }
+  .section-title { font-size: 0.95rem; margin-bottom: 0.4rem; }
   
-  /* Estuche 3D vertical proporcionado en 720p */
-  .cassette-case, .ad-overlay img.ad-image { max-width: 215px; }
-  .jcard-header { height: 28px; }
-  .jcard-footer-strip { height: 28px; }
-  .dj-country-name { font-size: 0.7rem; }
-  .case-spool-peg { display: none; }
-  footer { min-height: 46px; padding: 0.1rem; }
+  .cassette-player { max-width: 420px; min-height: 240px; padding: 0.8rem; }
+  .cassette-tapes { height: 98px; max-width: 310px; padding: 0 8px; }
+  .tape-reel { width: 60px; height: 60px; min-width: 60px; max-width: 60px; }
+  .cassette-center { width: 125px; height: 84px; min-width: 125px; max-width: 125px; }
+  .play-btn { width: 62px; height: 24px; font-size: 0.9rem; }
+  .equalizer-container { height: 18px; }
+  .volume-control { max-width: 310px; padding: 6px 10px; }
+  
+  .dj-cassette-player, .ad-overlay img.ad-image { max-width: 330px; min-height: 240px; padding: 0.8rem; }
+  .dj-window-frame { max-width: 200px; }
+  footer { min-height: 52px; padding: 0.15rem; }
 }
 
 /* =========================================================
-   MÓVILES (REALME 14X, REDMI 10 Y PANTALLAS TÁCTILES)
+   MÓVILES (REDMI 10, REALME 14X Y PANTALLAS TÁCTILES)
    ========================================================= */
 @media (max-width: 900px) {
   body { overflow-y: auto; }
-  .header-content { flex-direction: row; justify-content: center; align-items: center; gap: 10px; }
-  .header-logo { position: static; transform: none; max-height: 50px; max-width: 55px; flex-shrink: 0; }
+  .header-content { flex-direction: row; justify-content: center; align-items: center; gap: 12px; }
+  .header-logo { position: static; transform: none; max-height: 52px; max-width: 58px; flex-shrink: 0; }
   .header-text-group { align-items: flex-start; text-align: left; }
 
   .main-container {
     flex-direction: column; height: auto; flex: none;
-    padding: 1rem 0.6rem 2rem 0.6rem; gap: 1.6rem; justify-content: flex-start;
+    padding: 1.2rem 0.8rem 2.2rem 0.8rem; gap: 1.8rem; justify-content: flex-start;
   }
   .player-section, .dj-section { flex: none; width: 100%; max-width: 480px; padding: 0; }
-  .cassette-player { width: 100%; max-width: 100%; }
-  .volume-control { width: 100%; max-width: 100%; }
   
-  /* Estuche vertical 3D centrado y amplio en móvil */
-  .cassette-case, .ad-overlay img.ad-image { width: 270px; max-width: 270px; }
+  .cassette-player { width: 100%; max-width: 100%; min-height: auto; padding: 1.1rem 0.8rem; }
+  .cassette-tapes { height: 125px; max-width: 100%; padding: 0 14px; justify-content: space-between; }
+  .tape-reel { width: 72px; height: 72px; min-width: 72px; max-width: 72px; }
+  .cassette-center { width: 142px; height: 98px; min-width: 142px; max-width: 142px; }
+  
+  .dj-cassette-player { width: 100%; max-width: 100%; min-height: auto; padding: 1.1rem 0.8rem; }
+  .dj-window-frame { max-width: 260px; }
 
   .requests-panel, .chat-panel, .staff-panel, .poem-panel { width: 100vw !important; right: -100vw; }
   .requests-panel.visible, .chat-panel.visible, .staff-panel.visible, .poem-panel.visible { right: 0 !important; }
-  .staff-grid { grid-template-columns: 1fr; }
   
+  /* STAFF EN MÓVIL: SIEMPRE 2 COLUMNAS (NUNCA UNO ENCIMA DE OTRO) */
+  .staff-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem !important;
+    padding: 1rem 0.6rem !important;
+  }
+  .staff-cassette-card {
+    width: 100% !important;
+    max-width: 175px !important;
+  }
+
   .background-image { filter: none !important; opacity: 0.25 !important; }
   .album-art-bg { filter: none !important; }
 }
 
-@media (max-width: 360px) {
-  .main-container { padding: 0.6rem 0.3rem 1.8rem 0.3rem; gap: 1.2rem; }
-  .cassette-player { padding: 8px 6px 4px 6px; }
-  .cassette-window-frame { padding: 4px 6px; }
-  .tape-reel { width: 54px; height: 54px; }
-  .equalizer-container { height: 32px; gap: 1.5px; padding: 3px 4px; }
-  .play-btn { width: 68px; height: 25px; font-size: 0.85rem; }
-  .cassette-case, .ad-overlay img.ad-image { width: 220px; max-width: 220px; }
+@media (max-width: 375px) {
+  .main-container { padding: 0.8rem 0.4rem 2rem 0.4rem; gap: 1.5rem; }
+  .cassette-player, .dj-cassette-player { padding: 0.8rem 0.5rem; }
+  .cassette-tapes { height: 112px; padding: 0 10px; border-radius: 60px; }
+  .tape-reel { width: 64px; height: 64px; min-width: 64px; max-width: 64px; }
+  .cassette-center { width: 124px; height: 86px; min-width: 124px; max-width: 124px; }
+  .play-btn { width: 62px; height: 26px; font-size: 0.95rem; }
+  .equalizer-container { height: 20px; }
+  .dj-window-frame { max-width: 220px; }
+  
+  .staff-grid { gap: 0.6rem !important; padding: 0.8rem 0.4rem !important; }
+  .staff-cassette-card { max-width: 145px !important; }
 }
 </style>
 <script type="application/ld+json">
@@ -1056,99 +667,37 @@ footer {
 <section class="player-section">
 <h2 class="section-title player-title">Reproductor</h2>
 
-<!-- CASETE REALISTA (INTACTO) -->
+<!-- CASETE REPRODUCTOR ORIGINAL DE CASSETTE.HTML -->
 <div class="cassette-player">
-  <div class="cassette-screw top-left"></div>
-  <div class="cassette-screw top-center"></div>
-  <div class="cassette-screw top-right"></div>
-  <div class="cassette-screw bottom-left"></div>
-  <div class="cassette-screw bottom-right"></div>
-  <div class="album-art-bg" id="album-art-bg"></div>
-
-  <!-- ETIQUETA VINTAGE -->
-  <div class="cassette-label">
-    <div class="label-header-bar">
-      <div class="label-side">SIDE <span>A</span></div>
-      <div class="label-type">NEXUS</div>
-    </div>
-    
-    <!-- TÍTULO CON GLITCH ORIGINAL -->
-    <div class="cassette-write-strip">
-      <div class="song-info">
-        <div id='sonic_title' class="cyber-glitch" data-text="Cargando canción...">Cargando canción...</div>
-      </div>
-    </div>
-
-    <!-- VENTANA TRANSPARENTE: CARRETES Y ECUALIZADOR -->
-    <div class="cassette-window-frame">
-      <div class="tape-ribbon-track"></div>
-      
-      <div class="cassette-tapes">
-        <!-- CARRETE IZQUIERDO (VIOLETA NEÓN) -->
-        <div class="tape-reel" id="tape-left">
-          <div class="reel-sprocket">
-            <div class="tape-clamp-notch"></div>
-            <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
-            <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
-          </div>
-        </div>
-
-        <!-- ECUALIZADOR ORIGINAL RESTAURADO (INTACTO) -->
-        <div class="equalizer-center-box">
-          <div class="equalizer-container" id="equalizer">
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-            <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-          </div>
-        </div>
-
-        <!-- CARRETE DERECHO (VERDE NEÓN) -->
-        <div class="tape-reel" id="tape-right">
-          <div class="reel-sprocket">
-            <div class="tape-clamp-notch"></div>
-            <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
-            <div class="tooth"></div><div class="tooth"></div><div class="tooth"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PARTE BAJA: BOTÓN PLAY / STOP -->
-  <div class="cassette-deck-controls">
-    <button class="play-btn" id="play-pause-btn" aria-label="Reproducir o Pausar">▶</button>
-  </div>
-
-  <!-- BASE TRAPEZOIDAL DEL CABEZAL -->
-  <div class="cassette-head-area">
-    <div class="head-hole"></div>
-    <div class="head-center-notch"></div>
-    <div class="head-hole"></div>
-  </div>
+<div class="cassette-screw top-left"></div>
+<div class="cassette-screw top-right"></div>
+<div class="cassette-screw bottom-left"></div>
+<div class="cassette-screw bottom-right"></div>
+<div class="album-art-bg" id="album-art-bg"></div>
+<div class="cassette-content">
+<div class="song-info">
+<div id='sonic_title' class="cyber-glitch" data-text="Cargando canción...">Cargando canción...</div>
 </div>
-
-<!-- MÓDULO DE VOLUMEN CIBERNÉTICO HI-FI -->
+<div class="cassette-tapes">
+<div class="tape-reel" id="tape-left"><span></span><span></span><span></span><span></span></div>
+<div class="cassette-center">
+<div class="button-compartment">
+<button class="play-btn" id="play-pause-btn" aria-label="Reproducir o Pausar">▶</button>
+</div>
+<div class="equalizer-compartment">
+<div class="equalizer-container" id="equalizer">
+<div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+</div>
+</div>
+</div>
+<div class="tape-reel" id="tape-right"><span></span><span></span><span></span><span></span></div>
+</div>
 <div class="volume-control">
-  <div class="volume-header">
-    <div class="volume-title">
-      <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      <span>VOLUME LEVEL</span>
-    </div>
-    <span class="volume-badge" id="volume-percentage">100%</span>
-  </div>
-  <div class="volume-slider-wrap">
-    <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
-    <div class="volume-scale">
-      <span>0%</span>
-      <span>25%</span>
-      <span>50%</span>
-      <span>75%</span>
-      <span>MAX</span>
-    </div>
-  </div>
+<div class="volume-label"><span>Volumen:</span><span id="volume-percentage">100%</span></div>
+<input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.01" value="1" aria-label="Control de volumen">
 </div>
-
+</div>
+</div>
 <div id='sonic_art_full' style="display:none;"></div>
 </section>
 
@@ -1156,63 +705,29 @@ footer {
 <h2 class="section-title dj-title">DJ en Vivo</h2>
 <div class="dj-image-container">
   
-  <!-- ESTUCHE 3D REALISTA DE CASETE (JEWEL CASE AMPLIADO CON PESTAÑA Y REPISA) -->
-  <div class="case-3d-wrapper">
-    <div class="cassette-case">
-      <!-- Bisel acrílico con refracción -->
-      <div class="case-acrylic-bezel"></div>
+  <!-- CASETE ADAPTADO PARA LA IMAGEN DEL DJ (ESTILO CASETE ORIGINAL) -->
+  <div class="dj-cassette-player">
+    <div class="cassette-screw top-left"></div>
+    <div class="cassette-screw top-right"></div>
+    <div class="cassette-screw bottom-left"></div>
+    <div class="cassette-screw bottom-right"></div>
+    
+    <div class="cassette-content">
+      <!-- NOMBRE DEL DJ CENTRADO SIN "EMITE" -->
+      <div class="song-info">
+        <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
+      </div>
       
-      <!-- Bisagras cilíndricas mecánicas -->
-      <div class="case-hinge-lug top"></div>
-      <div class="case-hinge-lug bottom"></div>
-
-      <!-- Pestañas de freno de ángulo de apertura en la bisagra -->
-      <div class="case-hinge-stop-tab stop-top"></div>
-      <div class="case-hinge-stop-tab stop-bottom"></div>
-
-      <!-- Uñero de apertura frontal lateral -->
-      <div class="case-finger-notch"></div>
-
-      <!-- Repisa / Bolsillo interior translúcido -->
-      <div class="case-pocket-shelf"></div>
-
-      <!-- Conos interiores que traban los carretes -->
-      <div class="case-spool-peg spool-top">
-        <div class="spool-peg-teeth"></div>
-      </div>
-      <div class="case-spool-peg spool-bottom">
-        <div class="spool-peg-teeth"></div>
+      <!-- FOTO DEL DJ EN EL VISOR DEL CASETE -->
+      <div class="dj-window-frame">
+        <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
       </div>
 
-      <!-- Destello holográfico que cruza el cristal periódicamente -->
-      <div class="case-shimmer-sweep"></div>
-      <div class="case-glass-bevel-highlight"></div>
-
-      <!-- Pestañas transparentes delanteras de retención de papel -->
-      <div class="case-plastic-clip clip-top"></div>
-      <div class="case-plastic-clip clip-bottom"></div>
-
-      <!-- Carátula interior J-Card plegable -->
-      <div class="case-jcard">
-        <!-- FRANJA SUPERIOR: NOMBRE DEL DJ CENTRADO -->
-        <div class="jcard-header">
-          <div id='sonic_dj' class="cyber-glitch" data-text="">Cargando DJ...</div>
-        </div>
-
-        <div class="jcard-main-cover">
-          <!-- Imagen del DJ -->
-          <div class="jcard-art-window">
-            <img id='dj-profile-img' src='portadasdjs/autodj.png' alt='Perfil del DJ en vivo'>
-            <div class="jcard-surface-texture"></div>
-          </div>
-
-          <!-- FRANJA INFERIOR: BANDERA Y PAÍS DEL DJ TOTALMENTE CENTRADOS -->
-          <div class="jcard-footer-strip">
-            <div class="dj-country-info" id="dj-country-info">
-              <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
-              <span class="dj-country-name" id="dj-country-name">El Salvador</span>
-            </div>
-          </div>
+      <!-- BANDERA Y PAÍS CENTRADOS EN LA PARTE INFERIOR -->
+      <div class="dj-country-strip">
+        <div class="dj-country-info" id="dj-country-info">
+          <img src="https://flagcdn.com/w40/sv.webp" alt="El Salvador" class="dj-flag-img" id="dj-flag-img">
+          <span class="dj-country-name" id="dj-country-name">El Salvador</span>
         </div>
       </div>
     </div>
@@ -1408,7 +923,7 @@ let visualizerFrameCount = 0;
 let isMobileDevice = window.innerWidth <= 900;
 
 /* =========================================================
-   TIRAS LED: CALIBRACIÓN EQUILIBRADA (SUB-BASS PURO)
+   TIRAS LED: CALIBRACIÓN FIRME AL RITMO DEL BOMBO
    ========================================================= */
 const ledColors = ['#00ff41', '#bd00ff', '#ffffff'];
 let ledColorIndex = 0;
@@ -1427,7 +942,7 @@ audio.volume = 1.0; volumeSlider.value = 1.0; audio.crossOrigin = 'anonymous';
 function updateVolumeDisplay() {
   const percent = Math.round(audio.volume * 100);
   volumePercentage.textContent = percent + '%';
-  volumeSlider.style.background = `linear-gradient(to right, #bd00ff 0%, #00ff41 ${percent}%, #202025 ${percent}%, #202025 100%)`;
+  volumeSlider.style.background = `linear-gradient(to right, #00ff41 0%, #00ff41 ${percent}%, #333 ${percent}%, #333 100%)`;
 }
 
 function handleVolumeInput(val) {
@@ -1572,20 +1087,26 @@ function initChatListeners() {
   document.addEventListener('keydown', (e) => { if(e.key==='Escape'&&isChatVisible) toggleChat(); });
 }
 
+/* CARGA DEL STAFF: 2 COLUMNAS (SÓLO IMAGEN, ESTILO CASETE) */
 function loadStaffImages() {
   staffGrid.innerHTML = '';
   const fragment = document.createDocumentFragment();
   for(let i = 1; i <= 50; i++) {
-    const img = document.createElement('img');
-    img.src = `staff/dj${i}.png`; img.alt = `Staff ${i}`; img.classList.add('staff-photo');
-    img.decoding = 'async';
-    img.loading = 'lazy';
-    img.onload = function() { this.classList.add('loaded'); };
-    img.onerror = function() { this.classList.add('error'); };
-    fragment.appendChild(img);
+    const card = document.createElement('div');
+    card.className = 'staff-cassette-card';
+    card.innerHTML = `
+      <div class="staff-photo-wrap">
+        <img src="staff/dj${i}.png" alt="" class="staff-photo" loading="lazy" decoding="async">
+      </div>
+    `;
+    const img = card.querySelector('img');
+    img.onload = function() { card.classList.add('loaded'); };
+    img.onerror = function() { card.remove(); };
+    fragment.appendChild(card);
   }
   staffGrid.appendChild(fragment);
 }
+
 function toggleStaffPanel() {
   isStaffVisible = !isStaffVisible;
   if(isStaffVisible) { 
@@ -1756,7 +1277,7 @@ function startVisualizer() { if(isVisualizing || !analyzer) return; isVisualizin
 function stopVisualizer() {
   isVisualizing = false; if(animationId) cancelAnimationFrame(animationId); animationId = null;
   for(let i=0; i<barCount; i++) { 
-    bars[i].style.height='3px'; 
+    bars[i].style.height='2px'; 
     bars[i].className = 'bar';
   }
   ledTop.style.background='#8b8b8b'; ledTop.style.boxShadow='0 0 0 rgba(139,139,139,0)';
@@ -1766,23 +1287,23 @@ function stopVisualizer() {
   bar0History.fill(0);
 }
 
-/* 12 BANDAS CALIBRADAS PARA MÁXIMA DINÁMICA DE BAJOS A AGUDOS */
+/* 12 BANDAS CALIBRADAS PARA MÁXIMA DINÁMICA */
 const freqSpectrumBands = [
-  { start: 1, end: 3, mult: 0.82 },    // Sub-Bass (Bombos) -> BARRA 1
-  { start: 3, end: 6, mult: 0.84 },    // Bass (Bajo eléctrico/sintetizado)
-  { start: 6, end: 10, mult: 0.88 },   // Low-Mid (Pegada de bombo/caja)
-  { start: 10, end: 16, mult: 0.94 },  // Mid-Low (Cuerpo vocal)
-  { start: 16, end: 24, mult: 1.02 },  // Mid (Vocales y teclados)
-  { start: 24, end: 36, mult: 1.12 },  // Upper-Mid (Claridad y ataque)
-  { start: 36, end: 52, mult: 1.25 },  // Presence (Guitarras/Snare)
-  { start: 52, end: 72, mult: 1.42 },  // High-Presence (Platillos ataque)
-  { start: 72, end: 98, mult: 1.65 },  // Treble Low (Brillo medio)
-  { start: 98, end: 130, mult: 1.95 }, // Treble (Charles/Hi-Hats)
-  { start: 130, end: 165, mult: 2.35 },// Highs (Brillo superior)
-  { start: 165, end: 200, mult: 2.85 } // Air (Armónicos de aire)
+  { start: 1, end: 3, mult: 0.82 },    // Sub-Bass (Bombos)
+  { start: 3, end: 6, mult: 0.84 },    // Bass
+  { start: 6, end: 10, mult: 0.88 },   // Low-Mid
+  { start: 10, end: 16, mult: 0.94 },  // Mid-Low
+  { start: 16, end: 24, mult: 1.02 },  // Mid
+  { start: 24, end: 36, mult: 1.12 },  // Upper-Mid
+  { start: 36, end: 52, mult: 1.25 },  // Presence
+  { start: 52, end: 72, mult: 1.42 },  // High-Presence
+  { start: 72, end: 98, mult: 1.65 },  // Treble Low
+  { start: 98, end: 130, mult: 1.95 }, // Treble
+  { start: 130, end: 165, mult: 2.35 },// Highs
+  { start: 165, end: 200, mult: 2.85 } // Air
 ];
 
-/* SINCRONIZACIÓN DE TIRAS LED: FILTRADO SUB-GRAVE PURO CON LÍNEA BASE DINÁMICA */
+/* SINCRONIZACIÓN DE TIRAS LED AL BOMBO */
 function updateLedsDirectKick() {
   if (!isPlaying || !analyzer || !dataArray) {
     if (ledIsLit) {
@@ -1796,11 +1317,9 @@ function updateLedsDirectKick() {
     return;
   }
 
-  // Aislamos únicamente 40-120Hz (inmune a voces, cajas y agudos)
   const rawSub = (dataArray[1] * 1.6 + dataArray[2] * 0.7) / 2.3;
   const kickEnergy = Math.pow(Math.min(1, (rawSub / 235) * 0.9), 1.3);
 
-  // Registro en ventana para calcular el nivel continuo
   bar0History[historyIdx] = kickEnergy;
   historyIdx = (historyIdx + 1) % historySize;
 
@@ -1812,7 +1331,6 @@ function updateLedsDirectKick() {
   const kickJump = kickEnergy - minBaseline;
   const now = Date.now();
 
-  // Detección equilibrada: estabilidad y detección en drops
   const isKickHit = (
     kickJump > 0.06 || 
     (kickEnergy > 0.28 && kickJump > 0.035) || 
@@ -1860,9 +1378,6 @@ function visualize() {
   
   analyzer.getByteFrequencyData(dataArray); 
   const totalBins = dataArray.length;
-  const containerHeight = equalizer.clientHeight || 42;
-  const maxHeight = containerHeight - 5;
-  const minHeight = 3;
   
   for(let i=0; i<barCount; i++) {
     const band = freqSpectrumBands[i];
@@ -1876,26 +1391,23 @@ function visualize() {
     }
     const avg = count > 0 ? sum / count : 0;
     
-    // Curva de respuesta con rango dinámico amplio (evita quedarse pegado arriba)
     let norm = (avg / 255) * band.mult;
     norm = Math.min(1, Math.max(0, norm));
     let dynamicNorm = Math.pow(norm, 1.35);
-    let height = Math.round(minHeight + dynamicNorm * (maxHeight - minHeight));
+    let height = Math.round(2 + dynamicNorm * 24);
 
     bars[i].style.height = height + 'px';
     
-    if (height >= maxHeight * 0.78) {
+    if (height >= 18) {
       bars[i].className = 'bar bar-high';
-    } else if (height >= maxHeight * 0.42) {
+    } else if (height >= 9) {
       bars[i].className = 'bar bar-mid';
     } else {
       bars[i].className = 'bar';
     }
   }
   
-  // Tiras LED calibradas
   updateLedsDirectKick();
-  
   animationId = requestAnimationFrame(visualize);
 }
 
@@ -1960,7 +1472,7 @@ function updateAlbumArtBackground() {
     if(s && s !== lastArtUrl) { 
       lastArtUrl = s;
       albumArtBg.style.backgroundImage = `url('${s}')`; 
-      albumArtBg.style.opacity = '0.2'; 
+      albumArtBg.style.opacity = '0.3'; 
     } 
   } 
 }
